@@ -1,5 +1,8 @@
-package StuPackage;
+package ProjManagerPackage;
 
+import ProjManagerPackage.StuAssessmentFrame;
+import StuPackage.StuData_IO;
+import StuPackage.Student;
 import java.awt.Color;
 
 /**
@@ -9,6 +12,7 @@ import java.awt.Color;
 public class EditAssessmentFrame extends javax.swing.JFrame {
 
     private String stuID;
+    private String selectedAssessment;
 
     /**
      * Creates new form EditAssessmentFrame
@@ -26,11 +30,13 @@ public class EditAssessmentFrame extends javax.swing.JFrame {
             if (StuData_IO.StuData.get(i).id.equals(StuID)) {
                 lbSelectedName.setText(StuData_IO.StuData.get(i).name);
                 lbSelectedID.setText(StuData_IO.StuData.get(i).id);
+                selectedAssessment = StuData_IO.StuData.get(i).assessment;
                 break;
             }
         }
-
+        
         cboAssesment.setModel(new javax.swing.DefaultComboBoxModel<>(new String[]{"-", "Intern", "Invt Report", "CP1", "CP2", "RMCP", "FYP"}));
+        cboAssesment.setSelectedItem(selectedAssessment);
     }
 
     /**
@@ -111,8 +117,10 @@ public class EditAssessmentFrame extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(lbSelectedID, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(lbSelectedName, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(cboAssesment, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                .addGap(168, 168, 168))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(cboAssesment, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 0, Short.MAX_VALUE)))))
+                .addGap(146, 146, 146))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -143,7 +151,7 @@ public class EditAssessmentFrame extends javax.swing.JFrame {
     private void btbCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btbCancelActionPerformed
         //Return back to the student list page
         this.setVisible(false);
-        StuAssessmentList NwFrame = new StuAssessmentList();
+        StuAssessmentFrame NwFrame = new StuAssessmentFrame();
         NwFrame.setVisible(true);
     }//GEN-LAST:event_btbCancelActionPerformed
 
@@ -165,7 +173,7 @@ public class EditAssessmentFrame extends javax.swing.JFrame {
 
         //Return back to the student list page
         this.setVisible(false);
-        StuAssessmentList NwFrame = new StuAssessmentList();
+        StuAssessmentFrame NwFrame = new StuAssessmentFrame();
         NwFrame.setVisible(true);
     }//GEN-LAST:event_btbSubmitActionPerformed
 

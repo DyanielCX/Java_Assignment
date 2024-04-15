@@ -43,11 +43,14 @@
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="lbSelectedID" max="32767" attributes="0"/>
                           <Component id="lbSelectedName" max="32767" attributes="0"/>
-                          <Component id="cboAssesment" max="32767" attributes="0"/>
+                          <Group type="102" attributes="0">
+                              <Component id="cboAssesment" min="-2" pref="115" max="-2" attributes="0"/>
+                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                          </Group>
                       </Group>
                   </Group>
               </Group>
-              <EmptySpace min="168" pref="168" max="-2" attributes="0"/>
+              <EmptySpace min="146" pref="146" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>

@@ -1,4 +1,4 @@
-package StuPackage;
+package ProjManagerPackage.StuAsse_btbEdit;
 
 import java.awt.Component;
 import javax.swing.DefaultCellEditor;
