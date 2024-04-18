@@ -80,6 +80,7 @@ public class StuData_IO {
         
     }
     
+    //..
     //Edit existed student data in StuData ArrayList
     public static void edit(int Index, Student EditedData){
         StuData.set(Index, EditedData);
@@ -87,7 +88,27 @@ public class StuData_IO {
     }
     
     //Remove existed student data from StuData ArrayList
-    public static void remove(){
-        
+    public static void remove(String stuID){
+        try {
+            int studentIndex = -1;
+            for (int i = 0; i < StuData.size(); i++) {
+                if (stuID.equals(StuData.get(i).id)) {
+                    studentIndex = i;
+                    break;
+                }
+            }
+            if (studentIndex != -1) {
+                StuData.remove(studentIndex);
+                writeToTxt();
+                System.out.println("Student removed successfully.");
+                // JOptionPane.showMessageDialog(null, "Student removed successfully.");
+            } else {
+                System.out.println( "Student ID not found: " + stuID);
+                // JOptionPane.showMessageDialog(null, "Student ID not found: " + stuID);
+            }
+        } catch (Exception ex) {
+            System.out.println("Error removing student: " + ex.getMessage());
+            // JOptionPane.showMessageDialog(null, "Error removing student: " + ex.getMessage());
+        }
     }
 }
