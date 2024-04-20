@@ -60,19 +60,23 @@ public class EditAssessmentFrame extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
 
-        lbStuName.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        lbStuName.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
+        lbStuName.setForeground(new java.awt.Color(115, 96, 223));
         lbStuName.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lbStuName.setText("Student Name: ");
 
-        lbSelectedName.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        lbSelectedName.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
+        lbSelectedName.setForeground(new java.awt.Color(115, 96, 223));
         lbSelectedName.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         lbSelectedName.setText(" ");
 
-        lbStuID.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        lbStuID.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
+        lbStuID.setForeground(new java.awt.Color(115, 96, 223));
         lbStuID.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lbStuID.setText("Student ID: ");
 
-        lbSelectedID.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        lbSelectedID.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
+        lbSelectedID.setForeground(new java.awt.Color(115, 96, 223));
         lbSelectedID.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         lbSelectedID.setText(" ");
 
@@ -82,6 +86,9 @@ public class EditAssessmentFrame extends javax.swing.JFrame {
         lbAssesment.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lbAssesment.setText("Assessment: ");
 
+        btbSubmit.setBackground(new java.awt.Color(115, 96, 223));
+        btbSubmit.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btbSubmit.setForeground(new java.awt.Color(255, 255, 255));
         btbSubmit.setText("Submit");
         btbSubmit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -89,6 +96,9 @@ public class EditAssessmentFrame extends javax.swing.JFrame {
             }
         });
 
+        btbCancel.setBackground(new java.awt.Color(115, 96, 223));
+        btbCancel.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btbCancel.setForeground(new java.awt.Color(255, 255, 255));
         btbCancel.setText("Cancel");
         btbCancel.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
