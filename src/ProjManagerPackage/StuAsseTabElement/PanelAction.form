@@ -34,7 +34,7 @@
     </DimensionLayout>
   </Layout>
   <SubComponents>
-    <Component class="ProjManagerPackage.StuAsse_btbEdit.ActionButton" name="cmdEdit">
+    <Component class="ProjManagerPackage.StuAsseTabElement.ActionButton" name="cmdEdit">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
           <Image iconType="3" name="/Image/edit.png"/>

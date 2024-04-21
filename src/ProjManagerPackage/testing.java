@@ -1,6 +1,5 @@
 package ProjManagerPackage;
 
-import Java_Assignment.ProjManager;
 import StuPackage.StuData_IO;
 
 
@@ -34,7 +33,8 @@ public class testing {
         //</editor-fold>
         
         StuData_IO.readFrTxt();
-        new StuAssessmentFrame().setVisible(true);
+//        new StuAssessmentFrame().setVisible(true);
+        new ProjMng_MainFrame().setVisible(true);
     }
     
 }

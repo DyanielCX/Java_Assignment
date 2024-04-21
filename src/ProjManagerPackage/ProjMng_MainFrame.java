@@ -4,6 +4,7 @@
  */
 package ProjManagerPackage;
 
+import StuPackage.StuData_IO;
 import java.awt.Color;
 
 /**
@@ -21,6 +22,10 @@ public class ProjMng_MainFrame extends javax.swing.JFrame {
     public ProjMng_MainFrame() {
         initComponents();
         getContentPane().setBackground(new Color(248, 246, 227));
+        
+//        TabPanel.addTab("tab1", jPanel1);
+        StuAssessmentTab stuAssessmentTab = new StuAssessmentTab(this);
+        TabPanel.addTab("tab2", stuAssessmentTab);
     }
 
     /**
@@ -47,8 +52,8 @@ public class ProjMng_MainFrame extends javax.swing.JFrame {
         topNavBar = new javax.swing.JPanel();
         PanelTitle = new javax.swing.JLabel();
         AccName = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
-        jPanel2 = new javax.swing.JPanel();
+        lblLogout = new javax.swing.JLabel();
+        CoverTabPane = new javax.swing.JPanel();
         TabPanel = new javax.swing.JTabbedPane();
         jPanel1 = new javax.swing.JPanel();
 
@@ -264,14 +269,14 @@ public class ProjMng_MainFrame extends javax.swing.JFrame {
         AccName.setForeground(new java.awt.Color(255, 255, 255));
         AccName.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         AccName.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/ProjMngUser.png"))); // NOI18N
-        AccName.setText("Jane");
+        AccName.setText("Jason");
         AccName.setIconTextGap(10);
 
-        jLabel1.setFont(new java.awt.Font("Segoe UI Semibold", 0, 15)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/logout.png"))); // NOI18N
-        jLabel1.setText("Logout");
+        lblLogout.setFont(new java.awt.Font("Segoe UI Semibold", 0, 15)); // NOI18N
+        lblLogout.setForeground(new java.awt.Color(255, 255, 255));
+        lblLogout.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        lblLogout.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/logout.png"))); // NOI18N
+        lblLogout.setText("Logout");
 
         javax.swing.GroupLayout topNavBarLayout = new javax.swing.GroupLayout(topNavBar);
         topNavBar.setLayout(topNavBarLayout);
@@ -285,14 +290,14 @@ public class ProjMng_MainFrame extends javax.swing.JFrame {
                 .addGap(44, 44, 44))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, topNavBarLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel1)
+                .addComponent(lblLogout)
                 .addGap(20, 20, 20))
         );
         topNavBarLayout.setVerticalGroup(
             topNavBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(topNavBarLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1)
+                .addComponent(lblLogout)
                 .addGap(3, 3, 3)
                 .addGroup(topNavBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(AccName, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -302,20 +307,20 @@ public class ProjMng_MainFrame extends javax.swing.JFrame {
 
         getContentPane().add(topNavBar, new org.netbeans.lib.awtextra.AbsoluteConstraints(275, 0, 975, -1));
 
-        jPanel2.setBackground(new java.awt.Color(248, 246, 227));
+        CoverTabPane.setBackground(new java.awt.Color(248, 246, 227));
 
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout CoverTabPaneLayout = new javax.swing.GroupLayout(CoverTabPane);
+        CoverTabPane.setLayout(CoverTabPaneLayout);
+        CoverTabPaneLayout.setHorizontalGroup(
+            CoverTabPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 940, Short.MAX_VALUE)
         );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        CoverTabPaneLayout.setVerticalGroup(
+            CoverTabPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 30, Short.MAX_VALUE)
         );
 
-        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 100, 940, 30));
+        getContentPane().add(CoverTabPane, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 100, 940, 30));
 
         jPanel1.setBackground(new java.awt.Color(204, 204, 255));
 
@@ -346,6 +351,7 @@ public class ProjMng_MainFrame extends javax.swing.JFrame {
         ReportStatusPane.setBackground(navDefaultColor);
         
         PanelTitle.setText("Dashboard");
+        TabPanel.setSelectedIndex(0);
     }//GEN-LAST:event_navDashboardMouseClicked
 
     private void navStuAssessmentMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_navStuAssessmentMouseClicked
@@ -356,6 +362,7 @@ public class ProjMng_MainFrame extends javax.swing.JFrame {
         ReportStatusPane.setBackground(navDefaultColor);
         
         PanelTitle.setText("Student Assessment");
+        TabPanel.setSelectedIndex(1);
     }//GEN-LAST:event_navStuAssessmentMouseClicked
 
     private void navAssignSupervisorMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_navAssignSupervisorMouseClicked
@@ -419,6 +426,7 @@ public class ProjMng_MainFrame extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
+                StuData_IO.readFrTxt();
                 new ProjMng_MainFrame().setVisible(true);
             }
         });
@@ -428,15 +436,15 @@ public class ProjMng_MainFrame extends javax.swing.JFrame {
     private javax.swing.JPanel AccManagementPane;
     private javax.swing.JLabel AccName;
     private javax.swing.JPanel AssignSupervisorPane;
+    private javax.swing.JPanel CoverTabPane;
     private javax.swing.JPanel DashboardPane;
     private javax.swing.JLabel PanelTitle;
     private javax.swing.JPanel ReportStatusPane;
     private javax.swing.JPanel StuAssessmentPane;
-    private javax.swing.JTabbedPane TabPanel;
+    public javax.swing.JTabbedPane TabPanel;
     private javax.swing.JLabel imgLogo;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
+    private javax.swing.JLabel lblLogout;
     private javax.swing.JLabel navAccMangement;
     private javax.swing.JLabel navAssignSupervisor;
     private javax.swing.JLabel navDashboard;

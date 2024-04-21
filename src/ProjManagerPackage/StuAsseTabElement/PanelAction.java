@@ -1,4 +1,4 @@
-package ProjManagerPackage.StuAsse_btbEdit;
+package ProjManagerPackage.StuAsseTabElement;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -34,7 +34,7 @@ public class PanelAction extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        cmdEdit = new ProjManagerPackage.StuAsse_btbEdit.ActionButton();
+        cmdEdit = new ProjManagerPackage.StuAsseTabElement.ActionButton();
 
         cmdEdit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/edit.png"))); // NOI18N
 
@@ -58,6 +58,6 @@ public class PanelAction extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private ProjManagerPackage.StuAsse_btbEdit.ActionButton cmdEdit;
+    private ProjManagerPackage.StuAsseTabElement.ActionButton cmdEdit;
     // End of variables declaration//GEN-END:variables
 }

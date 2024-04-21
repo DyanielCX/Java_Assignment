@@ -1,8 +1,8 @@
 package ProjManagerPackage;
 
-import ProjManagerPackage.StuAsse_btbEdit.TableActionCellEditor;
-import ProjManagerPackage.StuAsse_btbEdit.TableActionCellRender;
-import ProjManagerPackage.StuAsse_btbEdit.TableActionEvent;
+import ProjManagerPackage.StuAsseTabElement.TableActionCellEditor;
+import ProjManagerPackage.StuAsseTabElement.TableActionCellRender;
+import ProjManagerPackage.StuAsseTabElement.TableActionEvent;
 import StuPackage.StuData_IO;
 import javax.swing.table.DefaultTableModel;
 
@@ -152,6 +152,7 @@ public class StuAssessmentFrame extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
+                StuData_IO.readFrTxt();
                 new StuAssessmentFrame().setVisible(true);
             }
         });
