@@ -208,8 +208,7 @@ public class EditAssessmentFrame extends javax.swing.JFrame {
     private void btbCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btbCancelActionPerformed
         //Return back to the student list page
         this.setVisible(false);
-        StuAssessmentFrame NwFrame = new StuAssessmentFrame();
-        NwFrame.setVisible(true);
+        backMainFrame();
     }//GEN-LAST:event_btbCancelActionPerformed
 
     private void btbSubmitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btbSubmitActionPerformed
@@ -230,15 +229,23 @@ public class EditAssessmentFrame extends javax.swing.JFrame {
 
         //Return back to the student list page
         this.setVisible(false);
-        
-        ProjMng_MainFrame fr = new ProjMng_MainFrame();
-        fr.setVisible(true);
-        fr.TabPanel.setSelectedIndex(1);
+        backMainFrame();
     }//GEN-LAST:event_btbSubmitActionPerformed
 
     /**
      * @param args the command line arguments
      */
+    
+    public void backMainFrame(){
+        ProjMng_MainFrame fr = new ProjMng_MainFrame();
+        fr.setVisible(true);
+        
+        fr.DashboardPane.setBackground(new Color(122, 162, 227));
+        fr.StuAssessmentPane.setBackground(new Color(106, 212, 221));
+        fr.PanelTitle.setText("Student Assessment");
+        fr.TabPanel.setSelectedIndex(1);
+    }
+    
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">

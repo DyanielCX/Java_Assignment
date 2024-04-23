@@ -183,7 +183,7 @@ public class ProjMng_MainFrame extends javax.swing.JFrame {
             .addGroup(AccManagementPaneLayout.createSequentialGroup()
                 .addGap(25, 25, 25)
                 .addComponent(navAccMangement)
-                .addContainerGap(17, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         AccManagementPaneLayout.setVerticalGroup(
             AccManagementPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -305,7 +305,7 @@ public class ProjMng_MainFrame extends javax.swing.JFrame {
                 .addContainerGap(13, Short.MAX_VALUE))
         );
 
-        getContentPane().add(topNavBar, new org.netbeans.lib.awtextra.AbsoluteConstraints(275, 0, 975, -1));
+        getContentPane().add(topNavBar, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 0, 975, -1));
 
         CoverTabPane.setBackground(new java.awt.Color(248, 246, 227));
 
@@ -433,14 +433,14 @@ public class ProjMng_MainFrame extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JPanel AccManagementPane;
+    public javax.swing.JPanel AccManagementPane;
     private javax.swing.JLabel AccName;
-    private javax.swing.JPanel AssignSupervisorPane;
+    public javax.swing.JPanel AssignSupervisorPane;
     private javax.swing.JPanel CoverTabPane;
-    private javax.swing.JPanel DashboardPane;
-    private javax.swing.JLabel PanelTitle;
-    private javax.swing.JPanel ReportStatusPane;
-    private javax.swing.JPanel StuAssessmentPane;
+    public javax.swing.JPanel DashboardPane;
+    public javax.swing.JLabel PanelTitle;
+    public javax.swing.JPanel ReportStatusPane;
+    public javax.swing.JPanel StuAssessmentPane;
     public javax.swing.JTabbedPane TabPanel;
     private javax.swing.JLabel imgLogo;
     private javax.swing.JPanel jPanel1;
