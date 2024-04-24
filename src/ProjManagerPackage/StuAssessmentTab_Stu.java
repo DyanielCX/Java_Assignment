@@ -25,11 +25,11 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author PC
  */
-public class StuAssessmentTab extends javax.swing.JPanel {
+public class StuAssessmentTab_Stu extends javax.swing.JPanel {
 
     private ProjMng_MainFrame mainFrame;
     
-    public StuAssessmentTab(ProjMng_MainFrame mainFrame) {
+    public StuAssessmentTab_Stu(ProjMng_MainFrame mainFrame) {
         this.mainFrame = mainFrame;
         initComponents();
         
