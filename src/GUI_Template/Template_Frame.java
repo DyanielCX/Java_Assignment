@@ -2,8 +2,9 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package ProjManagerPackage;
+package GUI_Template;
 
+import ProjManagerPackage.*;
 import StuPackage.StuData_IO;
 import java.awt.Color;
 
@@ -11,7 +12,7 @@ import java.awt.Color;
  *
  * @author PC
  */
-public class ProjMng_MainFrame extends javax.swing.JFrame {
+public class Template_Frame extends javax.swing.JFrame {
 
     // Color for side nav bar tab
     private Color navDefaultColor = new Color(122, 162, 227);
@@ -20,30 +21,30 @@ public class ProjMng_MainFrame extends javax.swing.JFrame {
     /**
      * Creates new form ProjMng_MainFrame
      */
-    public ProjMng_MainFrame() {
+    public Template_Frame() {
         initComponents();
         getContentPane().setBackground(new Color(248, 246, 227));
         
         
-        /* Get the project manager name */
-        String ProjMngName = "Shahab";
-        AccName.setText(ProjMngName);
+        /* Get the user name */
+        String UserName = "Shahab";
+        AccName.setText(UserName);
         
         
-        /* Set the tab panel */
-//        StuAssessmentTab Tab1 = new StuAssessmentTab();
+        /* Set the tab panel (panel size -> 935, 350) */
+//        PanelClassName Tab1 = new PanelClassName();
 //        TabPanel.addTab("tab1", Tab1);
-        
-        StuAssessmentTab stuAssessmentTab = new StuAssessmentTab(this);
-        TabPanel.addTab("tab2", stuAssessmentTab);
-        
-//        StuAssessmentTab Tab3 = new StuAssessmentTab();
+    
+//        PanelClassName Tab2 = new PanelClassName();
+//        TabPanel.addTab("tab2", Tab2);
+    
+//        PanelClassName Tab3 = new PanelClassName();
 //        TabPanel.addTab("tab3", Tab3);
     
-//        StuAssessmentTab Tab4 = new StuAssessmentTab();
+//        PanelClassName Tab4 = new PanelClassName();
 //        TabPanel.addTab("tab4", Tab4);
     
-//        StuAssessmentTab Tab5 = new StuAssessmentTab();
+//        PanelClassName Tab5 = new PanelClassName();
 //        TabPanel.addTab("tab5", Tab5);
     }
 
@@ -74,7 +75,6 @@ public class ProjMng_MainFrame extends javax.swing.JFrame {
         lblLogout = new javax.swing.JLabel();
         CoverTabPane = new javax.swing.JPanel();
         TabPanel = new javax.swing.JTabbedPane();
-        jPanel1 = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(248, 246, 227));
@@ -339,22 +339,6 @@ public class ProjMng_MainFrame extends javax.swing.JFrame {
         );
 
         getContentPane().add(CoverTabPane, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 100, 940, 30));
-
-        jPanel1.setBackground(new java.awt.Color(204, 204, 255));
-
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 935, Short.MAX_VALUE)
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 535, Short.MAX_VALUE)
-        );
-
-        TabPanel.addTab("tab1", jPanel1);
-
         getContentPane().add(TabPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(295, 94, -1, 570));
 
         pack();
@@ -368,6 +352,7 @@ public class ProjMng_MainFrame extends javax.swing.JFrame {
         AccManagementPane.setBackground(navDefaultColor);
         ReportStatusPane.setBackground(navDefaultColor);
         
+        //Change to your tab name
         PanelTitle.setText("Dashboard");
         TabPanel.setSelectedIndex(0);
     }//GEN-LAST:event_navDashboardMouseClicked
@@ -379,6 +364,7 @@ public class ProjMng_MainFrame extends javax.swing.JFrame {
         AccManagementPane.setBackground(navDefaultColor);
         ReportStatusPane.setBackground(navDefaultColor);
         
+        //Change to your tab name
         PanelTitle.setText("Student Assessment");
         TabPanel.setSelectedIndex(1);
     }//GEN-LAST:event_navStuAssessmentMouseClicked
@@ -390,6 +376,7 @@ public class ProjMng_MainFrame extends javax.swing.JFrame {
         AccManagementPane.setBackground(navDefaultColor);
         ReportStatusPane.setBackground(navDefaultColor);
         
+        //Change to your tab name
         PanelTitle.setText("Assign Supervisor");
         TabPanel.setSelectedIndex(2);
     }//GEN-LAST:event_navAssignSupervisorMouseClicked
@@ -401,6 +388,7 @@ public class ProjMng_MainFrame extends javax.swing.JFrame {
         AccManagementPane.setBackground(navSelectedColor);
         ReportStatusPane.setBackground(navDefaultColor);
         
+        //Change to your tab name
         PanelTitle.setText("Account Management");
         TabPanel.setSelectedIndex(3);
     }//GEN-LAST:event_navAccMangementMouseClicked
@@ -412,6 +400,7 @@ public class ProjMng_MainFrame extends javax.swing.JFrame {
         AccManagementPane.setBackground(navDefaultColor);
         ReportStatusPane.setBackground(navSelectedColor);
         
+        //Change to your tab name
         PanelTitle.setText("Report Status");
         TabPanel.setSelectedIndex(4);
     }//GEN-LAST:event_navReportStatusMouseClicked
@@ -434,21 +423,22 @@ public class ProjMng_MainFrame extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ProjMng_MainFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Template_Frame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ProjMng_MainFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Template_Frame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ProjMng_MainFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Template_Frame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ProjMng_MainFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Template_Frame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 StuData_IO.readFrTxt();
-                new ProjMng_MainFrame().setVisible(true);
+                new Template_Frame().setVisible(true);
             }
         });
     }
@@ -464,7 +454,6 @@ public class ProjMng_MainFrame extends javax.swing.JFrame {
     public javax.swing.JPanel StuAssessmentPane;
     public javax.swing.JTabbedPane TabPanel;
     private javax.swing.JLabel imgLogo;
-    private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel lblLogout;
     private javax.swing.JLabel navAccMangement;
     private javax.swing.JLabel navAssignSupervisor;
