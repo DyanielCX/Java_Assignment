@@ -27,8 +27,9 @@ public class EditAssessmentFrame extends javax.swing.JFrame {
         //Search the selected student data
         for (int i = 0; i < StuData_IO.StuData.size(); i++) {
             if (StuData_IO.StuData.get(i).id.equals(StuID)) {
-                lbSelectedName.setText(StuData_IO.StuData.get(i).name);
-                lbSelectedID.setText(StuData_IO.StuData.get(i).id);
+                lblSelectedName.setText(StuData_IO.StuData.get(i).name);
+                lblSelectedID.setText(StuData_IO.StuData.get(i).id);
+                lblSelectedIntake.setText(StuData_IO.StuData.get(i).intake);
                 selectedAssessment = StuData_IO.StuData.get(i).assessment;
                 break;
             }
@@ -49,14 +50,16 @@ public class EditAssessmentFrame extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         lblTitle = new javax.swing.JLabel();
-        lbSelectedName = new javax.swing.JLabel();
-        lbStuID = new javax.swing.JLabel();
-        lbSelectedID = new javax.swing.JLabel();
+        lblStuName = new javax.swing.JLabel();
+        lblSelectedName = new javax.swing.JLabel();
+        lblStuID = new javax.swing.JLabel();
+        lblSelectedID = new javax.swing.JLabel();
+        lblIntake = new javax.swing.JLabel();
+        lblSelectedIntake = new javax.swing.JLabel();
         lbAssesment = new javax.swing.JLabel();
         cboAssesment = new javax.swing.JComboBox<>();
         btbSubmit = new javax.swing.JButton();
         btbCancel = new javax.swing.JButton();
-        lbStuName2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -68,20 +71,35 @@ public class EditAssessmentFrame extends javax.swing.JFrame {
         lblTitle.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lblTitle.setText("Student Assessment");
 
-        lbSelectedName.setFont(new java.awt.Font("Dubai Medium", 1, 22)); // NOI18N
-        lbSelectedName.setForeground(new java.awt.Color(115, 96, 223));
-        lbSelectedName.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        lbSelectedName.setText(" ");
+        lblStuName.setFont(new java.awt.Font("Dubai Medium", 1, 22)); // NOI18N
+        lblStuName.setForeground(new java.awt.Color(115, 96, 223));
+        lblStuName.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        lblStuName.setText("Student Name: ");
 
-        lbStuID.setFont(new java.awt.Font("Dubai Medium", 1, 22)); // NOI18N
-        lbStuID.setForeground(new java.awt.Color(115, 96, 223));
-        lbStuID.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        lbStuID.setText("Student ID: ");
+        lblSelectedName.setFont(new java.awt.Font("Dubai Medium", 1, 22)); // NOI18N
+        lblSelectedName.setForeground(new java.awt.Color(115, 96, 223));
+        lblSelectedName.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        lblSelectedName.setText(" ");
 
-        lbSelectedID.setFont(new java.awt.Font("Dubai Medium", 1, 22)); // NOI18N
-        lbSelectedID.setForeground(new java.awt.Color(115, 96, 223));
-        lbSelectedID.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        lbSelectedID.setText(" ");
+        lblStuID.setFont(new java.awt.Font("Dubai Medium", 1, 22)); // NOI18N
+        lblStuID.setForeground(new java.awt.Color(115, 96, 223));
+        lblStuID.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        lblStuID.setText("Student ID: ");
+
+        lblSelectedID.setFont(new java.awt.Font("Dubai Medium", 1, 22)); // NOI18N
+        lblSelectedID.setForeground(new java.awt.Color(115, 96, 223));
+        lblSelectedID.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        lblSelectedID.setText(" ");
+
+        lblIntake.setFont(new java.awt.Font("Dubai Medium", 1, 22)); // NOI18N
+        lblIntake.setForeground(new java.awt.Color(115, 96, 223));
+        lblIntake.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        lblIntake.setText("Intake: ");
+
+        lblSelectedIntake.setFont(new java.awt.Font("Dubai Medium", 1, 22)); // NOI18N
+        lblSelectedIntake.setForeground(new java.awt.Color(115, 96, 223));
+        lblSelectedIntake.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        lblSelectedIntake.setText(" ");
 
         lbAssesment.setFont(new java.awt.Font("Dubai Medium", 1, 22)); // NOI18N
         lbAssesment.setForeground(new java.awt.Color(115, 96, 223));
@@ -111,11 +129,6 @@ public class EditAssessmentFrame extends javax.swing.JFrame {
             }
         });
 
-        lbStuName2.setFont(new java.awt.Font("Dubai Medium", 1, 22)); // NOI18N
-        lbStuName2.setForeground(new java.awt.Color(115, 96, 223));
-        lbStuName2.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        lbStuName2.setText("Student Name: ");
-
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -123,14 +136,16 @@ public class EditAssessmentFrame extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addGap(86, 86, 86)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(lbStuID)
-                    .addComponent(lbStuName2)
-                    .addComponent(lbAssesment))
+                    .addComponent(lblStuID)
+                    .addComponent(lblStuName)
+                    .addComponent(lbAssesment)
+                    .addComponent(lblIntake))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 65, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lbSelectedName, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lbSelectedID, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cboAssesment, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(lblSelectedName, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblSelectedID, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cboAssesment, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblSelectedIntake, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(80, 80, 80))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -138,28 +153,28 @@ public class EditAssessmentFrame extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addComponent(btbSubmit)
                         .addGap(113, 113, 113)
-                        .addComponent(btbCancel)
-                        .addGap(135, 135, 135))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(lblTitle)
-                        .addGap(139, 139, 139))))
+                        .addComponent(btbCancel))
+                    .addComponent(lblTitle, javax.swing.GroupLayout.Alignment.TRAILING))
+                .addGap(135, 135, 135))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(58, Short.MAX_VALUE)
+                .addGap(35, 35, 35)
                 .addComponent(lblTitle)
                 .addGap(36, 36, 36)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(lbSelectedName)
-                        .addGap(25, 25, 25)
-                        .addComponent(lbSelectedID))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(lbStuName2)
-                        .addGap(25, 25, 25)
-                        .addComponent(lbStuID)))
-                .addGap(25, 25, 25)
+                    .addComponent(lblSelectedName)
+                    .addComponent(lblStuName))
+                .addGap(15, 15, 15)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(lblSelectedID)
+                    .addComponent(lblStuID))
+                .addGap(15, 15, 15)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblIntake)
+                    .addComponent(lblSelectedIntake))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 15, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lbAssesment)
                     .addComponent(cboAssesment, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -184,7 +199,7 @@ public class EditAssessmentFrame extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(74, 74, 74)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(20, Short.MAX_VALUE))
+                .addContainerGap(17, Short.MAX_VALUE))
         );
 
         pack();
@@ -212,7 +227,7 @@ public class EditAssessmentFrame extends javax.swing.JFrame {
         //Update the edited data into ArrayList
         Student Edited_Student = new Student(Name, Age, stuID, Intake, Assessment, Supervisor, SecondMaker);
         StuData_IO.edit(Index, Edited_Student);
-
+        
         //Return back to the student list page
         this.setVisible(false);
         backMainFrame();
@@ -229,7 +244,7 @@ public class EditAssessmentFrame extends javax.swing.JFrame {
         fr.ManageAssessmentPane.setBackground(new Color(122, 162, 227));
         fr.StuAssessmentPane.setBackground(new Color(106, 212, 221));
         fr.PanelTitle.setText("Student Assessment");
-        fr.TabPanel.setSelectedIndex(1);
+        fr.changedTab(1);
     }
     
     public static void main(String args[]) {
@@ -271,10 +286,12 @@ public class EditAssessmentFrame extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> cboAssesment;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel lbAssesment;
-    private javax.swing.JLabel lbSelectedID;
-    private javax.swing.JLabel lbSelectedName;
-    private javax.swing.JLabel lbStuID;
-    private javax.swing.JLabel lbStuName2;
+    private javax.swing.JLabel lblIntake;
+    private javax.swing.JLabel lblSelectedID;
+    private javax.swing.JLabel lblSelectedIntake;
+    private javax.swing.JLabel lblSelectedName;
+    private javax.swing.JLabel lblStuID;
+    private javax.swing.JLabel lblStuName;
     private javax.swing.JLabel lblTitle;
     // End of variables declaration//GEN-END:variables
 }

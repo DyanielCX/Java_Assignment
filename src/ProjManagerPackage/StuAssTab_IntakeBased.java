@@ -4,15 +4,18 @@
  */
 package ProjManagerPackage;
 
+import ProjManagerPackage.StuAsseTabElement.IntakeBasedMethod;
 import ProjManagerPackage.StuAsseTabElement.ModernScrollBarUI;
 import ProjManagerPackage.StuAsseTabElement.TableActionCellEditor;
 import ProjManagerPackage.StuAsseTabElement.TableActionCellRender;
 import ProjManagerPackage.StuAsseTabElement.TableActionEvent;
 import ProjManagerPackage.StuAsseTabElement.TableHeader;
 import StuPackage.StuData_IO;
+import StuPackage.Student;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
+import java.util.ArrayList;
 import javax.swing.JPanel;
 import javax.swing.JScrollBar;
 import javax.swing.JScrollPane;
@@ -25,11 +28,11 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author PC
  */
-public class StuAssessmentTab_Stu extends javax.swing.JPanel {
+public class StuAssTab_IntakeBased extends javax.swing.JPanel {
 
     private ProjMng_MainFrame mainFrame;
     
-    public StuAssessmentTab_Stu(ProjMng_MainFrame mainFrame) {
+    public StuAssTab_IntakeBased(ProjMng_MainFrame mainFrame) {
         this.mainFrame = mainFrame;
         initComponents();
         
@@ -49,30 +52,28 @@ public class StuAssessmentTab_Stu extends javax.swing.JPanel {
 
         
         /*Show the student haven't been alloted assesment*/
-        for (int i=0; i < StuData_IO.StuData.size(); i++){
-            String StuName = StuData_IO.StuData.get(i).name;
-            String StuID = StuData_IO.StuData.get(i).id;
-            String Assessment = StuData_IO.StuData.get(i).assessment;
+        ArrayList<String> intakeList = IntakeBasedMethod.getIntake();
+        
+        for (String intake : intakeList){
+            String assessment = IntakeBasedMethod.getAssessment(intake);
             
-            if (Assessment.equals("-")) {
-            Object[] InsertRow = { StuName, StuID, Assessment};
+            if (assessment.equals("-")) {
+                Object[] InsertRow = {intake, assessment};
 
-            DefaultTableModel model = (DefaultTableModel) StuAssTable.getModel();
-            model.addRow(InsertRow);
+                DefaultTableModel model = (DefaultTableModel) StuAssTable.getModel();
+                model.addRow(InsertRow);
             }
         }
         
         /*Show the student have been alloted assesment*/
-        for (int i=0; i < StuData_IO.StuData.size(); i++){
-            String StuName = StuData_IO.StuData.get(i).name;
-            String StuID = StuData_IO.StuData.get(i).id;
-            String Assessment = StuData_IO.StuData.get(i).assessment;
+        for (String intake : intakeList){
+            String assessment = IntakeBasedMethod.getAssessment(intake);
             
-            if (!Assessment.equals("-")) {
-            Object[] InsertRow = { StuName, StuID, Assessment};
+            if (!assessment.equals("-")) {
+                Object[] InsertRow = {intake, assessment};
 
-            DefaultTableModel model = (DefaultTableModel) StuAssTable.getModel();
-            model.addRow(InsertRow);
+                DefaultTableModel model = (DefaultTableModel) StuAssTable.getModel();
+                model.addRow(InsertRow);
             }
         }
         
@@ -90,8 +91,8 @@ public class StuAssessmentTab_Stu extends javax.swing.JPanel {
         };
         
         //Insert edit button into table
-        StuAssTable.getColumnModel().getColumn(3).setCellRenderer(new TableActionCellRender());
-        StuAssTable.getColumnModel().getColumn(3).setCellEditor(new TableActionCellEditor(event));
+        StuAssTable.getColumnModel().getColumn(2).setCellRenderer(new TableActionCellRender());
+        StuAssTable.getColumnModel().getColumn(2).setCellEditor(new TableActionCellEditor(event));
     }
 
     /**
@@ -105,7 +106,11 @@ public class StuAssessmentTab_Stu extends javax.swing.JPanel {
 
         jScrollPane1 = new javax.swing.JScrollPane();
         StuAssTable = new javax.swing.JTable();
-        jLabel1 = new javax.swing.JLabel();
+        TabTitle = new javax.swing.JLabel();
+        btbStuBased = new javax.swing.JPanel();
+        lblStuBased = new javax.swing.JLabel();
+        btbIntakeBased = new javax.swing.JPanel();
+        lblIntakeBased = new javax.swing.JLabel();
 
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -115,11 +120,11 @@ public class StuAssessmentTab_Stu extends javax.swing.JPanel {
 
             },
             new String [] {
-                "Name", "Student ID", "Assessment", "Action"
+                "Intake", "Assessment", "Action"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, true
+                false, false, true
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -132,10 +137,47 @@ public class StuAssessmentTab_Stu extends javax.swing.JPanel {
 
         add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(23, 65, 886, 465));
 
-        jLabel1.setFont(new java.awt.Font("Dubai Medium", 0, 24)); // NOI18N
-        jLabel1.setText("Student Data");
-        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(34, 17, -1, -1));
+        TabTitle.setFont(new java.awt.Font("Dubai Medium", 0, 24)); // NOI18N
+        TabTitle.setText("Intake Data");
+        add(TabTitle, new org.netbeans.lib.awtextra.AbsoluteConstraints(34, 17, -1, -1));
+
+        btbStuBased.setBackground(new java.awt.Color(255, 255, 255));
+        btbStuBased.setForeground(new java.awt.Color(255, 255, 255));
+        btbStuBased.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btbStuBasedMouseClicked(evt);
+            }
+        });
+
+        lblStuBased.setFont(new java.awt.Font("Dubai Medium", 0, 20)); // NOI18N
+        lblStuBased.setForeground(new java.awt.Color(0, 0, 0));
+        lblStuBased.setText("Student");
+        btbStuBased.add(lblStuBased);
+
+        add(btbStuBased, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 20, 90, 40));
+
+        btbIntakeBased.setBackground(new java.awt.Color(106, 212, 221));
+        btbIntakeBased.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btbIntakeBasedMouseClicked(evt);
+            }
+        });
+
+        lblIntakeBased.setFont(new java.awt.Font("Dubai Medium", 0, 20)); // NOI18N
+        lblIntakeBased.setForeground(new java.awt.Color(255, 255, 255));
+        lblIntakeBased.setText("Intake");
+        btbIntakeBased.add(lblIntakeBased);
+
+        add(btbIntakeBased, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 20, 90, 40));
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btbIntakeBasedMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btbIntakeBasedMouseClicked
+        mainFrame.changedTab(1);
+    }//GEN-LAST:event_btbIntakeBasedMouseClicked
+
+    private void btbStuBasedMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btbStuBasedMouseClicked
+        mainFrame.changedTab(2);
+    }//GEN-LAST:event_btbStuBasedMouseClicked
 
     /* Customize the scrollbar for table */
     public void fixTable (JScrollPane scroll){
@@ -158,7 +200,11 @@ public class StuAssessmentTab_Stu extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTable StuAssTable;
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel TabTitle;
+    private javax.swing.JPanel btbIntakeBased;
+    private javax.swing.JPanel btbStuBased;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel lblIntakeBased;
+    private javax.swing.JLabel lblStuBased;
     // End of variables declaration//GEN-END:variables
 }

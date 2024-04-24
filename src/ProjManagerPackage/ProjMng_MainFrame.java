@@ -34,17 +34,20 @@ public class ProjMng_MainFrame extends javax.swing.JFrame {
 //        StuAssessmentTab Tab1 = new StuAssessmentTab();
 //        TabPanel.addTab("tab1", Tab1);
         
-        StuAssessmentTab_Stu stuAssessmentTab = new StuAssessmentTab_Stu(this);
-        TabPanel.addTab("tab2", stuAssessmentTab);
+        StuAssTab_IntakeBased Tab2 = new StuAssTab_IntakeBased(this);
+        TabPanel.addTab("tab2", Tab2);
         
-        AssignSupervisorPane Tab3 = new AssignSupervisorPane();
+        StuAssTab_StuBased Tab3 = new StuAssTab_StuBased(this);
         TabPanel.addTab("tab3", Tab3);
-    
-//        StuAssessmentTab Tab4 = new StuAssessmentTab();
-//        TabPanel.addTab("tab4", Tab4);
+        
+        AssignSupervisorPane Tab4 = new AssignSupervisorPane();
+        TabPanel.addTab("tab4", Tab4);
     
 //        StuAssessmentTab Tab5 = new StuAssessmentTab();
 //        TabPanel.addTab("tab5", Tab5);
+    
+//        StuAssessmentTab Tab6 = new StuAssessmentTab();
+//        TabPanel.addTab("tab6", Tab6);
     }
 
     /**
@@ -396,7 +399,7 @@ public class ProjMng_MainFrame extends javax.swing.JFrame {
         ReportStatusPane.setBackground(navDefaultColor);
         
         PanelTitle.setText("Assign Supervisor");
-        TabPanel.setSelectedIndex(2);
+        TabPanel.setSelectedIndex(3);
     }//GEN-LAST:event_navAssignSupervisorMouseClicked
 
     private void navAccMangementMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_navAccMangementMouseClicked
@@ -407,7 +410,7 @@ public class ProjMng_MainFrame extends javax.swing.JFrame {
         ReportStatusPane.setBackground(navDefaultColor);
         
         PanelTitle.setText("Account Management");
-        TabPanel.setSelectedIndex(3);
+        TabPanel.setSelectedIndex(4);
     }//GEN-LAST:event_navAccMangementMouseClicked
 
     private void navReportStatusMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_navReportStatusMouseClicked
@@ -418,7 +421,7 @@ public class ProjMng_MainFrame extends javax.swing.JFrame {
         ReportStatusPane.setBackground(navSelectedColor);
         
         PanelTitle.setText("Report Status");
-        TabPanel.setSelectedIndex(4);
+        TabPanel.setSelectedIndex(5);
     }//GEN-LAST:event_navReportStatusMouseClicked
 
     /* Logout Button */
@@ -429,6 +432,10 @@ public class ProjMng_MainFrame extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
+    
+    public static void changedTab(int TabIndex){
+        TabPanel.setSelectedIndex(TabIndex);
+    }
     
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -472,7 +479,7 @@ public class ProjMng_MainFrame extends javax.swing.JFrame {
     public javax.swing.JLabel PanelTitle;
     public javax.swing.JPanel ReportStatusPane;
     public javax.swing.JPanel StuAssessmentPane;
-    public javax.swing.JTabbedPane TabPanel;
+    public static javax.swing.JTabbedPane TabPanel;
     private javax.swing.JLabel imgLogo;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel lblLogout;

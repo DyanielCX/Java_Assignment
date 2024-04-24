@@ -218,10 +218,11 @@ public class addLect extends javax.swing.JFrame {
 
     private void submitlectActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitlectActionPerformed
 
-     String lecturerName = txtLectName.getText(); // Get the lecturer name from the text field
+    String lecturerName = txtLectName.getText(); // Get the lecturer name from the text field
     String lecturerId = txtLectId.getText(); // Get the lecturer ID from the text field
     boolean isProjectManager = projectManagerYes.isSelected(); // Check if the radio button for Project Manager is selected
-     Lecturer lecturer = new Lecturer(lecturerName, lecturerId, isProjectManager);
+    Lecturer lecturer = new Lecturer(lecturerName, lecturerId, isProjectManager);
+    
     // Save lecturer details to a text file
     saveLecturerToFile(lecturerName, lecturerId, isProjectManager);
     loadLecturersFromFile();
