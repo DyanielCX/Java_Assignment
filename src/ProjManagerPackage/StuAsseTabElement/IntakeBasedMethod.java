@@ -27,6 +27,7 @@ public class IntakeBasedMethod {
         
         for (Student stu:StuData_IO.StuData){
             if(stu.intake.equals(intake)){
+                
                 //Move to next loop when assessment is "-"
                 if (!stu.assessment.equals("-")) {
                     if (checkNum == 0) {
