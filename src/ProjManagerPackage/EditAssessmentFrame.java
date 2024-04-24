@@ -1,6 +1,5 @@
 package ProjManagerPackage;
 
-import ProjManagerPackage.StuAssessmentFrame;
 import StuPackage.StuData_IO;
 import StuPackage.Student;
 import java.awt.Color;
@@ -58,7 +57,6 @@ public class EditAssessmentFrame extends javax.swing.JFrame {
         btbSubmit = new javax.swing.JButton();
         btbCancel = new javax.swing.JButton();
         lbStuName2 = new javax.swing.JLabel();
-        btbBack = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -172,20 +170,10 @@ public class EditAssessmentFrame extends javax.swing.JFrame {
                 .addGap(55, 55, 55))
         );
 
-        btbBack.setFont(new java.awt.Font("Dubai Medium", 1, 20)); // NOI18N
-        btbBack.setForeground(new java.awt.Color(48, 26, 171));
-        btbBack.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/ProjMngArrow.png"))); // NOI18N
-        btbBack.setText("back");
-        btbBack.setIconTextGap(6);
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(27, 27, 27)
-                .addComponent(btbBack)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(59, Short.MAX_VALUE)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -194,9 +182,7 @@ public class EditAssessmentFrame extends javax.swing.JFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(21, 21, 21)
-                .addComponent(btbBack)
-                .addGap(18, 18, 18)
+                .addGap(74, 74, 74)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(20, Short.MAX_VALUE))
         );
@@ -240,7 +226,7 @@ public class EditAssessmentFrame extends javax.swing.JFrame {
         ProjMng_MainFrame fr = new ProjMng_MainFrame();
         fr.setVisible(true);
         
-        fr.DashboardPane.setBackground(new Color(122, 162, 227));
+        fr.ManageAssessmentPane.setBackground(new Color(122, 162, 227));
         fr.StuAssessmentPane.setBackground(new Color(106, 212, 221));
         fr.PanelTitle.setText("Student Assessment");
         fr.TabPanel.setSelectedIndex(1);
@@ -280,7 +266,6 @@ public class EditAssessmentFrame extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel btbBack;
     private javax.swing.JButton btbCancel;
     private javax.swing.JButton btbSubmit;
     private javax.swing.JComboBox<String> cboAssesment;

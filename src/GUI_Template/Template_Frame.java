@@ -31,7 +31,7 @@ public class Template_Frame extends javax.swing.JFrame {
         AccName.setText(UserName);
         
         
-        /* Set the tab panel (panel size -> 935, 350) */
+        /* Set the tab panel (panel size -> 935, 530) */
 //        PanelClassName Tab1 = new PanelClassName();
 //        TabPanel.addTab("tab1", Tab1);
     
@@ -295,6 +295,11 @@ public class Template_Frame extends javax.swing.JFrame {
         lblLogout.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lblLogout.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/logout.png"))); // NOI18N
         lblLogout.setText("Logout");
+        lblLogout.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblLogoutMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout topNavBarLayout = new javax.swing.GroupLayout(topNavBar);
         topNavBar.setLayout(topNavBarLayout);
@@ -404,6 +409,11 @@ public class Template_Frame extends javax.swing.JFrame {
         PanelTitle.setText("Report Status");
         TabPanel.setSelectedIndex(4);
     }//GEN-LAST:event_navReportStatusMouseClicked
+    
+    /* Logout Button */
+    private void lblLogoutMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblLogoutMouseClicked
+        //Back to the Login Page
+    }//GEN-LAST:event_lblLogoutMouseClicked
 
     /**
      * @param args the command line arguments
