@@ -28,6 +28,9 @@ public class PanelConsultation extends javax.swing.JPanel {
 
         jPanel1 = new javax.swing.JPanel();
 
+        setMaximumSize(new java.awt.Dimension(935, 530));
+        setMinimumSize(new java.awt.Dimension(935, 530));
+
         jPanel1.setPreferredSize(new java.awt.Dimension(935, 530));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
