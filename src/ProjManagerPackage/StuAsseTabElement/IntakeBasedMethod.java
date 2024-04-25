@@ -71,7 +71,12 @@ public class IntakeBasedMethod {
         }
     }
     
-    public static void checkAssessment(String selectedAss){
+    public static boolean checkAssessment(String stuIntake, String selectedAss){
+        String actualAss = getAssessment(stuIntake);
         
+        if (selectedAss.equals(actualAss) || selectedAss.equals("-") || actualAss.equals("-")){
+            return true;
+        }
+        return false;
     }
 }

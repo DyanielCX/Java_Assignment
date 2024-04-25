@@ -6,10 +6,16 @@ package GUI_Template;
 
 public class AnyDetail {
     /*
+    [TEXT FILE]
+    
     Student text file 
     file name -> StuData.txt
     data structure (current) -> Name, Age, Student ID, Intake, Assessment, Supervisor, Second Marker
     data structure (modified) -> Name, Age, Student ID, Intake, Assessment, Supervisor, Second Marker , RMCP Lecturer, Password
     
+    
+    ******************************************************************************************************************************************************
+    [FUNCTION PROGRESS FLOW
+    ]
     */
 }
