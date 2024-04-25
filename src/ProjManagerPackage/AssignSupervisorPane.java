@@ -29,7 +29,7 @@ public class AssignSupervisorPane extends javax.swing.JPanel {
         jLabel1 = new javax.swing.JLabel();
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(153, 255, 102));
+        jLabel1.setForeground(new java.awt.Color(255, 204, 51));
         jLabel1.setText("TEST");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -37,16 +37,16 @@ public class AssignSupervisorPane extends javax.swing.JPanel {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(378, 378, 378)
+                .addGap(414, 414, 414)
                 .addComponent(jLabel1)
-                .addContainerGap(482, Short.MAX_VALUE))
+                .addContainerGap(446, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(253, 253, 253)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(246, Short.MAX_VALUE)
                 .addComponent(jLabel1)
-                .addContainerGap(229, Short.MAX_VALUE))
+                .addGap(236, 236, 236))
         );
     }// </editor-fold>//GEN-END:initComponents
 

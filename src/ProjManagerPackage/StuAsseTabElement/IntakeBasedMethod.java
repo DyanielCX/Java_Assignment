@@ -50,4 +50,28 @@ public class IntakeBasedMethod {
         assessment = "-";
         return assessment;
     }
+    
+    public static void editAssessment(String intake, String selectedAss){
+        
+        for (int Index = 0; Index < StuData_IO.StuData.size();Index ++){
+            if (StuData_IO.StuData.get(Index).intake.equals(intake)) {
+                //Get all the selected student data
+                String Name = StuData_IO.StuData.get(Index).name;
+                int Age = StuData_IO.StuData.get(Index).age;
+                String stuID = StuData_IO.StuData.get(Index).id;
+                String Intake = intake;
+                String Assessment = selectedAss;
+                String Supervisor = StuData_IO.StuData.get(Index).supervisor;
+                String SecondMaker = StuData_IO.StuData.get(Index).secondMaker;
+
+                //Update the edited data into ArrayList
+                Student Edited_Student = new Student(Name, Age, stuID, Intake, Assessment, Supervisor, SecondMaker);
+                StuData_IO.edit(Index, Edited_Student);
+            }
+        }
+    }
+    
+    public static void checkAssessment(String selectedAss){
+        
+    }
 }
