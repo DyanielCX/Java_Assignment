@@ -127,7 +127,7 @@ public class admin_mainframe2 extends javax.swing.JFrame {
         navStuAssessment.setForeground(new java.awt.Color(255, 255, 255));
         navStuAssessment.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         navStuAssessment.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/ProjMngStuAsse.png"))); // NOI18N
-        navStuAssessment.setText("Student Assessment");
+        navStuAssessment.setText("Lecturers");
         navStuAssessment.setDoubleBuffered(true);
         navStuAssessment.setIconTextGap(15);
         navStuAssessment.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -160,7 +160,7 @@ public class admin_mainframe2 extends javax.swing.JFrame {
         navAssignSupervisor.setForeground(new java.awt.Color(255, 255, 255));
         navAssignSupervisor.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         navAssignSupervisor.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/ProjMngSupervisor.png"))); // NOI18N
-        navAssignSupervisor.setText("Assign Supervisor");
+        navAssignSupervisor.setText("Students");
         navAssignSupervisor.setIconTextGap(15);
         navAssignSupervisor.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
