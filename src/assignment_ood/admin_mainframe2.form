@@ -179,7 +179,7 @@
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                   <Image iconType="3" name="/Image/ProjMngStuAsse.png"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="Student Assessment"/>
+                <Property name="text" type="java.lang.String" value="Lecturers"/>
                 <Property name="doubleBuffered" type="boolean" value="true"/>
                 <Property name="iconTextGap" type="int" value="15"/>
               </Properties>
@@ -235,7 +235,7 @@
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                   <Image iconType="3" name="/Image/ProjMngSupervisor.png"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="Assign Supervisor"/>
+                <Property name="text" type="java.lang.String" value="Students"/>
                 <Property name="iconTextGap" type="int" value="15"/>
               </Properties>
               <Events>

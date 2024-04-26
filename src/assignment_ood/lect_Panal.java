@@ -76,7 +76,10 @@ public class lect_Panal extends javax.swing.JPanel {
     }
 
     
-     TableActionEvent event = new TableActionEvent() {
+     
+    
+    }
+    TableActionEvent event = new TableActionEvent() {
            @Override
             public void onEdit(int row) {
                 //Get the student id of selected student
@@ -121,7 +124,6 @@ public class lect_Panal extends javax.swing.JPanel {
                 
             }
             };
-    }
     
 private void populateLecturerTable() {
        DefaultTableModel model = (DefaultTableModel) lecturePanal.getModel();
@@ -142,17 +144,7 @@ private void populateLecturerTable() {
         e.printStackTrace(); // Handle or log the exception as needed
     }
     }
- TableActionEvent event = new TableActionEvent() {
-            @Override
-            public void onEdit(int row) {
-                
-                String StuID = (String) lecturePanal.getValueAt(row, 1);
-                
-                
-                
-            }
-           
-        };
+ 
  
 
     /**
