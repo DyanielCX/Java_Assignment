@@ -40,6 +40,7 @@ public class StuAssTab_StuBased extends javax.swing.JPanel {
         /* Set the header to customize header */
         StuAssTable.getTableHeader().setReorderingAllowed(false);
         StuAssTable.getTableHeader().setResizingAllowed(false);
+        StuAssTable.getColumnModel().getColumn(3).setPreferredWidth(95);
         StuAssTable.getTableHeader().setDefaultRenderer(new DefaultTableCellRenderer(){
             @Override
             public Component getTableCellRendererComponent(JTable table, Object o, boolean isSelected, boolean hasFocus, int row, int column) {
@@ -87,7 +88,7 @@ public class StuAssTab_StuBased extends javax.swing.JPanel {
                 String StuID = (String) StuAssTable.getValueAt(row, 1);
                 mainFrame.dispose();
                 
-                EditAssessmentFrame editPage = new EditAssessmentFrame(StuID);
+                EditAssFrame_StuBased editPage = new EditAssFrame_StuBased(StuID);
                 editPage.setVisible(true);
             }
         };
@@ -116,7 +117,7 @@ public class StuAssTab_StuBased extends javax.swing.JPanel {
 
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        StuAssTable.setFont(new java.awt.Font("Dubai Medium", 0, 20)); // NOI18N
+        StuAssTable.setFont(new java.awt.Font("Dubai Medium", 0, 18)); // NOI18N
         StuAssTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 

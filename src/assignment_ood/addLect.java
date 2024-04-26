@@ -55,6 +55,7 @@ public class addLect extends javax.swing.JFrame {
         lecturerTable = new javax.swing.JTable();
         delLect = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
+        backBtn = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -126,6 +127,13 @@ public class addLect extends javax.swing.JFrame {
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assignment_ood/images/logo.jpg"))); // NOI18N
         jLabel5.setText("jLabel5");
 
+        backBtn.setText("Back");
+        backBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                backBtnActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -135,22 +143,29 @@ public class addLect extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(184, 184, 184)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(txtLectId, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txtLectName, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addContainerGap()
-                                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(113, 113, 113)
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addGap(184, 184, 184)
+                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(txtLectId, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(txtLectName, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addContainerGap()
+                                        .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGap(113, 113, 113))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                .addComponent(editLect, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)))
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 424, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(17, 17, 17)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(6, 6, 6)
+                                .addComponent(backBtn))
                             .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(editLect, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGap(13, 13, 13)
@@ -176,7 +191,9 @@ public class addLect extends javax.swing.JFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel5))
-                        .addGap(59, 59, 59)
+                        .addGap(24, 24, 24)
+                        .addComponent(editLect)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(txtLectName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel2))
@@ -190,9 +207,9 @@ public class addLect extends javax.swing.JFrame {
                             .addComponent(projectManagerYes)
                             .addComponent(projectmanagerNo))
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(editLect)
                             .addComponent(delLect)
-                            .addComponent(submitlect)))
+                            .addComponent(submitlect)
+                            .addComponent(backBtn)))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 328, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(112, Short.MAX_VALUE))
         );
@@ -218,15 +235,20 @@ public class addLect extends javax.swing.JFrame {
 
     private void submitlectActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitlectActionPerformed
 
-    String lecturerName = txtLectName.getText(); // Get the lecturer name from the text field
-    String lecturerId = txtLectId.getText(); // Get the lecturer ID from the text field
-    boolean isProjectManager = projectManagerYes.isSelected(); // Check if the radio button for Project Manager is selected
-    Lecturer lecturer = new Lecturer(lecturerName, lecturerId, isProjectManager);
+
+     String lecturerName = txtLectName.getText();
+    String lecturerId = txtLectId.getText(); 
+    boolean isProjectManager = projectManagerYes.isSelected(); 
+     Lecturer lecturer = new Lecturer(lecturerName, lecturerId, isProjectManager);
+   
+
+   
     
     // Save lecturer details to a text file
+
     saveLecturerToFile(lecturerName, lecturerId, isProjectManager);
     loadLecturersFromFile();
-    // Display a success message or perform any additional actions
+
     JOptionPane.showMessageDialog(this, "Lecturer details submitted successfully.");
 }
     
@@ -234,12 +256,12 @@ private void saveLecturerToFile(String lecturerName, String lecturerId, boolean 
     try (FileWriter writer = new FileWriter("lecturers.txt", true)) { // Use true as the second parameter to append to the file
         writer.write(lecturerName + "," + lecturerId + "," + isProjectManager + "\n");
     } catch (IOException e) {
-        e.printStackTrace(); // Handle or log the exception as needed
+        e.printStackTrace(); 
     }
     }//GEN-LAST:event_submitlectActionPerformed
 private void loadLecturersFromFile() {
     DefaultTableModel model = (DefaultTableModel) lecturerTable.getModel();
-    model.setRowCount(0); // Clear the table
+    model.setRowCount(0); 
 
     try (BufferedReader reader = new BufferedReader(new FileReader("lecturers.txt"))) {
         String line;
@@ -286,45 +308,8 @@ private void updateLecturerInFile(String lecturerName, String lecturerId, boolea
     }
 
     // Refresh the table to reflect the changes
-    loadLecturersFromFile(); // Assuming you have a method to reload the data into the JTable
+    loadLecturersFromFile(); 
 }
-    private void editLectActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editLectActionPerformed
-          int selectedRow = lecturerTable.getSelectedRow();
-    if (selectedRow != -1) {
-        String lecturerName = (String) lecturerTable.getValueAt(selectedRow, 0);
-        String lecturerId = (String) lecturerTable.getValueAt(selectedRow, 1);
-        boolean isProjectManager = (boolean) lecturerTable.getValueAt(selectedRow, 2);
-
-        // Display a dialog to edit the lecturer details
-        JTextField txtLecturerName = new JTextField(lecturerName);
-        JTextField txtLecturerId = new JTextField(lecturerId);
-        JCheckBox chkIsProjectManager = new JCheckBox("Is Project Manager", isProjectManager);
-
-        Object[] message = {
-            "Lecturer Name:", txtLecturerName,
-            "Lecturer ID:", txtLecturerId,
-            chkIsProjectManager
-        };
-
-        int option = JOptionPane.showConfirmDialog(this, message, "Edit Lecturer", JOptionPane.OK_CANCEL_OPTION);
-        if (option == JOptionPane.OK_OPTION) {
-            String newLecturerName = txtLecturerName.getText();
-            String newLecturerId = txtLecturerId.getText();
-            boolean newIsProjectManager = chkIsProjectManager.isSelected();
-
-            // Update the JTable with the modified details
-            lecturerTable.setValueAt(newLecturerName, selectedRow, 0);
-            lecturerTable.setValueAt(newLecturerId, selectedRow, 1);
-            lecturerTable.setValueAt(newIsProjectManager, selectedRow, 2);
-
-            // Update the file with the modified details
-            updateLecturerInFile(newLecturerName, newLecturerId, newIsProjectManager);
-        }
-    } else {
-        JOptionPane.showMessageDialog(this, "Please select a lecturer to edit.");
-    }
-    }//GEN-LAST:event_editLectActionPerformed
-
     private void delLectActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_delLectActionPerformed
          int selectedRow = lecturerTable.getSelectedRow();
     if (selectedRow != -1) {
@@ -358,6 +343,49 @@ private void updateLecturerInFile(String lecturerName, String lecturerId, boolea
         JOptionPane.showMessageDialog(this, "Please select a lecturer to delete.");
     }
     }//GEN-LAST:event_delLectActionPerformed
+
+    private void editLectActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editLectActionPerformed
+        int selectedRow = lecturerTable.getSelectedRow();
+        if (selectedRow != -1) {
+            String lecturerName = (String) lecturerTable.getValueAt(selectedRow, 0);
+            String lecturerId = (String) lecturerTable.getValueAt(selectedRow, 1);
+            boolean isProjectManager = (boolean) lecturerTable.getValueAt(selectedRow, 2);
+
+            // Display a dialog to edit the lecturer details
+            JTextField txtLecturerName = new JTextField(lecturerName);
+            JTextField txtLecturerId = new JTextField(lecturerId);
+            JCheckBox chkIsProjectManager = new JCheckBox("Is Project Manager", isProjectManager);
+
+            Object[] message = {
+                "Lecturer Name:", txtLecturerName,
+                "Lecturer ID:", txtLecturerId,
+                chkIsProjectManager
+            };
+
+            int option = JOptionPane.showConfirmDialog(this, message, "Edit Lecturer", JOptionPane.OK_CANCEL_OPTION);
+            if (option == JOptionPane.OK_OPTION) {
+                String newLecturerName = txtLecturerName.getText();
+                String newLecturerId = txtLecturerId.getText();
+                boolean newIsProjectManager = chkIsProjectManager.isSelected();
+
+                // Update the JTable with the modified details
+                lecturerTable.setValueAt(newLecturerName, selectedRow, 0);
+                lecturerTable.setValueAt(newLecturerId, selectedRow, 1);
+                lecturerTable.setValueAt(newIsProjectManager, selectedRow, 2);
+
+                // Update the file with the modified details
+                updateLecturerInFile(newLecturerName, newLecturerId, newIsProjectManager);
+            }
+        } else {
+            JOptionPane.showMessageDialog(this, "Please select a lecturer to edit.");
+        }
+    }//GEN-LAST:event_editLectActionPerformed
+
+    private void backBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backBtnActionPerformed
+       admin_mainframe2 mainframe2 = new admin_mainframe2();
+       mainframe2.setVisible(true);
+       this.dispose();
+    }//GEN-LAST:event_backBtnActionPerformed
 private void deleteLecturerFromFile(String lecturerName, String lecturerId, boolean isProjectManager) {
     // Read all lines from the file into a list
     java.util.List<String> lines = new java.util.ArrayList<>();
@@ -421,6 +449,7 @@ private void deleteLecturerFromFile(String lecturerName, String lecturerId, bool
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton backBtn;
     private javax.swing.JButton delLect;
     private javax.swing.JButton editLect;
     private javax.swing.JLabel jLabel1;

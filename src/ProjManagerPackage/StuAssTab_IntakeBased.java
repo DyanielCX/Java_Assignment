@@ -82,10 +82,10 @@ public class StuAssTab_IntakeBased extends javax.swing.JPanel {
             @Override
             public void onEdit(int row) {
                 //Get the student id of selected student
-                String StuID = (String) StuAssTable.getValueAt(row, 1);
+                String selectedIntake = (String) StuAssTable.getValueAt(row, 0);
                 mainFrame.dispose();
                 
-                EditAssessmentFrame editPage = new EditAssessmentFrame(StuID);
+                EditAssFrame_IntakeBased editPage = new EditAssFrame_IntakeBased(selectedIntake);
                 editPage.setVisible(true);
             }
         };
