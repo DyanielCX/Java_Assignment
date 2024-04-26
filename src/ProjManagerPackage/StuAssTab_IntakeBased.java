@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
- */
 package ProjManagerPackage;
 
 import ProjManagerPackage.StuAsseTabElement.IntakeBasedMethod;
@@ -10,8 +6,6 @@ import ProjManagerPackage.StuAsseTabElement.TableActionCellEditor;
 import ProjManagerPackage.StuAsseTabElement.TableActionCellRender;
 import ProjManagerPackage.StuAsseTabElement.TableActionEvent;
 import ProjManagerPackage.StuAsseTabElement.TableHeader;
-import StuPackage.StuData_IO;
-import StuPackage.Student;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
@@ -24,10 +18,7 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 
-/**
- *
- * @author PC
- */
+
 public class StuAssTab_IntakeBased extends javax.swing.JPanel {
 
     private ProjMng_MainFrame mainFrame;
@@ -36,13 +27,14 @@ public class StuAssTab_IntakeBased extends javax.swing.JPanel {
         this.mainFrame = mainFrame;
         initComponents();
         
+        //Customize Table Modification
         /* Set the scrollbar to customize scrollbar*/
         fixTable(jScrollPane1);
         
         /* Set the header to customize header */
-        StuAssTable.getTableHeader().setReorderingAllowed(false);
-        StuAssTable.getTableHeader().setResizingAllowed(false);
-        StuAssTable.getTableHeader().setDefaultRenderer(new DefaultTableCellRenderer(){
+        IntakeAssTable.getTableHeader().setReorderingAllowed(false);
+        IntakeAssTable.getTableHeader().setResizingAllowed(false);
+        IntakeAssTable.getTableHeader().setDefaultRenderer(new DefaultTableCellRenderer(){
             @Override
             public Component getTableCellRendererComponent(JTable table, Object o, boolean isSelected, boolean hasFocus, int row, int column) {
                 TableHeader header = new TableHeader(o + "");
@@ -51,6 +43,7 @@ public class StuAssTab_IntakeBased extends javax.swing.JPanel {
         });
 
         
+        //Insert data into table
         /*Show the student haven't been alloted assesment*/
         ArrayList<String> intakeList = IntakeBasedMethod.getIntake();
         
@@ -60,7 +53,7 @@ public class StuAssTab_IntakeBased extends javax.swing.JPanel {
             if (assessment.equals("-")) {
                 Object[] InsertRow = {intake, assessment};
 
-                DefaultTableModel model = (DefaultTableModel) StuAssTable.getModel();
+                DefaultTableModel model = (DefaultTableModel) IntakeAssTable.getModel();
                 model.addRow(InsertRow);
             }
         }
@@ -72,7 +65,7 @@ public class StuAssTab_IntakeBased extends javax.swing.JPanel {
             if (!assessment.equals("-")) {
                 Object[] InsertRow = {intake, assessment};
 
-                DefaultTableModel model = (DefaultTableModel) StuAssTable.getModel();
+                DefaultTableModel model = (DefaultTableModel) IntakeAssTable.getModel();
                 model.addRow(InsertRow);
             }
         }
@@ -82,7 +75,7 @@ public class StuAssTab_IntakeBased extends javax.swing.JPanel {
             @Override
             public void onEdit(int row) {
                 //Get the student id of selected student
-                String selectedIntake = (String) StuAssTable.getValueAt(row, 0);
+                String selectedIntake = (String) IntakeAssTable.getValueAt(row, 0);
                 mainFrame.dispose();
                 
                 EditAssFrame_IntakeBased editPage = new EditAssFrame_IntakeBased(selectedIntake);
@@ -91,8 +84,8 @@ public class StuAssTab_IntakeBased extends javax.swing.JPanel {
         };
         
         //Insert edit button into table
-        StuAssTable.getColumnModel().getColumn(2).setCellRenderer(new TableActionCellRender());
-        StuAssTable.getColumnModel().getColumn(2).setCellEditor(new TableActionCellEditor(event));
+        IntakeAssTable.getColumnModel().getColumn(2).setCellRenderer(new TableActionCellRender());
+        IntakeAssTable.getColumnModel().getColumn(2).setCellEditor(new TableActionCellEditor(event));
     }
 
     /**
@@ -105,7 +98,7 @@ public class StuAssTab_IntakeBased extends javax.swing.JPanel {
     private void initComponents() {
 
         jScrollPane1 = new javax.swing.JScrollPane();
-        StuAssTable = new javax.swing.JTable();
+        IntakeAssTable = new javax.swing.JTable();
         TabTitle = new javax.swing.JLabel();
         btbStuBased = new javax.swing.JPanel();
         lblStuBased = new javax.swing.JLabel();
@@ -114,8 +107,8 @@ public class StuAssTab_IntakeBased extends javax.swing.JPanel {
 
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        StuAssTable.setFont(new java.awt.Font("Dubai Medium", 0, 20)); // NOI18N
-        StuAssTable.setModel(new javax.swing.table.DefaultTableModel(
+        IntakeAssTable.setFont(new java.awt.Font("Dubai Medium", 0, 20)); // NOI18N
+        IntakeAssTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -131,9 +124,9 @@ public class StuAssTab_IntakeBased extends javax.swing.JPanel {
                 return canEdit [columnIndex];
             }
         });
-        StuAssTable.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        StuAssTable.setRowHeight(40);
-        jScrollPane1.setViewportView(StuAssTable);
+        IntakeAssTable.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        IntakeAssTable.setRowHeight(40);
+        jScrollPane1.setViewportView(IntakeAssTable);
 
         add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(23, 65, 886, 465));
 
@@ -171,10 +164,12 @@ public class StuAssTab_IntakeBased extends javax.swing.JPanel {
         add(btbIntakeBased, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 20, 90, 40));
     }// </editor-fold>//GEN-END:initComponents
 
+    //Change to Intake Table
     private void btbIntakeBasedMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btbIntakeBasedMouseClicked
         mainFrame.changedTab(1);
     }//GEN-LAST:event_btbIntakeBasedMouseClicked
 
+    //Change to Student Table
     private void btbStuBasedMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btbStuBasedMouseClicked
         mainFrame.changedTab(2);
     }//GEN-LAST:event_btbStuBasedMouseClicked
@@ -199,7 +194,7 @@ public class StuAssTab_IntakeBased extends javax.swing.JPanel {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTable StuAssTable;
+    private javax.swing.JTable IntakeAssTable;
     private javax.swing.JLabel TabTitle;
     private javax.swing.JPanel btbIntakeBased;
     private javax.swing.JPanel btbStuBased;

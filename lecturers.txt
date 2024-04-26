@@ -1,2 +1,2 @@
-shahab,2345,false
-joshua,4444,false
+shahab,2345,false,false,true
+joshua,4444,false,true,false

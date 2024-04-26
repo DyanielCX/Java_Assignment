@@ -255,7 +255,7 @@ public class EditAssFrame_StuBased extends javax.swing.JFrame {
         ProjMng_MainFrame fr = new ProjMng_MainFrame();
         fr.setVisible(true);
         
-        fr.ManageAssessmentPane.setBackground(new Color(122, 162, 227));
+        fr.DashboardPane.setBackground(new Color(122, 162, 227));
         fr.StuAssessmentPane.setBackground(new Color(106, 212, 221));
         fr.PanelTitle.setText("Student Assessment");
         fr.changedTab(2);

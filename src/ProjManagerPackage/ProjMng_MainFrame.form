@@ -49,7 +49,7 @@
                   <Component id="imgLogo" min="-2" pref="116" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="79" max="-2" attributes="0"/>
               </Group>
-              <Component id="ManageAssessmentPane" alignment="1" max="32767" attributes="0"/>
+              <Component id="DashboardPane" alignment="1" max="32767" attributes="0"/>
               <Component id="StuAssessmentPane" alignment="0" max="32767" attributes="0"/>
               <Component id="AssignSupervisorPane" alignment="0" max="32767" attributes="0"/>
               <Component id="AccManagementPane" alignment="0" max="32767" attributes="0"/>
@@ -62,7 +62,7 @@
                   <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
                   <Component id="imgLogo" min="-2" pref="93" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="41" max="-2" attributes="0"/>
-                  <Component id="ManageAssessmentPane" min="-2" max="-2" attributes="0"/>
+                  <Component id="DashboardPane" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
                   <Component id="StuAssessmentPane" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
@@ -84,7 +84,7 @@
             </Property>
           </Properties>
         </Component>
-        <Container class="javax.swing.JPanel" name="ManageAssessmentPane">
+        <Container class="javax.swing.JPanel" name="DashboardPane">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="dd" green="d4" red="6a" type="rgb"/>
@@ -99,7 +99,7 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
                       <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
-                      <Component id="navManageAssessment" max="32767" attributes="0"/>
+                      <Component id="navDashboard" max="32767" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
               </Group>
@@ -108,14 +108,14 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
                       <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
-                      <Component id="navManageAssessment" pref="50" max="32767" attributes="0"/>
+                      <Component id="navDashboard" pref="50" max="32767" attributes="0"/>
                       <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
           </Layout>
           <SubComponents>
-            <Component class="javax.swing.JLabel" name="navManageAssessment">
+            <Component class="javax.swing.JLabel" name="navDashboard">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Dubai Medium" size="20" style="0"/>
@@ -127,11 +127,11 @@
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                   <Image iconType="3" name="/Image/ProjMngDashboard.png"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="Manage Assessment"/>
+                <Property name="text" type="java.lang.String" value="Dashboard"/>
                 <Property name="iconTextGap" type="int" value="15"/>
               </Properties>
               <Events>
-                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="navManageAssessmentMouseClicked"/>
+                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="navDashboardMouseClicked"/>
               </Events>
             </Component>
           </SubComponents>
@@ -374,7 +374,7 @@
               <Group type="102" alignment="1" attributes="0">
                   <EmptySpace min="-2" pref="45" max="-2" attributes="0"/>
                   <Component id="PanelTitle" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace pref="338" max="32767" attributes="0"/>
+                  <EmptySpace pref="519" max="32767" attributes="0"/>
                   <Component id="AccName" min="-2" pref="164" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="44" max="-2" attributes="0"/>
               </Group>
@@ -409,7 +409,7 @@
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="ff" green="ff" red="ff" type="rgb"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Manage Assessment"/>
+            <Property name="text" type="java.lang.String" value="Dashboard"/>
           </Properties>
           <AuxValues>
             <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>

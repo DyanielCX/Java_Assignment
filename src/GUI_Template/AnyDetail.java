@@ -14,7 +14,10 @@ public class AnyDetail {
     data structure (future modified) -> Name, Age, Student ID, Intake, Assessment, Supervisor, Second Marker , RMCP Lecturer, PresentationDate,Submission Link, Result(pending/graded), Password
     
     Lecturer.text file
-    file name ->lecturers >>> LecData.txt  should we change the name?
+    data structure (current) -> Lecturer Name, Lecturer ID, is ProjectManager, is Supervisor, is SecondMarker
+    
+    file name ->lecturers >>> LecData.txt  should we change the name? 
+    reply from Dyaniel: I think ok
     
     
     ******************************************************************************************************************************************************

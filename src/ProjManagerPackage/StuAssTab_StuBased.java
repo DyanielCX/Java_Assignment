@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
- */
 package ProjManagerPackage;
 
 import ProjManagerPackage.StuAsseTabElement.ModernScrollBarUI;
@@ -22,10 +18,7 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 
-/**
- *
- * @author PC
- */
+
 public class StuAssTab_StuBased extends javax.swing.JPanel {
 
     private ProjMng_MainFrame mainFrame;
@@ -34,6 +27,7 @@ public class StuAssTab_StuBased extends javax.swing.JPanel {
         this.mainFrame = mainFrame;
         initComponents();
         
+        //Customize Table Modification
         /* Set the scrollbar to customize scrollbar*/
         fixTable(jScrollPane1);
         
@@ -50,6 +44,7 @@ public class StuAssTab_StuBased extends javax.swing.JPanel {
         });
 
         
+        //Insert data into table
         /*Show the student haven't been alloted assesment*/
         for (Student stu :StuData_IO.StuData){
             String StuName = stu.name;
@@ -175,10 +170,12 @@ public class StuAssTab_StuBased extends javax.swing.JPanel {
         add(btbIntakeBased, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 20, 90, 40));
     }// </editor-fold>//GEN-END:initComponents
 
+    //Change to Intake Table
     private void btbIntakeBasedMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btbIntakeBasedMouseClicked
         mainFrame.changedTab(1);
     }//GEN-LAST:event_btbIntakeBasedMouseClicked
 
+    //Change to Student Table
     private void btbStuBasedMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btbStuBasedMouseClicked
         ProjMng_MainFrame fr = new ProjMng_MainFrame();
         mainFrame.changedTab(2);
