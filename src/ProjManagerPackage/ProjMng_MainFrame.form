@@ -51,7 +51,7 @@
               </Group>
               <Component id="DashboardPane" alignment="1" max="32767" attributes="0"/>
               <Component id="StuAssessmentPane" alignment="0" max="32767" attributes="0"/>
-              <Component id="AssignSupervisorPane" alignment="0" max="32767" attributes="0"/>
+              <Component id="AssignAdvisorsPane" alignment="0" max="32767" attributes="0"/>
               <Component id="AccManagementPane" alignment="0" max="32767" attributes="0"/>
               <Component id="ReportStatusPane" alignment="0" max="32767" attributes="0"/>
           </Group>
@@ -66,7 +66,7 @@
                   <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
                   <Component id="StuAssessmentPane" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
-                  <Component id="AssignSupervisorPane" min="-2" max="-2" attributes="0"/>
+                  <Component id="AssignAdvisorsPane" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
                   <Component id="AccManagementPane" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
@@ -189,7 +189,7 @@
             </Component>
           </SubComponents>
         </Container>
-        <Container class="javax.swing.JPanel" name="AssignSupervisorPane">
+        <Container class="javax.swing.JPanel" name="AssignAdvisorsPane">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="e3" green="a2" red="7a" type="rgb"/>
@@ -204,7 +204,7 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
                       <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
-                      <Component id="navAssignSupervisor" max="32767" attributes="0"/>
+                      <Component id="navAssignAdvisors" max="32767" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
               </Group>
@@ -213,14 +213,14 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
-                      <Component id="navAssignSupervisor" pref="50" max="32767" attributes="0"/>
+                      <Component id="navAssignAdvisors" pref="50" max="32767" attributes="0"/>
                       <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
           </Layout>
           <SubComponents>
-            <Component class="javax.swing.JLabel" name="navAssignSupervisor">
+            <Component class="javax.swing.JLabel" name="navAssignAdvisors">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="dd" green="d4" red="6a" type="rgb"/>
@@ -235,11 +235,11 @@
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                   <Image iconType="3" name="/Image/ProjMngSupervisor.png"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="Assign Supervisor"/>
+                <Property name="text" type="java.lang.String" value="Assign Advisors"/>
                 <Property name="iconTextGap" type="int" value="15"/>
               </Properties>
               <Events>
-                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="navAssignSupervisorMouseClicked"/>
+                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="navAssignAdvisorsMouseClicked"/>
               </Events>
             </Component>
           </SubComponents>

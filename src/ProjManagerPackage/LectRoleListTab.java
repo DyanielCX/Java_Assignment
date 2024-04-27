@@ -4,18 +4,16 @@
  */
 package ProjManagerPackage;
 
-import ProjManagerPackage.StuAsseTabElement.IntakeBasedMethod;
+import ProjManagerPackage.AssignSupvElem.CrossIcon_TableActionCellRender1;
+import ProjManagerPackage.AssignSupvElem.TickIcon_TableActionCellRender;
 import ProjManagerPackage.StuAsseTabElement.ModernScrollBarUI;
 import ProjManagerPackage.StuAsseTabElement.TableActionCellEditor;
 import ProjManagerPackage.StuAsseTabElement.TableActionCellRender;
 import ProjManagerPackage.StuAsseTabElement.TableActionEvent;
 import ProjManagerPackage.StuAsseTabElement.TableHeader;
-import StuPackage.StuData_IO;
-import StuPackage.Student;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
-import java.util.ArrayList;
 import javax.swing.JPanel;
 import javax.swing.JScrollBar;
 import javax.swing.JScrollPane;
@@ -78,16 +76,14 @@ public class LectRoleListTab extends javax.swing.JPanel {
             Boolean isSecondMarker = true;
             
             if (isSupervisor == true) {
-                isSupervisorIcon = new javax.swing.JLabel();
-                isSupervisorIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/tickIcon.png")));
+                LectRoleTable.getColumnModel().getColumn(2).setCellRenderer(new TickIcon_TableActionCellRender());
             }
             
             if (isSecondMarker == true) {
-                isSecondMarkerIcon = new javax.swing.JLabel();
-                isSecondMarkerIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/tickIcon.png")));
+                LectRoleTable.getColumnModel().getColumn(3).setCellRenderer(new CrossIcon_TableActionCellRender1());
             }
             
-            Object[] InsertRow = {LectName, LectID, isSupervisorIcon, isSecondMarkerIcon};
+            Object[] InsertRow = {LectName, LectID};
 
             DefaultTableModel model = (DefaultTableModel) LectRoleTable.getModel();
             model.addRow(InsertRow);

@@ -8,12 +8,12 @@ import java.awt.event.ActionListener;
  *
  * @author PC
  */
-public class TickIcon extends javax.swing.JPanel {
+public class CrossIcon extends javax.swing.JPanel {
 
     /**
      * Creates new form PanelAction
      */
-    public TickIcon() {
+    public CrossIcon() {
         initComponents();
     }
 
@@ -29,7 +29,7 @@ public class TickIcon extends javax.swing.JPanel {
 
         iconTick = new javax.swing.JLabel();
 
-        iconTick.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/tickIcon.png"))); // NOI18N
+        iconTick.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/crossIcon.png"))); // NOI18N
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);

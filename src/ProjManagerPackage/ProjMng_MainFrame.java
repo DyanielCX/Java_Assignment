@@ -70,8 +70,8 @@ public class ProjMng_MainFrame extends javax.swing.JFrame {
         navDashboard = new javax.swing.JLabel();
         StuAssessmentPane = new javax.swing.JPanel();
         navStuAssessment = new javax.swing.JLabel();
-        AssignSupervisorPane = new javax.swing.JPanel();
-        navAssignSupervisor = new javax.swing.JLabel();
+        AssignAdvisorsPane = new javax.swing.JPanel();
+        navAssignAdvisors = new javax.swing.JLabel();
         AccManagementPane = new javax.swing.JPanel();
         navAccMangement = new javax.swing.JLabel();
         ReportStatusPane = new javax.swing.JPanel();
@@ -156,35 +156,35 @@ public class ProjMng_MainFrame extends javax.swing.JFrame {
                 .addGap(20, 20, 20))
         );
 
-        AssignSupervisorPane.setBackground(new java.awt.Color(122, 162, 227));
+        AssignAdvisorsPane.setBackground(new java.awt.Color(122, 162, 227));
 
-        navAssignSupervisor.setBackground(new java.awt.Color(106, 212, 221));
-        navAssignSupervisor.setFont(new java.awt.Font("Dubai Medium", 0, 20)); // NOI18N
-        navAssignSupervisor.setForeground(new java.awt.Color(255, 255, 255));
-        navAssignSupervisor.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        navAssignSupervisor.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/ProjMngSupervisor.png"))); // NOI18N
-        navAssignSupervisor.setText("Assign Supervisor");
-        navAssignSupervisor.setIconTextGap(15);
-        navAssignSupervisor.addMouseListener(new java.awt.event.MouseAdapter() {
+        navAssignAdvisors.setBackground(new java.awt.Color(106, 212, 221));
+        navAssignAdvisors.setFont(new java.awt.Font("Dubai Medium", 0, 20)); // NOI18N
+        navAssignAdvisors.setForeground(new java.awt.Color(255, 255, 255));
+        navAssignAdvisors.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        navAssignAdvisors.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/ProjMngSupervisor.png"))); // NOI18N
+        navAssignAdvisors.setText("Assign Advisors");
+        navAssignAdvisors.setIconTextGap(15);
+        navAssignAdvisors.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                navAssignSupervisorMouseClicked(evt);
+                navAssignAdvisorsMouseClicked(evt);
             }
         });
 
-        javax.swing.GroupLayout AssignSupervisorPaneLayout = new javax.swing.GroupLayout(AssignSupervisorPane);
-        AssignSupervisorPane.setLayout(AssignSupervisorPaneLayout);
-        AssignSupervisorPaneLayout.setHorizontalGroup(
-            AssignSupervisorPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(AssignSupervisorPaneLayout.createSequentialGroup()
+        javax.swing.GroupLayout AssignAdvisorsPaneLayout = new javax.swing.GroupLayout(AssignAdvisorsPane);
+        AssignAdvisorsPane.setLayout(AssignAdvisorsPaneLayout);
+        AssignAdvisorsPaneLayout.setHorizontalGroup(
+            AssignAdvisorsPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(AssignAdvisorsPaneLayout.createSequentialGroup()
                 .addGap(22, 22, 22)
-                .addComponent(navAssignSupervisor, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(navAssignAdvisors, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
-        AssignSupervisorPaneLayout.setVerticalGroup(
-            AssignSupervisorPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(AssignSupervisorPaneLayout.createSequentialGroup()
+        AssignAdvisorsPaneLayout.setVerticalGroup(
+            AssignAdvisorsPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(AssignAdvisorsPaneLayout.createSequentialGroup()
                 .addGap(23, 23, 23)
-                .addComponent(navAssignSupervisor, javax.swing.GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE)
+                .addComponent(navAssignAdvisors, javax.swing.GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE)
                 .addGap(20, 20, 20))
         );
 
@@ -262,7 +262,7 @@ public class ProjMng_MainFrame extends javax.swing.JFrame {
                 .addGap(79, 79, 79))
             .addComponent(DashboardPane, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(StuAssessmentPane, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(AssignSupervisorPane, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(AssignAdvisorsPane, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(AccManagementPane, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(ReportStatusPane, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
@@ -276,7 +276,7 @@ public class ProjMng_MainFrame extends javax.swing.JFrame {
                 .addGap(15, 15, 15)
                 .addComponent(StuAssessmentPane, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(15, 15, 15)
-                .addComponent(AssignSupervisorPane, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(AssignAdvisorsPane, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(15, 15, 15)
                 .addComponent(AccManagementPane, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(15, 15, 15)
@@ -377,7 +377,7 @@ public class ProjMng_MainFrame extends javax.swing.JFrame {
     private void navDashboardMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_navDashboardMouseClicked
         DashboardPane.setBackground(navSelectedColor);
         StuAssessmentPane.setBackground(navDefaultColor);
-        AssignSupervisorPane.setBackground(navDefaultColor);
+        AssignAdvisorsPane.setBackground(navDefaultColor);
         AccManagementPane.setBackground(navDefaultColor);
         ReportStatusPane.setBackground(navDefaultColor);
         
@@ -388,7 +388,7 @@ public class ProjMng_MainFrame extends javax.swing.JFrame {
     private void navStuAssessmentMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_navStuAssessmentMouseClicked
         DashboardPane.setBackground(navDefaultColor);
         StuAssessmentPane.setBackground(navSelectedColor);
-        AssignSupervisorPane.setBackground(navDefaultColor);
+        AssignAdvisorsPane.setBackground(navDefaultColor);
         AccManagementPane.setBackground(navDefaultColor);
         ReportStatusPane.setBackground(navDefaultColor);
         
@@ -396,21 +396,21 @@ public class ProjMng_MainFrame extends javax.swing.JFrame {
         TabPanel.setSelectedIndex(1);
     }//GEN-LAST:event_navStuAssessmentMouseClicked
 
-    private void navAssignSupervisorMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_navAssignSupervisorMouseClicked
+    private void navAssignAdvisorsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_navAssignAdvisorsMouseClicked
         DashboardPane.setBackground(navDefaultColor);
         StuAssessmentPane.setBackground(navDefaultColor);
-        AssignSupervisorPane.setBackground(navSelectedColor);
+        AssignAdvisorsPane.setBackground(navSelectedColor);
         AccManagementPane.setBackground(navDefaultColor);
         ReportStatusPane.setBackground(navDefaultColor);
         
-        PanelTitle.setText("Assign Supervisor");
+        PanelTitle.setText("Assign Advisors");
         TabPanel.setSelectedIndex(3);
-    }//GEN-LAST:event_navAssignSupervisorMouseClicked
+    }//GEN-LAST:event_navAssignAdvisorsMouseClicked
 
     private void navAccMangementMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_navAccMangementMouseClicked
         DashboardPane.setBackground(navDefaultColor);
         StuAssessmentPane.setBackground(navDefaultColor);
-        AssignSupervisorPane.setBackground(navDefaultColor);
+        AssignAdvisorsPane.setBackground(navDefaultColor);
         AccManagementPane.setBackground(navSelectedColor);
         ReportStatusPane.setBackground(navDefaultColor);
         
@@ -421,7 +421,7 @@ public class ProjMng_MainFrame extends javax.swing.JFrame {
     private void navReportStatusMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_navReportStatusMouseClicked
         DashboardPane.setBackground(navDefaultColor);
         StuAssessmentPane.setBackground(navDefaultColor);
-        AssignSupervisorPane.setBackground(navDefaultColor);
+        AssignAdvisorsPane.setBackground(navDefaultColor);
         AccManagementPane.setBackground(navDefaultColor);
         ReportStatusPane.setBackground(navSelectedColor);
         
@@ -478,7 +478,7 @@ public class ProjMng_MainFrame extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JPanel AccManagementPane;
     private javax.swing.JLabel AccName;
-    public javax.swing.JPanel AssignSupervisorPane;
+    public javax.swing.JPanel AssignAdvisorsPane;
     private javax.swing.JPanel CoverTabPane;
     public javax.swing.JPanel DashboardPane;
     public javax.swing.JLabel PanelTitle;
@@ -489,7 +489,7 @@ public class ProjMng_MainFrame extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel lblLogout;
     private javax.swing.JLabel navAccMangement;
-    private javax.swing.JLabel navAssignSupervisor;
+    private javax.swing.JLabel navAssignAdvisors;
     private javax.swing.JLabel navDashboard;
     private javax.swing.JLabel navReportStatus;
     private javax.swing.JLabel navStuAssessment;
