@@ -27,9 +27,9 @@ public class PanelDashboard extends javax.swing.JPanel {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
+        name = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
+        StuID = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
@@ -38,11 +38,11 @@ public class PanelDashboard extends javax.swing.JPanel {
 
         jPanel1.setPreferredSize(new java.awt.Dimension(935, 530));
 
-        jLabel1.setText("Name");
+        name.setText("Name");
 
         jLabel2.setText("Intake");
 
-        jLabel3.setText("Student ID");
+        StuID.setText("Student ID");
 
         jLabel4.setText("Programme");
 
@@ -62,7 +62,7 @@ public class PanelDashboard extends javax.swing.JPanel {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(279, 279, 279)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel1)
+                            .addComponent(name)
                             .addComponent(jLabel4))))
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -72,8 +72,8 @@ public class PanelDashboard extends javax.swing.JPanel {
                         .addGap(149, 149, 149)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jLabel2)
-                            .addComponent(jLabel3))))
-                .addContainerGap(355, Short.MAX_VALUE))
+                            .addComponent(StuID))))
+                .addContainerGap(356, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -85,13 +85,13 @@ public class PanelDashboard extends javax.swing.JPanel {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(66, 66, 66)
-                        .addComponent(jLabel4)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel4)
+                            .addComponent(StuID))
                         .addGap(86, 86, 86)
-                        .addComponent(jLabel1))
+                        .addComponent(name))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(80, 80, 80)
-                        .addComponent(jLabel3)
-                        .addGap(80, 80, 80)
+                        .addGap(176, 176, 176)
                         .addComponent(jLabel2)))
                 .addContainerGap(179, Short.MAX_VALUE))
         );
@@ -110,12 +110,12 @@ public class PanelDashboard extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel StuID;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JLabel name;
     // End of variables declaration//GEN-END:variables
 }
