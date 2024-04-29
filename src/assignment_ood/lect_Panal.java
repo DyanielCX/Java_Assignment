@@ -27,6 +27,7 @@ import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
+import assignment_ood.Admin;
 /**
  *
  * @author User
@@ -40,8 +41,12 @@ public class lect_Panal extends javax.swing.JPanel {
     public lect_Panal(admin_mainframe2 mainframe) {
         this.mainframe = mainframe;
         initComponents();
-         populateLecturerTable();
+        Admin admin = new Admin(lecturePanal);
+         
+         Admin.loadLecturerpanalFromFile(lecturePanal);
+        
          fixTable(jScrollPane1);
+          
          
          lecturePanal.getTableHeader().setReorderingAllowed(false);
         lecturePanal.getTableHeader().setResizingAllowed(false);
@@ -55,30 +60,7 @@ public class lect_Panal extends javax.swing.JPanel {
           lecturePanal.getColumnModel().getColumn(4).setCellRenderer(new TableActionCellRender());
         lecturePanal.getColumnModel().getColumn(4).setCellEditor(new TableActionCellEditor(event));
     }
-    private void updateLecturerInFile(String lecturerName, String lecturerId, boolean isProjectManager) {
-    // Read all lines from the file into a list
-    java.util.List<String> lines = new java.util.ArrayList<>();
-    try (BufferedReader reader = new BufferedReader(new FileReader("lecturers.txt"))) {
-        String line;
-        while ((line = reader.readLine()) != null) {
-            lines.add(line);
-        }
-    } catch (IOException e) {
-        
-        e.printStackTrace();
-    }
-
-    // Update the selected lecturer's details
-    String updatedLine = lecturerName + "," + lecturerId + "," + isProjectManager;
-    int selectedIndex = lecturePanal.getSelectedRow();
-    if (selectedIndex != -1 && selectedIndex < lines.size()) {
-        lines.set(selectedIndex, updatedLine);
-    }
-
     
-     
-    
-    }
     TableActionEvent event = new TableActionEvent() {
            @Override
             public void onEdit(int row) {
@@ -106,14 +88,15 @@ public class lect_Panal extends javax.swing.JPanel {
                 String newLecturerName = txtLecturerName.getText();
                 String newLecturerId = txtLecturerId.getText();
                 boolean newIsProjectManager = chkIsProjectManager.isSelected();
-
+                boolean isSecondMarker = false;
+                boolean isSupervisor =false;
                 // Update the JTable with the modified details
                 lecturePanal.setValueAt(newLecturerName, selectedRow, 0);
                 lecturePanal.setValueAt(newLecturerId, selectedRow, 1);
                 lecturePanal.setValueAt(newIsProjectManager, selectedRow, 2);
 
                 // Update the file with the modified details
-                updateLecturerInFile(newLecturerName, newLecturerId, newIsProjectManager);
+                Admin.updateLecturerInFile(lecturePanal,newLecturerName, newLecturerId, newIsProjectManager,isSecondMarker,isSupervisor);
             }
         } else {
             JOptionPane.showMessageDialog(lect_Panal.this, "Please select a lecturer to edit.");
@@ -125,26 +108,7 @@ public class lect_Panal extends javax.swing.JPanel {
             }
             };
     
-private void populateLecturerTable() {
-       DefaultTableModel model = (DefaultTableModel) lecturePanal.getModel();
-    model.setRowCount(0); 
 
-    try (BufferedReader reader = new BufferedReader(new FileReader("lecturers.txt"))) {
-        String line;
-        while ((line = reader.readLine()) != null) {
-            String[] parts = line.split(",");
-            if (parts.length == 3) {
-                String lecturerName = parts[0];
-                String lecturerId = parts[1];
-                boolean isProjectManager = Boolean.parseBoolean(parts[2]);
-                model.addRow(new Object[]{lecturerName, lecturerId, isProjectManager});
-            }
-        }
-    } catch (IOException e) {
-        e.printStackTrace(); // Handle or log the exception as needed
-    }
-    }
- 
  
 
     /**

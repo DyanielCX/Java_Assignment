@@ -22,8 +22,10 @@ public class addLect extends javax.swing.JFrame {
      * Creates new form addLect
      */
     public addLect() {
+         Admin admin = new Admin(lecturerTable);
     initComponents(); // Call the auto-generated initComponents method
-    loadLecturersFromFile();
+    
+    Admin.loadLecturersFromFile(lecturerTable);
    
 }
 
@@ -239,84 +241,35 @@ public class addLect extends javax.swing.JFrame {
      String lecturerName = txtLectName.getText();
     String lecturerId = txtLectId.getText(); 
     boolean isProjectManager = projectManagerYes.isSelected(); 
-     Lecturer lecturer = new Lecturer(lecturerName, lecturerId, isProjectManager);
-   
-
-   
-    
+    boolean isSecondMarker = false;
+    boolean isSupervisor=false;
+     Lecturer lecturer = new Lecturer(lecturerName, lecturerId, isProjectManager, isSecondMarker, isSupervisor);
+      
     // Save lecturer details to a text file
 
-    saveLecturerToFile(lecturerName, lecturerId, isProjectManager);
-    loadLecturersFromFile();
+    Admin.saveLecturersToFile(lecturerName, lecturerId, isProjectManager,isSecondMarker, isSupervisor);
+     Admin.loadLecturersFromFile(lecturerTable);
 
     JOptionPane.showMessageDialog(this, "Lecturer details submitted successfully.");
 }
     
-private void saveLecturerToFile(String lecturerName, String lecturerId, boolean isProjectManager) {
-    try (FileWriter writer = new FileWriter("lecturers.txt", true)) { // Use true as the second parameter to append to the file
-        writer.write(lecturerName + "," + lecturerId + "," + isProjectManager + "\n");
-    } catch (IOException e) {
-        e.printStackTrace(); 
-    }
+private void saveLecturerToFile(String lecturerName, String lecturerId, boolean isProjectManager, boolean isSecondMarker, boolean isSupervisor) {
+   
     }//GEN-LAST:event_submitlectActionPerformed
-private void loadLecturersFromFile() {
-    DefaultTableModel model = (DefaultTableModel) lecturerTable.getModel();
-    model.setRowCount(0); 
 
-    try (BufferedReader reader = new BufferedReader(new FileReader("lecturers.txt"))) {
-        String line;
-        while ((line = reader.readLine()) != null) {
-            String[] parts = line.split(",");
-            if (parts.length == 3) {
-                String lecturerName = parts[0];
-                String lecturerId = parts[1];
-                boolean isProjectManager = Boolean.parseBoolean(parts[2]);
-                model.addRow(new Object[]{lecturerName, lecturerId, isProjectManager});
-            }
-        }
-    } catch (IOException e) {
-        e.printStackTrace(); // Handle or log the exception as needed
-    }
-}
-private void updateLecturerInFile(String lecturerName, String lecturerId, boolean isProjectManager) {
-    // Read all lines from the file into a list
-    java.util.List<String> lines = new java.util.ArrayList<>();
-    try (BufferedReader reader = new BufferedReader(new FileReader("lecturers.txt"))) {
-        String line;
-        while ((line = reader.readLine()) != null) {
-            lines.add(line);
-        }
-    } catch (IOException e) {
-        
-        e.printStackTrace();
-    }
 
-    // Update the selected lecturer's details
-    String updatedLine = lecturerName + "," + lecturerId + "," + isProjectManager;
-    int selectedIndex = lecturerTable.getSelectedRow();
-    if (selectedIndex != -1 && selectedIndex < lines.size()) {
-        lines.set(selectedIndex, updatedLine);
-    }
 
-    // Write the updated lines back to the file
-    try (FileWriter writer = new FileWriter("lecturers.txt")) {
-        for (String line : lines) {
-            writer.write(line + "\n");
-        }
-    } catch (IOException e) {
-        e.printStackTrace();
-    }
 
-    // Refresh the table to reflect the changes
-    loadLecturersFromFile(); 
-}
+
+
     private void delLectActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_delLectActionPerformed
          int selectedRow = lecturerTable.getSelectedRow();
     if (selectedRow != -1) {
         // Get the lecturer details from the selected row
         String lecturerName = (String) lecturerTable.getValueAt(selectedRow, 0);
         String lecturerId = (String) lecturerTable.getValueAt(selectedRow, 1);
-        
+        boolean isSupervisor =false;
+        boolean isSecondMarker =false;
         // Get the project manager value as an Object
         Object projectManagerValue = lecturerTable.getValueAt(selectedRow, 2);
         
@@ -334,7 +287,7 @@ private void updateLecturerInFile(String lecturerName, String lecturerId, boolea
         }
 
         // Delete the selected lecturer from the text file
-        deleteLecturerFromFile(lecturerName, lecturerId, isProjectManager);
+        Admin.deleteLecturerFromFile(lecturerName, lecturerId, isProjectManager,isProjectManager,isSecondMarker);
 
         // Remove the selected row from the table
         DefaultTableModel model = (DefaultTableModel) lecturerTable.getModel();
@@ -367,14 +320,15 @@ private void updateLecturerInFile(String lecturerName, String lecturerId, boolea
                 String newLecturerName = txtLecturerName.getText();
                 String newLecturerId = txtLecturerId.getText();
                 boolean newIsProjectManager = chkIsProjectManager.isSelected();
-
+                boolean isSecondMarker= false;
+                boolean isSupervisor = false;
                 // Update the JTable with the modified details
                 lecturerTable.setValueAt(newLecturerName, selectedRow, 0);
                 lecturerTable.setValueAt(newLecturerId, selectedRow, 1);
                 lecturerTable.setValueAt(newIsProjectManager, selectedRow, 2);
 
                 // Update the file with the modified details
-                updateLecturerInFile(newLecturerName, newLecturerId, newIsProjectManager);
+                Admin.updateLecturerInFile(lecturerTable,newLecturerName, newLecturerId, newIsProjectManager,isSecondMarker,isSupervisor);
             }
         } else {
             JOptionPane.showMessageDialog(this, "Please select a lecturer to edit.");
@@ -386,32 +340,7 @@ private void updateLecturerInFile(String lecturerName, String lecturerId, boolea
        mainframe2.setVisible(true);
        this.dispose();
     }//GEN-LAST:event_backBtnActionPerformed
-private void deleteLecturerFromFile(String lecturerName, String lecturerId, boolean isProjectManager) {
-    // Read all lines from the file into a list
-    java.util.List<String> lines = new java.util.ArrayList<>();
-    try (BufferedReader reader = new BufferedReader(new FileReader("lecturers.txt"))) {
-        String line;
-        while ((line = reader.readLine()) != null) {
-            String[] parts = line.split(",");
-            if (parts.length == 3) {
-                if (!lecturerName.equals(parts[0]) || !lecturerId.equals(parts[1]) || isProjectManager != Boolean.parseBoolean(parts[2])) {
-                    lines.add(line);
-                }
-            }
-        }
-    } catch (IOException e) {
-        e.printStackTrace();
-    }
 
-    // Write the updated lines back to the file
-    try (FileWriter writer = new FileWriter("lecturers.txt")) {
-        for (String line : lines) {
-            writer.write(line + "\n");
-        }
-    } catch (IOException e) {
-        e.printStackTrace();
-    }
-}
 
     /**
      * @param args the command line arguments

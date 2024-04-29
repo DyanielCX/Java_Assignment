@@ -9,6 +9,9 @@ import ProjManagerPackage.*;
 import StuPackage.StuData_IO;
 import java.awt.Color;
 import javax.swing.SwingUtilities;
+import assignment_ood.addLect;
+import assignment_ood.Admin;
+import assignment_ood.Lecturer;
 
 /**
  *
@@ -402,6 +405,8 @@ public class admin_mainframe2 extends javax.swing.JFrame {
         PanelTitle.setText("Add Lecuturer");
         TabPanel.setSelectedIndex(1);
         addLect.setVisible(true);
+       
+      
     }//GEN-LAST:event_navStuAssessmentMouseClicked
 
     private void navAssignSupervisorMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_navAssignSupervisorMouseClicked
