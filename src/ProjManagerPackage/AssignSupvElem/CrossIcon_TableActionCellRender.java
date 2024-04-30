@@ -10,7 +10,7 @@ import javax.swing.table.DefaultTableCellRenderer;
  *
  * @author PC
  */
-public class CrossIcon_TableActionCellRender1 extends DefaultTableCellRenderer{
+public class CrossIcon_TableActionCellRender extends DefaultTableCellRenderer{
 
     @Override
     public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {

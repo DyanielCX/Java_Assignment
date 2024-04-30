@@ -247,10 +247,6 @@ public class EditAssFrame_StuBased extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btbSubmitActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
-    
     public void backMainFrame(){
         ProjMng_MainFrame fr = new ProjMng_MainFrame();
         fr.setVisible(true);
@@ -261,6 +257,9 @@ public class EditAssFrame_StuBased extends javax.swing.JFrame {
         fr.changedTab(2);
     }
     
+    /**
+     * @param args the command line arguments
+     */
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">

@@ -47,6 +47,9 @@ public class ProjMng_MainFrame extends javax.swing.JFrame {
     
         LectRoleListTab Tab5 = new LectRoleListTab(this);
         TabPanel.addTab("tab5", Tab5);
+    
+        AssignAdvs_IntakeList Tab6 = new AssignAdvs_IntakeList(this);
+        TabPanel.addTab("tab6", Tab6);
         
 //        StuAssessmentTab Tab5 = new StuAssessmentTab();
 //        TabPanel.addTab("tab5", Tab5);

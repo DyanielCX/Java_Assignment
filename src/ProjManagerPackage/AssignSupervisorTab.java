@@ -141,7 +141,7 @@ public class AssignSupervisorTab extends javax.swing.JPanel {
     }//GEN-LAST:event_btbEditLectMouseClicked
 
     private void btbAssignStuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btbAssignStuMouseClicked
-        // TODO add your handling code here:
+        mainFrame.changedTab(5);
     }//GEN-LAST:event_btbAssignStuMouseClicked
 
 

@@ -26,11 +26,11 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author PC
  */
-public class LectRoleListTab extends javax.swing.JPanel {
+public class AssignAdvs_IntakeList extends javax.swing.JPanel {
 
     private ProjMng_MainFrame mainFrame;
     
-    public LectRoleListTab(ProjMng_MainFrame mainFrame) {
+    public AssignAdvs_IntakeList(ProjMng_MainFrame mainFrame) {
         this.mainFrame = mainFrame;
         initComponents();
         
@@ -68,20 +68,19 @@ public class LectRoleListTab extends javax.swing.JPanel {
         
         /*Show the student have been alloted assesment*/
         for (int count = 0; count < 3; count++){
-            String LectName = "Alan";
-            String LectID = "122334";
+            String Intake = "AG2109";
             Boolean isSupervisor = true;
             Boolean isSecondMarker = true;
             
             if (isSupervisor == true) {
-                LectRoleTable.getColumnModel().getColumn(2).setCellRenderer(new TickIcon_TableActionCellRender());
+                LectRoleTable.getColumnModel().getColumn(1).setCellRenderer(new TickIcon_TableActionCellRender());
             }
             
             if (isSecondMarker == true) {
-                LectRoleTable.getColumnModel().getColumn(3).setCellRenderer(new CrossIcon_TableActionCellRender());
+                LectRoleTable.getColumnModel().getColumn(2).setCellRenderer(new CrossIcon_TableActionCellRender());
             }
             
-            Object[] InsertRow = {LectName, LectID};
+            Object[] InsertRow = {Intake};
 
             DefaultTableModel model = (DefaultTableModel) LectRoleTable.getModel();
             model.addRow(InsertRow);
@@ -101,8 +100,8 @@ public class LectRoleListTab extends javax.swing.JPanel {
         };
         
         //Insert edit button into table
-        LectRoleTable.getColumnModel().getColumn(4).setCellRenderer(new TableActionCellRender());
-        LectRoleTable.getColumnModel().getColumn(4).setCellEditor(new TableActionCellEditor(event));
+        LectRoleTable.getColumnModel().getColumn(3).setCellRenderer(new TableActionCellRender());
+        LectRoleTable.getColumnModel().getColumn(3).setCellEditor(new TableActionCellEditor(event));
     }
 
     /**
@@ -127,11 +126,11 @@ public class LectRoleListTab extends javax.swing.JPanel {
 
             },
             new String [] {
-                "Name", "ID", "Supervisor", "Second Marker", "Action"
+                "Intake", "Supervisor", "Second Marker", "Action"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, true
+                false, false, false, true
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -156,7 +155,7 @@ public class LectRoleListTab extends javax.swing.JPanel {
         add(btbBack, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
 
         TabTitle.setFont(new java.awt.Font("Dubai Medium", 0, 28)); // NOI18N
-        TabTitle.setText("Lecturer List");
+        TabTitle.setText("Intake List");
         add(TabTitle, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 40, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
 
