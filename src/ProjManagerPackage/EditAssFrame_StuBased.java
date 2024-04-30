@@ -224,7 +224,7 @@ public class EditAssFrame_StuBased extends javax.swing.JFrame {
         String Intake = StuData_IO.StuData.get(stuIndex).intake;
         String Assessment = (String) cboAssesment.getSelectedItem();
         String Supervisor = StuData_IO.StuData.get(stuIndex).supervisor;
-        String SecondMaker = StuData_IO.StuData.get(stuIndex).secondMaker;
+        String SecondMaker = StuData_IO.StuData.get(stuIndex).secondMarker;
 
         //Make sure the selected assessment is comfort with his intake (if his intake is alloted assessment already)
         boolean assChecking = IntakeBasedMethod.checkAssessment(Intake, Assessment);

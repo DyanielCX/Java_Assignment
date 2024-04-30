@@ -187,7 +187,7 @@ public class EditAssFrame_IntakeBased extends javax.swing.JFrame {
                 String Intake = stu.intake;
                 String Assessment = (String) cboAssesment.getSelectedItem();
                 String Supervisor = stu.supervisor;
-                String SecondMaker = stu.secondMaker;
+                String SecondMaker = stu.secondMarker;
                 
                 //Update the edited data into ArrayList
                 Student Edited_Student = new Student(Name, Age, Intake, Intake, Assessment, Supervisor, SecondMaker);
