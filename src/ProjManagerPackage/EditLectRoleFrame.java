@@ -249,7 +249,7 @@ public class EditLectRoleFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_btbCancelActionPerformed
 
     public void backMainFrame(){
-        ProjMng_MainFrame fr = new ProjMng_MainFrame();
+        MainFrame fr = new MainFrame();
         fr.setVisible(true);
 
         fr.DashboardPane.setBackground(new Color(122, 162, 227));

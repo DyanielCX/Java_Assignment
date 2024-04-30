@@ -10,12 +10,12 @@ package ProjManagerPackage;
  */
 public class AssignSupervisorTab extends javax.swing.JPanel {
 
-     private ProjMng_MainFrame mainFrame;
+     private MainFrame mainFrame;
     
     /**
      * Creates new form AssignSupervisorPane
      */
-    public AssignSupervisorTab(ProjMng_MainFrame mainFrame) {
+    public AssignSupervisorTab(MainFrame mainFrame) {
         this.mainFrame = mainFrame;
         initComponents();
     }

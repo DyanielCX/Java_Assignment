@@ -21,9 +21,9 @@ import javax.swing.table.DefaultTableModel;
 
 public class StuAssTab_StuBased extends javax.swing.JPanel {
 
-    private ProjMng_MainFrame mainFrame;
+    private MainFrame mainFrame;
     
-    public StuAssTab_StuBased(ProjMng_MainFrame mainFrame) {
+    public StuAssTab_StuBased(MainFrame mainFrame) {
         this.mainFrame = mainFrame;
         initComponents();
         
@@ -177,7 +177,7 @@ public class StuAssTab_StuBased extends javax.swing.JPanel {
 
     //Change to Student Table
     private void btbStuBasedMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btbStuBasedMouseClicked
-        ProjMng_MainFrame fr = new ProjMng_MainFrame();
+        MainFrame fr = new MainFrame();
         mainFrame.changedTab(2);
     }//GEN-LAST:event_btbStuBasedMouseClicked
 

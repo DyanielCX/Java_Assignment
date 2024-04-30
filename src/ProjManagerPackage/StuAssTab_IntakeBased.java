@@ -21,9 +21,9 @@ import javax.swing.table.DefaultTableModel;
 
 public class StuAssTab_IntakeBased extends javax.swing.JPanel {
 
-    private ProjMng_MainFrame mainFrame;
+    private MainFrame mainFrame;
     
-    public StuAssTab_IntakeBased(ProjMng_MainFrame mainFrame) {
+    public StuAssTab_IntakeBased(MainFrame mainFrame) {
         this.mainFrame = mainFrame;
         initComponents();
         

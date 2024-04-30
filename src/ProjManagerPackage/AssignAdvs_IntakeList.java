@@ -28,9 +28,9 @@ import javax.swing.table.DefaultTableModel;
  */
 public class AssignAdvs_IntakeList extends javax.swing.JPanel {
 
-    private ProjMng_MainFrame mainFrame;
+    private MainFrame mainFrame;
     
-    public AssignAdvs_IntakeList(ProjMng_MainFrame mainFrame) {
+    public AssignAdvs_IntakeList(MainFrame mainFrame) {
         this.mainFrame = mainFrame;
         initComponents();
         

@@ -28,9 +28,9 @@ import javax.swing.table.DefaultTableModel;
  */
 public class LectRoleListTab extends javax.swing.JPanel {
 
-    private ProjMng_MainFrame mainFrame;
+    private MainFrame mainFrame;
     
-    public LectRoleListTab(ProjMng_MainFrame mainFrame) {
+    public LectRoleListTab(MainFrame mainFrame) {
         this.mainFrame = mainFrame;
         initComponents();
         
