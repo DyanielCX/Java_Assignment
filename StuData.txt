@@ -6,3 +6,4 @@ JiaHui,21,APU2F2402,APU2F2402,CP2,-,-
 JingPing,21,APU2F2402,APU2F2402,CP2,-,-
 Jo,50,123456,Item 2,-,Item 1,Item 1
 Joseph,123,TP58434,Item 1,-,Item 1,Item 1
+Mingyao,21,TP064621,APU2F2402,FYP,Nowshath,Shahab,none,30-5-2024,https://lms2.apiit.edu.my/mod/assign/view.php?id=470029 , pending,0502
