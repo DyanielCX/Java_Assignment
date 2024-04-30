@@ -22,7 +22,7 @@ public class ProjManager {
         int Age = StuData_IO.StuData.get(Index).age;
         String Intake = StuData_IO.StuData.get(Index).intake;
         String Supervisor = StuData_IO.StuData.get(Index).supervisor;
-        String SecondMaker = StuData_IO.StuData.get(Index).secondMaker;
+        String SecondMaker = StuData_IO.StuData.get(Index).secondMarker;
         
         Student Edited_Student = new Student(Name, Age, StuID, Intake, Assessment, Supervisor, SecondMaker);
         StuData_IO.edit(Index, Edited_Student);

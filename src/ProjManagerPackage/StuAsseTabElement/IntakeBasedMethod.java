@@ -62,7 +62,7 @@ public class IntakeBasedMethod {
                 String Intake = intake;
                 String Assessment = selectedAss;
                 String Supervisor = StuData_IO.StuData.get(Index).supervisor;
-                String SecondMaker = StuData_IO.StuData.get(Index).secondMaker;
+                String SecondMaker = StuData_IO.StuData.get(Index).secondMarker;
 
                 //Update the edited data into ArrayList
                 Student Edited_Student = new Student(Name, Age, stuID, Intake, Assessment, Supervisor, SecondMaker);

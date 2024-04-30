@@ -1,5 +1,7 @@
 package StuPackage;
 
+
+
 import java.awt.Color;
 import java.io.FileWriter;
 import java.io.IOException; 
@@ -20,13 +22,9 @@ public class Admin_AddStudent extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
-        AddStudentButton = new javax.swing.JButton();
-        EditStudentButton = new javax.swing.JButton();
-        RemoveStudentButton = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         jLabel9 = new javax.swing.JLabel();
+        Back_lbl = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
@@ -43,72 +41,41 @@ public class Admin_AddStudent extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jPanel1.setBackground(new java.awt.Color(0, 102, 204));
-
-        AddStudentButton.setText("Add Student");
-        AddStudentButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                AddStudentButtonActionPerformed(evt);
-            }
-        });
-
-        EditStudentButton.setText("Edit Student");
-        EditStudentButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                EditStudentButtonActionPerformed(evt);
-            }
-        });
-
-        RemoveStudentButton.setText("Remove Student");
-
-        jLabel1.setText("LOGO");
-
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(AddStudentButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(EditStudentButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(RemoveStudentButton, javax.swing.GroupLayout.DEFAULT_SIZE, 226, Short.MAX_VALUE)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(86, 86, 86)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(72, 72, 72)
-                .addComponent(jLabel1)
-                .addGap(77, 77, 77)
-                .addComponent(AddStudentButton, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(EditStudentButton, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(RemoveStudentButton, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(120, Short.MAX_VALUE))
-        );
-
         jPanel3.setBackground(new java.awt.Color(102, 204, 255));
 
         jLabel9.setFont(new java.awt.Font("Serif", 1, 24)); // NOI18N
         jLabel9.setText("Add New Student");
 
+        Back_lbl.setText("Back");
+        Back_lbl.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        Back_lbl.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                Back_lblMouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addContainerGap(173, Short.MAX_VALUE)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGap(17, 17, 17)
+                .addComponent(Back_lbl, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(128, 128, 128)
                 .addComponent(jLabel9)
-                .addGap(245, 245, 245))
+                .addContainerGap(198, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(28, 28, 28)
-                .addComponent(jLabel9)
-                .addContainerGap(30, Short.MAX_VALUE))
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGap(27, 27, 27)
+                        .addComponent(jLabel9))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGap(17, 17, 17)
+                        .addComponent(Back_lbl)))
+                .addContainerGap(31, Short.MAX_VALUE))
         );
 
         jLabel3.setText("Student Name");
@@ -174,40 +141,33 @@ public class Admin_AddStudent extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(92, 92, 92)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel6)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jLabel5))
+                            .addComponent(jLabel7)
+                            .addComponent(jLabel8))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(StudentName_textfield)
+                            .addComponent(StudentAge_textfield)
+                            .addComponent(StudentIntake_cmb, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(StudentAssessment_cmb, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(StudentSupervisor_cmb, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(StudentSecMarker, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(93, 93, 93)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jLabel6)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(jLabel5))
-                                    .addComponent(jLabel7)
-                                    .addComponent(jLabel8))
-                                .addGap(18, 18, 18)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(StudentName_textfield)
-                                    .addComponent(StudentAge_textfield)
-                                    .addComponent(StudentIntake_cmb, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(StudentAssessment_cmb, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(StudentSupervisor_cmb, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(StudentSecMarker, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(219, 219, 219)
-                                .addComponent(AddBtn)))
-                        .addContainerGap())))
+                        .addGap(126, 126, 126)
+                        .addComponent(AddBtn))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(38, 38, 38)
@@ -236,20 +196,15 @@ public class Admin_AddStudent extends javax.swing.JFrame {
                     .addComponent(StudentSecMarker, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(34, 34, 34)
                 .addComponent(AddBtn)
-                .addContainerGap(64, Short.MAX_VALUE))
+                .addContainerGap(41, Short.MAX_VALUE))
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void AddStudentButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddStudentButtonActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_AddStudentButtonActionPerformed
-
     private void AddBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddBtnActionPerformed
-        // Method for adding a student
-
-        // Retrieve student details from input fields
+       // Retrieve student details from input fields
         String name = StudentName_textfield.getText();
         String ageText = StudentAge_textfield.getText(); // Retrieve age text directly
         int age;
@@ -269,49 +224,33 @@ public class Admin_AddStudent extends javax.swing.JFrame {
         String supervisor = (String) StudentSupervisor_cmb.getSelectedItem();
         String secondMarker = (String) StudentSecMarker.getSelectedItem();
 
-        // Create a string to represent the student's details
-        String studentDetails = name + "," + age + "," + generateStudentID() + "," + intake + "," + assessment + "," + supervisor + "," + secondMarker;
-
-        // Add the student details to the ArrayList
-        studentList.add(studentDetails);
-
-        // Write student details to StuData.txt file
-        try (FileWriter writer = new FileWriter("StuData.txt", true)) {
-            writer.write(studentDetails + "\n");
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
         // Check if any field is empty
         if (name.equals("Please enter the student name") || intake.isEmpty() || assessment.isEmpty() || supervisor.isEmpty() || secondMarker.isEmpty()) {
             JOptionPane.showMessageDialog(this, "Please fill out all fields.", "Error", JOptionPane.ERROR_MESSAGE);
             return; // Exit the method if any field is empty
         }
 
-        
+        // Create a Student object with the retrieved data
+        Student newStudent = new Student(name, age, generateStudentID(), intake, assessment, supervisor, secondMarker);
+
+        // Add the student to the ArrayList
+        StuData_IO.add(newStudent);
+
+        // Call writeToTxt to update the file with the ArrayList data
+        StuData_IO.writeToTxt();
+
         // Confirmation message
         JOptionPane.showMessageDialog(this, "Student added successfully!");
-        
+
         // Clear input fields for adding a new student
         clearInputFields();
-    }                                      
+    }                                          
 
     // Method to generate a unique student ID (You can modify this method as needed)
     private String generateStudentID() {
         // Code to generate a unique student ID, for now, let's return a fixed value
         return "TP" + ((int) (Math.random() * 100000));
     }//GEN-LAST:event_AddBtnActionPerformed
-
-    private void EditStudentButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EditStudentButtonActionPerformed
-    // Create an instance of Admin_EditStudent
-    Admin_SearchStudent editStudentFrame = new Admin_SearchStudent();
-    
-    // Hide the current frame (Admin_AddStudent)
-    this.setVisible(false);
-    
-    // Show the Admin_EditStudent frame
-    editStudentFrame.setVisible(true);
-    }//GEN-LAST:event_EditStudentButtonActionPerformed
 
     private void StudentName_textfieldFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_StudentName_textfieldFocusGained
         if (StudentName_textfield.getText().equals("Please enter the student name")) {
@@ -349,6 +288,12 @@ public class Admin_AddStudent extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_StudentAge_textfieldActionPerformed
 
+    private void Back_lblMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Back_lblMouseClicked
+        Admin_Student adminStudentFrame = new Admin_Student();
+        adminStudentFrame.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_Back_lblMouseClicked
+
     private void clearInputFields() {
         // Clear input fields and set placeholders
         StudentName_textfield.setText("");
@@ -363,6 +308,29 @@ public class Admin_AddStudent extends javax.swing.JFrame {
     }
     
     public static void main(String[] args) {
+         /* Set the Nimbus look and feel */
+        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         */
+        try {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
+            }
+        } catch (ClassNotFoundException ex) {
+            java.util.logging.Logger.getLogger(Admin_Student.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(Admin_Student.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(Admin_Student.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(Admin_Student.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
+        //</editor-fold>
+        
         // Create an instance of Admin_AddStudent
         Admin_AddStudent addStudentFrame = new Admin_AddStudent();
         
@@ -373,16 +341,13 @@ public class Admin_AddStudent extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton AddBtn;
-    private javax.swing.JButton AddStudentButton;
-    private javax.swing.JButton EditStudentButton;
-    private javax.swing.JButton RemoveStudentButton;
+    private javax.swing.JLabel Back_lbl;
     private javax.swing.JTextField StudentAge_textfield;
     private javax.swing.JComboBox<String> StudentAssessment_cmb;
     private javax.swing.JComboBox<String> StudentIntake_cmb;
     private javax.swing.JTextField StudentName_textfield;
     private javax.swing.JComboBox<String> StudentSecMarker;
     private javax.swing.JComboBox<String> StudentSupervisor_cmb;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -390,7 +355,6 @@ public class Admin_AddStudent extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
-    private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel3;
     // End of variables declaration//GEN-END:variables
 }

@@ -1,35 +1,39 @@
 package StuPackage;
 
+
+
 import java.io.File;
+import java.io.FileWriter;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Scanner;
 import javax.swing.JOptionPane;
 
 public class StuData_IO {
+    // ArrayList to store student data
     public static ArrayList<Student> StuData = new ArrayList<>();
     
-    //Read all student data from text file
+    // Read all student data from text file
     public static void readFrTxt(){
         try{
             Scanner scan = new Scanner(new File("StuData.txt"));
 
-            //read all line
+            // Read all lines
             while(scan.hasNext()){
                 String currentLine = scan.nextLine();
                 String[] StuData_Array = currentLine.split(",");
                 
-                //save the data into variable
+                // Save the data into variables
                 String Name = StuData_Array[0];
                 int Age = Integer.parseInt(StuData_Array[1]);
                 String StuID = StuData_Array[2];
                 String Intake = StuData_Array[3];
                 String Assessment = StuData_Array[4];
                 String Supervisor = StuData_Array[5];
-                String SecondMaker = StuData_Array[6];
+                String SecondMarker = StuData_Array[6];
 
-                //add into array list
-                StuData.add(new Student(Name, Age, StuID, Intake, Assessment, Supervisor,SecondMaker));
+                // Add into ArrayList
+                StuData.add(new Student(Name, Age, StuID, Intake, Assessment, Supervisor,SecondMarker));
             }
         }
         catch (Exception ex){
@@ -37,33 +41,26 @@ public class StuData_IO {
         }
     }
     
-    //Write all student data from ArrayList into text file
-    public static void writeToTxt() {
-        try {
-            PrintWriter write = new PrintWriter("StuData.txt");
+    // Write all student data from ArrayList into text file
+        public static void writeToTxt() {
+            try {
+                PrintWriter write = new PrintWriter(new FileWriter("StuData.txt"));
 
-            //write the drink detail into text file
-            for (int i=0; i< StuData.size(); i++){
-                String Name = StuData.get(i).name;
-                String Age = Integer.toString(StuData.get(i).age);
-                String StuID = StuData.get(i).id;
-                String Intake = StuData.get(i).intake;
-                String Assessment = StuData.get(i).assessment;
-                String Supervisor = StuData.get(i).supervisor;
-                String SecondMaker = StuData.get(i).secondMaker;
-                
-                //Write all StuData in a line and write into text file
-                String writeInLine = Name + "," + Age+ "," + StuID + "," + Intake + "," + Assessment + "," + Supervisor + "," + SecondMaker;
-                write.println(writeInLine);
+                // Write all student data from the ArrayList into the text file
+                for (Student student : StuData) {
+                    String writeInLine = student.name + "," + student.age + "," + student.id + "," +
+                                         student.intake + "," + student.assessment + "," +
+                                         student.supervisor + "," + student.secondMarker;
+                    write.println(writeInLine);
+                }
+                write.close();
             }
-            write.close();
+            catch (Exception ex) {
+                JOptionPane.showMessageDialog(null,"!Write text file error!");
+            }
         }
-        catch (Exception ex) {
-            JOptionPane.showMessageDialog(null,"!Write text file error!");
-        }
-    }
     
-    //Get the index of student based on StuID from ArrayList
+    // Get the index of student based on StuID from ArrayList
     public static int checkStu(String StuID){
         for (int i=0; i< StuData.size(); i++){
             if(StuID.equals(StuData.get(i).id)){
@@ -73,21 +70,19 @@ public class StuData_IO {
         throw new IllegalArgumentException("Student ID not found: " + StuID);
     }
     
-    
-    
-    //Add new student data into StuData ArrayList
-    public static void add(){
-        
+    // Add new student data into StuData ArrayList
+    public static void add(Student newStudent){
+        StuData.add(newStudent);
+        writeToTxt(); // Update text file
     }
     
-    //..
-    //Edit existed student data in StuData ArrayList
-    public static void edit(int Index, Student EditedData){
-        StuData.set(Index, EditedData);
-        writeToTxt();
+    // Edit existing student data in StuData ArrayList
+    public static void edit(int index, Student editedData){
+        StuData.set(index, editedData);
+        writeToTxt(); // Update text file
     }
     
-    //Remove existed student data from StuData ArrayList
+    // Remove existing student data from StuData ArrayList
     public static void remove(String stuID){
         try {
             int studentIndex = -1;
@@ -99,16 +94,13 @@ public class StuData_IO {
             }
             if (studentIndex != -1) {
                 StuData.remove(studentIndex);
-                writeToTxt();
+                writeToTxt(); // Update text file
                 System.out.println("Student removed successfully.");
-                // JOptionPane.showMessageDialog(null, "Student removed successfully.");
             } else {
-                System.out.println( "Student ID not found: " + stuID);
-                // JOptionPane.showMessageDialog(null, "Student ID not found: " + stuID);
+                System.out.println("Student ID not found: " + stuID);
             }
         } catch (Exception ex) {
             System.out.println("Error removing student: " + ex.getMessage());
-            // JOptionPane.showMessageDialog(null, "Error removing student: " + ex.getMessage());
         }
     }
 }
