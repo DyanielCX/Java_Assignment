@@ -1,30 +1,26 @@
 package ProjManagerPackage;
 
+import ProjManagerPackage.StuAsseTabElement.IntakeBasedMethod;
 import StuPackage.StuData_IO;
 import StuPackage.Student;
-import java.util.Scanner;
+import javax.swing.JOptionPane;
 
 
 public class ProjManager {
     
     
-    public static void editStuAssessment(){
-        Scanner Sc = new Scanner(System.in);
-        System.out.print("Student ID: ");
-        String StuID = Sc.nextLine();
-        
-        int Index = StuData_IO.checkStu(StuID);
-        System.out.print("Assessment: ");
-        String Assessment = Sc.nextLine();
+    public static void editStuAssessment(int stuIndex, String selectedAssess){
 
-        
-        String Name = StuData_IO.StuData.get(Index).name;
-        int Age = StuData_IO.StuData.get(Index).age;
-        String Intake = StuData_IO.StuData.get(Index).intake;
-        String Supervisor = StuData_IO.StuData.get(Index).supervisor;
-        String SecondMaker = StuData_IO.StuData.get(Index).secondMarker;
-        
-        Student Edited_Student = new Student(Name, Age, StuID, Intake, Assessment, Supervisor, SecondMaker);
-        StuData_IO.edit(Index, Edited_Student);
+        //Get all the selected student data
+        String Name = StuData_IO.StuData.get(stuIndex).name;
+        String stuID = StuData_IO.StuData.get(stuIndex).id;
+        int Age = StuData_IO.StuData.get(stuIndex).age;
+        String Intake = StuData_IO.StuData.get(stuIndex).intake;
+        String Assessment = selectedAssess;
+        String Supervisor = StuData_IO.StuData.get(stuIndex).supervisor;
+        String SecondMaker = StuData_IO.StuData.get(stuIndex).secondMarker;
+
+        Student editedStudent = new Student(Name, Age, stuID, Intake, Assessment, Supervisor, SecondMaker);
+        StuData_IO.edit(stuIndex, editedStudent);
     }
 }

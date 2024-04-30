@@ -1,5 +1,6 @@
 package ProjManagerPackage;
 
+import static ProjManagerPackage.ProjManager.editStuAssessment;
 import ProjManagerPackage.StuAsseTabElement.IntakeBasedMethod;
 import StuPackage.StuData_IO;
 import StuPackage.Student;
@@ -175,26 +176,13 @@ public class EditAssFrame_IntakeBased extends javax.swing.JFrame {
     }//GEN-LAST:event_btbCancelActionPerformed
 
     private void btbSubmitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btbSubmitActionPerformed
-        String submitedAss = (String) cboAssesment.getSelectedItem();
-        int stuIndex = 0;
+        String selectedAssess = (String) cboAssesment.getSelectedItem();
         
-        for (Student stu : StuData_IO.StuData){
-            if (stu.intake.equals(Intake)) {
-                
-                //Get all the selected student data
-                String Name = stu.name;
-                int Age = stu.age;
-                String Intake = stu.intake;
-                String Assessment = (String) cboAssesment.getSelectedItem();
-                String Supervisor = stu.supervisor;
-                String SecondMaker = stu.secondMarker;
-                
+        for (int count = 0; count < StuData_IO.StuData.size();count ++){
+            if (StuData_IO.StuData.get(count).intake.equals(Intake)) {
                 //Update the edited data into ArrayList
-                Student Edited_Student = new Student(Name, Age, Intake, Intake, Assessment, Supervisor, SecondMaker);
-                StuData_IO.edit(stuIndex, Edited_Student);
-
+                editStuAssessment(count, selectedAssess);
             }
-            stuIndex ++;
         }
         
         //Return back to the student list page

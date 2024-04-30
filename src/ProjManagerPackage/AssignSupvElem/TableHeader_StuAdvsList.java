@@ -1,4 +1,4 @@
-package ProjManagerPackage.StuAsseTabElement;
+package ProjManagerPackage.AssignSupvElem;
 
 import java.awt.Color;
 import java.awt.Graphics;
@@ -11,13 +11,13 @@ import javax.swing.border.EmptyBorder;
  *
  * @author PC
  */
-public class TableHeader extends JLabel{
+public class TableHeader_StuAdvsList extends JLabel{
 
-    public TableHeader(String text){
+    public TableHeader_StuAdvsList(String text){
         super(text);
         setOpaque(true);
         setBackground(Color.white);
-        setFont(new java.awt.Font("Dubai Medium", 0, 20));
+        setFont(new java.awt.Font("Dubai Medium", 0, 17));
         setForeground(new Color(0, 0, 0));
         setBorder(new EmptyBorder(10, 5, 10, 5));
     }

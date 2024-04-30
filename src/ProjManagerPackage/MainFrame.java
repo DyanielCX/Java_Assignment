@@ -17,6 +17,8 @@ public class MainFrame extends javax.swing.JFrame {
     private Color navDefaultColor = new Color(122, 162, 227);
     private Color navSelectedColor = new Color(106, 212, 221);
     
+    public AssignAdvsTab_IntakeAdvsAllot Tab7;
+    
     /**
      * Creates new form ProjMng_MainFrame
      */
@@ -34,25 +36,28 @@ public class MainFrame extends javax.swing.JFrame {
 //        StuAssessmentTab Tab1 = new StuAssessmentTab();
 //        TabPanel.addTab("tab1", Tab1);
         
-        //Student Assessment Tab
+        //Student Assessment Section
         StuAssTab_IntakeBased Tab2 = new StuAssTab_IntakeBased(this);
         TabPanel.addTab("tab2", Tab2);
         
         StuAssTab_StuBased Tab3 = new StuAssTab_StuBased(this);
         TabPanel.addTab("tab3", Tab3);
         
-        //Assign Supervisor Tab
-        AssignSupervisorTab Tab4 = new AssignSupervisorTab(this);
+        //Assign Supervisor Section
+        AssignAdvsTab Tab4 = new AssignAdvsTab(this);
         TabPanel.addTab("tab4", Tab4);
     
-        LectRoleListTab Tab5 = new LectRoleListTab(this);
+        AssignAdvsTab_LectRoleList Tab5 = new AssignAdvsTab_LectRoleList(this);
         TabPanel.addTab("tab5", Tab5);
     
-        AssignAdvs_IntakeList Tab6 = new AssignAdvs_IntakeList(this);
+        AssignAdvsTab_IntakeList Tab6 = new AssignAdvsTab_IntakeList(this);
         TabPanel.addTab("tab6", Tab6);
         
-//        StuAssessmentTab Tab5 = new StuAssessmentTab();
-//        TabPanel.addTab("tab5", Tab5);
+        Tab7 = new AssignAdvsTab_IntakeAdvsAllot(this);
+        TabPanel.addTab("tab7", Tab7);//Intake Advisor Tab - will be create in other class
+        
+        AssignAdvsTab_StuAdvsList Tab8 = new AssignAdvsTab_StuAdvsList(this);
+        TabPanel.addTab("tab8", Tab8);
     
 //        StuAssessmentTab Tab6 = new StuAssessmentTab();
 //        TabPanel.addTab("tab6", Tab6);

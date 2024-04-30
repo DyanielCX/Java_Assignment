@@ -4,13 +4,11 @@
  */
 package ProjManagerPackage;
 
-import ProjManagerPackage.AssignSupvElem.CrossIcon_TableActionCellRender;
-import ProjManagerPackage.AssignSupvElem.TickIcon_TableActionCellRender;
+import ProjManagerPackage.AssignSupvElem.TableHeader_StuAdvsList;
 import ProjManagerPackage.StuAsseTabElement.ModernScrollBarUI;
 import ProjManagerPackage.StuAsseTabElement.TableActionCellEditor;
 import ProjManagerPackage.StuAsseTabElement.TableActionCellRender;
 import ProjManagerPackage.StuAsseTabElement.TableActionEvent;
-import ProjManagerPackage.StuAsseTabElement.TableHeader;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
@@ -26,11 +24,11 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author PC
  */
-public class AssignAdvs_IntakeList extends javax.swing.JPanel {
+public class AssignAdvsTab_StuAdvsList extends javax.swing.JPanel {
 
     private MainFrame mainFrame;
     
-    public AssignAdvs_IntakeList(MainFrame mainFrame) {
+    public AssignAdvsTab_StuAdvsList(MainFrame mainFrame) {
         this.mainFrame = mainFrame;
         initComponents();
         
@@ -39,12 +37,12 @@ public class AssignAdvs_IntakeList extends javax.swing.JPanel {
         fixTable(jScrollPane1);
         
         /* Set the header to customize header */
-        LectRoleTable.getTableHeader().setReorderingAllowed(false);
-        LectRoleTable.getTableHeader().setResizingAllowed(false);
-        LectRoleTable.getTableHeader().setDefaultRenderer(new DefaultTableCellRenderer(){
+        StuAdvsTable.getTableHeader().setReorderingAllowed(false);
+        StuAdvsTable.getTableHeader().setResizingAllowed(false);
+        StuAdvsTable.getTableHeader().setDefaultRenderer(new DefaultTableCellRenderer(){
             @Override
             public Component getTableCellRendererComponent(JTable table, Object o, boolean isSelected, boolean hasFocus, int row, int column) {
-                TableHeader header = new TableHeader(o + "");
+                TableHeader_StuAdvsList header = new TableHeader_StuAdvsList(o + "");
                 return header;
             }
         });
@@ -68,21 +66,16 @@ public class AssignAdvs_IntakeList extends javax.swing.JPanel {
         
         /*Show the student have been alloted assesment*/
         for (int count = 0; count < 3; count++){
-            String Intake = "AG2109";
-            Boolean isSupervisor = true;
-            Boolean isSecondMarker = true;
-            
-            if (isSupervisor == true) {
-                LectRoleTable.getColumnModel().getColumn(1).setCellRenderer(new TickIcon_TableActionCellRender());
-            }
-            
-            if (isSecondMarker == true) {
-                LectRoleTable.getColumnModel().getColumn(2).setCellRenderer(new CrossIcon_TableActionCellRender());
-            }
-            
-            Object[] InsertRow = {Intake};
+            String StuName = "John";
+            String StuID = "TP111222";
+            String Supervisor = "Shahab";
+            String SecondMkr = "Qistina";
+            String RMCP_Lect = "-";
 
-            DefaultTableModel model = (DefaultTableModel) LectRoleTable.getModel();
+
+            Object[] InsertRow = {StuName, StuID,Supervisor, SecondMkr, RMCP_Lect};
+
+            DefaultTableModel model = (DefaultTableModel) StuAdvsTable.getModel();
             model.addRow(InsertRow);
         }
         
@@ -91,17 +84,17 @@ public class AssignAdvs_IntakeList extends javax.swing.JPanel {
             @Override
             public void onEdit(int row) {
                 //Get the student id of selected student
-                String selectedLectID = (String) LectRoleTable.getValueAt(row, 1);
+                String selectedLectID = (String) StuAdvsTable.getValueAt(row, 1);
                 mainFrame.dispose();
                 
-                EditLectRoleFrame editPage = new EditLectRoleFrame(selectedLectID);
+                AssignStuAdvsFrame editPage = new AssignStuAdvsFrame(selectedLectID);
                 editPage.setVisible(true);
             }
         };
         
         //Insert edit button into table
-        LectRoleTable.getColumnModel().getColumn(3).setCellRenderer(new TableActionCellRender());
-        LectRoleTable.getColumnModel().getColumn(3).setCellEditor(new TableActionCellEditor(event));
+        StuAdvsTable.getColumnModel().getColumn(5).setCellRenderer(new TableActionCellRender());
+        StuAdvsTable.getColumnModel().getColumn(5).setCellEditor(new TableActionCellEditor(event));
     }
 
     /**
@@ -114,32 +107,34 @@ public class AssignAdvs_IntakeList extends javax.swing.JPanel {
     private void initComponents() {
 
         jScrollPane1 = new javax.swing.JScrollPane();
-        LectRoleTable = new javax.swing.JTable();
+        StuAdvsTable = new javax.swing.JTable();
         btbBack = new javax.swing.JLabel();
         TabTitle = new javax.swing.JLabel();
+        lblAssessment = new javax.swing.JLabel();
+        selectedAssessment = new javax.swing.JLabel();
 
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        LectRoleTable.setFont(new java.awt.Font("Dubai Medium", 0, 20)); // NOI18N
-        LectRoleTable.setModel(new javax.swing.table.DefaultTableModel(
+        StuAdvsTable.setFont(new java.awt.Font("Dubai Medium", 0, 17)); // NOI18N
+        StuAdvsTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "Intake", "Supervisor", "Second Marker", "Action"
+                "Student Name", "ID", "Supervisor", "Second Marker", "RMCP Lecturer", "Action"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, true
+                false, false, false, false, false, true
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
             }
         });
-        LectRoleTable.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        LectRoleTable.setRowHeight(40);
-        jScrollPane1.setViewportView(LectRoleTable);
+        StuAdvsTable.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        StuAdvsTable.setRowHeight(40);
+        jScrollPane1.setViewportView(StuAdvsTable);
 
         add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 90, 886, 440));
 
@@ -155,8 +150,20 @@ public class AssignAdvs_IntakeList extends javax.swing.JPanel {
         add(btbBack, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
 
         TabTitle.setFont(new java.awt.Font("Dubai Medium", 0, 28)); // NOI18N
-        TabTitle.setText("Intake List");
+        TabTitle.setForeground(new java.awt.Color(0, 0, 0));
+        TabTitle.setText("APU2F2109");
         add(TabTitle, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 40, -1, -1));
+
+        lblAssessment.setFont(new java.awt.Font("Dubai Medium", 0, 20)); // NOI18N
+        lblAssessment.setForeground(new java.awt.Color(0, 0, 0));
+        lblAssessment.setText("Assessment:");
+        add(lblAssessment, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 50, -1, -1));
+
+        selectedAssessment.setFont(new java.awt.Font("Dubai Medium", 0, 20)); // NOI18N
+        selectedAssessment.setForeground(new java.awt.Color(0, 0, 0));
+        selectedAssessment.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        selectedAssessment.setText("Investigation Report");
+        add(selectedAssessment, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 50, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void btbBackMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btbBackMouseClicked
@@ -183,9 +190,11 @@ public class AssignAdvs_IntakeList extends javax.swing.JPanel {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTable LectRoleTable;
+    private javax.swing.JTable StuAdvsTable;
     private javax.swing.JLabel TabTitle;
     private javax.swing.JLabel btbBack;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel lblAssessment;
+    private javax.swing.JLabel selectedAssessment;
     // End of variables declaration//GEN-END:variables
 }

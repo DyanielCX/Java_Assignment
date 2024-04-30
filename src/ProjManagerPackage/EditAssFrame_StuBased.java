@@ -1,5 +1,6 @@
 package ProjManagerPackage;
 
+import static ProjManagerPackage.ProjManager.editStuAssessment;
 import ProjManagerPackage.StuAsseTabElement.IntakeBasedMethod;
 import StuPackage.StuData_IO;
 import StuPackage.Student;
@@ -214,26 +215,20 @@ public class EditAssFrame_StuBased extends javax.swing.JFrame {
         backMainFrame();
     }//GEN-LAST:event_btbCancelActionPerformed
 
+    
     private void btbSubmitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btbSubmitActionPerformed
-        //Search the selected student location and
+        //Search the selected student location
         int stuIndex = StuData_IO.checkStu(stuID);
-
-        //Get all the selected student data
-        String Name = StuData_IO.StuData.get(stuIndex).name;
-        int Age = StuData_IO.StuData.get(stuIndex).age;
-        String Intake = StuData_IO.StuData.get(stuIndex).intake;
-        String Assessment = (String) cboAssesment.getSelectedItem();
-        String Supervisor = StuData_IO.StuData.get(stuIndex).supervisor;
-        String SecondMaker = StuData_IO.StuData.get(stuIndex).secondMarker;
-
+        
         //Make sure the selected assessment is comfort with his intake (if his intake is alloted assessment already)
-        boolean assChecking = IntakeBasedMethod.checkAssessment(Intake, Assessment);
+        String Intake = StuData_IO.StuData.get(stuIndex).intake;
+        String selectedAssess = (String) cboAssesment.getSelectedItem();
+        boolean assChecking = IntakeBasedMethod.checkAssessment(Intake, selectedAssess);
         
         if (assChecking == true) {
-             //Update the edited data into ArrayList
-            Student Edited_Student = new Student(Name, Age, stuID, Intake, Assessment, Supervisor, SecondMaker);
-            StuData_IO.edit(stuIndex, Edited_Student);
-
+            //Update the edited data into ArrayList
+            editStuAssessment(stuIndex, selectedAssess);
+            
             //Return back to the student list page
             this.setVisible(false);
             backMainFrame();
@@ -243,10 +238,11 @@ public class EditAssFrame_StuBased extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null,"This intake is alloted with " + actualAss + " assessment."
                     + "\nYou only can choose " + actualAss + " for the assessment."
                     ,"Incorrect Assessment Selection",JOptionPane.WARNING_MESSAGE);
-            cboAssesment.setSelectedItem(Assessment);
+            cboAssesment.setSelectedItem(selectedAssess);
         }
     }//GEN-LAST:event_btbSubmitActionPerformed
 
+    
     public void backMainFrame(){
         MainFrame fr = new MainFrame();
         fr.setVisible(true);

@@ -205,7 +205,7 @@ public class EditLectRoleFrame extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(83, Short.MAX_VALUE)
+                .addContainerGap(85, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lblTitle1)
                     .addGroup(layout.createSequentialGroup()
@@ -231,7 +231,7 @@ public class EditLectRoleFrame extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(49, 49, 49)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(50, Short.MAX_VALUE))
+                .addContainerGap(53, Short.MAX_VALUE))
         );
 
         pack();
@@ -253,7 +253,7 @@ public class EditLectRoleFrame extends javax.swing.JFrame {
         fr.setVisible(true);
 
         fr.DashboardPane.setBackground(new Color(122, 162, 227));
-        fr.StuAssessmentPane.setBackground(new Color(106, 212, 221));
+        fr.AssignAdvisorsPane.setBackground(new Color(106, 212, 221));
         fr.PanelTitle.setText("Assign Advisors");
         fr.changedTab(4);
     }
@@ -299,9 +299,6 @@ public class EditLectRoleFrame extends javax.swing.JFrame {
     private javax.swing.JRadioButton RBSupervisor_No;
     private javax.swing.JRadioButton RBSupervisor_Yes;
     private javax.swing.JButton btbCancel;
-    private javax.swing.JButton btbSubmit;
-    private javax.swing.JButton btbSubmit1;
-    private javax.swing.JButton btbSubmit2;
     private javax.swing.JButton btbSubmit3;
     private javax.swing.JLabel iconTitle;
     private javax.swing.ButtonGroup isSecondMarkerBG;
