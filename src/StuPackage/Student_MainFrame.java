@@ -1,18 +1,11 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package StuPackage;
 
 import Java_Assignment.LoginPage;
 import java.awt.Color;
 
-/**
- *
- * @author PC
- */
 public class Student_MainFrame extends javax.swing.JFrame {
-
+    private String username; // Declare as an instance variable
+    private String password;
     // Color for side nav bar tab
     private Color navDefaultColor = new Color(122, 162, 227);
     private Color navSelectedColor = new Color(106, 212, 221);
@@ -20,8 +13,11 @@ public class Student_MainFrame extends javax.swing.JFrame {
     /**
      * Creates new form ProjMng_MainFrame
      */
-    public Student_MainFrame() {
+    public Student_MainFrame(String Username, String Password) {
         initComponents();
+        this.username = Username; // Assign the parameter value to the instance variable
+        this.password = Password; 
+        
         getContentPane().setBackground(new Color(248, 246, 227));
         
         
@@ -31,7 +27,7 @@ public class Student_MainFrame extends javax.swing.JFrame {
         
         
         /* Set the tab panel (panel size -> 935, 350) */
-        PanelDashboard Tab1 = new PanelDashboard ();
+        PanelDashboard Tab1 = new PanelDashboard (username, password);
         TabPanel.addTab("tab1", Tab1);
     
         PanelReport Tab2 = new PanelReport();
@@ -454,7 +450,6 @@ public class Student_MainFrame extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 StuData_IO.readFrTxt();
-                new Student_MainFrame().setVisible(true);
             }
         });
     }

@@ -1,20 +1,13 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
- */
 package StuPackage;
 
-/**
- *
- * @author minya
- */
 public class PanelDashboard extends javax.swing.JPanel {
-
-    /**
-     * Creates new form DashboardPanel
-     */
-    public PanelDashboard() {
+    private String username; // Declare as an instance variable
+    private String password;
+    
+    public PanelDashboard(String username, String password) {
         initComponents();
+        this.username = username; // Assign the parameter value to the instance variable
+        this.password = password; 
     }
 
     /**
@@ -57,13 +50,15 @@ public class PanelDashboard extends javax.swing.JPanel {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(252, 252, 252)
-                        .addComponent(jLabel6))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(279, 279, 279)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(name)
-                            .addComponent(jLabel4))))
+                            .addComponent(jLabel4))
+                        .addGap(11, 11, 11))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jLabel6)
+                        .addGap(2, 2, 2)))
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(136, 136, 136)
