@@ -50,14 +50,18 @@ public class LoginPage extends javax.swing.JFrame {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(LoginBtn)
+                .addGap(249, 249, 249))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(133, 133, 133)
+                        .addGap(132, 132, 132)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(33, 33, 33)
+                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(34, 34, 34)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(Username_input, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(Password_input, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -67,10 +71,6 @@ public class LoginPage extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(239, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(LoginBtn)
-                .addGap(249, 249, 249))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -84,11 +84,11 @@ public class LoginPage extends javax.swing.JFrame {
                 .addGap(35, 35, 35)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(Username_input, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel3))
+                    .addComponent(jLabel2))
                 .addGap(37, 37, 37)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(Password_input, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2))
+                    .addComponent(jLabel3))
                 .addGap(40, 40, 40)
                 .addComponent(LoginBtn)
                 .addContainerGap(81, Short.MAX_VALUE))
@@ -119,7 +119,7 @@ public class LoginPage extends javax.swing.JFrame {
     
     if (role != null) {
         // If credentials are valid, redirect to the appropriate dashboard
-        redirectToDashboard(role);
+        redirectToDashboard(username, password, role);
         // Close the login window or do any other necessary action
         dispose();
     } else {
@@ -153,10 +153,11 @@ public class LoginPage extends javax.swing.JFrame {
         return null; // User not found or invalid credentials
     }
 
-    public static void redirectToDashboard(String role) {
+    public static void redirectToDashboard(String username, String password, String role) {
         switch (role) {
             case "StuData":
-                System.out.println("Redirecting to lecturer dashboard...");
+                StuPackage.Student_MainFrame studentAcc= new StuPackage.Student_MainFrame(username, password);
+                studentAcc.setVisible(true);
                 // Redirect logic for lecturer dashboard
                 break;
             case "LecData":
@@ -167,8 +168,8 @@ public class LoginPage extends javax.swing.JFrame {
                 System.out.println("Redirecting to admin dashboard...");
                 // Redirect logic for admin dashboard
                 break;
-            case "student":
-                System.out.println("Redirecting to student dashboard...");
+            case "Projectmanager":
+                System.out.println("Redirecting to projectmanager dashboard...");
                 // Redirect logic for student dashboard
                 break;
             default:
