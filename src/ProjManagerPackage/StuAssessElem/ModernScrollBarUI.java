@@ -1,4 +1,4 @@
-package ProjManagerPackage.StuAsseTabElement;
+package ProjManagerPackage.StuAssessElem;
 
 import java.awt.Dimension;
 import java.awt.Graphics;

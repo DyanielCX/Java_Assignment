@@ -1,5 +1,5 @@
 
-package ProjManagerPackage.StuAsseTabElement;
+package ProjManagerPackage.StuAssessElem;
 
 import StuPackage.StuData_IO;
 import StuPackage.Student;

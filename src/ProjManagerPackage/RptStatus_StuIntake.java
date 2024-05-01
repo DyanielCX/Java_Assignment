@@ -1,11 +1,11 @@
 package ProjManagerPackage;
 
+import ProjManagerPackage.RptStatusElem.TableActionCellEditor_ViewIcon;
+import ProjManagerPackage.RptStatusElem.TableActionCellRender_ViewIcon;
+import ProjManagerPackage.RptStatusElem.TableHeader_StuIntake;
 import ProjManagerPackage.StuAssessElem.IntakeBasedMethod;
 import ProjManagerPackage.StuAssessElem.ModernScrollBarUI;
-import ProjManagerPackage.StuAssessElem.TableActionCellEditor;
-import ProjManagerPackage.StuAssessElem.TableActionCellRender;
 import ProjManagerPackage.StuAssessElem.TableActionEvent;
-import ProjManagerPackage.StuAssessElem.TableHeader;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
@@ -19,11 +19,11 @@ import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 
 
-public class StuAssTab_IntakeBased extends javax.swing.JPanel {
+public class RptStatus_StuIntake extends javax.swing.JPanel {
 
     private MainFrame mainFrame;
     
-    public StuAssTab_IntakeBased(MainFrame mainFrame) {
+    public RptStatus_StuIntake(MainFrame mainFrame) {
         this.mainFrame = mainFrame;
         initComponents();
         
@@ -37,20 +37,20 @@ public class StuAssTab_IntakeBased extends javax.swing.JPanel {
         IntakeAssTable.getTableHeader().setDefaultRenderer(new DefaultTableCellRenderer(){
             @Override
             public Component getTableCellRendererComponent(JTable table, Object o, boolean isSelected, boolean hasFocus, int row, int column) {
-                TableHeader header = new TableHeader(o + "");
+                TableHeader_StuIntake header = new TableHeader_StuIntake(o + "");
                 return header;
             }
         });
 
         
         //Insert data into table
-        /*Show the intake haven't been alloted assesment*/
+        /*Show the intake have been alloted assesment*/
         ArrayList<String> intakeList = IntakeBasedMethod.getIntake();
         
         for (String intake : intakeList){
             String assessment = IntakeBasedMethod.getAssessment(intake);
             
-            if (assessment.equals("-")) {
+            if (!assessment.equals("-")) {
                 Object[] InsertRow = {intake, assessment};
 
                 DefaultTableModel model = (DefaultTableModel) IntakeAssTable.getModel();
@@ -58,11 +58,11 @@ public class StuAssTab_IntakeBased extends javax.swing.JPanel {
             }
         }
         
-        /*Show the intake have been alloted assesment*/
+        /*Show the intake haven't been alloted assesment*/
         for (String intake : intakeList){
             String assessment = IntakeBasedMethod.getAssessment(intake);
             
-            if (!assessment.equals("-")) {
+            if (assessment.equals("-")) {
                 Object[] InsertRow = {intake, assessment};
 
                 DefaultTableModel model = (DefaultTableModel) IntakeAssTable.getModel();
@@ -76,16 +76,16 @@ public class StuAssTab_IntakeBased extends javax.swing.JPanel {
             public void onEdit(int row) {
                 //Get the student id of selected student
                 String selectedIntake = (String) IntakeAssTable.getValueAt(row, 0);
-                mainFrame.dispose();
-                
-                EditAssFrame_IntakeBased editPage = new EditAssFrame_IntakeBased(selectedIntake);
-                editPage.setVisible(true);
+                mainFrame.changedTab(12);
+//                mainFrame.createStuAccMgmtPane(mainFrame, selectedIntake);
+//                int tabIndex = mainFrame.TabPanel.getTabCount();
+//                mainFrame.changedTab(tabIndex-1);
             }
         };
         
         //Insert edit button into table
-        IntakeAssTable.getColumnModel().getColumn(2).setCellRenderer(new TableActionCellRender());
-        IntakeAssTable.getColumnModel().getColumn(2).setCellEditor(new TableActionCellEditor(event));
+        IntakeAssTable.getColumnModel().getColumn(2).setCellRenderer(new TableActionCellRender_ViewIcon());
+        IntakeAssTable.getColumnModel().getColumn(2).setCellEditor(new TableActionCellEditor_ViewIcon(event));
     }
 
     /**
@@ -100,13 +100,11 @@ public class StuAssTab_IntakeBased extends javax.swing.JPanel {
         jScrollPane1 = new javax.swing.JScrollPane();
         IntakeAssTable = new javax.swing.JTable();
         TabTitle = new javax.swing.JLabel();
-        btbStuBased = new javax.swing.JPanel();
-        lblStuBased = new javax.swing.JLabel();
-        btbIntakeBased = new javax.swing.JPanel();
-        lblIntakeBased = new javax.swing.JLabel();
 
+        setBackground(new java.awt.Color(255, 255, 255));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        IntakeAssTable.setBackground(new java.awt.Color(236, 236, 236));
         IntakeAssTable.setFont(new java.awt.Font("Dubai Medium", 0, 20)); // NOI18N
         IntakeAssTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -128,51 +126,12 @@ public class StuAssTab_IntakeBased extends javax.swing.JPanel {
         IntakeAssTable.setRowHeight(40);
         jScrollPane1.setViewportView(IntakeAssTable);
 
-        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(23, 65, 886, 465));
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(23, 70, 886, 460));
 
         TabTitle.setFont(new java.awt.Font("Dubai Medium", 0, 24)); // NOI18N
-        TabTitle.setText("Intake Data");
-        add(TabTitle, new org.netbeans.lib.awtextra.AbsoluteConstraints(34, 17, -1, -1));
-
-        btbStuBased.setBackground(new java.awt.Color(255, 255, 255));
-        btbStuBased.setForeground(new java.awt.Color(255, 255, 255));
-        btbStuBased.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btbStuBasedMouseClicked(evt);
-            }
-        });
-
-        lblStuBased.setFont(new java.awt.Font("Dubai Medium", 0, 20)); // NOI18N
-        lblStuBased.setForeground(new java.awt.Color(0, 0, 0));
-        lblStuBased.setText("Student");
-        btbStuBased.add(lblStuBased);
-
-        add(btbStuBased, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 20, 90, 40));
-
-        btbIntakeBased.setBackground(new java.awt.Color(106, 212, 221));
-        btbIntakeBased.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btbIntakeBasedMouseClicked(evt);
-            }
-        });
-
-        lblIntakeBased.setFont(new java.awt.Font("Dubai Medium", 0, 20)); // NOI18N
-        lblIntakeBased.setForeground(new java.awt.Color(255, 255, 255));
-        lblIntakeBased.setText("Intake");
-        btbIntakeBased.add(lblIntakeBased);
-
-        add(btbIntakeBased, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 20, 90, 40));
+        TabTitle.setText("Student Intake");
+        add(TabTitle, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 20, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
-
-    //Change to Intake Table
-    private void btbIntakeBasedMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btbIntakeBasedMouseClicked
-        mainFrame.changedTab(1);
-    }//GEN-LAST:event_btbIntakeBasedMouseClicked
-
-    //Change to Student Table
-    private void btbStuBasedMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btbStuBasedMouseClicked
-        mainFrame.changedTab(2);
-    }//GEN-LAST:event_btbStuBasedMouseClicked
 
     /* Customize the scrollbar for table */
     public void fixTable (JScrollPane scroll){
@@ -196,10 +155,6 @@ public class StuAssTab_IntakeBased extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTable IntakeAssTable;
     private javax.swing.JLabel TabTitle;
-    private javax.swing.JPanel btbIntakeBased;
-    private javax.swing.JPanel btbStuBased;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JLabel lblIntakeBased;
-    private javax.swing.JLabel lblStuBased;
     // End of variables declaration//GEN-END:variables
 }

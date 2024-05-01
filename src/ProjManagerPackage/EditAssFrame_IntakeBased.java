@@ -1,7 +1,7 @@
 package ProjManagerPackage;
 
 import static ProjManagerPackage.ProjManager.editStuAssessment;
-import ProjManagerPackage.StuAsseTabElement.IntakeBasedMethod;
+import ProjManagerPackage.StuAssessElem.IntakeBasedMethod;
 import StuPackage.StuData_IO;
 import StuPackage.Student;
 import java.awt.Color;
@@ -180,7 +180,7 @@ public class EditAssFrame_IntakeBased extends javax.swing.JFrame {
         
         for (int count = 0; count < StuData_IO.StuData.size();count ++){
             if (StuData_IO.StuData.get(count).intake.equals(Intake)) {
-                //Update the edited data into ArrayList
+                //Update the edited student data into ArrayList
                 editStuAssessment(count, selectedAssess);
             }
         }

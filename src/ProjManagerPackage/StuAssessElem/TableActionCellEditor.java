@@ -1,4 +1,4 @@
-package ProjManagerPackage.StuAsseTabElement;
+package ProjManagerPackage.StuAssessElem;
 
 import java.awt.Component;
 import javax.swing.DefaultCellEditor;
@@ -20,7 +20,7 @@ public class TableActionCellEditor extends DefaultCellEditor {
 
     @Override
     public Component getTableCellEditorComponent(JTable jtable, Object value, boolean isSelected, int row, int column) {
-        PanelAction action = new PanelAction();
+        EditButton action = new EditButton();
         action.initEvent(event, row);
         action.setBackground(jtable.getSelectionBackground());
         return action;

@@ -5,10 +5,10 @@
 package ProjManagerPackage;
 
 import ProjManagerPackage.AssignSupvElem.TableHeader_StuAdvsList;
-import ProjManagerPackage.StuAsseTabElement.ModernScrollBarUI;
-import ProjManagerPackage.StuAsseTabElement.TableActionCellEditor;
-import ProjManagerPackage.StuAsseTabElement.TableActionCellRender;
-import ProjManagerPackage.StuAsseTabElement.TableActionEvent;
+import ProjManagerPackage.StuAssessElem.ModernScrollBarUI;
+import ProjManagerPackage.StuAssessElem.TableActionCellEditor;
+import ProjManagerPackage.StuAssessElem.TableActionCellRender;
+import ProjManagerPackage.StuAssessElem.TableActionEvent;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
@@ -87,7 +87,7 @@ public class AssignAdvsTab_StuAdvsList extends javax.swing.JPanel {
                 String selectedLectID = (String) StuAdvsTable.getValueAt(row, 1);
                 mainFrame.dispose();
                 
-                AssignStuAdvsFrame editPage = new AssignStuAdvsFrame(selectedLectID);
+                AssignAdvsFrame_ToStu editPage = new AssignAdvsFrame_ToStu(selectedLectID);
                 editPage.setVisible(true);
             }
         };
@@ -121,7 +121,7 @@ public class AssignAdvsTab_StuAdvsList extends javax.swing.JPanel {
 
             },
             new String [] {
-                "Student Name", "ID", "Supervisor", "Second Marker", "RMCP Lecturer", "Action"
+                "Name", "Student ID", "Supervisor", "Second Marker", "RMCP Lecturer", "Action"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -167,7 +167,7 @@ public class AssignAdvsTab_StuAdvsList extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btbBackMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btbBackMouseClicked
-        mainFrame.changedTab(3);
+        mainFrame.changedTab(5);
     }//GEN-LAST:event_btbBackMouseClicked
 
     /* Customize the scrollbar for table */

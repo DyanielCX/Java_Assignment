@@ -1,4 +1,4 @@
-package ProjManagerPackage.StuAsseTabElement;
+package ProjManagerPackage.StuAssessElem;
 
 /**
  *
@@ -6,4 +6,5 @@ package ProjManagerPackage.StuAsseTabElement;
  */
 public interface TableActionEvent {
     public void onEdit(int row);
+    
 }

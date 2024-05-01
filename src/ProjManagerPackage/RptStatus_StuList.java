@@ -4,13 +4,10 @@
  */
 package ProjManagerPackage;
 
-import ProjManagerPackage.AssignSupvElem.CrossIcon_TableActionCellRender;
-import ProjManagerPackage.AssignSupvElem.TickIcon_TableActionCellRender;
+import ProjManagerPackage.RptStatusElem.TableActionCellRender_MarkIcon;
+import ProjManagerPackage.RptStatusElem.TableActionCellRender_PendingIcon;
+import ProjManagerPackage.RptStatusElem.TableHeader_StuList;
 import ProjManagerPackage.StuAssessElem.ModernScrollBarUI;
-import ProjManagerPackage.StuAssessElem.TableActionCellEditor;
-import ProjManagerPackage.StuAssessElem.TableActionCellRender;
-import ProjManagerPackage.StuAssessElem.TableActionEvent;
-import ProjManagerPackage.StuAssessElem.TableHeader;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
@@ -22,15 +19,12 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 
-/**
- *
- * @author PC
- */
-public class AssignAdvsTab_IntakeList extends javax.swing.JPanel {
+
+public class RptStatus_StuList extends javax.swing.JPanel {
 
     private MainFrame mainFrame;
     
-    public AssignAdvsTab_IntakeList(MainFrame mainFrame) {
+    public RptStatus_StuList(MainFrame mainFrame) {
         this.mainFrame = mainFrame;
         initComponents();
         
@@ -39,12 +33,12 @@ public class AssignAdvsTab_IntakeList extends javax.swing.JPanel {
         fixTable(jScrollPane1);
         
         /* Set the header to customize header */
-        LectRoleTable.getTableHeader().setReorderingAllowed(false);
-        LectRoleTable.getTableHeader().setResizingAllowed(false);
-        LectRoleTable.getTableHeader().setDefaultRenderer(new DefaultTableCellRenderer(){
+        StuRptStatusTable.getTableHeader().setReorderingAllowed(false);
+        StuRptStatusTable.getTableHeader().setResizingAllowed(false);
+        StuRptStatusTable.getTableHeader().setDefaultRenderer(new DefaultTableCellRenderer(){
             @Override
             public Component getTableCellRendererComponent(JTable table, Object o, boolean isSelected, boolean hasFocus, int row, int column) {
-                TableHeader header = new TableHeader(o + "");
+                TableHeader_StuList header = new TableHeader_StuList(o + "");
                 return header;
             }
         });
@@ -68,35 +62,30 @@ public class AssignAdvsTab_IntakeList extends javax.swing.JPanel {
         
         /*Show the student have been alloted assesment*/
         for (int count = 0; count < 3; count++){
-            String Intake = "AG2109";
-            Boolean isSupervisor = true;
-            Boolean isSecondMarker = true;
-            
-            if (isSupervisor == true) {
-                LectRoleTable.getColumnModel().getColumn(1).setCellRenderer(new TickIcon_TableActionCellRender());
-            }
-            
-            if (isSecondMarker == true) {
-                LectRoleTable.getColumnModel().getColumn(2).setCellRenderer(new CrossIcon_TableActionCellRender());
-            }
-            
-            Object[] InsertRow = {Intake};
+            String StuName = "John";
+            String StuID = "TP111222";
+            String Supervisor = "Shahab";
+            String SecondMkr = "Qistina";
+            String RMCP_Lect = "-";
+            String RptStatus = "Mark";
 
-            DefaultTableModel model = (DefaultTableModel) LectRoleTable.getModel();
+
+            Object[] InsertRow = {StuName, StuID,Supervisor, SecondMkr, RMCP_Lect};
+
+            DefaultTableModel model = (DefaultTableModel) StuRptStatusTable.getModel();
             model.addRow(InsertRow);
-        }
-        
-        /*Set the edit button and its function*/
-        TableActionEvent event = new TableActionEvent() {
-            @Override
-            public void onEdit(int row) {
-                mainFrame.changedTab(6);
+            
+            if (RptStatus.equals("Mark")) {
+                StuRptStatusTable.getColumnModel().getColumn(5).setCellRenderer(new TableActionCellRender_MarkIcon());
             }
-        };
+            else if(RptStatus.equals("Pending")){
+                StuRptStatusTable.getColumnModel().getColumn(5).setCellRenderer(new TableActionCellRender_PendingIcon());
+            }
+        }
+
+            
+            
         
-        //Insert edit button into table
-        LectRoleTable.getColumnModel().getColumn(3).setCellRenderer(new TableActionCellRender());
-        LectRoleTable.getColumnModel().getColumn(3).setCellEditor(new TableActionCellEditor(event));
     }
 
     /**
@@ -109,54 +98,54 @@ public class AssignAdvsTab_IntakeList extends javax.swing.JPanel {
     private void initComponents() {
 
         jScrollPane1 = new javax.swing.JScrollPane();
-        LectRoleTable = new javax.swing.JTable();
-        btbBack = new javax.swing.JLabel();
+        StuRptStatusTable = new javax.swing.JTable();
         TabTitle = new javax.swing.JLabel();
+        lblAssessment = new javax.swing.JLabel();
+        selectedAssessment = new javax.swing.JLabel();
 
+        setBackground(new java.awt.Color(255, 255, 255));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        LectRoleTable.setFont(new java.awt.Font("Dubai Medium", 0, 20)); // NOI18N
-        LectRoleTable.setModel(new javax.swing.table.DefaultTableModel(
+        StuRptStatusTable.setBackground(new java.awt.Color(236, 236, 236));
+        StuRptStatusTable.setFont(new java.awt.Font("Dubai Medium", 0, 17)); // NOI18N
+        StuRptStatusTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "Intake", "Supervisor", "Second Marker", "Action"
+                "Name", "Student ID", "Supervisor", "Second Marker", "RMCP Lecturer", "Status"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, true
+                false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
             }
         });
-        LectRoleTable.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        LectRoleTable.setRowHeight(40);
-        jScrollPane1.setViewportView(LectRoleTable);
+        StuRptStatusTable.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        StuRptStatusTable.setRowHeight(40);
+        jScrollPane1.setViewportView(StuRptStatusTable);
 
         add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 90, 886, 440));
 
-        btbBack.setFont(new java.awt.Font("Dubai Medium", 0, 20)); // NOI18N
-        btbBack.setForeground(new java.awt.Color(0, 0, 0));
-        btbBack.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/leftArrow(Black).png"))); // NOI18N
-        btbBack.setText("Back...");
-        btbBack.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btbBackMouseClicked(evt);
-            }
-        });
-        add(btbBack, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
-
         TabTitle.setFont(new java.awt.Font("Dubai Medium", 0, 28)); // NOI18N
-        TabTitle.setText("Intake List");
+        TabTitle.setForeground(new java.awt.Color(0, 0, 0));
+        TabTitle.setText("APU2F2109");
         add(TabTitle, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 40, -1, -1));
-    }// </editor-fold>//GEN-END:initComponents
 
-    private void btbBackMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btbBackMouseClicked
-        mainFrame.changedTab(3);
-    }//GEN-LAST:event_btbBackMouseClicked
+        lblAssessment.setFont(new java.awt.Font("Dubai Medium", 0, 20)); // NOI18N
+        lblAssessment.setForeground(new java.awt.Color(0, 0, 0));
+        lblAssessment.setText("Assessment:");
+        add(lblAssessment, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 50, -1, -1));
+
+        selectedAssessment.setFont(new java.awt.Font("Dubai Medium", 0, 20)); // NOI18N
+        selectedAssessment.setForeground(new java.awt.Color(0, 0, 0));
+        selectedAssessment.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        selectedAssessment.setText("Investigation Report");
+        add(selectedAssessment, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 50, -1, -1));
+    }// </editor-fold>//GEN-END:initComponents
 
     /* Customize the scrollbar for table */
     public void fixTable (JScrollPane scroll){
@@ -178,9 +167,10 @@ public class AssignAdvsTab_IntakeList extends javax.swing.JPanel {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTable LectRoleTable;
+    private javax.swing.JTable StuRptStatusTable;
     private javax.swing.JLabel TabTitle;
-    private javax.swing.JLabel btbBack;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel lblAssessment;
+    private javax.swing.JLabel selectedAssessment;
     // End of variables declaration//GEN-END:variables
 }

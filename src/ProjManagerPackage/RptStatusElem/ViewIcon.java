@@ -1,5 +1,6 @@
-package ProjManagerPackage.StuAsseTabElement;
+package ProjManagerPackage.RptStatusElem;
 
+import ProjManagerPackage.StuAssessElem.TableActionEvent;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -7,17 +8,17 @@ import java.awt.event.ActionListener;
  *
  * @author PC
  */
-public class PanelAction extends javax.swing.JPanel {
+public class ViewIcon extends javax.swing.JPanel {
 
     /**
      * Creates new form PanelAction
      */
-    public PanelAction() {
+    public ViewIcon() {
         initComponents();
     }
 
     public void initEvent(TableActionEvent event, int row) {
-        cmdEdit.addActionListener(new ActionListener() {
+        viewIcon.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 event.onEdit(row);
@@ -34,9 +35,9 @@ public class PanelAction extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        cmdEdit = new ProjManagerPackage.StuAsseTabElement.ActionButton();
+        viewIcon = new ProjManagerPackage.StuAssessElem.ActionButton();
 
-        cmdEdit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/edit.png"))); // NOI18N
+        viewIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/viewIcon.png"))); // NOI18N
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -44,20 +45,20 @@ public class PanelAction extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(cmdEdit, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(viewIcon, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(cmdEdit, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(viewIcon, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private ProjManagerPackage.StuAsseTabElement.ActionButton cmdEdit;
+    private ProjManagerPackage.StuAssessElem.ActionButton viewIcon;
     // End of variables declaration//GEN-END:variables
 }

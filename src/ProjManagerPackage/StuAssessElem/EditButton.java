@@ -1,4 +1,4 @@
-package ProjManagerPackage.AssignSupvElem;
+package ProjManagerPackage.StuAssessElem;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -7,15 +7,23 @@ import java.awt.event.ActionListener;
  *
  * @author PC
  */
-public class TickIcon extends javax.swing.JPanel {
+public class EditButton extends javax.swing.JPanel {
 
     /**
      * Creates new form PanelAction
      */
-    public TickIcon() {
+    public EditButton() {
         initComponents();
     }
 
+    public void initEvent(TableActionEvent event, int row) {
+        cmdEdit.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                event.onEdit(row);
+            }
+        });
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -26,9 +34,9 @@ public class TickIcon extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        iconTick = new javax.swing.JLabel();
+        cmdEdit = new ProjManagerPackage.StuAssessElem.ActionButton();
 
-        iconTick.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/tickIcon.png"))); // NOI18N
+        cmdEdit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/edit.png"))); // NOI18N
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -36,20 +44,20 @@ public class TickIcon extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(iconTick)
+                .addComponent(cmdEdit, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(iconTick, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
-                .addContainerGap())
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(cmdEdit, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel iconTick;
+    private ProjManagerPackage.StuAssessElem.ActionButton cmdEdit;
     // End of variables declaration//GEN-END:variables
 }

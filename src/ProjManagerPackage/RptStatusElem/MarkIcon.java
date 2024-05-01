@@ -1,5 +1,6 @@
-package ProjManagerPackage.AssignSupvElem;
+package ProjManagerPackage.RptStatusElem;
 
+import ProjManagerPackage.AssignSupvElem.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -7,12 +8,12 @@ import java.awt.event.ActionListener;
  *
  * @author PC
  */
-public class TickIcon extends javax.swing.JPanel {
+public class MarkIcon extends javax.swing.JPanel {
 
     /**
      * Creates new form PanelAction
      */
-    public TickIcon() {
+    public MarkIcon() {
         initComponents();
     }
 
@@ -28,7 +29,7 @@ public class TickIcon extends javax.swing.JPanel {
 
         iconTick = new javax.swing.JLabel();
 
-        iconTick.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/tickIcon.png"))); // NOI18N
+        iconTick.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/Mark.png"))); // NOI18N
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);

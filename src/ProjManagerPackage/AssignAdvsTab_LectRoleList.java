@@ -6,11 +6,11 @@ package ProjManagerPackage;
 
 import ProjManagerPackage.AssignSupvElem.CrossIcon_TableActionCellRender;
 import ProjManagerPackage.AssignSupvElem.TickIcon_TableActionCellRender;
-import ProjManagerPackage.StuAsseTabElement.ModernScrollBarUI;
-import ProjManagerPackage.StuAsseTabElement.TableActionCellEditor;
-import ProjManagerPackage.StuAsseTabElement.TableActionCellRender;
-import ProjManagerPackage.StuAsseTabElement.TableActionEvent;
-import ProjManagerPackage.StuAsseTabElement.TableHeader;
+import ProjManagerPackage.StuAssessElem.ModernScrollBarUI;
+import ProjManagerPackage.StuAssessElem.TableActionCellEditor;
+import ProjManagerPackage.StuAssessElem.TableActionCellRender;
+import ProjManagerPackage.StuAssessElem.TableActionEvent;
+import ProjManagerPackage.StuAssessElem.TableHeader;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
@@ -65,8 +65,7 @@ public class AssignAdvsTab_LectRoleList extends javax.swing.JPanel {
 //            model.addRow(InsertRow);
 //            }
 //        }
-        
-        /*Show the student have been alloted assesment*/
+
         for (int count = 0; count < 3; count++){
             String LectName = "Alan";
             String LectID = "122334";
@@ -95,7 +94,7 @@ public class AssignAdvsTab_LectRoleList extends javax.swing.JPanel {
                 String selectedLectID = (String) LectRoleTable.getValueAt(row, 1);
                 mainFrame.dispose();
                 
-                EditLectRoleFrame editPage = new EditLectRoleFrame(selectedLectID);
+                AssignAdvsFrame_LectRole editPage = new AssignAdvsFrame_LectRole(selectedLectID);
                 editPage.setVisible(true);
             }
         };

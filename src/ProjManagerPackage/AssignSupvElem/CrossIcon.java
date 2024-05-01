@@ -1,6 +1,5 @@
 package ProjManagerPackage.AssignSupvElem;
 
-import ProjManagerPackage.StuAsseTabElement.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 

@@ -1,4 +1,4 @@
-package ProjManagerPackage.StuAsseTabElement;
+package ProjManagerPackage.AccMgmtElem;
 
 import java.awt.Color;
 import java.awt.Graphics;
@@ -11,12 +11,12 @@ import javax.swing.border.EmptyBorder;
  *
  * @author PC
  */
-public class TableHeader extends JLabel{
+public class TableHeader_AccTbl extends JLabel{
 
-    public TableHeader(String text){
+    public TableHeader_AccTbl(String text){
         super(text);
         setOpaque(true);
-        setBackground(Color.white);
+        setBackground(new Color(197, 197, 197));
         setFont(new java.awt.Font("Dubai Medium", 0, 20));
         setForeground(new Color(0, 0, 0));
         setBorder(new EmptyBorder(10, 5, 10, 5));

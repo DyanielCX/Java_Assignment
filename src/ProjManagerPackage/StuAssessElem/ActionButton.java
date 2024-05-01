@@ -1,4 +1,4 @@
-package ProjManagerPackage.StuAsseTabElement;
+package ProjManagerPackage.StuAssessElem;
 
 import java.awt.Color;
 import java.awt.Graphics;

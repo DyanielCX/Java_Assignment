@@ -4,11 +4,11 @@
  */
 package assignment_ood;
 
-import ProjManagerPackage.StuAsseTabElement.ModernScrollBarUI;
-import ProjManagerPackage.StuAsseTabElement.TableActionCellEditor;
-import ProjManagerPackage.StuAsseTabElement.TableActionCellRender;
-import ProjManagerPackage.StuAsseTabElement.TableActionEvent;
-import ProjManagerPackage.StuAsseTabElement.TableHeader;
+import ProjManagerPackage.StuAssessElem.ModernScrollBarUI;
+import ProjManagerPackage.StuAssessElem.TableActionCellEditor;
+import ProjManagerPackage.StuAssessElem.TableActionCellRender;
+import ProjManagerPackage.StuAssessElem.TableActionEvent;
+import ProjManagerPackage.StuAssessElem.TableHeader;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;

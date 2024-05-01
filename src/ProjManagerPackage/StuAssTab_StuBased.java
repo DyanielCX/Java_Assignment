@@ -1,10 +1,10 @@
 package ProjManagerPackage;
 
-import ProjManagerPackage.StuAsseTabElement.ModernScrollBarUI;
-import ProjManagerPackage.StuAsseTabElement.TableActionCellEditor;
-import ProjManagerPackage.StuAsseTabElement.TableActionCellRender;
-import ProjManagerPackage.StuAsseTabElement.TableActionEvent;
-import ProjManagerPackage.StuAsseTabElement.TableHeader;
+import ProjManagerPackage.StuAssessElem.ModernScrollBarUI;
+import ProjManagerPackage.StuAssessElem.TableActionCellEditor;
+import ProjManagerPackage.StuAssessElem.TableActionCellRender;
+import ProjManagerPackage.StuAssessElem.TableActionEvent;
+import ProjManagerPackage.StuAssessElem.TableHeader;
 import StuPackage.StuData_IO;
 import StuPackage.Student;
 import java.awt.Color;

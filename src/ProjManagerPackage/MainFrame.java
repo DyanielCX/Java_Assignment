@@ -36,14 +36,16 @@ public class MainFrame extends javax.swing.JFrame {
 //        StuAssessmentTab Tab1 = new StuAssessmentTab();
 //        TabPanel.addTab("tab1", Tab1);
         
-        //Student Assessment Section
+
+        //Student Assessment Panel Section
         StuAssTab_IntakeBased Tab2 = new StuAssTab_IntakeBased(this);
         TabPanel.addTab("tab2", Tab2);
         
         StuAssTab_StuBased Tab3 = new StuAssTab_StuBased(this);
         TabPanel.addTab("tab3", Tab3);
         
-        //Assign Supervisor Section
+        
+        //Assign Supervisor Panel Section
         AssignAdvsTab Tab4 = new AssignAdvsTab(this);
         TabPanel.addTab("tab4", Tab4);
     
@@ -59,8 +61,25 @@ public class MainFrame extends javax.swing.JFrame {
         AssignAdvsTab_StuAdvsList Tab8 = new AssignAdvsTab_StuAdvsList(this);
         TabPanel.addTab("tab8", Tab8);
     
-//        StuAssessmentTab Tab6 = new StuAssessmentTab();
-//        TabPanel.addTab("tab6", Tab6);
+        
+        //Account Management Panel Section
+        AccMgmtTab Tab9 = new AccMgmtTab(this);
+        TabPanel.addTab("tab9", Tab9);
+        
+        AccMgmtTab_LectAcc Tab10 = new AccMgmtTab_LectAcc(this);
+        TabPanel.addTab("tab10", Tab10);
+        
+        AccMgmtTab_StuIntake Tab11 = new AccMgmtTab_StuIntake(this);
+        TabPanel.addTab("tab11", Tab11);
+        
+        
+        //Report Status Panel Section
+        RptStatus_StuIntake Tab12 = new RptStatus_StuIntake(this);
+        TabPanel.addTab("tab12", Tab12);
+        
+        RptStatus_StuList Tab13 = new RptStatus_StuList(this);
+        TabPanel.addTab("tab13", Tab13);
+        
     }
 
     /**
@@ -423,7 +442,7 @@ public class MainFrame extends javax.swing.JFrame {
         ReportStatusPane.setBackground(navDefaultColor);
         
         PanelTitle.setText("Account Management");
-        TabPanel.setSelectedIndex(0);
+        TabPanel.setSelectedIndex(8);
     }//GEN-LAST:event_navAccMangementMouseClicked
 
     private void navReportStatusMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_navReportStatusMouseClicked
@@ -434,7 +453,7 @@ public class MainFrame extends javax.swing.JFrame {
         ReportStatusPane.setBackground(navSelectedColor);
         
         PanelTitle.setText("Report Status");
-        TabPanel.setSelectedIndex(0);
+        TabPanel.setSelectedIndex(11);
     }//GEN-LAST:event_navReportStatusMouseClicked
 
     /* Logout Button */
@@ -446,8 +465,15 @@ public class MainFrame extends javax.swing.JFrame {
      * @param args the command line arguments
      */
     
+    //Change panel tab method
     public static void changedTab(int TabIndex){
         TabPanel.setSelectedIndex(TabIndex);
+    }
+    
+    //Create new temperory panel tab - AccMgmtTab_StuAcc
+    public static void createStuAccMgmtPane(MainFrame mainFrame, String selectedIntake){
+        AccMgmtTab_StuAcc lastTab = new AccMgmtTab_StuAcc(mainFrame, selectedIntake);
+        TabPanel.addTab("StuAccMgmt_Tab", lastTab);
     }
     
     public static void main(String args[]) {

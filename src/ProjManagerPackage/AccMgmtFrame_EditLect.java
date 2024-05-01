@@ -10,24 +10,21 @@ import java.awt.Color;
  *
  * @author PC
  */
-public class EditLectRoleFrame extends javax.swing.JFrame {
+public class AccMgmtFrame_EditLect extends javax.swing.JFrame {
 
     /**
      * Creates new form EditLectRoleFrame
      */
-    public EditLectRoleFrame(String selectedLectID) {
+    public AccMgmtFrame_EditLect(String selectedLectID) {
         
         //GUI Setting
         initComponents();
-        getContentPane().setBackground(new Color(151, 231, 225));
+        getContentPane().setBackground(new Color(122, 162, 227));
         
         //Search the selected lecturer data
-        lblSelectedName.setText("Alan");
-        lblSelectedID.setText(selectedLectID);
+        TFLectName.setText("Alan");
+        TFLectID.setText(selectedLectID);
         
-        //Select the lecturer whether is supervisor and second marker
-        RBSupervisor_Yes.setSelected(true);
-        RBSecondMarker_No.setSelected(true);
     }
 
     /**
@@ -39,21 +36,13 @@ public class EditLectRoleFrame extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        isSupervisorBG = new javax.swing.ButtonGroup();
-        isSecondMarkerBG = new javax.swing.ButtonGroup();
         jPanel1 = new javax.swing.JPanel();
-        lblSelectedName = new javax.swing.JLabel();
         lblLectName = new javax.swing.JLabel();
-        lblSelectedID = new javax.swing.JLabel();
-        lblSecondMarker = new javax.swing.JLabel();
         lblLectID = new javax.swing.JLabel();
-        lblSupervisor = new javax.swing.JLabel();
-        RBSupervisor_Yes = new javax.swing.JRadioButton();
-        RBSupervisor_No = new javax.swing.JRadioButton();
-        RBSecondMarker_Yes = new javax.swing.JRadioButton();
-        RBSecondMarker_No = new javax.swing.JRadioButton();
-        btbSubmit3 = new javax.swing.JButton();
+        btbSubmit = new javax.swing.JButton();
         btbCancel = new javax.swing.JButton();
+        TFLectName = new javax.swing.JTextField();
+        TFLectID = new javax.swing.JTextField();
         lblTitle2 = new javax.swing.JLabel();
         lblTitle1 = new javax.swing.JLabel();
         iconTitle = new javax.swing.JLabel();
@@ -63,62 +52,25 @@ public class EditLectRoleFrame extends javax.swing.JFrame {
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
-        lblSelectedName.setFont(new java.awt.Font("Dubai Medium", 0, 20)); // NOI18N
-        lblSelectedName.setForeground(new java.awt.Color(0, 0, 0));
-        lblSelectedName.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        lblSelectedName.setText("Shahab");
-
         lblLectName.setFont(new java.awt.Font("Dubai Medium", 0, 20)); // NOI18N
         lblLectName.setForeground(new java.awt.Color(0, 0, 0));
         lblLectName.setText("Lecturer Name:");
-
-        lblSelectedID.setFont(new java.awt.Font("Dubai Medium", 0, 20)); // NOI18N
-        lblSelectedID.setForeground(new java.awt.Color(0, 0, 0));
-        lblSelectedID.setText("111222");
-
-        lblSecondMarker.setFont(new java.awt.Font("Dubai Medium", 0, 20)); // NOI18N
-        lblSecondMarker.setForeground(new java.awt.Color(0, 0, 0));
-        lblSecondMarker.setText("Second Marker:");
 
         lblLectID.setFont(new java.awt.Font("Dubai Medium", 0, 20)); // NOI18N
         lblLectID.setForeground(new java.awt.Color(0, 0, 0));
         lblLectID.setText("Lecturer ID:");
 
-        lblSupervisor.setFont(new java.awt.Font("Dubai Medium", 0, 20)); // NOI18N
-        lblSupervisor.setForeground(new java.awt.Color(0, 0, 0));
-        lblSupervisor.setText("Supervisor:");
-
-        isSupervisorBG.add(RBSupervisor_Yes);
-        RBSupervisor_Yes.setFont(new java.awt.Font("Dubai Medium", 0, 16)); // NOI18N
-        RBSupervisor_Yes.setForeground(new java.awt.Color(0, 0, 0));
-        RBSupervisor_Yes.setText("Yes");
-
-        isSupervisorBG.add(RBSupervisor_No);
-        RBSupervisor_No.setFont(new java.awt.Font("Dubai Medium", 0, 16)); // NOI18N
-        RBSupervisor_No.setForeground(new java.awt.Color(0, 0, 0));
-        RBSupervisor_No.setText("No");
-
-        isSecondMarkerBG.add(RBSecondMarker_Yes);
-        RBSecondMarker_Yes.setFont(new java.awt.Font("Dubai Medium", 0, 16)); // NOI18N
-        RBSecondMarker_Yes.setForeground(new java.awt.Color(0, 0, 0));
-        RBSecondMarker_Yes.setText("Yes");
-
-        isSecondMarkerBG.add(RBSecondMarker_No);
-        RBSecondMarker_No.setFont(new java.awt.Font("Dubai Medium", 0, 16)); // NOI18N
-        RBSecondMarker_No.setForeground(new java.awt.Color(0, 0, 0));
-        RBSecondMarker_No.setText("No");
-
-        btbSubmit3.setBackground(new java.awt.Color(106, 212, 221));
-        btbSubmit3.setFont(new java.awt.Font("Dubai Medium", 1, 16)); // NOI18N
-        btbSubmit3.setForeground(new java.awt.Color(255, 255, 255));
-        btbSubmit3.setText("Submit");
-        btbSubmit3.addActionListener(new java.awt.event.ActionListener() {
+        btbSubmit.setBackground(new java.awt.Color(122, 162, 227));
+        btbSubmit.setFont(new java.awt.Font("Dubai Medium", 1, 16)); // NOI18N
+        btbSubmit.setForeground(new java.awt.Color(255, 255, 255));
+        btbSubmit.setText("Submit");
+        btbSubmit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btbSubmit3ActionPerformed(evt);
+                btbSubmitActionPerformed(evt);
             }
         });
 
-        btbCancel.setBackground(new java.awt.Color(106, 212, 221));
+        btbCancel.setBackground(new java.awt.Color(122, 162, 227));
         btbCancel.setFont(new java.awt.Font("Dubai Medium", 1, 15)); // NOI18N
         btbCancel.setForeground(new java.awt.Color(255, 255, 255));
         btbCancel.setText("Cancel");
@@ -128,77 +80,59 @@ public class EditLectRoleFrame extends javax.swing.JFrame {
             }
         });
 
+        TFLectName.setFont(new java.awt.Font("Dubai Medium", 0, 16)); // NOI18N
+
+        TFLectID.setFont(new java.awt.Font("Dubai Medium", 0, 16)); // NOI18N
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(76, Short.MAX_VALUE)
+                .addContainerGap(79, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(btbSubmit3)
-                    .addComponent(lblSupervisor)
-                    .addComponent(lblSecondMarker)
-                    .addComponent(lblLectName)
-                    .addComponent(lblLectID))
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(TFLectID, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(50, 50, 50)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblSelectedID)
-                            .addComponent(lblSelectedName)))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(43, 43, 43)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(btbSubmit)
+                            .addComponent(lblLectName)
+                            .addComponent(lblLectID))
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(RBSecondMarker_Yes)
-                                .addGap(30, 30, 30)
-                                .addComponent(RBSecondMarker_No))
+                                .addGap(63, 63, 63)
+                                .addComponent(btbCancel))
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(RBSupervisor_Yes)
-                                .addGap(30, 30, 30)
-                                .addComponent(RBSupervisor_No))))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(63, 63, 63)
-                        .addComponent(btbCancel)))
-                .addGap(68, 68, 68))
+                                .addGap(39, 39, 39)
+                                .addComponent(TFLectName, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addGap(67, 67, 67))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(80, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblSelectedName)
-                    .addComponent(lblLectName))
+                    .addComponent(lblLectName)
+                    .addComponent(TFLectName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(26, 26, 26)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblSelectedID)
-                    .addComponent(lblLectID))
-                .addGap(26, 26, 26)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblSupervisor)
-                    .addComponent(RBSupervisor_Yes)
-                    .addComponent(RBSupervisor_No))
-                .addGap(26, 26, 26)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblSecondMarker)
-                    .addComponent(RBSecondMarker_Yes)
-                    .addComponent(RBSecondMarker_No))
-                .addGap(40, 40, 40)
+                    .addComponent(lblLectID)
+                    .addComponent(TFLectID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(162, 162, 162)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btbCancel)
-                    .addComponent(btbSubmit3))
+                    .addComponent(btbSubmit))
                 .addGap(55, 55, 55))
         );
 
         lblTitle2.setFont(new java.awt.Font("Dubai Medium", 1, 38)); // NOI18N
         lblTitle2.setForeground(new java.awt.Color(255, 255, 255));
-        lblTitle2.setText("Role");
+        lblTitle2.setText("Account");
 
         lblTitle1.setFont(new java.awt.Font("Dubai Medium", 1, 38)); // NOI18N
         lblTitle1.setForeground(new java.awt.Color(255, 255, 255));
         lblTitle1.setText("Edit Lecturer");
 
-        iconTitle.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/LectureRole.png"))); // NOI18N
+        iconTitle.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/LectIcon.png"))); // NOI18N
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -209,10 +143,10 @@ public class EditLectRoleFrame extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lblTitle1)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(68, 68, 68)
+                        .addGap(40, 40, 40)
                         .addComponent(lblTitle2))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(73, 73, 73)
+                        .addGap(68, 68, 68)
                         .addComponent(iconTitle)))
                 .addGap(75, 75, 75)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -238,9 +172,9 @@ public class EditLectRoleFrame extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btbSubmit3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btbSubmit3ActionPerformed
+    private void btbSubmitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btbSubmitActionPerformed
         
-    }//GEN-LAST:event_btbSubmit3ActionPerformed
+    }//GEN-LAST:event_btbSubmitActionPerformed
 
     private void btbCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btbCancelActionPerformed
         //Return back to the student list page
@@ -275,14 +209,45 @@ public class EditLectRoleFrame extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(EditLectRoleFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AccMgmtFrame_EditLect.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(EditLectRoleFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AccMgmtFrame_EditLect.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(EditLectRoleFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AccMgmtFrame_EditLect.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(EditLectRoleFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AccMgmtFrame_EditLect.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
@@ -294,22 +259,14 @@ public class EditLectRoleFrame extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JRadioButton RBSecondMarker_No;
-    private javax.swing.JRadioButton RBSecondMarker_Yes;
-    private javax.swing.JRadioButton RBSupervisor_No;
-    private javax.swing.JRadioButton RBSupervisor_Yes;
+    private javax.swing.JTextField TFLectID;
+    private javax.swing.JTextField TFLectName;
     private javax.swing.JButton btbCancel;
-    private javax.swing.JButton btbSubmit3;
+    private javax.swing.JButton btbSubmit;
     private javax.swing.JLabel iconTitle;
-    private javax.swing.ButtonGroup isSecondMarkerBG;
-    private javax.swing.ButtonGroup isSupervisorBG;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel lblLectID;
     private javax.swing.JLabel lblLectName;
-    private javax.swing.JLabel lblSecondMarker;
-    private javax.swing.JLabel lblSelectedID;
-    private javax.swing.JLabel lblSelectedName;
-    private javax.swing.JLabel lblSupervisor;
     private javax.swing.JLabel lblTitle1;
     private javax.swing.JLabel lblTitle2;
     // End of variables declaration//GEN-END:variables
