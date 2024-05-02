@@ -8,25 +8,34 @@ import java.util.List;
 
 
 public class Lecturer {
-    private String lectname;
+    private String lectName;
     private String lectid;
      private boolean isProjectManager;
      private boolean isSecondMarker;
      private boolean isSupervisor;
      private List<Lecturer> lecturers;
-     
-    public Lecturer(String name, String lectid, boolean isProjectManager, boolean isSecondMarker, boolean isSupervisor) {
-        this.lectname = lectname;
+     private String password;
+    public Lecturer(String name, String lectid, boolean isProjectManager, boolean isSecondMarker, boolean isSupervisor,String password) {
+        this.lectName = name;
         this.lectid = lectid;
         this.isProjectManager = isProjectManager;
         this.isSecondMarker = isSecondMarker;
         this.isSupervisor = isSupervisor;
+        this.password = password;
     }
     public Lecturer(String name, String lectid) {
-    this.lectname = name;
+    this.lectName = name;
     this.lectid = lectid;
     this.isProjectManager = false; // Assuming default value for isProjectManager
 }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
 
     public boolean isIsSecondMarker() {
         return isSecondMarker;
@@ -45,11 +54,11 @@ public class Lecturer {
     }
 
     public String getName() {
-        return lectname;
+        return lectName;
     }
 
     public void setName(String name) {
-        this.lectname = name;
+        this.lectName = name;
     }
 
     public String getId() {
@@ -74,6 +83,11 @@ public class Lecturer {
     }
      public void removeProjectManagerRole() {
         isProjectManager = false;
+    }
+
+    @Override
+    public String toString() {
+        return "Lecturer{" + "lectName=" + lectName + ", lectid=" + lectid + ", isProjectManager=" + isProjectManager + ", isSecondMarker=" + isSecondMarker + ", isSupervisor=" + isSupervisor + ", lecturers=" + lecturers + ",password=" + password +'}';
     }
 }
 

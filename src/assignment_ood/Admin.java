@@ -34,14 +34,15 @@ public class Admin extends javax.swing.JFrame {
         String line;
         while ((line = reader.readLine()) != null) {
             String[] parts = line.split(",");
-            if (parts.length >= 3) {
+            if (parts.length >= 6) {
                 String lecturerName = parts[0];
                 String lecturerId = parts[1];
                 boolean isProjectManager = Boolean.parseBoolean(parts[2]);
                 // Set isSupervisor and isSecondMarker to false
                 boolean isSupervisor = false;
                 boolean isSecondMarker = false;
-                model.addRow(new Object[]{lecturerName, lecturerId, isProjectManager});
+                String password = parts[5];
+                model.addRow(new Object[]{lecturerName, lecturerId, isProjectManager,password});
             }
         }
     } catch (IOException e) {
@@ -57,14 +58,15 @@ public class Admin extends javax.swing.JFrame {
         String line;
         while ((line = reader.readLine()) != null) {
             String[] parts = line.split(",");
-            if (parts.length >= 3) {
+            if (parts.length >= 6) {
                 String lecturerName = parts[0];
                 String lecturerId = parts[1];
                 boolean isProjectManager = Boolean.parseBoolean(parts[2]);
                 // Set isSupervisor and isSecondMarker to false
                 boolean isSupervisor = false;
                 boolean isSecondMarker = false;
-                model.addRow(new Object[]{lecturerName, lecturerId, isProjectManager});
+                String password = parts[5];
+                model.addRow(new Object[]{lecturerName, lecturerId, isProjectManager,password});
             }
         }
     } catch (IOException e) {
@@ -73,15 +75,15 @@ public class Admin extends javax.swing.JFrame {
 }
     
     
-    public static void saveLecturersToFile(String lecturerName, String lecturerId, boolean isProjectManager, boolean isSecondMarker, boolean isSupervisor) {
+    public static void saveLecturersToFile(String lecturerName, String lecturerId, boolean isProjectManager, boolean isSecondMarker, boolean isSupervisor,String password) {
     try (FileWriter writer = new FileWriter("LecData.txt", true)) { // Use true as the second parameter to append to the file
-        writer.write(lecturerName + "," + lecturerId + "," + isProjectManager +"," + isSecondMarker +","+ isSupervisor + "\n");
+        writer.write(lecturerName + "," + lecturerId + "," + isProjectManager +"," + isSecondMarker +","+ isSupervisor + ","+ password +"\n");
     } catch (IOException e) {
         e.printStackTrace(); 
     }
     }  
     
-   public static void deleteLecturerFromFile(String lecturerName, String lecturerId, boolean isProjectManager,boolean isSupervisor,boolean isSecondMarker) {
+   public static void deleteLecturerFromFile(String lecturerName, String lecturerId, boolean isProjectManager,boolean isSupervisor,boolean isSecondMarker,String password) {
     // Read all lines from the file into a list
     java.util.List<String> lines = new java.util.ArrayList<>();
     try (BufferedReader reader = new BufferedReader(new FileReader("LecData.txt"))) {
@@ -89,7 +91,7 @@ public class Admin extends javax.swing.JFrame {
         while ((line = reader.readLine()) != null) {
             String[] parts = line.split(",");
             if (parts.length == 5) {
-                if (!lecturerName.equals(parts[0]) || !lecturerId.equals(parts[1]) || isProjectManager != Boolean.parseBoolean(parts[2])|| isSupervisor != Boolean.parseBoolean(parts[3])|| isSecondMarker != Boolean.parseBoolean(parts[4])) {
+                if (!lecturerName.equals(parts[0]) || !lecturerId.equals(parts[1]) || isProjectManager != Boolean.parseBoolean(parts[2])|| isSupervisor != Boolean.parseBoolean(parts[3])|| isSecondMarker != Boolean.parseBoolean(parts[4]) || !password.equals(parts[5])) {
                     lines.add(line);
                 }
             }
@@ -109,7 +111,7 @@ public class Admin extends javax.swing.JFrame {
 }
 
 
-    public static void updateLecturerInFile(JTable lecturerTable,String lecturerName, String lecturerId, boolean isProjectManager,boolean isSecondMarker, boolean isSupervisor) {
+    public static void updateLecturerInFile(JTable lecturerTable, String lecturerName, String lecturerId, boolean isProjectManager, boolean isSecondMarker, boolean isSupervisor, String password, int selectedIndex) {
     // Read all lines from the file into a list
     java.util.List<String> lines = new java.util.ArrayList<>();
     try (BufferedReader reader = new BufferedReader(new FileReader("LecData.txt"))) {
@@ -118,13 +120,11 @@ public class Admin extends javax.swing.JFrame {
             lines.add(line);
         }
     } catch (IOException e) {
-        
         e.printStackTrace();
     }
 
     // Update the selected lecturer's details
-    String updatedLine = lecturerName + "," + lecturerId + "," + isProjectManager;
-    int selectedIndex = lecturerTable.getSelectedRow();
+    String updatedLine = lecturerName + "," + lecturerId + "," + isProjectManager + "," + isSecondMarker + "," + isSupervisor + "," + password;
     if (selectedIndex != -1 && selectedIndex < lines.size()) {
         lines.set(selectedIndex, updatedLine);
     }
@@ -139,10 +139,32 @@ public class Admin extends javax.swing.JFrame {
     }
 
     // Refresh the table to reflect the changes
-   Admin.loadLecturersFromFile(lecturerTable);
+    Admin.loadLecturersFromFile(lecturerTable);
 }
 
-    
+  public static List<Lecturer> readLecturersFromFile() {
+        List<Lecturer> lecturers = new ArrayList<>();
+        try (BufferedReader reader = new BufferedReader(new FileReader("LecData.txt"))) {
+            String line;
+            while ((line = reader.readLine()) != null) {
+                String[] parts = line.split(",");
+                if (parts.length >= 6) {
+                    String lecturerName = parts[0];
+                    String lecturerId = parts[1];
+                    boolean isProjectManager = Boolean.parseBoolean(parts[2]);
+                    // Set isSupervisor and isSecondMarker to false
+                    boolean isSupervisor = false;
+                    boolean isSecondMarker = false;
+                    String password = parts[5];
+                    Lecturer lecturer = new Lecturer(lecturerName, lecturerId, isProjectManager, isSecondMarker, isSupervisor,password);
+                    lecturers.add(lecturer);
+                }
+            }
+        } catch (IOException e) {
+            e.printStackTrace(); // Handle or log the exception as needed
+        }
+        return lecturers;
+    }   
 
     
 

@@ -4,24 +4,60 @@
  */
 package assignment_ood;
 
+import GUI_Template.*;
+import ProjManagerPackage.*;
+import StuPackage.StuData_IO;
 import java.awt.Color;
 
 /**
  *
- * @author User
+ * @author PC
  */
-public class Lect_mainframe extends javax.swing.JFrame {
-private Color navDefaultColor = new Color(122, 162, 227);
+public class Lecture_mainframe extends javax.swing.JFrame {
+
+    // Color for side nav bar tab
+    private Color navDefaultColor = new Color(122, 162, 227);
     private Color navSelectedColor = new Color(106, 212, 221);
     
     /**
-     * Creates new form Lect_mainframe
+     * Creates new form ProjMng_MainFrame
      */
-    public Lect_mainframe() {
+    public Lecture_mainframe() {
         initComponents();
-         getContentPane().setBackground(new Color(248, 246, 227));
+        getContentPane().setBackground(new Color(248, 246, 227));
         
-//        
+//        Lect_ViewPresentation dash = new Lect_ViewPresentation(this);
+//        TabPanel.addTab("tab0", dash);
+       
+        Lect_ViewPresentation view = new Lect_ViewPresentation(this);
+        TabPanel.addTab("tab1", view);
+       
+        presentationReq tab3 = new  presentationReq(this);
+        TabPanel.add("tab2",tab3);
+        
+
+        /* Get the user name */
+        String UserName = "Shahab";
+        AccName.setText(UserName);
+        
+        
+        
+        
+        /* Set the tab panel (panel size -> 935, 530) */
+//        Lect_ViewPresentation Tab1 = new Lect_ViewPresentation();
+//        TabPanel.addTab("tab1", Tab1);
+    
+//        PanelClassName Tab2 = new PanelClassName();
+//        TabPanel.addTab("tab2", Tab2);
+    
+       // Lect_ViewPresentation Tab3 = new Lect_ViewPresentation();
+       // TabPanel.addTab("tab3", Tab3);
+    
+        
+        
+    
+//        PanelClassName Tab5 = new PanelClassName();
+//        TabPanel.addTab("tab5", Tab5);
     }
 
     /**
@@ -33,10 +69,6 @@ private Color navDefaultColor = new Color(122, 162, 227);
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        topNavBar = new javax.swing.JPanel();
-        PanelTitle = new javax.swing.JLabel();
-        AccName = new javax.swing.JLabel();
-        lblLogout = new javax.swing.JLabel();
         sideNavBar = new javax.swing.JPanel();
         imgLogo = new javax.swing.JLabel();
         DashboardPane = new javax.swing.JPanel();
@@ -49,64 +81,18 @@ private Color navDefaultColor = new Color(122, 162, 227);
         navAccMangement = new javax.swing.JLabel();
         ReportStatusPane = new javax.swing.JPanel();
         navReportStatus = new javax.swing.JLabel();
+        topNavBar = new javax.swing.JPanel();
+        PanelTitle = new javax.swing.JLabel();
+        AccName = new javax.swing.JLabel();
+        lblLogout = new javax.swing.JLabel();
+        CoverTabPane = new javax.swing.JPanel();
+        TabPanel = new javax.swing.JTabbedPane();
         jPanel1 = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setBackground(new java.awt.Color(255, 255, 255));
-        setMinimumSize(new java.awt.Dimension(1250, 664));
-        setResizable(false);
+        setBackground(new java.awt.Color(248, 246, 227));
+        setUndecorated(true);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        topNavBar.setBackground(new java.awt.Color(151, 231, 225));
-
-        PanelTitle.setFont(new java.awt.Font("Comic Sans MS", 1, 40)); // NOI18N
-        PanelTitle.setForeground(new java.awt.Color(255, 255, 255));
-        PanelTitle.setText("Dashboard");
-
-        AccName.setFont(new java.awt.Font("Dubai Medium", 0, 28)); // NOI18N
-        AccName.setForeground(new java.awt.Color(255, 255, 255));
-        AccName.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        AccName.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/ProjMngUser.png"))); // NOI18N
-        AccName.setText("Jason");
-        AccName.setIconTextGap(10);
-
-        lblLogout.setFont(new java.awt.Font("Segoe UI Semibold", 0, 15)); // NOI18N
-        lblLogout.setForeground(new java.awt.Color(255, 255, 255));
-        lblLogout.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        lblLogout.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/logout.png"))); // NOI18N
-        lblLogout.setText("Logout");
-
-        javax.swing.GroupLayout topNavBarLayout = new javax.swing.GroupLayout(topNavBar);
-        topNavBar.setLayout(topNavBarLayout);
-        topNavBarLayout.setHorizontalGroup(
-            topNavBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(topNavBarLayout.createSequentialGroup()
-                .addGap(38, 38, 38)
-                .addComponent(PanelTitle)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 591, Short.MAX_VALUE)
-                .addGroup(topNavBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, topNavBarLayout.createSequentialGroup()
-                        .addComponent(AccName, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(44, 44, 44))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, topNavBarLayout.createSequentialGroup()
-                        .addComponent(lblLogout)
-                        .addGap(20, 20, 20))))
-        );
-        topNavBarLayout.setVerticalGroup(
-            topNavBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(topNavBarLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(lblLogout)
-                .addGap(12, 12, 12)
-                .addComponent(AccName, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(13, Short.MAX_VALUE))
-            .addGroup(topNavBarLayout.createSequentialGroup()
-                .addGap(25, 25, 25)
-                .addComponent(PanelTitle, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-
-        getContentPane().add(topNavBar, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 0, 1040, -1));
 
         sideNavBar.setBackground(new java.awt.Color(122, 162, 227));
 
@@ -149,7 +135,7 @@ private Color navDefaultColor = new Color(122, 162, 227);
         navStuAssessment.setForeground(new java.awt.Color(255, 255, 255));
         navStuAssessment.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         navStuAssessment.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/ProjMngStuAsse.png"))); // NOI18N
-        navStuAssessment.setText("Assigned Supervisees");
+        navStuAssessment.setText("View supervisees");
         navStuAssessment.setDoubleBuffered(true);
         navStuAssessment.setIconTextGap(15);
         navStuAssessment.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -182,7 +168,7 @@ private Color navDefaultColor = new Color(122, 162, 227);
         navAssignSupervisor.setForeground(new java.awt.Color(255, 255, 255));
         navAssignSupervisor.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         navAssignSupervisor.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/ProjMngSupervisor.png"))); // NOI18N
-        navAssignSupervisor.setText("Set Presentation Date");
+        navAssignSupervisor.setText("view presenation");
         navAssignSupervisor.setIconTextGap(15);
         navAssignSupervisor.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -305,22 +291,92 @@ private Color navDefaultColor = new Color(122, 162, 227);
 
         getContentPane().add(sideNavBar, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
+        topNavBar.setBackground(new java.awt.Color(151, 231, 225));
+
+        PanelTitle.setFont(new java.awt.Font("Comic Sans MS", 1, 40)); // NOI18N
+        PanelTitle.setForeground(new java.awt.Color(255, 255, 255));
+        PanelTitle.setText("Dashboard");
+
+        AccName.setFont(new java.awt.Font("Dubai Medium", 0, 28)); // NOI18N
+        AccName.setForeground(new java.awt.Color(255, 255, 255));
+        AccName.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        AccName.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/ProjMngUser.png"))); // NOI18N
+        AccName.setIconTextGap(10);
+
+        lblLogout.setFont(new java.awt.Font("Segoe UI Semibold", 0, 15)); // NOI18N
+        lblLogout.setForeground(new java.awt.Color(255, 255, 255));
+        lblLogout.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        lblLogout.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/logout.png"))); // NOI18N
+        lblLogout.setText("Logout");
+        lblLogout.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblLogoutMouseClicked(evt);
+            }
+        });
+
+        javax.swing.GroupLayout topNavBarLayout = new javax.swing.GroupLayout(topNavBar);
+        topNavBar.setLayout(topNavBarLayout);
+        topNavBarLayout.setHorizontalGroup(
+            topNavBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, topNavBarLayout.createSequentialGroup()
+                .addGap(45, 45, 45)
+                .addComponent(PanelTitle)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 519, Short.MAX_VALUE)
+                .addComponent(AccName, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(44, 44, 44))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, topNavBarLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(lblLogout)
+                .addGap(20, 20, 20))
+        );
+        topNavBarLayout.setVerticalGroup(
+            topNavBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(topNavBarLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(lblLogout)
+                .addGap(3, 3, 3)
+                .addGroup(topNavBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(AccName, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(PanelTitle, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(13, Short.MAX_VALUE))
+        );
+
+        getContentPane().add(topNavBar, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 0, 975, -1));
+
+        CoverTabPane.setBackground(new java.awt.Color(248, 246, 227));
+
+        javax.swing.GroupLayout CoverTabPaneLayout = new javax.swing.GroupLayout(CoverTabPane);
+        CoverTabPane.setLayout(CoverTabPaneLayout);
+        CoverTabPaneLayout.setHorizontalGroup(
+            CoverTabPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 940, Short.MAX_VALUE)
+        );
+        CoverTabPaneLayout.setVerticalGroup(
+            CoverTabPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 30, Short.MAX_VALUE)
+        );
+
+        getContentPane().add(CoverTabPane, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 100, 940, 30));
+
         jPanel1.setBackground(new java.awt.Color(204, 204, 255));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 930, Short.MAX_VALUE)
+            .addGap(0, 935, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 450, Short.MAX_VALUE)
+            .addGap(0, 535, Short.MAX_VALUE)
         );
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 115, 930, 450));
+        TabPanel.addTab("tab1", jPanel1);
+
+        getContentPane().add(TabPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(295, 94, -1, 570));
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void navDashboardMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_navDashboardMouseClicked
@@ -329,9 +385,10 @@ private Color navDefaultColor = new Color(122, 162, 227);
         AssignSupervisorPane.setBackground(navDefaultColor);
         AccManagementPane.setBackground(navDefaultColor);
         ReportStatusPane.setBackground(navDefaultColor);
-
+        
+        //Change to your tab name
         PanelTitle.setText("Dashboard");
-       
+        TabPanel.setSelectedIndex(0);
     }//GEN-LAST:event_navDashboardMouseClicked
 
     private void navStuAssessmentMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_navStuAssessmentMouseClicked
@@ -340,9 +397,10 @@ private Color navDefaultColor = new Color(122, 162, 227);
         AssignSupervisorPane.setBackground(navDefaultColor);
         AccManagementPane.setBackground(navDefaultColor);
         ReportStatusPane.setBackground(navDefaultColor);
-
-        PanelTitle.setText("Assigned Supervisor");
         
+        //Change to your tab name
+        PanelTitle.setText("Student Assessment");
+        TabPanel.setSelectedIndex(1);
     }//GEN-LAST:event_navStuAssessmentMouseClicked
 
     private void navAssignSupervisorMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_navAssignSupervisorMouseClicked
@@ -351,8 +409,10 @@ private Color navDefaultColor = new Color(122, 162, 227);
         AssignSupervisorPane.setBackground(navSelectedColor);
         AccManagementPane.setBackground(navDefaultColor);
         ReportStatusPane.setBackground(navDefaultColor);
-
-        PanelTitle.setText("Set presentation date");
+        
+        //Change to your tab name
+        PanelTitle.setText("View Presentation");
+        //TabPanel.setSelectedIndex(2);
     }//GEN-LAST:event_navAssignSupervisorMouseClicked
 
     private void navAccMangementMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_navAccMangementMouseClicked
@@ -361,8 +421,10 @@ private Color navDefaultColor = new Color(122, 162, 227);
         AssignSupervisorPane.setBackground(navDefaultColor);
         AccManagementPane.setBackground(navSelectedColor);
         ReportStatusPane.setBackground(navDefaultColor);
-
+        
+        //Change to your tab name
         PanelTitle.setText("Account Management");
+        TabPanel.setSelectedIndex(3);
     }//GEN-LAST:event_navAccMangementMouseClicked
 
     private void navReportStatusMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_navReportStatusMouseClicked
@@ -371,13 +433,23 @@ private Color navDefaultColor = new Color(122, 162, 227);
         AssignSupervisorPane.setBackground(navDefaultColor);
         AccManagementPane.setBackground(navDefaultColor);
         ReportStatusPane.setBackground(navSelectedColor);
-
+        
+        //Change to your tab name
         PanelTitle.setText("Report Status");
+        //TabPanel.setSelectedIndex(4);
     }//GEN-LAST:event_navReportStatusMouseClicked
+    
+    /* Logout Button */
+    private void lblLogoutMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblLogoutMouseClicked
+        //Back to the Login Page
+    }//GEN-LAST:event_lblLogoutMouseClicked
 
     /**
      * @param args the command line arguments
      */
+     public static void changeTab(int TabIndex){
+        TabPanel.setSelectedIndex(TabIndex);
+    }
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -392,32 +464,42 @@ private Color navDefaultColor = new Color(122, 162, 227);
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Lect_mainframe.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Lecture_mainframe.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Lect_mainframe.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Lecture_mainframe.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Lect_mainframe.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Lecture_mainframe.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Lect_mainframe.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Lecture_mainframe.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Lect_mainframe().setVisible(true);
+                StuData_IO.readFrTxt();
+                new Lecture_mainframe().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JPanel AccManagementPane;
+    public javax.swing.JPanel AccManagementPane;
     private javax.swing.JLabel AccName;
-    private javax.swing.JPanel AssignSupervisorPane;
-    private javax.swing.JPanel DashboardPane;
-    private javax.swing.JLabel PanelTitle;
-    private javax.swing.JPanel ReportStatusPane;
-    private javax.swing.JPanel StuAssessmentPane;
+    public javax.swing.JPanel AssignSupervisorPane;
+    private javax.swing.JPanel CoverTabPane;
+    public javax.swing.JPanel DashboardPane;
+    public javax.swing.JLabel PanelTitle;
+    public javax.swing.JPanel ReportStatusPane;
+    public javax.swing.JPanel StuAssessmentPane;
+    public static javax.swing.JTabbedPane TabPanel;
     private javax.swing.JLabel imgLogo;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel lblLogout;

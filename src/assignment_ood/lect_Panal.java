@@ -57,8 +57,8 @@ public class lect_Panal extends javax.swing.JPanel {
                 return header;
             }
         });
-          lecturePanal.getColumnModel().getColumn(4).setCellRenderer(new TableActionCellRender());
-        lecturePanal.getColumnModel().getColumn(4).setCellEditor(new TableActionCellEditor(event));
+          lecturePanal.getColumnModel().getColumn(5).setCellRenderer(new TableActionCellRender());
+        lecturePanal.getColumnModel().getColumn(5).setCellEditor(new TableActionCellEditor(event));
     }
     
     TableActionEvent event = new TableActionEvent() {
@@ -71,15 +71,17 @@ public class lect_Panal extends javax.swing.JPanel {
             String lecturerName = (String) lecturePanal.getValueAt(selectedRow, 0);
             String lecturerId = (String) lecturePanal.getValueAt(selectedRow, 1);
             boolean isProjectManager = (boolean) lecturePanal.getValueAt(selectedRow, 2);
-
+            String password = (String) lecturePanal.getValueAt(selectedRow, 3);
             // Display a dialog to edit the lecturer details
             JTextField txtLecturerName = new JTextField(lecturerName);
             JTextField txtLecturerId = new JTextField(lecturerId);
+            JTextField txtPassword = new JTextField(password);
             JCheckBox chkIsProjectManager = new JCheckBox("Is Project Manager", isProjectManager);
 
             Object[] message = {
                 "Lecturer Name:", txtLecturerName,
                 "Lecturer ID:", txtLecturerId,
+                "Password",txtPassword,
                 chkIsProjectManager
             };
 
@@ -90,13 +92,14 @@ public class lect_Panal extends javax.swing.JPanel {
                 boolean newIsProjectManager = chkIsProjectManager.isSelected();
                 boolean isSecondMarker = false;
                 boolean isSupervisor =false;
+                String newPassword = txtPassword.getText();
                 // Update the JTable with the modified details
                 lecturePanal.setValueAt(newLecturerName, selectedRow, 0);
                 lecturePanal.setValueAt(newLecturerId, selectedRow, 1);
                 lecturePanal.setValueAt(newIsProjectManager, selectedRow, 2);
-
+                lecturePanal.setValueAt(newPassword, selectedRow, 3);
                 // Update the file with the modified details
-                Admin.updateLecturerInFile(lecturePanal,newLecturerName, newLecturerId, newIsProjectManager,isSecondMarker,isSupervisor);
+               Admin.updateLecturerInFile(lecturePanal, newLecturerName, newLecturerId, newIsProjectManager, isSecondMarker, isSupervisor, newPassword, selectedRow);
             }
         } else {
             JOptionPane.showMessageDialog(lect_Panal.this, "Please select a lecturer to edit.");
@@ -128,17 +131,17 @@ public class lect_Panal extends javax.swing.JPanel {
         lecturePanal.setFont(new java.awt.Font("Dubai Medium", 0, 20)); // NOI18N
         lecturePanal.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
             },
             new String [] {
-                "Name", "ID", "project Manager", "Supervisseess", "Action"
+                "Name", "ID", "project Manager", "password", "Supervisseess", "Action"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, true
+                false, false, false, true, false, true
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
