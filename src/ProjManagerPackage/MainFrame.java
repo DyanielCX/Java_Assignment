@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package ProjManagerPackage;
 
 import StuPackage.StuData_IO;
@@ -17,11 +13,7 @@ public class MainFrame extends javax.swing.JFrame {
     private Color navDefaultColor = new Color(122, 162, 227);
     private Color navSelectedColor = new Color(106, 212, 221);
     
-    public AssignAdvsTab_IntakeAdvsAllot Tab7;
     
-    /**
-     * Creates new form ProjMng_MainFrame
-     */
     public MainFrame() {
         initComponents();
         getContentPane().setBackground(new Color(248, 246, 227));
@@ -33,8 +25,9 @@ public class MainFrame extends javax.swing.JFrame {
         
         
         /* Set the tab panel */
-//        StuAssessmentTab Tab1 = new StuAssessmentTab();
-//        TabPanel.addTab("tab1", Tab1);
+        //Dashboard Panel Section
+        Dashboard Tab1 = new Dashboard(this);
+        TabPanel.addTab("tab1", Tab1);
         
 
         //Student Assessment Panel Section
@@ -55,11 +48,11 @@ public class MainFrame extends javax.swing.JFrame {
         AssignAdvsTab_IntakeList Tab6 = new AssignAdvsTab_IntakeList(this);
         TabPanel.addTab("tab6", Tab6);
         
-        Tab7 = new AssignAdvsTab_IntakeAdvsAllot(this);
-        TabPanel.addTab("tab7", Tab7);//Intake Advisor Tab - will be create in other class
+        AssignAdvsTab_IntakeAdvsAllot Tab7 = new AssignAdvsTab_IntakeAdvsAllot(this);
+        TabPanel.addTab("tab7", Tab7);//Need to move to external method
         
         AssignAdvsTab_StuAdvsList Tab8 = new AssignAdvsTab_StuAdvsList(this);
-        TabPanel.addTab("tab8", Tab8);
+        TabPanel.addTab("tab8", Tab8);//Need to move to external method
     
         
         //Account Management Panel Section
@@ -78,8 +71,10 @@ public class MainFrame extends javax.swing.JFrame {
         TabPanel.addTab("tab12", Tab12);
         
         RptStatus_StuList Tab13 = new RptStatus_StuList(this);
-        TabPanel.addTab("tab13", Tab13);
+        TabPanel.addTab("tab13", Tab13);//Need to move to external method
         
+        //Set the Dashboard Panel as the default panel
+        TabPanel.setSelectedIndex(0);
     }
 
     /**
@@ -109,7 +104,6 @@ public class MainFrame extends javax.swing.JFrame {
         lblLogout = new javax.swing.JLabel();
         CoverTabPane = new javax.swing.JPanel();
         TabPanel = new javax.swing.JTabbedPane();
-        jPanel1 = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(248, 246, 227));
@@ -379,22 +373,6 @@ public class MainFrame extends javax.swing.JFrame {
         );
 
         getContentPane().add(CoverTabPane, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 100, 940, 30));
-
-        jPanel1.setBackground(new java.awt.Color(204, 204, 255));
-
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 935, Short.MAX_VALUE)
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 535, Short.MAX_VALUE)
-        );
-
-        TabPanel.addTab("tab1", jPanel1);
-
         getContentPane().add(TabPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(295, 94, -1, 570));
 
         pack();
@@ -521,7 +499,6 @@ public class MainFrame extends javax.swing.JFrame {
     public javax.swing.JPanel StuAssessmentPane;
     public static javax.swing.JTabbedPane TabPanel;
     private javax.swing.JLabel imgLogo;
-    private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel lblLogout;
     private javax.swing.JLabel navAccMangement;
     private javax.swing.JLabel navAssignAdvisors;
