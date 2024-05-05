@@ -8,8 +8,10 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.swing.table.DefaultTableModel;
 import assignment_ood.addLect;
+import java.io.BufferedWriter;
+import javax.swing.JOptionPane;
 import javax.swing.JTable;
-
+import assignment_ood.presentationReq;
 public class Admin extends javax.swing.JFrame {
     private javax.swing.JPanel AdminPane;
 
@@ -166,7 +168,42 @@ public class Admin extends javax.swing.JFrame {
         return lecturers;
     }   
 
+     public static void updateStatusInFile(int row, String newStatus) {
+    try {
+        // Read all lines from the file into a list
+        List<String> lines = new ArrayList<>();
+        BufferedReader reader = new BufferedReader(new FileReader("presentation_data.txt"));
+        String line;
+        while ((line = reader.readLine()) != null) {
+            lines.add(line);
+        }
+        reader.close();
+
+        // Update the status in the corresponding line
+       if (row < lines.size()) {
+      String[] parts = lines.get(row).split(",");
+      if (parts.length >= 4) {
+        parts[3] = newStatus;
+        lines.set(row, String.join(",", parts));
+      }
+    }
+
+    // Write the updated lines with explicit flush
+    BufferedWriter writer = new BufferedWriter(new FileWriter("presentation_data.txt"));
+    for (String updatedLine : lines) {
+      writer.write(updatedLine);
+      writer.newLine();
+    }
+    writer.flush(); // Flush the buffer before closing
+    writer.close();
+  } catch (IOException e) {
+    e.printStackTrace();
+    JOptionPane.showMessageDialog(null, "Error updating status in file.", "Error", JOptionPane.ERROR_MESSAGE);
+  }
+
+ 
     
+}
 
    
 

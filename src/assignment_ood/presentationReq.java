@@ -4,13 +4,23 @@
  */
 package assignment_ood;
 
+import ProjManagerPackage.StuAssessElem.TableActionCellEditor;
+import ProjManagerPackage.StuAssessElem.TableActionCellRender;
+import ProjManagerPackage.StuAssessElem.TableActionEvent;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
+import javax.swing.DefaultCellEditor;
+import javax.swing.JCheckBox;
+import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
+import javax.swing.JScrollBar;
+import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableColumnModel;
 
 /**
  *
@@ -25,8 +35,48 @@ private Lecture_mainframe lectmainframe;
         this.lectmainframe = lectmainframe;
         initComponents();
         populatePresentationTable();
-    }
+        
+        
+     
+        presentationTable.getColumnModel().getColumn(4).setCellRenderer(new TableActionCellRender());
+        presentationTable.getColumnModel().getColumn(4).setCellEditor(new TableActionCellEditor(event));
+        
 
+
+    }
+    
+    TableActionEvent event = new TableActionEvent() {
+    @Override
+    public void onEdit(int row) {
+        // Get the selected row
+         int selectedRow = presentationTable.convertRowIndexToModel(presentationTable.getSelectedRow());
+    if (selectedRow != -1) {
+            // Create a combo box with status options
+            String[] statusOptions = {"Pending", "Rejected", "Accepted"};
+            JComboBox<String> cbStatus = new JComboBox<>(statusOptions);
+
+            // Get the current status of the selected row
+            String currentStatus = (String) presentationTable.getValueAt(selectedRow, 3);
+            cbStatus.setSelectedItem(currentStatus); // Set the combo box to the current status
+
+            // Display a dialog with the combo box for editing status
+            int option = JOptionPane.showConfirmDialog(presentationTable, cbStatus, "Edit Status", JOptionPane.OK_CANCEL_OPTION);
+            if (option == JOptionPane.OK_OPTION) {
+                // Get the selected status from the combo box
+                String newStatus = (String) cbStatus.getSelectedItem();
+                // Update the status in the table
+                presentationTable.setValueAt(newStatus, selectedRow, 3);
+                // Optionally, update the status in the file or perform any other actions needed
+                // Admin.updateStatusInFile(selectedRow, newStatus);
+                Admin.updateStatusInFile(selectedRow, newStatus);
+              
+            }
+        } else {
+            JOptionPane.showMessageDialog(presentationTable, "Please select a row to edit.");
+        }
+    }
+};
+        
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -41,32 +91,36 @@ private Lecture_mainframe lectmainframe;
 
         presentationTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
             },
             new String [] {
-                "Student", "Lecturer", "Date", "Status"
+                "Student", "Lecturer", "Date", "Status", "Action"
             }
         ));
+        presentationTable.setRowHeight(50);
         jScrollPane1.setViewportView(presentationTable);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 674, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 725, Short.MAX_VALUE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 346, Short.MAX_VALUE)
-                .addContainerGap())
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 330, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
 private void populatePresentationTable() {
     DefaultTableModel model = (DefaultTableModel) presentationTable.getModel();
+
+    // Clear existing rows in the table model
+    model.setRowCount(0);
 
     // Read data from presentation_data.txt file
     try (BufferedReader reader = new BufferedReader(new FileReader("presentation_data.txt"))) {
@@ -77,25 +131,21 @@ private void populatePresentationTable() {
             rows.add(rowData); // Add rows to the list
         }
 
-        // Add rows from the list to the model in normal order
+        // Add rows from the list to the model
         for (String[] row : rows) {
             model.addRow(row);
-        }
-        
-        // Reverse the order of rows in the table model
-        for (int i = 0; i < model.getRowCount() / 2; i++) {
-            int oppositeIndex = model.getRowCount() - 1 - i;
-            for (int j = 0; j < model.getColumnCount(); j++) {
-                Object temp = model.getValueAt(i, j);
-                model.setValueAt(model.getValueAt(oppositeIndex, j), i, j);
-                model.setValueAt(temp, oppositeIndex, j);
-            }
         }
     } catch (IOException e) {
         e.printStackTrace();
         JOptionPane.showMessageDialog(this, "Error reading presentation data file.", "Error", JOptionPane.ERROR_MESSAGE);
     }
 }
+
+
+
+
+
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JScrollPane jScrollPane1;
