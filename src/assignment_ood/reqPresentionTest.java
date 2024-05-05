@@ -64,9 +64,11 @@ public class reqPresentionTest extends javax.swing.JFrame {
                 String assessment = stuDataArray[4];
                 String supervisor = stuDataArray[5];
                 String secondMarker = stuDataArray[6];
+                String RMCP_lecture = stuDataArray[7];
+                String password = stuDataArray[8];
 
                 // Add into ArrayList
-                students.add(new Student(name, age, stuID, intake, assessment, supervisor, secondMarker));
+                students.add(new Student(name, age, stuID, intake, assessment, supervisor, secondMarker, RMCP_lecture, password));
             }
             scan.close(); // Close the scanner
         } catch (IOException ex) {

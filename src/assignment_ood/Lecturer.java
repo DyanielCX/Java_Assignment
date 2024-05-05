@@ -8,14 +8,15 @@ import java.util.List;
 
 
 public class Lecturer {
-    private String lectName;
-    private String lectid;
-     private boolean isProjectManager;
-     private boolean isSecondMarker;
-     private boolean isSupervisor;
-     private List<Lecturer> lecturers;
-     private String password;
-    public Lecturer(String name, String lectid, boolean isProjectManager, boolean isSecondMarker, boolean isSupervisor,String password) {
+    public String lectName;
+    public String lectid;
+    public boolean isProjectManager;
+    public boolean isSecondMarker;
+    public boolean isSupervisor;
+    public List<Lecturer> lecturers;
+    public String password;
+    
+    public Lecturer(String name, String lectid, boolean isProjectManager, boolean isSecondMarker, boolean isSupervisor, String password) {
         this.lectName = name;
         this.lectid = lectid;
         this.isProjectManager = isProjectManager;

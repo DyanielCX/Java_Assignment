@@ -1,5 +1,6 @@
 package ProjManagerPackage;
 
+import ProjManagerPackage.AssignSupvElem.LectData_IO;
 import StuPackage.StuData_IO;
 import java.awt.Color;
 
@@ -483,6 +484,7 @@ public class MainFrame extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 StuData_IO.readFrTxt();
+                LectData_IO.readFrTxt();
                 new MainFrame().setVisible(true);
             }
         });

@@ -223,6 +223,8 @@ public class Admin_AddStudent extends javax.swing.JFrame {
         String assessment = (String) StudentAssessment_cmb.getSelectedItem();
         String supervisor = (String) StudentSupervisor_cmb.getSelectedItem();
         String secondMarker = (String) StudentSecMarker.getSelectedItem();
+        String RMCP_lecture = "-";
+        String password = "abc123";
 
         // Check if any field is empty
         if (name.equals("Please enter the student name") || intake.isEmpty() || assessment.isEmpty() || supervisor.isEmpty() || secondMarker.isEmpty()) {
@@ -231,7 +233,7 @@ public class Admin_AddStudent extends javax.swing.JFrame {
         }
 
         // Create a Student object with the retrieved data
-        Student newStudent = new Student(name, age, generateStudentID(), intake, assessment, supervisor, secondMarker);
+        Student newStudent = new Student(name, age, generateStudentID(), intake, assessment, supervisor, secondMarker, RMCP_lecture, password);
 
         // Add the student to the ArrayList
         StuData_IO.add(newStudent);

@@ -1,9 +1,7 @@
 package ProjManagerPackage;
 
-import static ProjManagerPackage.ProjManager.editStuAssessment;
 import ProjManagerPackage.StuAssessElem.IntakeBasedMethod;
 import StuPackage.StuData_IO;
-import StuPackage.Student;
 import java.awt.Color;
 import javax.swing.JOptionPane;
 
@@ -227,7 +225,7 @@ public class EditAssFrame_StuBased extends javax.swing.JFrame {
         
         if (assChecking == true) {
             //Update the edited student data into ArrayList
-            editStuAssessment(stuIndex, selectedAssess);
+            ProjManager.editStuAssessment(stuIndex, selectedAssess);
             
             //Return back to the student list page
             this.setVisible(false);

@@ -4,30 +4,52 @@
  */
 package ProjManagerPackage;
 
+import ProjManagerPackage.AssignSupvElem.LectData_IO;
 import java.awt.Color;
+import java.util.Enumeration;
+import javax.swing.AbstractButton;
+import javax.swing.ButtonGroup;
 
-/**
- *
- * @author PC
- */
+
 public class AssignAdvsFrame_LectRole extends javax.swing.JFrame {
 
-    /**
-     * Creates new form EditLectRoleFrame
-     */
+    private String SelectedLectID;
+    
     public AssignAdvsFrame_LectRole(String selectedLectID) {
+        SelectedLectID = selectedLectID;
+        boolean isSupervisor = false;
+        boolean isSecondMarker = false;
         
         //GUI Setting
         initComponents();
         getContentPane().setBackground(new Color(151, 231, 225));
         
         //Search the selected lecturer data
-        lblSelectedName.setText("Alan");
-        lblSelectedID.setText(selectedLectID);
+         //Search the selected student data
+        for (int i = 0; i < LectData_IO.LectData.size(); i++) {
+            if (LectData_IO.LectData.get(i).lectid.equals(selectedLectID)) {
+                lblSelectedName.setText(LectData_IO.LectData.get(i).lectName);
+                lblSelectedID.setText(LectData_IO.LectData.get(i).lectid);
+                isSupervisor = LectData_IO.LectData.get(i).isSupervisor;
+                isSecondMarker = LectData_IO.LectData.get(i).isSecondMarker;
+                break;
+            }
+        }
         
         //Select the lecturer whether is supervisor and second marker
-        RBSupervisor_Yes.setSelected(true);
-        RBSecondMarker_No.setSelected(true);
+        if (isSupervisor == true) {
+            RBSupervisor_Yes.setSelected(true);
+        }
+        else{
+            RBSupervisor_No.setSelected(true);
+        }
+        
+        if (isSecondMarker == true) {
+            RBSecondMarker_Yes.setSelected(true);
+        }
+        else{
+            RBSecondMarker_No.setSelected(true);
+        }
     }
 
     /**
@@ -239,7 +261,33 @@ public class AssignAdvsFrame_LectRole extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btbSubmit3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btbSubmit3ActionPerformed
+        boolean isSupervisor = true;
+        boolean isSecondMarker = true;
         
+        //Search the selected student location
+        int lectIndex = LectData_IO.checkStu(SelectedLectID);
+        
+        //Get lecturer role selection
+        String SpvSelection = getSelectedRadioButton(isSupervisorBG);
+        if (SpvSelection.equals("Yes")) {
+            isSupervisor = true;
+        }else{
+            isSupervisor = false;
+        }
+        
+        String SecondMkrSelection = getSelectedRadioButton(isSecondMarkerBG);
+        if (SecondMkrSelection.equals("Yes")) {
+            isSecondMarker = true;
+        }else{
+            isSecondMarker = false;
+        }
+        
+        //Update the lecturer role
+        ProjManager.editLectRole(lectIndex, isSupervisor, isSecondMarker);
+        
+        //Return back to the student list page
+        this.setVisible(false);
+        backMainFrame();
     }//GEN-LAST:event_btbSubmit3ActionPerformed
 
     private void btbCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btbCancelActionPerformed
@@ -248,6 +296,7 @@ public class AssignAdvsFrame_LectRole extends javax.swing.JFrame {
         backMainFrame();
     }//GEN-LAST:event_btbCancelActionPerformed
 
+    //Method to back to Main Frame
     public void backMainFrame(){
         MainFrame fr = new MainFrame();
         fr.setVisible(true);
@@ -256,6 +305,17 @@ public class AssignAdvsFrame_LectRole extends javax.swing.JFrame {
         fr.AssignAdvisorsPane.setBackground(new Color(106, 212, 221));
         fr.PanelTitle.setText("Assign Advisors");
         fr.changedTab(4);
+    }
+    
+    // Method to retrieve the selected radio button's text
+    private static String getSelectedRadioButton(ButtonGroup buttonGroup) {
+        for (Enumeration<AbstractButton> buttons = buttonGroup.getElements(); buttons.hasMoreElements();) {
+            AbstractButton button = buttons.nextElement();
+            if (button.isSelected()) {
+                return button.getText();
+            }
+        }
+        return null; // Return null if no button is selected
     }
     
     /**
