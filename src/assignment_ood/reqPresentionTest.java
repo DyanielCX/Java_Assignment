@@ -184,7 +184,7 @@ public class reqPresentionTest extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         String selectedStudent = (String) viewStudent.getSelectedItem();
     String selectedSupervisor = (String) reqSupervisor.getSelectedItem();
-    
+    String status ="Pending";
     // Get the selected date from the JCalendar
     java.util.Date selectedDate = jDateChooser1.getDate();
     
@@ -195,7 +195,7 @@ public class reqPresentionTest extends javax.swing.JFrame {
          BufferedWriter bufferedWriter = new BufferedWriter(writer)) {
         
         // Write the selected data to the file
-         writer.write(selectedStudent + "," + selectedSupervisor + "," + selectedDate + "\n");
+         writer.write(selectedStudent + "," + selectedSupervisor + "," + selectedDate + ","+status + "\n");
 
         
         // Display a success message
