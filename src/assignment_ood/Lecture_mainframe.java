@@ -26,16 +26,17 @@ public class Lecture_mainframe extends javax.swing.JFrame {
         initComponents();
         getContentPane().setBackground(new Color(248, 246, 227));
         
-//        Lect_ViewPresentation dash = new Lect_ViewPresentation(this);
-//        TabPanel.addTab("tab0", dash);
+      Lect_Dashboard dash = new Lect_Dashboard(this);
+        TabPanel.addTab("tab0", dash);
        
         Lect_ViewPresentation view = new Lect_ViewPresentation(this);
-        TabPanel.addTab("tab1", view);
+        TabPanel.addTab("tab2", view);
        
         presentationReq tab3 = new  presentationReq(this);
-        TabPanel.add("tab2",tab3);
-        
-
+        TabPanel.add("tab3",tab3);
+         
+       Lect_ViewConsultation tab4 = new Lect_ViewConsultation(this);
+       TabPanel.add("tab4",tab4);
         /* Get the user name */
         String UserName = "Shahab";
         AccName.setText(UserName);
@@ -87,7 +88,6 @@ public class Lecture_mainframe extends javax.swing.JFrame {
         lblLogout = new javax.swing.JLabel();
         CoverTabPane = new javax.swing.JPanel();
         TabPanel = new javax.swing.JTabbedPane();
-        jPanel1 = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(248, 246, 227));
@@ -357,22 +357,6 @@ public class Lecture_mainframe extends javax.swing.JFrame {
         );
 
         getContentPane().add(CoverTabPane, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 100, 940, 30));
-
-        jPanel1.setBackground(new java.awt.Color(204, 204, 255));
-
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 935, Short.MAX_VALUE)
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 535, Short.MAX_VALUE)
-        );
-
-        TabPanel.addTab("tab1", jPanel1);
-
         getContentPane().add(TabPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(295, 94, -1, 570));
 
         pack();
@@ -501,7 +485,6 @@ public class Lecture_mainframe extends javax.swing.JFrame {
     public javax.swing.JPanel StuAssessmentPane;
     public static javax.swing.JTabbedPane TabPanel;
     private javax.swing.JLabel imgLogo;
-    private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel lblLogout;
     private javax.swing.JLabel navAccMangement;
     private javax.swing.JLabel navAssignSupervisor;
