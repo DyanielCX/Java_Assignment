@@ -4,9 +4,7 @@
  */
 package ProjManagerPackage;
 
-import ProjManagerPackage.AssignSupvElem.CrossIcon;
 import ProjManagerPackage.AssignSupvElem.LectData_IO;
-import ProjManagerPackage.AssignSupvElem.TickIcon;
 import ProjManagerPackage.AssignSupvElem.TickCrossIcon_TableActionCellRender;
 import ProjManagerPackage.StuAssessElem.ModernScrollBarUI;
 import ProjManagerPackage.StuAssessElem.TableActionCellEditor;
@@ -69,7 +67,6 @@ public class AssignAdvsTab_LectRoleList extends javax.swing.JPanel {
             model.addRow(InsertRow);
             
             // Set the appropriate icon based on the value of isSupervisor and isSecondMarker
-            // in the corresponding columns (2 and 3)
             if (isSupervisor) {
                 model.setValueAt(true, model.getRowCount() - 1, 2);
             } else {

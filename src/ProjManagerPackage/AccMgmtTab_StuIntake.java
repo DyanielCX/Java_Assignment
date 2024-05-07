@@ -74,12 +74,12 @@ public class AccMgmtTab_StuIntake extends javax.swing.JPanel {
         TableActionEvent event = new TableActionEvent() {
             @Override
             public void onEdit(int row) {
-                //Get the student id of selected student
+                //Get the intake of selected intake
                 String selectedIntake = (String) IntakeAssTable.getValueAt(row, 0);
                 
                 mainFrame.createStuAccMgmtPane(mainFrame, selectedIntake);
-                int tabIndex = mainFrame.TabPanel.getTabCount();
-                mainFrame.changedTab(tabIndex-1);
+                int tabIndex = mainFrame.TabPanel.getTabCount()-1;
+                mainFrame.changedTab(tabIndex);
             }
         };
         

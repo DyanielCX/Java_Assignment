@@ -141,7 +141,9 @@ public class AssignAdvsTab extends javax.swing.JPanel {
     }//GEN-LAST:event_btbEditLectMouseClicked
 
     private void btbAssignStuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btbAssignStuMouseClicked
-        mainFrame.changedTab(5);
+        mainFrame.createIntakeListPane(mainFrame);
+        int tabIndex = mainFrame.TabPanel.getTabCount()-1;
+        mainFrame.changedTab(tabIndex);
     }//GEN-LAST:event_btbAssignStuMouseClicked
 
 

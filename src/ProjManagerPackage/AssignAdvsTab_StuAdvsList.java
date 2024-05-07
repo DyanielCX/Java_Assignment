@@ -28,7 +28,7 @@ public class AssignAdvsTab_StuAdvsList extends javax.swing.JPanel {
 
     private MainFrame mainFrame;
     
-    public AssignAdvsTab_StuAdvsList(MainFrame mainFrame) {
+    public AssignAdvsTab_StuAdvsList(MainFrame mainFrame, String selectedIntake) {
         this.mainFrame = mainFrame;
         initComponents();
         

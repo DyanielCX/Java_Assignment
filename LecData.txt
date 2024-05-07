@@ -1,4 +1,4 @@
-shahabdd,81237,true,false,false,linux
-shahab,12375,false,false,false,linuxf
-qistina,1239,false,false,false,networ
+shahabdd,81237,true,true,true,linux
+shahab,12375,false,false,true,linuxf
+qistina,1239,false,true,false,networ
 nowshath,2222,true,false,false,313134

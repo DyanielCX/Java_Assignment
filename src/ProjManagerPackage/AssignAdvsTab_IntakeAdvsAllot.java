@@ -1,5 +1,14 @@
 package ProjManagerPackage;
 
+import static ProjManagerPackage.AdvisorsRecord.AdvisorsRecordData;
+import ProjManagerPackage.AssignSupvElem.LectData_IO;
+import ProjManagerPackage.StuAssessElem.IntakeBasedMethod;
+import StuPackage.StuData_IO;
+import StuPackage.Student;
+import assignment_ood.Lecturer;
+import java.util.ArrayList;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author PC
@@ -7,13 +16,115 @@ package ProjManagerPackage;
 public class AssignAdvsTab_IntakeAdvsAllot extends javax.swing.JPanel {
 
     private MainFrame mainFrame;
+    private String SelectedIntake;
+    private String Assessment;
     
-    public AssignAdvsTab_IntakeAdvsAllot(MainFrame mainFrame) {
+    public AssignAdvsTab_IntakeAdvsAllot(MainFrame mainFrame, String selectedIntake) {
         this.mainFrame = mainFrame;
+        SelectedIntake = selectedIntake;
+        Assessment = IntakeBasedMethod.getAssessment(selectedIntake);
         
         initComponents();
         
-        cboRMCP_Lect.setEnabled(false);
+        //Get assessement and total student of selected intake
+        String assessment = IntakeBasedMethod.getAssessment(selectedIntake);
+        int TotalStu = 0;
+        
+        for (Student stu :StuData_IO.StuData){
+            if (stu.intake.equals(selectedIntake)) {
+                TotalStu ++;
+            }
+        }
+        //Insert the retrieve data in to panel
+        TabTitle.setText(selectedIntake);
+        selectedAssessment.setText(assessment);
+        numTotalStu.setText(Integer.toString(TotalStu));
+        
+        
+        //Create supervisor, second marker and RMCP lecturer list
+        ArrayList<String> Supervisor_ArrayList = new ArrayList<>();
+        ArrayList<String> SecondMarker_ArrayList = new ArrayList<>();
+        ArrayList<String> RMCPLect_ArrayList = new ArrayList<>();
+        
+        Supervisor_ArrayList.add("-");
+        SecondMarker_ArrayList.add("-");
+        RMCPLect_ArrayList.add("-");
+        
+        for (Lecturer lect :LectData_IO.LectData){
+            if (lect.isSupervisor == true) {
+                Supervisor_ArrayList.add(lect.lectName);
+            }
+            if(lect.isSecondMarker == true) {
+                SecondMarker_ArrayList.add(lect.lectName);
+            }
+            RMCPLect_ArrayList.add(lect.lectName);
+        }
+        
+        //Convert ArrayList into Array
+        String[] SupervisorList = Supervisor_ArrayList.toArray(new String[Supervisor_ArrayList.size()]);
+        String[] SecondMarkerList = SecondMarker_ArrayList.toArray(new String[SecondMarker_ArrayList.size()]);
+        String[] RMCP_LectList = RMCPLect_ArrayList.toArray(new String[RMCPLect_ArrayList.size()]);
+        
+        //Insert the list into ComboBox
+        cboSupv1.setModel(new javax.swing.DefaultComboBoxModel<>(SupervisorList));
+        cboSupv2.setModel(new javax.swing.DefaultComboBoxModel<>(SupervisorList));
+        cboSupv3.setModel(new javax.swing.DefaultComboBoxModel<>(SupervisorList));
+        
+        cbo2ndMkr1.setModel(new javax.swing.DefaultComboBoxModel<>(SecondMarkerList));
+        cbo2ndMkr2.setModel(new javax.swing.DefaultComboBoxModel<>(SecondMarkerList));
+        cbo2ndMkr3.setModel(new javax.swing.DefaultComboBoxModel<>(SecondMarkerList));
+        
+        cboRMCP_Lect.setModel(new javax.swing.DefaultComboBoxModel<>(RMCP_LectList));
+        
+        //Set the selection of advisor based on intake
+        int intakeIndex = AdvisorsRecord.checkIntake(SelectedIntake);
+        
+        cboSupv1.setSelectedItem(AdvisorsRecord.AdvisorsRecordData.get(intakeIndex).Spv1);
+        cboSupv2.setSelectedItem(AdvisorsRecord.AdvisorsRecordData.get(intakeIndex).Spv2);
+        cboSupv3.setSelectedItem(AdvisorsRecord.AdvisorsRecordData.get(intakeIndex).Spv3);
+        cbo2ndMkr1.setSelectedItem(AdvisorsRecord.AdvisorsRecordData.get(intakeIndex).SecondMkr1);
+        cbo2ndMkr2.setSelectedItem(AdvisorsRecord.AdvisorsRecordData.get(intakeIndex).SecondMkr2);
+        cbo2ndMkr3.setSelectedItem(AdvisorsRecord.AdvisorsRecordData.get(intakeIndex).SecondMkr3);
+        cboRMCP_Lect.setSelectedItem(AdvisorsRecord.AdvisorsRecordData.get(intakeIndex).RMCP_Lecturer);
+        
+        //Set the comboBox unable to select based on assessment type
+        switch (assessment) {
+            case "Investigation Report":
+                cboRMCP_Lect.setEnabled(false);
+                break;
+            case "CP1":
+                cboRMCP_Lect.setEnabled(false);
+                break;
+            case "CP2":
+                cboRMCP_Lect.setEnabled(false);
+                break;
+            case "FYP":
+                cboRMCP_Lect.setEnabled(false);
+                break;
+            case "Intern":
+                cbo2ndMkr1.setEnabled(false);
+                cbo2ndMkr2.setEnabled(false);
+                cbo2ndMkr3.setEnabled(false);
+                cboRMCP_Lect.setEnabled(false);
+                break;
+            case "RMCP":
+                cboSupv1.setEnabled(false);
+                cboSupv2.setEnabled(false);
+                cboSupv3.setEnabled(false);
+                cbo2ndMkr1.setEnabled(false);
+                cbo2ndMkr2.setEnabled(false);
+                cbo2ndMkr3.setEnabled(false);
+                break;
+            default:
+                cboSupv1.setEnabled(false);
+                cboSupv2.setEnabled(false);
+                cboSupv3.setEnabled(false);
+                cbo2ndMkr1.setEnabled(false);
+                cbo2ndMkr2.setEnabled(false);
+                cbo2ndMkr3.setEnabled(false);
+                cboRMCP_Lect.setEnabled(false);
+        }
+        mainFrame.changedTab(5);
     }
 
     /**
@@ -140,15 +251,16 @@ public class AssignAdvsTab_IntakeAdvsAllot extends javax.swing.JPanel {
                 .addContainerGap()
                 .addComponent(lblSupvTitle)
                 .addGap(0, 0, 0)
-                .addGroup(SupvPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblSupv1)
-                    .addComponent(cboSupv1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(SupvPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(SupvPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(lblSupv2)
+                        .addComponent(cboSupv2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(SupvPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(lblSupv3)
-                        .addComponent(cboSupv3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGroup(SupvPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(lblSupv2)
-                            .addComponent(cboSupv2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addComponent(cboSupv3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(SupvPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(lblSupv1)
+                        .addComponent(cboSupv1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(28, Short.MAX_VALUE))
         );
 
@@ -209,15 +321,16 @@ public class AssignAdvsTab_IntakeAdvsAllot extends javax.swing.JPanel {
                 .addContainerGap()
                 .addComponent(lbl2ndMkrTitle)
                 .addGap(0, 0, 0)
-                .addGroup(SecondMkrPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lbl2ndMkr1)
-                    .addComponent(cbo2ndMkr1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(SecondMkrPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(SecondMkrPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(lbl2ndMkr3)
+                        .addComponent(cbo2ndMkr3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(SecondMkrPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(lbl2ndMkr2)
-                        .addComponent(cbo2ndMkr2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGroup(SecondMkrPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(lbl2ndMkr3)
-                            .addComponent(cbo2ndMkr3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addComponent(cbo2ndMkr2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(SecondMkrPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(lbl2ndMkr1)
+                        .addComponent(cbo2ndMkr1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(20, Short.MAX_VALUE))
         );
 
@@ -345,21 +458,142 @@ public class AssignAdvsTab_IntakeAdvsAllot extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btbBackMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btbBackMouseClicked
-        mainFrame.changedTab(5);
+        
+        //Back to previous page
+        mainFrame.createIntakeListPane(mainFrame);
+        int tabIndex = mainFrame.TabPanel.getTabCount()-1;
+        mainFrame.changedTab(tabIndex);
     }//GEN-LAST:event_btbBackMouseClicked
 
     private void btbAutoAssignActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btbAutoAssignActionPerformed
-        // TODO add your handling code here:
+        //Advisors Submission
+        switch (Assessment) {
+            case "Investigation Report":
+                commonAssesSubmit();
+                break;
+            case "CP1":
+                commonAssesSubmit();
+                break;
+            case "CP2":
+                commonAssesSubmit();
+                break;
+            case "FYP":
+                commonAssesSubmit();
+                break;
+            case "Intern":
+                internAssesSubmit();
+                break;
+            case "RMCP":
+                RMCPAssesSubmit();
+                break;
+            default:
+                JOptionPane.showMessageDialog(null,"This intake haven't assign assessment.");
+        }
+        
+        //Auto assign to student
+        ProjManager.autoAssignAdvisor(SelectedIntake, Assessment);
+        
+        //Back to previous page
+        mainFrame.createIntakeListPane(mainFrame);
+        int tabIndex = mainFrame.TabPanel.getTabCount()-1;
+        mainFrame.changedTab(tabIndex);
     }//GEN-LAST:event_btbAutoAssignActionPerformed
 
     private void btbSubmitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btbSubmitActionPerformed
-        // TODO add your handling code here:
+        switch (Assessment) {
+            case "Investigation Report":
+                commonAssesSubmit();
+                break;
+            case "CP1":
+                commonAssesSubmit();
+                break;
+            case "CP2":
+                commonAssesSubmit();
+                break;
+            case "FYP":
+                commonAssesSubmit();
+                break;
+            case "Intern":
+                internAssesSubmit();
+                break;
+            case "RMCP":
+                RMCPAssesSubmit();
+                break;
+            default:
+                JOptionPane.showMessageDialog(null,"This intake haven't assign assessment.");
+        }
+        
+        //Back to previous page
+        mainFrame.createIntakeListPane(mainFrame);
+        int tabIndex = mainFrame.TabPanel.getTabCount()-1;
+        mainFrame.changedTab(tabIndex);
     }//GEN-LAST:event_btbSubmitActionPerformed
 
     private void btbManualAssignActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btbManualAssignActionPerformed
-        mainFrame.changedTab(7);
+        switch (Assessment) {
+            case "Investigation Report":
+                commonAssesSubmit();
+                break;
+            case "CP1":
+                commonAssesSubmit();
+                break;
+            case "CP2":
+                commonAssesSubmit();
+                break;
+            case "FYP":
+                commonAssesSubmit();
+                break;
+            case "Intern":
+                internAssesSubmit();
+                break;
+            case "RMCP":
+                RMCPAssesSubmit();
+                break;
+            default:
+                JOptionPane.showMessageDialog(null,"This intake haven't assign assessment.");
+        }
+        
+        mainFrame.createStuAdvsListPane(mainFrame, SelectedIntake);
+        int tabIndex = mainFrame.TabPanel.getTabCount()-1;
+        mainFrame.changedTab(tabIndex);
     }//GEN-LAST:event_btbManualAssignActionPerformed
 
+    //Submission Method for Invstigation Report, CP1, CP2, FYP
+    private void commonAssesSubmit(){
+        int intakeIndex = AdvisorsRecord.checkIntake(SelectedIntake);
+        
+        String Spv1 = (String) cboSupv1.getSelectedItem();
+        String Spv2 = (String) cboSupv2.getSelectedItem();
+        String Spv3 = (String) cboSupv3.getSelectedItem();
+        String SecondMkr1 = (String) cbo2ndMkr1.getSelectedItem();
+        String SecondMkr2 = (String) cbo2ndMkr2.getSelectedItem();
+        String SecondMkr3 = (String) cbo2ndMkr3.getSelectedItem();
+        
+        AdvisorsRecord editedRecord = new AdvisorsRecord(SelectedIntake, Spv1, Spv2, Spv3, SecondMkr1, SecondMkr2, SecondMkr3, "-");
+        AdvisorsRecord.edit(intakeIndex, editedRecord);
+    }
+    
+    //Submission Method for Intern
+    private void internAssesSubmit(){
+        int intakeIndex = AdvisorsRecord.checkIntake(SelectedIntake);
+        
+        String Spv1 = (String) cboSupv1.getSelectedItem();
+        String Spv2 = (String) cboSupv2.getSelectedItem();
+        String Spv3 = (String) cboSupv3.getSelectedItem();
+        
+        AdvisorsRecord editedRecord = new AdvisorsRecord(SelectedIntake, Spv1, Spv2, Spv3, "-", "-", "-", "-");
+        AdvisorsRecord.edit(intakeIndex, editedRecord);
+    }
+    
+    //Submission Method for RMCP
+    private void RMCPAssesSubmit(){
+        int intakeIndex = AdvisorsRecord.checkIntake(SelectedIntake);
+        
+        String RMCP_Lect = (String) cboRMCP_Lect.getSelectedItem();
+        
+        AdvisorsRecord editedRecord = new AdvisorsRecord(SelectedIntake, "-", "-", "-", "-", "-", "-", RMCP_Lect);
+        AdvisorsRecord.edit(intakeIndex, editedRecord);
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel RMCP_LectPane;

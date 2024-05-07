@@ -476,6 +476,9 @@
       </Layout>
     </Container>
     <Container class="javax.swing.JTabbedPane" name="TabPanel">
+      <Properties>
+        <Property name="tabLayoutPolicy" type="int" value="1"/>
+      </Properties>
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>
       </AuxValues>

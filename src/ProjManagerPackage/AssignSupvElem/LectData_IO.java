@@ -1,6 +1,5 @@
 package ProjManagerPackage.AssignSupvElem;
 
-import StuPackage.Student;
 import assignment_ood.Lecturer;
 import java.io.File;
 import java.io.FileWriter;
@@ -11,7 +10,7 @@ import javax.swing.JOptionPane;
 
 
 public class LectData_IO {
-    // ArrayList to store student data
+    // ArrayList to store lecturer data
     public static ArrayList<Lecturer> LectData = new ArrayList<>();
     
     // Read all lecturer data from text file
@@ -37,16 +36,16 @@ public class LectData_IO {
             }
         }
         catch (Exception ex){
-            JOptionPane.showMessageDialog(null,"!Read text file error!");
+            JOptionPane.showMessageDialog(null,"!Read lecturer text file error!");
         }
     }
     
-    // Write all student data from ArrayList into text file
+    // Write all lecturer data from ArrayList into text file
         public static void writeToTxt() {
             try {
                 PrintWriter write = new PrintWriter(new FileWriter("LecData.txt"));
 
-                // Write all student data from the ArrayList into the text file
+                // Write all lecturer data from the ArrayList into the text file
                 for (Lecturer lecturer : LectData) {
                     String writeInLine = lecturer.lectName + "," + lecturer.lectid + "," + lecturer.isProjectManager + "," +
                                          lecturer.isSecondMarker + "," + lecturer.isSupervisor + "," +
@@ -60,23 +59,23 @@ public class LectData_IO {
             }
         }
     
-    // Get the index of student based on StuID from ArrayList
-    public static int checkStu(String LectID){
+    // Get the index of lecturer based on LectID from ArrayList
+    public static int checkLect(String LectID){
         for (int i=0; i< LectData.size(); i++){
             if(LectID.equals(LectData.get(i).lectid)){
                 return i;
             }
         }
-        throw new IllegalArgumentException("Student ID not found: " + LectID);
+        throw new IllegalArgumentException("Lecturer ID not found: " + LectID);
     }
     
-    // Add new student data into StuData ArrayList
+    // Add new lecturer data into LectData ArrayList
     public static void add(Lecturer newLecturer){
         LectData.add(newLecturer);
         writeToTxt(); // Update text file
     }
     
-    // Edit existing student data in StuData ArrayList
+    // Edit existing lecturer data in LectData ArrayList
     public static void edit(int index, Lecturer editedData){
         LectData.set(index, editedData);
         writeToTxt(); // Update text file
