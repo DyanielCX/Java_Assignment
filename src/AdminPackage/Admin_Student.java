@@ -1,6 +1,10 @@
-package StuPackage;
+package AdminPackage;
 
-
+import ProjManagerPackage.StuAssessElem.TableActionCellEditor;
+import ProjManagerPackage.StuAssessElem.TableActionCellRender;
+import ProjManagerPackage.StuAssessElem.TableActionEvent;
+import StuPackage.StuData_IO;
+import StuPackage.Student;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -10,10 +14,27 @@ public class Admin_Student extends javax.swing.JFrame {
     public Admin_Student() {
         initComponents();
         loadDataFromFile(); // Load data from file when the form is created
+        
+        /*Set the edit button and its function*/
+        TableActionEvent event = new TableActionEvent() {
+            @Override
+            public void onEdit(int row) {
+                Admin_EditStudent editStudentFrame = new Admin_EditStudent();
+                editStudentFrame.setVisible(true);
+                
+
+                
+            }
+        };
+        
+        //Insert edit button into table
+        StudentList.getColumnModel().getColumn(7).setCellRenderer(new TableActionCellRender());
+        StudentList.getColumnModel().getColumn(7).setCellEditor(new TableActionCellEditor(event));
+
     }
     
     private void loadDataFromFile() {
-        DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+        DefaultTableModel model = (DefaultTableModel) StudentList.getModel();
         model.setRowCount(0);
         for (Student student : StuData_IO.StuData) {
             model.addRow(new Object[]{
@@ -21,8 +42,9 @@ public class Admin_Student extends javax.swing.JFrame {
                 student.assessment, student.supervisor, student.secondMarker
             });
         }
-        
     }
+
+     
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -30,7 +52,7 @@ public class Admin_Student extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        StudentList = new javax.swing.JTable();
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         StuID_txtfield = new javax.swing.JTextField();
@@ -39,8 +61,8 @@ public class Admin_Student extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jTable1.setBackground(new java.awt.Color(153, 204, 255));
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        StudentList.setBackground(new java.awt.Color(153, 204, 255));
+        StudentList.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -56,16 +78,17 @@ public class Admin_Student extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(jTable1);
-        if (jTable1.getColumnModel().getColumnCount() > 0) {
-            jTable1.getColumnModel().getColumn(0).setResizable(false);
-            jTable1.getColumnModel().getColumn(1).setResizable(false);
-            jTable1.getColumnModel().getColumn(2).setResizable(false);
-            jTable1.getColumnModel().getColumn(3).setResizable(false);
-            jTable1.getColumnModel().getColumn(4).setResizable(false);
-            jTable1.getColumnModel().getColumn(5).setResizable(false);
-            jTable1.getColumnModel().getColumn(6).setResizable(false);
-            jTable1.getColumnModel().getColumn(7).setResizable(false);
+        StudentList.setRowHeight(40);
+        jScrollPane1.setViewportView(StudentList);
+        if (StudentList.getColumnModel().getColumnCount() > 0) {
+            StudentList.getColumnModel().getColumn(0).setResizable(false);
+            StudentList.getColumnModel().getColumn(1).setResizable(false);
+            StudentList.getColumnModel().getColumn(2).setResizable(false);
+            StudentList.getColumnModel().getColumn(3).setResizable(false);
+            StudentList.getColumnModel().getColumn(4).setResizable(false);
+            StudentList.getColumnModel().getColumn(5).setResizable(false);
+            StudentList.getColumnModel().getColumn(6).setResizable(false);
+            StudentList.getColumnModel().getColumn(7).setResizable(false);
         }
 
         jPanel2.setBackground(new java.awt.Color(0, 153, 255));
@@ -160,7 +183,7 @@ public class Admin_Student extends javax.swing.JFrame {
         String searchID = StuID_txtfield.getText(); // Get the student ID from the text field
 
         try {
-            DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+            DefaultTableModel model = (DefaultTableModel) StudentList.getModel();
             int index = StuData_IO.checkStu(searchID); // Get the index of the student
             Student student = StuData_IO.StuData.get(index); // Get the student from the ArrayList
             model.setRowCount(0); // Clear the table
@@ -224,10 +247,10 @@ public class Admin_Student extends javax.swing.JFrame {
     private javax.swing.JButton Add_btn;
     private javax.swing.JButton Search_btn;
     private javax.swing.JTextField StuID_txtfield;
+    private javax.swing.JTable StudentList;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables
 }

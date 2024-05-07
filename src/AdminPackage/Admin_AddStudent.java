@@ -1,10 +1,10 @@
-package StuPackage;
+package AdminPackage;
 
 
 
+import StuPackage.StuData_IO;
+import StuPackage.Student;
 import java.awt.Color;
-import java.io.FileWriter;
-import java.io.IOException; 
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 

@@ -1,8 +1,8 @@
-package StuPackage;
+package AdminPackage;
 
 
 
-import StuPackage.Admin_AddStudent;
+import AdminPackage.Admin_AddStudent;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
