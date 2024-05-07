@@ -30,13 +30,13 @@ public class Student_MainFrame extends javax.swing.JFrame {
         PanelDashboard Tab1 = new PanelDashboard (username, password);
         TabPanel.addTab("tab1", Tab1);
     
-        PanelReport Tab2 = new PanelReport();
+        PanelSchedule Tab2 = new PanelSchedule();
         TabPanel.addTab("tab2", Tab2);
     
         PanelPresentation Tab3 = new PanelPresentation();
         TabPanel.addTab("tab3", Tab3);
     
-        PanelResult Tab4 = new PanelResult();
+        PanelReport Tab4 = new PanelReport();
         TabPanel.addTab("tab4", Tab4);
     
         PanelConsultation Tab5 = new PanelConsultation();
@@ -117,7 +117,7 @@ public class Student_MainFrame extends javax.swing.JFrame {
         navStuAssessment.setForeground(new java.awt.Color(255, 255, 255));
         navStuAssessment.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         navStuAssessment.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/StuReport.png"))); // NOI18N
-        navStuAssessment.setText("Report ");
+        navStuAssessment.setText("Schedule ");
         navStuAssessment.setDoubleBuffered(true);
         navStuAssessment.setIconTextGap(15);
         navStuAssessment.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -181,8 +181,8 @@ public class Student_MainFrame extends javax.swing.JFrame {
         navAccMangement.setFont(new java.awt.Font("Dubai Medium", 0, 20)); // NOI18N
         navAccMangement.setForeground(new java.awt.Color(255, 255, 255));
         navAccMangement.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        navAccMangement.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/StuResult.png"))); // NOI18N
-        navAccMangement.setText("Result");
+        navAccMangement.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/StuReport.png"))); // NOI18N
+        navAccMangement.setText("Report");
         navAccMangement.setIconTextGap(15);
         navAccMangement.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
