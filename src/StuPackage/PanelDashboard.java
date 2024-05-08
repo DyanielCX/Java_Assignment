@@ -21,15 +21,13 @@ private void readStudentDetailsFromFile(String fileName) {
         String line;
         while ((line = br.readLine()) != null) {
             String[] parts = line.split(",");
-            // Assuming StuID is the username field
-            if (parts[0].trim().equals(username)) { // Assuming StuID is at index 1
+            if (parts[0].trim().equals(username)) { 
                 StuID.setText(parts[0].trim());
                 StuName.setText(parts[2].trim());
                 StuAge.setText(parts[3].trim());
                 StuIntake.setText(parts[4].trim());
                 StuAssessment.setText(parts[5].trim());
                 LecSupName.setText(parts[6].trim());
-                // Assuming other fields are there
                 return; // Exit the loop once the user is found
             }
         }

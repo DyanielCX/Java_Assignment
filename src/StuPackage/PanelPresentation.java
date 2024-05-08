@@ -1,19 +1,45 @@
 package StuPackage;
 
+import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class PanelPresentation extends javax.swing.JPanel {
+    private String username; // Declare as an instance variable
+    private String password;
 
     
-    public PanelPresentation() {
+    public PanelPresentation(String username, String password) {
         initComponents();
+        this.username = username; // Assign the parameter value to the instance variable
+        this.password = password; 
+        
+        readStudentDetailsFromFile("StuData.txt");
         
         SubmitBtn.setVisible(false);
     }
+    
+    private void readStudentDetailsFromFile(String fileName) {
+    try (BufferedReader br = new BufferedReader(new FileReader(fileName))) {
+        String line;
+        while ((line = br.readLine()) != null) {
+            String[] parts = line.split(",");
+            if (parts[0].trim().equals(username)) { 
+                Assessment.setText(parts[5].trim());
+                Lecturer.setText(parts[6].trim());
+                return; // Exit the loop once the user is found
+            }
+        }
+        // If the loop completes without finding the user
+        System.err.println("User not found in the file.");
+    } catch (IOException e) {
+        System.err.println("Error reading the file: " + e.getMessage());
+    }
+}
     private void writeSelectedDateToFile() {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter("PresentationData.txt"))) {
             // Get the selected date from the JCalendar component
@@ -69,7 +95,7 @@ public class PanelPresentation extends javax.swing.JPanel {
                 SubmitBtnActionPerformed(evt);
             }
         });
-        add(SubmitBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 350, -1, -1));
+        add(SubmitBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 360, -1, -1));
 
         jLabel1.setText("Status");
         add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 310, -1, -1));
@@ -93,7 +119,7 @@ public class PanelPresentation extends javax.swing.JPanel {
         add(Lecturer, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 130, -1, -1));
 
         jTextField2.setText("jTextField2");
-        add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 300, -1, -1));
+        add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 310, -1, -1));
 
         EditBtn.setText("Edit");
         EditBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -101,7 +127,7 @@ public class PanelPresentation extends javax.swing.JPanel {
                 EditBtnActionPerformed(evt);
             }
         });
-        add(EditBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 350, -1, -1));
+        add(EditBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 360, -1, -1));
 
         jLabel5.setText("Assessment");
         add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 160, -1, -1));

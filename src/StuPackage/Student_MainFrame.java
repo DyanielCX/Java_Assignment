@@ -33,7 +33,7 @@ public class Student_MainFrame extends javax.swing.JFrame {
         PanelSchedule Tab2 = new PanelSchedule();
         TabPanel.addTab("tab2", Tab2);
     
-        PanelPresentation Tab3 = new PanelPresentation();
+        PanelPresentation Tab3 = new PanelPresentation(username, password);
         TabPanel.addTab("tab3", Tab3);
     
         PanelReport Tab4 = new PanelReport();

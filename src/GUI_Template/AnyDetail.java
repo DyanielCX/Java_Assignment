@@ -8,14 +8,14 @@ public class AnyDetail {
     /*
     [TEXT FILE]
     
-    Student text file 
-    file name -> StuData.txt
-    data structure (current) -> Name, Age, Student ID, Intake, Assessment, Supervisor, Second Marker, RMCP Lecturer, Password
+    StuData.txt
+    data structure (current) -> Student ID, Password, Name, Age, Intake, Assessment, Supervisor, Second Marker, RMCP Lecturer,
     
-    Lecturer.text file
+    LecData.txt 
     data structure (current) -> Lecturer Name, Lecturer ID, is ProjectManager, is Supervisor, is SecondMarker
     
-    
+    PresentationData.txt
+    data structure (current) -> Student ID, Lecturer Name, Assessment, Presentation Date, Presentation Time, Request Status
     
     ******************************************************************************************************************************************************
     [FUNCTION PROGRESS FLOW]
