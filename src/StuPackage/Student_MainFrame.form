@@ -177,7 +177,7 @@
                 </Property>
                 <Property name="horizontalAlignment" type="int" value="2"/>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/Image/StuReport.png"/>
+                  <Image iconType="3" name="/Image/StuResult.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Schedule "/>
                 <Property name="doubleBuffered" type="boolean" value="true"/>

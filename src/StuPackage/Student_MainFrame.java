@@ -116,7 +116,7 @@ public class Student_MainFrame extends javax.swing.JFrame {
         navStuAssessment.setFont(new java.awt.Font("Dubai Medium", 0, 20)); // NOI18N
         navStuAssessment.setForeground(new java.awt.Color(255, 255, 255));
         navStuAssessment.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        navStuAssessment.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/StuReport.png"))); // NOI18N
+        navStuAssessment.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/StuResult.png"))); // NOI18N
         navStuAssessment.setText("Schedule ");
         navStuAssessment.setDoubleBuffered(true);
         navStuAssessment.setIconTextGap(15);
@@ -365,7 +365,7 @@ public class Student_MainFrame extends javax.swing.JFrame {
         ReportStatusPane.setBackground(navDefaultColor);
         
         //Change to your tab name
-        PanelTitle.setText("Report Submission");
+        PanelTitle.setText("Scedule");
         TabPanel.setSelectedIndex(1);
     }//GEN-LAST:event_navStuAssessmentMouseClicked
 
@@ -389,7 +389,7 @@ public class Student_MainFrame extends javax.swing.JFrame {
         ReportStatusPane.setBackground(navDefaultColor);
         
         //Change to your tab name
-        PanelTitle.setText("Result");
+        PanelTitle.setText("Reportt");
         TabPanel.setSelectedIndex(3);
     }//GEN-LAST:event_navAccMangementMouseClicked
 
