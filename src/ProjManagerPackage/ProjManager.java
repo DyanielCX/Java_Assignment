@@ -115,10 +115,10 @@ public class ProjManager {
                             
                             if (secondMkrCount == 3) {
                                 if (spvCount!=1) {
-                                    assignedSpv = SpvList[0];
+                                    assignedSpv = SpvList[1];
                                 }
                                 else{
-                                    assignedSpv = SpvList[1];
+                                    assignedSpv = SpvList[0];
                                 }
                                 secondMkrCount = 0;
                             }
@@ -229,5 +229,22 @@ public class ProjManager {
                 }
             }
         } 
+    }
+    
+    public static void manualAssignStuAdvs(int stuIndex, String selectedSpv, String selectedSecondMkr, String selectedRMCP_Lect){
+        
+        //Get all the selected student data
+        String Name = StuData_IO.StuData.get(stuIndex).name;
+        int Age = StuData_IO.StuData.get(stuIndex).age;
+        String stuID = StuData_IO.StuData.get(stuIndex).id;
+        String Intake = StuData_IO.StuData.get(stuIndex).intake;
+        String Assessment = StuData_IO.StuData.get(stuIndex).assessment;
+        String Supervisor = selectedSpv;
+        String SecondMaker = selectedSecondMkr;
+        String RMCP_Lecture = selectedRMCP_Lect;
+        String Password = StuData_IO.StuData.get(stuIndex).password;
+
+        Student editedStudent = new Student(Name, Age, stuID, Intake, Assessment, Supervisor, SecondMaker, RMCP_Lecture, Password);
+        StuData_IO.edit(stuIndex, editedStudent);
     }
 }
