@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
- */
 package ProjManagerPackage;
 
 import ProjManagerPackage.AssignSupvElem.TableHeader_StuAdvsList;
@@ -9,6 +5,8 @@ import ProjManagerPackage.StuAssessElem.ModernScrollBarUI;
 import ProjManagerPackage.StuAssessElem.TableActionCellEditor;
 import ProjManagerPackage.StuAssessElem.TableActionCellRender;
 import ProjManagerPackage.StuAssessElem.TableActionEvent;
+import StuPackage.StuData_IO;
+import StuPackage.Student;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
@@ -27,9 +25,11 @@ import javax.swing.table.DefaultTableModel;
 public class AssignAdvsTab_StuAdvsList extends javax.swing.JPanel {
 
     private MainFrame mainFrame;
+    private String SelectedIntake;
     
-    public AssignAdvsTab_StuAdvsList(MainFrame mainFrame, String selectedIntake) {
+    public AssignAdvsTab_StuAdvsList(MainFrame mainFrame, String selectedIntake, String selectedAsses) {
         this.mainFrame = mainFrame;
+        SelectedIntake = selectedIntake;
         initComponents();
         
         //Customize Table Modification
@@ -47,36 +47,24 @@ public class AssignAdvsTab_StuAdvsList extends javax.swing.JPanel {
             }
         });
 
+        //Edit the tab title and assessment
+        TabTitle.setText(selectedIntake);
+        selectedAssessment.setText(selectedAsses);
         
         //Insert data into table
-        /*Show the student haven't been alloted assesment*/
-//        for (Student stu :StuData_IO.StuData){
-//            String StuName = stu.name;
-//            String StuID = stu.id;
-//            String Intake = stu.intake;
-//            String Assessment = stu.assessment;
-//            
-//            if (Assessment.equals("-")) {
-//            Object[] InsertRow = {StuName, StuID, Intake, Assessment};
-//
-//            DefaultTableModel model = (DefaultTableModel) LectRoleTable.getModel();
-//            model.addRow(InsertRow);
-//            }
-//        }
-        
-        /*Show the student have been alloted assesment*/
-        for (int count = 0; count < 3; count++){
-            String StuName = "John";
-            String StuID = "TP111222";
-            String Supervisor = "Shahab";
-            String SecondMkr = "Qistina";
-            String RMCP_Lect = "-";
-
-
-            Object[] InsertRow = {StuName, StuID,Supervisor, SecondMkr, RMCP_Lect};
+        for (Student stu :StuData_IO.StuData){
+            if (stu.intake.equals(selectedIntake)) {
+            String StuName = stu.name;
+            String StuID = stu.id;
+            String Supervisor = stu.supervisor;
+            String SecondMkr = stu.secondMarker;
+            String RMCP_Lect = stu.RMCP_lecture;
+            
+            Object[] InsertRow = {StuName, StuID, Supervisor, SecondMkr, RMCP_Lect};
 
             DefaultTableModel model = (DefaultTableModel) StuAdvsTable.getModel();
             model.addRow(InsertRow);
+            }
         }
         
         /*Set the edit button and its function*/
@@ -167,7 +155,9 @@ public class AssignAdvsTab_StuAdvsList extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btbBackMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btbBackMouseClicked
-        mainFrame.changedTab(5);
+        mainFrame.createIntakeAdvsAllotPane(mainFrame, SelectedIntake);
+        int tabIndex = mainFrame.TabPanel.getTabCount()-1;
+        mainFrame.changedTab(tabIndex);
     }//GEN-LAST:event_btbBackMouseClicked
 
     /* Customize the scrollbar for table */

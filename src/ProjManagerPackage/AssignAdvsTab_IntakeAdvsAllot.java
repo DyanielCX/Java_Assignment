@@ -1,6 +1,5 @@
 package ProjManagerPackage;
 
-import static ProjManagerPackage.AdvisorsRecord.AdvisorsRecordData;
 import ProjManagerPackage.AssignSupvElem.LectData_IO;
 import ProjManagerPackage.StuAssessElem.IntakeBasedMethod;
 import StuPackage.StuData_IO;
@@ -553,7 +552,7 @@ public class AssignAdvsTab_IntakeAdvsAllot extends javax.swing.JPanel {
                 JOptionPane.showMessageDialog(null,"This intake haven't assign assessment.");
         }
         
-        mainFrame.createStuAdvsListPane(mainFrame, SelectedIntake);
+        mainFrame.createStuAdvsListPane(mainFrame, SelectedIntake, Assessment);
         int tabIndex = mainFrame.TabPanel.getTabCount()-1;
         mainFrame.changedTab(tabIndex);
     }//GEN-LAST:event_btbManualAssignActionPerformed

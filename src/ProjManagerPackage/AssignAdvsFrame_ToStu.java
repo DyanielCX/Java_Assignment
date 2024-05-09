@@ -4,7 +4,10 @@
  */
 package ProjManagerPackage;
 
+import StuPackage.StuData_IO;
 import java.awt.Color;
+import java.util.ArrayList;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -12,23 +15,100 @@ import java.awt.Color;
  */
 public class AssignAdvsFrame_ToStu extends javax.swing.JFrame {
 
-    /**
-     * Creates new form EditLectRoleFrame
-     */
+    private String StuIntake;
+    private String StuAsses;
+    private int StuIndex;
+    
     public AssignAdvsFrame_ToStu(String selectedStuID) {
         
         //GUI Setting
         initComponents();
         getContentPane().setBackground(new Color(151, 231, 225));
         
-        //Search the selected lecturer data
-        String StuName = "John";
-        String selectedAssess = "Investigation Report";
+        //Search and retrieve the selected student data
+        StuIndex = StuData_IO.checkStu(selectedStuID);
+        
+        String StuName = StuData_IO.StuData.get(StuIndex).name;
+        StuIntake = StuData_IO.StuData.get(StuIndex).intake;
+        StuAsses = StuData_IO.StuData.get(StuIndex).assessment;
         
         lblSelectedName.setText(StuName);
         lblSelectedID.setText(selectedStuID);
-        lblSelectedAssess.setText(selectedAssess);
+        lblSelectedAssess.setText(StuAsses);
         
+        //Get the advisor list
+        ArrayList<String> Supervisor_ArrayList = new ArrayList<>();
+        ArrayList<String> SecondMarker_ArrayList = new ArrayList<>();
+        ArrayList<String> RMCPLect_ArrayList = new ArrayList<>();
+        
+        Supervisor_ArrayList.add("-");
+        SecondMarker_ArrayList.add("-");
+        RMCPLect_ArrayList.add("-");
+        
+        for (AdvisorsRecord advsRecord :AdvisorsRecord.AdvisorsRecordData){
+            if (advsRecord.Intake.equals(StuIntake)) {
+                if (!advsRecord.Spv1.equals("-")) {
+                    Supervisor_ArrayList.add(advsRecord.Spv1);
+                }
+                if (!advsRecord.Spv2.equals("-")) {
+                    Supervisor_ArrayList.add(advsRecord.Spv2);
+                }
+                if (!advsRecord.Spv3.equals("-")) {
+                    Supervisor_ArrayList.add(advsRecord.Spv3);
+                }
+                if (!advsRecord.SecondMkr1.equals("-")) {
+                    SecondMarker_ArrayList.add(advsRecord.SecondMkr1);
+                }
+                if (!advsRecord.SecondMkr2.equals("-")) {
+                    SecondMarker_ArrayList.add(advsRecord.SecondMkr2);
+                }
+                if (!advsRecord.SecondMkr3.equals("-")) {
+                    SecondMarker_ArrayList.add(advsRecord.SecondMkr3);
+                }
+                if (!advsRecord.RMCP_Lecturer.equals("-")) {
+                    RMCPLect_ArrayList.add(advsRecord.RMCP_Lecturer);
+                }
+            }
+        }
+
+        //Convert ArrayList into Array
+        String[] SupervisorList = Supervisor_ArrayList.toArray(new String[Supervisor_ArrayList.size()]);
+        String[] SecondMarkerList = SecondMarker_ArrayList.toArray(new String[SecondMarker_ArrayList.size()]);
+        String[] RMCP_LectList = RMCPLect_ArrayList.toArray(new String[RMCPLect_ArrayList.size()]);
+        
+        //Add advisor list into combo box
+        cboSupervisor.setModel(new javax.swing.DefaultComboBoxModel<>(SupervisorList));
+        cboSecondMarker.setModel(new javax.swing.DefaultComboBoxModel<>(SecondMarkerList));
+        cboRMCP_Lect.setModel(new javax.swing.DefaultComboBoxModel<>(RMCP_LectList));
+        
+        //Set the selection of advisor based on student
+        cboSupervisor.setSelectedItem(StuData_IO.StuData.get(StuIndex).supervisor);
+        cboSecondMarker.setSelectedItem(StuData_IO.StuData.get(StuIndex).secondMarker);
+        cboRMCP_Lect.setSelectedItem(StuData_IO.StuData.get(StuIndex).RMCP_lecture);
+        
+        //Set the comboBox unable to select based on assessment type
+        switch (StuAsses) {
+            case "Investigation Report":
+                cboRMCP_Lect.setEnabled(false);
+                break;
+            case "CP1":
+                cboRMCP_Lect.setEnabled(false);
+                break;
+            case "CP2":
+                cboRMCP_Lect.setEnabled(false);
+                break;
+            case "FYP":
+                cboRMCP_Lect.setEnabled(false);
+                break;
+            case "Intern":
+                cboSecondMarker.setEnabled(false);
+                cboRMCP_Lect.setEnabled(false);
+                break;
+            case "RMCP":
+                cboSupervisor.setEnabled(false);
+                cboSecondMarker.setEnabled(false);
+                break;
+        }
     }
 
     /**
@@ -241,6 +321,28 @@ public class AssignAdvsFrame_ToStu extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btbSubmitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btbSubmitActionPerformed
+        //Retrieve combo box selection
+        String selectedSpv = (String) cboSupervisor.getSelectedItem();
+        String selectedSecondMkr = (String) cboSecondMarker.getSelectedItem();
+        String selectedRMCP_Lect = (String) cboRMCP_Lect.getSelectedItem();
+        
+        if (selectedSpv.equals(selectedSecondMkr) && !selectedSpv.equals("-") && !selectedSecondMkr.equals("-")) {
+            //Show error message
+            JOptionPane.showMessageDialog(null,"You cannot select the same person for supervisor and second marker.","Invalid Advisor Selection",JOptionPane.WARNING_MESSAGE);
+            
+            //Remain the combo box selection
+            cboSupervisor.setSelectedItem(selectedSpv);
+            cboSecondMarker.setSelectedItem(selectedSecondMkr);
+            cboRMCP_Lect.setSelectedItem(selectedRMCP_Lect);
+        }
+        else{
+            //Update the edited student data into ArrayList
+            ProjManager.manualAssignStuAdvs(StuIndex, selectedSpv, selectedSecondMkr, selectedRMCP_Lect);
+
+            //Return back to the student list page
+            this.setVisible(false);
+            backMainFrame();
+        }
         
     }//GEN-LAST:event_btbSubmitActionPerformed
 
@@ -257,7 +359,10 @@ public class AssignAdvsFrame_ToStu extends javax.swing.JFrame {
         fr.DashboardPane.setBackground(new Color(122, 162, 227));
         fr.AssignAdvisorsPane.setBackground(new Color(106, 212, 221));
         fr.PanelTitle.setText("Assign Advisors");
-        fr.changedTab(7);
+        
+        fr.createStuAdvsListPane(fr, StuIntake, StuAsses);
+        int tabIndex = fr.TabPanel.getTabCount()-1;
+        fr.changedTab(tabIndex);
     }
     
     /**

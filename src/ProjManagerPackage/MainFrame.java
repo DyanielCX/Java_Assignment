@@ -456,8 +456,8 @@ public class MainFrame extends javax.swing.JFrame {
     }
     
     //Create new temperory panel tab - AssignAdvsTab_StuAdvsList
-    public static void createStuAdvsListPane(MainFrame mainFrame, String selectedIntake){
-        AssignAdvsTab_StuAdvsList lastTab = new AssignAdvsTab_StuAdvsList(mainFrame, selectedIntake);
+    public static void createStuAdvsListPane(MainFrame mainFrame, String selectedIntake, String selectedAsses){
+        AssignAdvsTab_StuAdvsList lastTab = new AssignAdvsTab_StuAdvsList(mainFrame, selectedIntake, selectedAsses);
         TabPanel.addTab("StuAdvsList_tab", lastTab);
     }
     
