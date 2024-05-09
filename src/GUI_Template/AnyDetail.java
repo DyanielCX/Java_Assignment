@@ -9,7 +9,7 @@ public class AnyDetail {
     [TEXT FILE]
     
     StuData.txt
-    data structure (current) -> Student ID, Password, Name, Age, Intake, Assessment, Supervisor, Second Marker, RMCP Lecturer,
+    data structure (current) -> Student ID, Password, Name, Age, Intake, Assessment, Supervisor, Second Marker, RMCP Lecturer
     
     LecData.txt 
     data structure (current) -> Lecturer Name, Lecturer ID, is ProjectManager, is Supervisor, is SecondMarker

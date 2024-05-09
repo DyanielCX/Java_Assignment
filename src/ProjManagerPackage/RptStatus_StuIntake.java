@@ -76,7 +76,7 @@ public class RptStatus_StuIntake extends javax.swing.JPanel {
             public void onEdit(int row) {
                 //Get the student id of selected student
                 String selectedIntake = (String) IntakeAssTable.getValueAt(row, 0);
-                mainFrame.changedTab(12);
+                mainFrame.changedTab(9);
 //                mainFrame.createStuAccMgmtPane(mainFrame, selectedIntake);
 //                int tabIndex = mainFrame.TabPanel.getTabCount();
 //                mainFrame.changedTab(tabIndex-1);

@@ -414,7 +414,7 @@ public class MainFrame extends javax.swing.JFrame {
         ReportStatusPane.setBackground(navDefaultColor);
         
         PanelTitle.setText("Account Management");
-        TabPanel.setSelectedIndex(8);
+        TabPanel.setSelectedIndex(5);
     }//GEN-LAST:event_navAccMangementMouseClicked
 
     private void navReportStatusMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_navReportStatusMouseClicked
@@ -425,7 +425,7 @@ public class MainFrame extends javax.swing.JFrame {
         ReportStatusPane.setBackground(navSelectedColor);
         
         PanelTitle.setText("Report Status");
-        TabPanel.setSelectedIndex(11);
+        TabPanel.setSelectedIndex(8);
     }//GEN-LAST:event_navReportStatusMouseClicked
 
     /* Logout Button */

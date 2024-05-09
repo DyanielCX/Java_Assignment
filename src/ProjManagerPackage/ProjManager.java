@@ -43,7 +43,22 @@ public class ProjManager {
         StuData_IO.edit(stuIndex, editedStudent);
     }
     
+    public static void editLectAcc(int lectIndex, String editedName, String editedID){
+        
+        //Get all the selected lecturer data
+        String Name = editedName;
+        String LectID = editedID;
+        boolean IsProjectManager = LectData_IO.LectData.get(lectIndex).isProjectManager;
+        boolean IsSecondMarker = LectData_IO.LectData.get(lectIndex).isSecondMarker;
+        boolean IsSupervisor = LectData_IO.LectData.get(lectIndex).isSupervisor;
+        String password = LectData_IO.LectData.get(lectIndex).password;
+
+        Lecturer editedLecturer = new Lecturer(Name, LectID, IsProjectManager, IsSecondMarker, IsSupervisor, password);
+        LectData_IO.edit(lectIndex, editedLecturer);
+    }
+    
     public static void editLectRole(int lectIndex, boolean isSupervisor, boolean isSecondMarker){
+        
         //Get all the selected lecturer data
         String Name = LectData_IO.LectData.get(lectIndex).lectName;
         String LectID = LectData_IO.LectData.get(lectIndex).lectid;

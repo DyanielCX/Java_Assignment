@@ -137,11 +137,11 @@ public class AccMgmtTab extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btbLectAccMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btbLectAccMouseClicked
-        mainFrame.changedTab(9);
+        mainFrame.changedTab(6);
     }//GEN-LAST:event_btbLectAccMouseClicked
 
     private void btbStuAccMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btbStuAccMouseClicked
-        mainFrame.changedTab(10);
+        mainFrame.changedTab(7);
     }//GEN-LAST:event_btbStuAccMouseClicked
 
 

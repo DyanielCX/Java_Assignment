@@ -8,6 +8,7 @@ import ProjManagerPackage.StuAssessElem.IntakeBasedMethod;
 import StuPackage.StuData_IO;
 import java.awt.Color;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -220,6 +221,8 @@ public class AccMgmtFrame_EditStu extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btbSubmitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btbSubmitActionPerformed
+        
+        try{
         //Search the selected student location
         int stuIndex = StuData_IO.checkStu(SelectedStuID);
         
@@ -236,6 +239,10 @@ public class AccMgmtFrame_EditStu extends javax.swing.JFrame {
         //Return back to the student list page
         this.setVisible(false);
         backMainFrame();
+        }
+        catch(NumberFormatException numExc){
+            JOptionPane.showMessageDialog(null,"You only can enter digit for age.","Invalid Age Input",JOptionPane.WARNING_MESSAGE);
+        }
     }//GEN-LAST:event_btbSubmitActionPerformed
 
     private void btbCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btbCancelActionPerformed
