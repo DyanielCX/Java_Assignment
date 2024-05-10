@@ -60,7 +60,14 @@ public class PanelPresentation extends javax.swing.JPanel {
                 PreDateShow.setText(parts[3].trim());
                 PreTimeShow.setText(parts[4].trim());
                 PreStatus.setText(parts[5].trim());
-                return; // Exit the loop once the user is found
+                String rejectReason = parts.length > 6 ? parts[6].trim() : "";
+                if ("-".equals(rejectReason)) {
+                    RejectReason.setVisible(false);
+                } else {
+                    RejectReason.setText(rejectReason);
+                    RejectReason.setVisible(true);
+                }
+                return;
             }
         }
         // If the loop completes without finding the user
@@ -129,7 +136,7 @@ private String constructNewLine() {
     String timeValue = hourValue + ":" + String.format("%02d", minuteValue) + " " + meridiemValue;
 
     // Construct the new line
-    return username + "," + lecturerValue + "," + assessmentValue + "," + formattedDate + "," + timeValue;
+    return username + "," + lecturerValue + "," + assessmentValue + "," + formattedDate + "," + timeValue  + ", Pending, -" ;
 }
     private void setComponentsVisible(boolean visible) {
         Component[] components = {PreDate, Hour, Minute, Meridiem, modify};
@@ -160,6 +167,7 @@ private String constructNewLine() {
         PreDateShow = new javax.swing.JLabel();
         PreTimeShow = new javax.swing.JLabel();
         modify = new javax.swing.JLabel();
+        RejectReason = new javax.swing.JLabel();
 
         setMaximumSize(new java.awt.Dimension(935, 530));
         setMinimumSize(new java.awt.Dimension(935, 530));
@@ -176,10 +184,10 @@ private String constructNewLine() {
                 SubmitBtnActionPerformed(evt);
             }
         });
-        add(SubmitBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 360, -1, -1));
+        add(SubmitBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 380, -1, -1));
 
-        jLabel1.setText("Presentation Status");
-        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 310, -1, -1));
+        jLabel1.setText(" Request Status");
+        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 300, -1, -1));
 
         jLabel2.setText("Presentation TIme");
         add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 250, -1, -1));
@@ -214,7 +222,7 @@ private String constructNewLine() {
                 EditBtnActionPerformed(evt);
             }
         });
-        add(EditBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 360, -1, -1));
+        add(EditBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 380, -1, -1));
 
         jLabel5.setText("Assessment");
         add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 160, -1, -1));
@@ -226,7 +234,7 @@ private String constructNewLine() {
         add(Assessment, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 160, 50, 20));
 
         PreStatus.setText("Status");
-        add(PreStatus, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 310, -1, -1));
+        add(PreStatus, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 300, -1, -1));
 
         PreDateShow.setText("Date");
         add(PreDateShow, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 200, 90, 20));
@@ -236,22 +244,26 @@ private String constructNewLine() {
 
         modify.setText("Modify");
         add(modify, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 160, -1, -1));
+
+        RejectReason.setForeground(new java.awt.Color(255, 51, 0));
+        RejectReason.setText("Reject Reason");
+        add(RejectReason, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 330, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
 
-    private boolean editMode = false;
+    private boolean editMode = true;
     private void handleEditMode(boolean editMode) {
-    if (editMode) {
+    if (!editMode) {
         // If currently in "Cancel" state, revert to "Edit" state
         SubmitBtn.setVisible(false);
         setComponentsVisible(false);
         EditBtn.setText("Edit");
-        this.editMode = false;
+        this.editMode = true;
     } else {
         // If currently in "Edit" state, switch to "Cancel" state
         SubmitBtn.setVisible(true);
         setComponentsVisible(true);
         EditBtn.setText("Cancel");
-        this.editMode = true;
+        this.editMode = false;
     }
 }
     private void EditBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EditBtnActionPerformed
@@ -259,29 +271,38 @@ private String constructNewLine() {
     }//GEN-LAST:event_EditBtnActionPerformed
 
     private void SubmitBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SubmitBtnActionPerformed
-       // Check if the username exists in the file
+        // Check if the JSpinners and JDateChooser have valid values
+        int hourValue = (int) Hour.getValue();
+        Date selectedDate = PreDate.getDate();
+        boolean allValid = hourValue != 0 && selectedDate != null && selectedDate.after(new Date());
+        
+        if (!allValid) {
+            JOptionPane.showMessageDialog(this, "Please select valid date and time", "Validation Error", JOptionPane.ERROR_MESSAGE);
+            return; // Exit the method if any of the values are invalid
+        }
+
+        // Check if the username exists in the file
         boolean usernameFound = checkUsernameInFile();
 
         // Display confirmation dialog based on whether the username is found
+        int confirmOption;
         if (usernameFound) {
-            int confirmOption = JOptionPane.showConfirmDialog(this, "A presentation already exists for this username. Do you want to update it?", "Confirmation", JOptionPane.YES_NO_OPTION);
-            if (confirmOption == JOptionPane.YES_OPTION) {
-                // User confirmed to update the presentation, proceed with writing data to file
-                writeDataToFile();
-                handleEditMode(false);
-            } else{
-                 handleEditMode(true);
-            }
+            confirmOption = JOptionPane.showConfirmDialog(this, "A presentation already exists for this username. Do you want to update it?", "Confirmation", JOptionPane.YES_NO_OPTION);
         } else {
-            int confirmOption = JOptionPane.showConfirmDialog(this, "No presentation found for this username. Do you want to request a presentation?", "Confirmation", JOptionPane.YES_NO_OPTION);
-            if (confirmOption == JOptionPane.YES_OPTION) {
-                // User confirmed to request a presentation, proceed with writing data to file
-                writeDataToFile();
-                handleEditMode(false);
-            } else{
-               handleEditMode(true);
-            }
+            confirmOption = JOptionPane.showConfirmDialog(this, "No presentation found for this username. Do you want to request a presentation?", "Confirmation", JOptionPane.YES_NO_OPTION);
         }
+
+        if (confirmOption == JOptionPane.YES_OPTION) {
+            // Proceed with writing data to file
+            writeDataToFile();
+            readStudentDetailsFromFile("StuData.txt");
+            readPresentationDetailsFromFile("PresentationData.txt");
+            handleEditMode(false);
+            JOptionPane.showMessageDialog(this, "Request has been sent successfully", "Success", JOptionPane.INFORMATION_MESSAGE);
+        } else {
+            handleEditMode(true);
+        }
+
     }//GEN-LAST:event_SubmitBtnActionPerformed
     
     private boolean checkUsernameInFile() {
@@ -332,6 +353,7 @@ private String constructNewLine() {
     private javax.swing.JLabel PreDateShow;
     private javax.swing.JLabel PreStatus;
     private javax.swing.JLabel PreTimeShow;
+    private javax.swing.JLabel RejectReason;
     private javax.swing.JToggleButton SubmitBtn;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
