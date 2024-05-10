@@ -75,7 +75,7 @@ private void readStudentDetailsFromFile(String fileName) {
         jPanel1.add(StuName, new org.netbeans.lib.awtextra.AbsoluteConstraints(341, 152, -1, -1));
 
         jLabel3.setText("Age");
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(283, 232, -1, -1));
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 240, -1, -1));
 
         jLabel7.setText("Intake");
         jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 300, -1, -1));
@@ -90,7 +90,7 @@ private void readStudentDetailsFromFile(String fileName) {
         jPanel1.add(StuAssessment, new org.netbeans.lib.awtextra.AbsoluteConstraints(543, 192, -1, -1));
 
         LecSupName.setText("jTextField3");
-        jPanel1.add(LecSupName, new org.netbeans.lib.awtextra.AbsoluteConstraints(543, 280, -1, -1));
+        jPanel1.add(LecSupName, new org.netbeans.lib.awtextra.AbsoluteConstraints(543, 280, 110, -1));
 
         StuID.setText("jTextField4");
         jPanel1.add(StuID, new org.netbeans.lib.awtextra.AbsoluteConstraints(341, 192, -1, -1));
