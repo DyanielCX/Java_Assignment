@@ -1,20 +1,13 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package ProjManagerPackage;
 
+import ProjManagerPackage.AssignSupvElem.LectData_IO;
 import java.awt.Color;
 
-/**
- *
- * @author PC
- */
+
 public class AccMgmtFrame_EditLect extends javax.swing.JFrame {
 
-    /**
-     * Creates new form EditLectRoleFrame
-     */
+    private int LectIndex;
+    
     public AccMgmtFrame_EditLect(String selectedLectID) {
         
         //GUI Setting
@@ -22,7 +15,11 @@ public class AccMgmtFrame_EditLect extends javax.swing.JFrame {
         getContentPane().setBackground(new Color(122, 162, 227));
         
         //Search the selected lecturer data
-        TFLectName.setText("Alan");
+        LectIndex = LectData_IO.checkLect(selectedLectID);
+        
+        String LectName = LectData_IO.LectData.get(LectIndex).lectName;
+        
+        TFLectName.setText(LectName);
         TFLectID.setText(selectedLectID);
         
     }
@@ -173,11 +170,18 @@ public class AccMgmtFrame_EditLect extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btbSubmitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btbSubmitActionPerformed
+        String editedLectName = TFLectName.getText();
+        String editedLectID = TFLectID.getText();
         
+        ProjManager.editLectAcc(LectIndex, editedLectName, editedLectID);
+        
+        //Return back to the lecturer list page
+        this.setVisible(false);
+        backMainFrame();
     }//GEN-LAST:event_btbSubmitActionPerformed
 
     private void btbCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btbCancelActionPerformed
-        //Return back to the student list page
+        //Return back to the lecturer list page
         this.setVisible(false);
         backMainFrame();
     }//GEN-LAST:event_btbCancelActionPerformed
@@ -187,9 +191,9 @@ public class AccMgmtFrame_EditLect extends javax.swing.JFrame {
         fr.setVisible(true);
 
         fr.DashboardPane.setBackground(new Color(122, 162, 227));
-        fr.AssignAdvisorsPane.setBackground(new Color(106, 212, 221));
-        fr.PanelTitle.setText("Assign Advisors");
-        fr.changedTab(4);
+        fr.AccManagementPane.setBackground(new Color(106, 212, 221));
+        fr.PanelTitle.setText("Account Management");
+        fr.changedTab(6);
     }
     
     /**
@@ -219,36 +223,7 @@ public class AccMgmtFrame_EditLect extends javax.swing.JFrame {
         }
         //</editor-fold>
         //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
+        
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {

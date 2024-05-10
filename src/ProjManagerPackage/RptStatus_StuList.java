@@ -102,6 +102,7 @@ public class RptStatus_StuList extends javax.swing.JPanel {
         TabTitle = new javax.swing.JLabel();
         lblAssessment = new javax.swing.JLabel();
         selectedAssessment = new javax.swing.JLabel();
+        btbBack = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -145,7 +146,22 @@ public class RptStatus_StuList extends javax.swing.JPanel {
         selectedAssessment.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         selectedAssessment.setText("Investigation Report");
         add(selectedAssessment, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 50, -1, -1));
+
+        btbBack.setFont(new java.awt.Font("Dubai Medium", 0, 20)); // NOI18N
+        btbBack.setForeground(new java.awt.Color(0, 0, 0));
+        btbBack.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/leftArrow(Black).png"))); // NOI18N
+        btbBack.setText("Back...");
+        btbBack.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btbBackMouseClicked(evt);
+            }
+        });
+        add(btbBack, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btbBackMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btbBackMouseClicked
+        mainFrame.changedTab(8);
+    }//GEN-LAST:event_btbBackMouseClicked
 
     /* Customize the scrollbar for table */
     public void fixTable (JScrollPane scroll){
@@ -169,6 +185,7 @@ public class RptStatus_StuList extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTable StuRptStatusTable;
     private javax.swing.JLabel TabTitle;
+    private javax.swing.JLabel btbBack;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblAssessment;
     private javax.swing.JLabel selectedAssessment;

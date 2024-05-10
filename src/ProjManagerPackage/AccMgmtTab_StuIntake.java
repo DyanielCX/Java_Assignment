@@ -146,7 +146,7 @@ public class AccMgmtTab_StuIntake extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btbBackMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btbBackMouseClicked
-        mainFrame.changedTab(8);
+        mainFrame.changedTab(5);
     }//GEN-LAST:event_btbBackMouseClicked
 
     /* Customize the scrollbar for table */

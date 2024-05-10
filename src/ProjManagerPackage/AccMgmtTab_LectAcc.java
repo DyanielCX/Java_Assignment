@@ -2,9 +2,11 @@ package ProjManagerPackage;
 
 import ProjManagerPackage.AccMgmtElem.TableActionCellRender_AccTbl;
 import ProjManagerPackage.AccMgmtElem.TableHeader_AccTbl;
+import ProjManagerPackage.AssignSupvElem.LectData_IO;
 import ProjManagerPackage.StuAssessElem.ModernScrollBarUI;
 import ProjManagerPackage.StuAssessElem.TableActionCellEditor;
 import ProjManagerPackage.StuAssessElem.TableActionEvent;
+import assignment_ood.Lecturer;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
@@ -42,31 +44,17 @@ public class AccMgmtTab_LectAcc extends javax.swing.JPanel {
 
         
         //Insert data into table
-        /*Show the student haven't been alloted assesment*/
-//        for (Student stu :StuData_IO.StuData){
-//            String StuName = stu.name;
-//            String StuID = stu.id;
-//            String Intake = stu.intake;
-//            String Assessment = stu.assessment;
-//            
-//            if (Assessment.equals("-")) {
-//            Object[] InsertRow = {StuName, StuID, Intake, Assessment};
-//
-//            DefaultTableModel model = (DefaultTableModel) LectAccTable.getModel();
-//            model.addRow(InsertRow);
-//            }
-//        }
-        
-        for (int count = 0; count < 3; count++){
-            String LectName = "Alan";
-            String LectID = "122334";
-            
-            
+        for (Lecturer lect :LectData_IO.LectData){
+            String LectName = lect.lectName;
+            String LectID = lect.lectid;
+
             Object[] InsertRow = {LectName, LectID};
 
             DefaultTableModel model = (DefaultTableModel) LectAccTable.getModel();
             model.addRow(InsertRow);
+
         }
+        
         
         /*Set the edit button and its function*/
         TableActionEvent event = new TableActionEvent() {
@@ -144,7 +132,7 @@ public class AccMgmtTab_LectAcc extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btbBackMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btbBackMouseClicked
-        mainFrame.changedTab(8);
+        mainFrame.changedTab(5);
     }//GEN-LAST:event_btbBackMouseClicked
 
     /* Customize the scrollbar for table */
