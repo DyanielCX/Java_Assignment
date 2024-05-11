@@ -3,6 +3,10 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
 package assignment_ood;
+import ProjManagerPackage.Dashboard;
+import ProjManagerPackage.DashboardElem.TableHeader_Dashboard;
+import ProjManagerPackage.MainFrame;
+import ProjManagerPackage.StuAssessElem.ModernScrollBarUI;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
@@ -12,11 +16,19 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumnModel;
 import assignment_ood.presentationReq;
+import java.awt.Color;
+import java.awt.Component;
+import java.awt.Dimension;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JScrollBar;
+import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import javax.swing.border.EmptyBorder;
+import javax.swing.table.DefaultTableCellRenderer;
 /**
  *
  * @author User
@@ -36,34 +48,76 @@ private Lecture_mainframe lectmainframe;
           int numberOfSupervisees = AssignedStuTbl.getRowCount();
          assigned_Supervisees.setText(String.valueOf(numberOfSupervisees));
           updatePresentationDateLabel(AssignedStuTbl);
+          
+            fixTable(jScrollPane1);
+        
+        /* Set the header to customize header */
+        AssignedStuTbl.getTableHeader().setReorderingAllowed(false);
+        AssignedStuTbl.getTableHeader().setResizingAllowed(false);
+        AssignedStuTbl.getTableHeader().setDefaultRenderer(new DefaultTableCellRenderer(){
+            @Override
+            public Component getTableCellRendererComponent(JTable table, Object o, boolean isSelected, boolean hasFocus, int row, int column) {
+                TableHeader_Dashboard header = new TableHeader_Dashboard(o + "");
+                return header;
+            }
+        });
+        
+       
+        AssignedStuTbl.getTableHeader().setReorderingAllowed(false);
+        AssignedStuTbl.getTableHeader().setResizingAllowed(false);
+        AssignedStuTbl.getTableHeader().setDefaultRenderer(new DefaultTableCellRenderer(){
+            @Override
+            public Component getTableCellRendererComponent(JTable table, Object o, boolean isSelected, boolean hasFocus, int row, int column) {
+                TableHeader_Dashboard header = new TableHeader_Dashboard(o + "");
+                return header;
+            }
+        });
          
     }
 
-     private void updatePresentationDateLabel(JTable AssignedStuTbl) {
-        SimpleDateFormat dateFormat = new SimpleDateFormat("EEE MMM dd HH:mm:ss zzz yyyy");
-        Date currentDate = new Date();
+   private void updatePresentationDateLabel(JTable AssignedStuTbl) {
+    SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
+    Date currentDate = new Date();
 
-        String closestDate = null;
-        long minDifference = Long.MAX_VALUE;
+    String closestDate = null;
+    long minDifference = Long.MAX_VALUE;
 
-        for (int row = 0; row < AssignedStuTbl.getRowCount(); row++) {
-            try {
-                Date date = dateFormat.parse((String) AssignedStuTbl.getValueAt(row, 2)); 
-                long difference = Math.abs(date.getTime() - currentDate.getTime());
-                if (difference < minDifference) {
-                    minDifference = difference;
-                    closestDate = dateFormat.format(date);
-                }
-            } catch (ParseException e) {
-                e.printStackTrace();
+    for (int row = 0; row < AssignedStuTbl.getRowCount(); row++) {
+        try {
+            Date date = dateFormat.parse((String) AssignedStuTbl.getValueAt(row, 3));
+            long difference = Math.abs(date.getTime() - currentDate.getTime());
+            if (difference < minDifference) {
+                minDifference = difference;
+                closestDate = dateFormat.format(date);
             }
+        } catch (ParseException e) {
+            e.printStackTrace();
         }
+    }
 
-        if (closestDate != null) {
+    if (closestDate != null) {
         presentationDate.setText(closestDate);
     } else {
         presentationDate.setText("No upcoming presentations");
     }
+}
+     
+      public  void fixTable (JScrollPane scroll){
+        scroll.getViewport().setBackground(Color.WHITE);
+        
+        JScrollBar verticalScrollBar = scroll.getVerticalScrollBar();
+        verticalScrollBar.setUI(new ModernScrollBarUI());
+
+        // Set other properties of the vertical scroll bar
+        verticalScrollBar.setPreferredSize(new Dimension(3, 5));
+        verticalScrollBar.setForeground(new Color(71, 105, 231, 178));
+        verticalScrollBar.setUnitIncrement(20);
+        verticalScrollBar.setOpaque(false);
+        
+        JPanel p = new JPanel();
+        p.setBackground(Color.WHITE);
+        scroll.setCorner(JScrollPane.UPPER_RIGHT_CORNER, p);
+        scroll.setBorder(new EmptyBorder(5, 10, 5, 10));
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -105,11 +159,11 @@ private Lecture_mainframe lectmainframe;
 
             },
             new String [] {
-                "Student", "Lecturer", "Date", "Status"
+                "Student", "Lecturer", "Course", "Date", "Time", "Status", "Reason"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, true, false, false
+                false, false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -120,7 +174,7 @@ private Lecture_mainframe lectmainframe;
         AssignedStuTbl.setRowHeight(40);
         jScrollPane1.setViewportView(AssignedStuTbl);
 
-        boxRptStatus.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 40, 840, 300));
+        boxRptStatus.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 40, 840, 300));
 
         TabTitle.setFont(new java.awt.Font("Dubai Medium", 0, 23)); // NOI18N
         TabTitle.setForeground(new java.awt.Color(0, 0, 0));
@@ -142,7 +196,7 @@ private Lecture_mainframe lectmainframe;
         LectIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/Dashboard_Lect.png"))); // NOI18N
         boxTtlLect.add(LectIcon, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 0, -1, -1));
 
-        presentationDate.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        presentationDate.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         boxTtlLect.add(presentationDate, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 60, 250, 60));
 
         jPanel1.add(boxTtlLect, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 20, 270, 130));

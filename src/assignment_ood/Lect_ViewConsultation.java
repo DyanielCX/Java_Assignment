@@ -98,9 +98,9 @@ private Lecture_mainframe lectmainframe;
                 String newStatus = (String) cbStatus.getSelectedItem();
                 // Update the status in the table
                 ConsultTbl.setValueAt(newStatus, selectedRow, 3);
-                // Optionally, update the status in the file or perform any other actions needed
+                
                 // Admin.updateStatusInFile(selectedRow, newStatus);
-                Admin.updateStatusInFile(selectedRow, newStatus);
+                //Admin.updateStatusInFile(selectedRow, newStatus,reason);
               
             }
         } else {
@@ -115,7 +115,7 @@ private Lecture_mainframe lectmainframe;
     model.setRowCount(0);
 
     // Read data from presentation_data.txt file
-    try (BufferedReader reader = new BufferedReader(new FileReader("presentation_data.txt"))) {
+    try (BufferedReader reader = new BufferedReader(new FileReader("PresentationData.txt"))) {
         String line;
         List<String[]> rows = new ArrayList<>(); // Store rows temporarily
         while ((line = reader.readLine()) != null) {
