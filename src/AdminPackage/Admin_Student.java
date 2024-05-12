@@ -15,22 +15,31 @@ public class Admin_Student extends javax.swing.JFrame {
         initComponents();
         loadDataFromFile(); // Load data from file when the form is created
         
-        /*Set the edit button and its function*/
+         /*Set the edit button and its function*/
         TableActionEvent event = new TableActionEvent() {
             @Override
             public void onEdit(int row) {
-                Admin_EditStudent editStudentFrame = new Admin_EditStudent();
-                editStudentFrame.setVisible(true);
-                
+                String studentID = (String) StudentList.getValueAt(row, 0); // Get student ID from the clicked row
+    
+            // Get all the student details
+            String name = (String) StudentList.getValueAt(row, 1);
+            int age = (int) StudentList.getValueAt(row, 2);
+            String intake = (String) StudentList.getValueAt(row, 3);
+            String assessment = (String) StudentList.getValueAt(row, 4);
+            String supervisor = (String) StudentList.getValueAt(row, 5);
+            String secondMarker = (String) StudentList.getValueAt(row, 6);
+            String RMCP_lecture = (String) StudentList.getValueAt(row, 7);
 
-                
-            }
+            // Create an instance of Admin_EditStudent and pass the student details
+            Admin_EditStudent editStudentFrame = new Admin_EditStudent(studentID, name, age, intake, assessment, supervisor, secondMarker, RMCP_lecture);
+            editStudentFrame.setVisible(true);
+            dispose(); // Close the current frame
+        }
         };
         
         //Insert edit button into table
-        StudentList.getColumnModel().getColumn(7).setCellRenderer(new TableActionCellRender());
-        StudentList.getColumnModel().getColumn(7).setCellEditor(new TableActionCellEditor(event));
-
+        StudentList.getColumnModel().getColumn(8).setCellRenderer(new TableActionCellRender());
+        StudentList.getColumnModel().getColumn(8).setCellEditor(new TableActionCellEditor(event));
     }
     
     private void loadDataFromFile() {
@@ -39,7 +48,7 @@ public class Admin_Student extends javax.swing.JFrame {
         for (Student student : StuData_IO.StuData) {
             model.addRow(new Object[]{
                 student.id, student.name, student.age, student.intake,
-                student.assessment, student.supervisor, student.secondMarker
+                student.assessment, student.supervisor, student.secondMarker,student.RMCP_lecture
             });
         }
     }
@@ -67,11 +76,11 @@ public class Admin_Student extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Student ID", "Name", "Age", "Intake", "Assessment", "Supervisor", "Second Marker", "Action"
+                "Student ID", "Name", "Age", "Intake", "Assessment", "Supervisor", "Second Marker", "RMCP", "Action"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, false
+                false, false, false, false, false, false, false, false, true
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -89,6 +98,7 @@ public class Admin_Student extends javax.swing.JFrame {
             StudentList.getColumnModel().getColumn(5).setResizable(false);
             StudentList.getColumnModel().getColumn(6).setResizable(false);
             StudentList.getColumnModel().getColumn(7).setResizable(false);
+            StudentList.getColumnModel().getColumn(8).setResizable(false);
         }
 
         jPanel2.setBackground(new java.awt.Color(0, 153, 255));
@@ -120,7 +130,7 @@ public class Admin_Student extends javax.swing.JFrame {
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap(186, Short.MAX_VALUE)
+                .addContainerGap(201, Short.MAX_VALUE)
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(StuID_txtfield, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -128,18 +138,18 @@ public class Admin_Student extends javax.swing.JFrame {
                 .addComponent(Search_btn)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(Add_btn)
-                .addGap(106, 106, 106))
+                .addGap(177, 177, 177))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(39, 39, 39)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addContainerGap(45, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(StuID_txtfield, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(Search_btn)
                     .addComponent(Add_btn))
-                .addContainerGap(42, Short.MAX_VALUE))
+                .addGap(36, 36, 36))
         );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -168,7 +178,7 @@ public class Admin_Student extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(0, 0, 0))
+                .addContainerGap())
         );
 
         pack();

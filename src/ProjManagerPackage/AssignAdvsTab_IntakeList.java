@@ -5,7 +5,7 @@
 package ProjManagerPackage;
 
 import ProjManagerPackage.AssignSupvElem.CrossIcon_TableActionCellRender;
-import ProjManagerPackage.AssignSupvElem.TickIcon_TableActionCellRender;
+import ProjManagerPackage.AssignSupvElem.TickCrossIcon_TableActionCellRender;
 import ProjManagerPackage.StuAssessElem.ModernScrollBarUI;
 import ProjManagerPackage.StuAssessElem.TableActionCellEditor;
 import ProjManagerPackage.StuAssessElem.TableActionCellRender;
@@ -73,7 +73,7 @@ public class AssignAdvsTab_IntakeList extends javax.swing.JPanel {
             Boolean isSecondMarker = true;
             
             if (isSupervisor == true) {
-                LectRoleTable.getColumnModel().getColumn(1).setCellRenderer(new TickIcon_TableActionCellRender());
+                LectRoleTable.getColumnModel().getColumn(1).setCellRenderer(new TickCrossIcon_TableActionCellRender());
             }
             
             if (isSecondMarker == true) {

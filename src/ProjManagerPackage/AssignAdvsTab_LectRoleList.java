@@ -4,13 +4,16 @@
  */
 package ProjManagerPackage;
 
-import ProjManagerPackage.AssignSupvElem.CrossIcon_TableActionCellRender;
-import ProjManagerPackage.AssignSupvElem.TickIcon_TableActionCellRender;
+import ProjManagerPackage.AssignSupvElem.CrossIcon;
+import ProjManagerPackage.AssignSupvElem.LectData_IO;
+import ProjManagerPackage.AssignSupvElem.TickIcon;
+import ProjManagerPackage.AssignSupvElem.TickCrossIcon_TableActionCellRender;
 import ProjManagerPackage.StuAssessElem.ModernScrollBarUI;
 import ProjManagerPackage.StuAssessElem.TableActionCellEditor;
 import ProjManagerPackage.StuAssessElem.TableActionCellRender;
 import ProjManagerPackage.StuAssessElem.TableActionEvent;
 import ProjManagerPackage.StuAssessElem.TableHeader;
+import assignment_ood.Lecturer;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
@@ -50,41 +53,36 @@ public class AssignAdvsTab_LectRoleList extends javax.swing.JPanel {
         });
 
         
-        //Insert data into table
-        /*Show the student haven't been alloted assesment*/
-//        for (Student stu :StuData_IO.StuData){
-//            String StuName = stu.name;
-//            String StuID = stu.id;
-//            String Intake = stu.intake;
-//            String Assessment = stu.assessment;
-//            
-//            if (Assessment.equals("-")) {
-//            Object[] InsertRow = {StuName, StuID, Intake, Assessment};
-//
-//            DefaultTableModel model = (DefaultTableModel) LectRoleTable.getModel();
-//            model.addRow(InsertRow);
-//            }
-//        }
-
-        for (int count = 0; count < 3; count++){
-            String LectName = "Alan";
-            String LectID = "122334";
-            Boolean isSupervisor = true;
-            Boolean isSecondMarker = true;
-            
-            if (isSupervisor == true) {
-                LectRoleTable.getColumnModel().getColumn(2).setCellRenderer(new TickIcon_TableActionCellRender());
-            }
-            
-            if (isSecondMarker == true) {
-                LectRoleTable.getColumnModel().getColumn(3).setCellRenderer(new CrossIcon_TableActionCellRender());
-            }
+        //Insert lecturer data into table
+        LectRoleTable.getColumnModel().getColumn(2).setCellRenderer(new TickCrossIcon_TableActionCellRender());
+        LectRoleTable.getColumnModel().getColumn(3).setCellRenderer(new TickCrossIcon_TableActionCellRender());
+        
+        for (Lecturer lect :LectData_IO.LectData){
+            String LectName = lect.lectName;
+            String LectID = lect.lectid;
+            Boolean isSupervisor = lect.isSupervisor;
+            Boolean isSecondMarker = lect.isSecondMarker;
             
             Object[] InsertRow = {LectName, LectID};
 
             DefaultTableModel model = (DefaultTableModel) LectRoleTable.getModel();
             model.addRow(InsertRow);
+            
+            // Set the appropriate icon based on the value of isSupervisor and isSecondMarker
+            // in the corresponding columns (2 and 3)
+            if (isSupervisor) {
+                model.setValueAt(true, model.getRowCount() - 1, 2);
+            } else {
+                model.setValueAt(false, model.getRowCount() - 1, 2);
+            }
+
+            if (isSecondMarker) {
+                model.setValueAt(true, model.getRowCount() - 1, 3);
+            } else {
+                model.setValueAt(false, model.getRowCount() - 1, 3);
+            }
         }
+
         
         /*Set the edit button and its function*/
         TableActionEvent event = new TableActionEvent() {

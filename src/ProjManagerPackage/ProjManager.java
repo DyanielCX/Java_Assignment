@@ -1,9 +1,9 @@
 package ProjManagerPackage;
 
-import ProjManagerPackage.StuAssessElem.IntakeBasedMethod;
+import ProjManagerPackage.AssignSupvElem.LectData_IO;
 import StuPackage.StuData_IO;
 import StuPackage.Student;
-import javax.swing.JOptionPane;
+import assignment_ood.Lecturer;
 
 
 public class ProjManager {
@@ -19,8 +19,10 @@ public class ProjManager {
         String Assessment = selectedAssess;
         String Supervisor = StuData_IO.StuData.get(stuIndex).supervisor;
         String SecondMaker = StuData_IO.StuData.get(stuIndex).secondMarker;
+        String RMCP_Lecture = StuData_IO.StuData.get(stuIndex).RMCP_lecture;
+        String Password = StuData_IO.StuData.get(stuIndex).password;
 
-        Student editedStudent = new Student(Name, Age, stuID, Intake, Assessment, Supervisor, SecondMaker);
+        Student editedStudent = new Student(Name, Age, stuID, Intake, Assessment, Supervisor, SecondMaker, RMCP_Lecture, Password);
         StuData_IO.edit(stuIndex, editedStudent);
     }
     
@@ -33,8 +35,23 @@ public class ProjManager {
         String Assessment = StuData_IO.StuData.get(stuIndex).assessment;
         String Supervisor = StuData_IO.StuData.get(stuIndex).supervisor;
         String SecondMaker = StuData_IO.StuData.get(stuIndex).secondMarker;
+        String RMCP_Lecture = StuData_IO.StuData.get(stuIndex).RMCP_lecture;
+        String Password = StuData_IO.StuData.get(stuIndex).password;
 
-        Student editedStudent = new Student(Name, Age, stuID, Intake, Assessment, Supervisor, SecondMaker);
+        Student editedStudent = new Student(Name, Age, stuID, Intake, Assessment, Supervisor, SecondMaker, RMCP_Lecture, Password);
         StuData_IO.edit(stuIndex, editedStudent);
+    }
+    
+    public static void editLectRole(int lectIndex, boolean isSupervisor, boolean isSecondMarker){
+        //Get all the selected lecturer data
+        String Name = LectData_IO.LectData.get(lectIndex).lectName;
+        String LectID = LectData_IO.LectData.get(lectIndex).lectid;
+        boolean IsProjectManager = LectData_IO.LectData.get(lectIndex).isProjectManager;
+        boolean IsSecondMarker = isSupervisor;
+        boolean IsSupervisor = isSupervisor;
+        String password = LectData_IO.LectData.get(lectIndex).password;
+
+        Lecturer editedLecturer = new Lecturer(Name, LectID, IsProjectManager, IsSecondMarker, IsSupervisor, password);
+        LectData_IO.edit(lectIndex, editedLecturer);
     }
 }

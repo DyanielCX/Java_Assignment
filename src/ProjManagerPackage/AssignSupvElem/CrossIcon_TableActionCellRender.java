@@ -21,7 +21,7 @@ public class CrossIcon_TableActionCellRender extends DefaultTableCellRenderer{
         }
         
         else{
-        action.setBackground(com.getBackground());
+            action.setBackground(com.getBackground());
         }
         return action;
     }

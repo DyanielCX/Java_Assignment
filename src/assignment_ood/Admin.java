@@ -8,8 +8,10 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.swing.table.DefaultTableModel;
 import assignment_ood.addLect;
+import java.io.BufferedWriter;
+import javax.swing.JOptionPane;
 import javax.swing.JTable;
-
+import assignment_ood.presentationReq;
 public class Admin extends javax.swing.JFrame {
     private javax.swing.JPanel AdminPane;
 
@@ -166,8 +168,87 @@ public class Admin extends javax.swing.JFrame {
         return lecturers;
     }   
 
-    
+     public static void updateStatusInFile(int row, String newStatus) {
+    try {
+        // Read all lines from the file into a list
+        List<String> lines = new ArrayList<>();
+        BufferedReader reader = new BufferedReader(new FileReader("presentation_data.txt"));
+        String line;
+        while ((line = reader.readLine()) != null) {
+            lines.add(line);
+        }
+        reader.close();
 
+        // Update the status in the corresponding line
+       if (row < lines.size()) {
+      String[] parts = lines.get(row).split(",");
+      if (parts.length >= 4) {
+        parts[3] = newStatus;
+        lines.set(row, String.join(",", parts));
+      }
+    }
+
+    // Write the updated lines with explicit flush
+    BufferedWriter writer = new BufferedWriter(new FileWriter("presentation_data.txt"));
+    for (String updatedLine : lines) {
+      writer.write(updatedLine);
+      writer.newLine();
+    }
+    writer.flush(); // Flush the buffer before closing
+    writer.close();
+  } catch (IOException e) {
+    e.printStackTrace();
+    JOptionPane.showMessageDialog(null, "Error updating status in file.", "Error", JOptionPane.ERROR_MESSAGE);
+  }
+
+ 
+    
+}
+      public  void populatePresentationTable(JTable ConsultTbl) {
+    DefaultTableModel model = (DefaultTableModel) ConsultTbl.getModel();
+
+    // Clear existing rows in the table model
+    model.setRowCount(0);
+
+    // Read data from presentation_data.txt file
+    try (BufferedReader reader = new BufferedReader(new FileReader("presentation_data.txt"))) {
+        String line;
+        List<String[]> rows = new ArrayList<>(); // Store rows temporarily
+        while ((line = reader.readLine()) != null) {
+            String[] rowData = line.split(",");
+            rows.add(rowData); // Add rows to the list
+        }
+
+        // Add rows from the list to the model
+        for (String[] row : rows) {
+            model.addRow(row);
+        }
+    } catch (IOException e) {
+        e.printStackTrace();
+        JOptionPane.showMessageDialog(this, "Error reading presentation data file.", "Error", JOptionPane.ERROR_MESSAGE);
+    }
+}
+ public  void populateDashBoardTable(JTable AssignedStuTbl,String supervisor) {
+     DefaultTableModel tableModel = (DefaultTableModel) AssignedStuTbl.getModel();
+    tableModel.setRowCount(0); 
+
+    try (BufferedReader reader = new BufferedReader(new FileReader("presentation_data.txt"))) {
+        String line;
+        while ((line = reader.readLine()) != null) {
+            
+            String[] parts = line.split(",");
+
+            
+           if (parts.length >= 4 && parts[1].trim().equalsIgnoreCase(supervisor)) {
+
+    tableModel.addRow(new Object[]{parts[0], parts[1], parts[2], parts[3]});
+}
+        }
+    } catch (IOException e) {
+        e.printStackTrace();
+        
+    }
+}
    
 
     public static void main(String args[]) {

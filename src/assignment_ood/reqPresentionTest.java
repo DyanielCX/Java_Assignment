@@ -64,9 +64,11 @@ public class reqPresentionTest extends javax.swing.JFrame {
                 String assessment = stuDataArray[4];
                 String supervisor = stuDataArray[5];
                 String secondMarker = stuDataArray[6];
+                String RMCP_lecture = stuDataArray[7];
+                String password = stuDataArray[8];
 
                 // Add into ArrayList
-                students.add(new Student(name, age, stuID, intake, assessment, supervisor, secondMarker));
+                students.add(new Student(name, age, stuID, intake, assessment, supervisor, secondMarker, RMCP_lecture, password));
             }
             scan.close(); // Close the scanner
         } catch (IOException ex) {
@@ -184,7 +186,7 @@ public class reqPresentionTest extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         String selectedStudent = (String) viewStudent.getSelectedItem();
     String selectedSupervisor = (String) reqSupervisor.getSelectedItem();
-    
+    String status ="Pending";
     // Get the selected date from the JCalendar
     java.util.Date selectedDate = jDateChooser1.getDate();
     
@@ -195,7 +197,7 @@ public class reqPresentionTest extends javax.swing.JFrame {
          BufferedWriter bufferedWriter = new BufferedWriter(writer)) {
         
         // Write the selected data to the file
-         writer.write(selectedStudent + "," + selectedSupervisor + "," + selectedDate + "\n");
+         writer.write(selectedStudent + "," + selectedSupervisor + "," + selectedDate + ","+status + "\n");
 
         
         // Display a success message

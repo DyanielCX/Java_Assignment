@@ -21,62 +21,25 @@ import javax.swing.JScrollBar;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumnModel;
-
+import assignment_ood.presentationReq;
 /**
  *
  * @author User
  */
-public class presentationReq extends javax.swing.JPanel {
+public class Lect_ViewConsultation extends javax.swing.JPanel {
 private Lecture_mainframe lectmainframe;
     /**
-     * Creates new form presentationReq
+     * Creates new form Lect_ViewConsultation
      */
-    public presentationReq(Lecture_mainframe lectmainframe) {
-        this.lectmainframe = lectmainframe;
+    public Lect_ViewConsultation(Lecture_mainframe lectmainframe) {
+         this.lectmainframe = lectmainframe;
         initComponents();
         populatePresentationTable();
-        
-        
-     
-        presentationTable.getColumnModel().getColumn(4).setCellRenderer(new TableActionCellRender());
-        presentationTable.getColumnModel().getColumn(4).setCellEditor(new TableActionCellEditor(event));
-        
-
-
+            
+           ConsultTbl.getColumnModel().getColumn(4).setCellRenderer(new TableActionCellRender());
+        ConsultTbl.getColumnModel().getColumn(4).setCellEditor(new TableActionCellEditor(event));
     }
-    
-    TableActionEvent event = new TableActionEvent() {
-    @Override
-    public void onEdit(int row) {
-        // Get the selected row
-         int selectedRow = presentationTable.convertRowIndexToModel(presentationTable.getSelectedRow());
-    if (selectedRow != -1) {
-            // Create a combo box with status options
-            String[] statusOptions = {"Pending", "Rejected", "Accepted"};
-            JComboBox<String> cbStatus = new JComboBox<>(statusOptions);
 
-            // Get the current status of the selected row
-            String currentStatus = (String) presentationTable.getValueAt(selectedRow, 3);
-            cbStatus.setSelectedItem(currentStatus); // Set the combo box to the current status
-
-            // Display a dialog with the combo box for editing status
-            int option = JOptionPane.showConfirmDialog(presentationTable, cbStatus, "Edit Status", JOptionPane.OK_CANCEL_OPTION);
-            if (option == JOptionPane.OK_OPTION) {
-                // Get the selected status from the combo box
-                String newStatus = (String) cbStatus.getSelectedItem();
-                // Update the status in the table
-                presentationTable.setValueAt(newStatus, selectedRow, 3);
-                // Optionally, update the status in the file or perform any other actions needed
-                // Admin.updateStatusInFile(selectedRow, newStatus);
-                Admin.updateStatusInFile(selectedRow, newStatus);
-              
-            }
-        } else {
-            JOptionPane.showMessageDialog(presentationTable, "Please select a row to edit.");
-        }
-    }
-};
-        
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -86,14 +49,10 @@ private Lecture_mainframe lectmainframe;
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        presentationTable = new javax.swing.JTable();
+        ConsultTbl = new javax.swing.JTable();
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/leftArrow(Black).png"))); // NOI18N
-        jLabel1.setText("Back");
-
-        presentationTable.setModel(new javax.swing.table.DefaultTableModel(
+        ConsultTbl.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null},
                 {null, null, null, null, null},
@@ -101,27 +60,56 @@ private Lecture_mainframe lectmainframe;
                 {null, null, null, null, null}
             },
             new String [] {
-                "Student", "Lecturer", "Date", "Status", "Action"
+                "Student", "Supervisor", "Date", "Status", "Action"
             }
         ));
-        presentationTable.setRowHeight(50);
-        jScrollPane1.setViewportView(presentationTable);
+        ConsultTbl.setRowHeight(50);
+        jScrollPane1.setViewportView(ConsultTbl);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 762, Short.MAX_VALUE)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 564, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 412, Short.MAX_VALUE))
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 323, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
-public void populatePresentationTable() {
-    DefaultTableModel model = (DefaultTableModel) presentationTable.getModel();
+ TableActionEvent event = new TableActionEvent() {
+    @Override
+    public void onEdit(int row) {
+        // Get the selected row
+         int selectedRow = ConsultTbl.convertRowIndexToModel(ConsultTbl.getSelectedRow());
+    if (selectedRow != -1) {
+            // Create a combo box with status options
+            String[] statusOptions = {"Pending", "Rejected", "Accepted"};
+            JComboBox<String> cbStatus = new JComboBox<>(statusOptions);
+
+            // Get the current status of the selected row
+            String currentStatus = (String) ConsultTbl.getValueAt(selectedRow, 3);
+            cbStatus.setSelectedItem(currentStatus); // Set the combo box to the current status
+
+            // Display a dialog with the combo box for editing status
+            int option = JOptionPane.showConfirmDialog(ConsultTbl, cbStatus, "Edit Status", JOptionPane.OK_CANCEL_OPTION);
+            if (option == JOptionPane.OK_OPTION) {
+                // Get the selected status from the combo box
+                String newStatus = (String) cbStatus.getSelectedItem();
+                // Update the status in the table
+                ConsultTbl.setValueAt(newStatus, selectedRow, 3);
+                // Optionally, update the status in the file or perform any other actions needed
+                // Admin.updateStatusInFile(selectedRow, newStatus);
+                Admin.updateStatusInFile(selectedRow, newStatus);
+              
+            }
+        } else {
+            JOptionPane.showMessageDialog(ConsultTbl, "Please select a row to edit.");
+        }
+    }
+};
+  public  void populatePresentationTable() {
+    DefaultTableModel model = (DefaultTableModel) ConsultTbl.getModel();
 
     // Clear existing rows in the table model
     model.setRowCount(0);
@@ -145,15 +133,8 @@ public void populatePresentationTable() {
     }
 }
 
-
-
-
-
-
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JTable ConsultTbl;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable presentationTable;
     // End of variables declaration//GEN-END:variables
 }

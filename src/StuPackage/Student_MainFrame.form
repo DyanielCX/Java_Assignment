@@ -179,7 +179,7 @@
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                   <Image iconType="3" name="/Image/StuReport.png"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="Report "/>
+                <Property name="text" type="java.lang.String" value="Schedule "/>
                 <Property name="doubleBuffered" type="boolean" value="true"/>
                 <Property name="iconTextGap" type="int" value="15"/>
               </Properties>
@@ -288,9 +288,9 @@
                 </Property>
                 <Property name="horizontalAlignment" type="int" value="2"/>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/Image/StuResult.png"/>
+                  <Image iconType="3" name="/Image/StuReport.png"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="Result"/>
+                <Property name="text" type="java.lang.String" value="Report"/>
                 <Property name="iconTextGap" type="int" value="15"/>
               </Properties>
               <Events>

@@ -31,9 +31,11 @@ public class StuData_IO {
                 String Assessment = StuData_Array[4];
                 String Supervisor = StuData_Array[5];
                 String SecondMarker = StuData_Array[6];
+                String RMCP_Lecture = StuData_Array[7];
+                String Password = StuData_Array[8];
 
                 // Add into ArrayList
-                StuData.add(new Student(Name, Age, StuID, Intake, Assessment, Supervisor,SecondMarker));
+                StuData.add(new Student(Name, Age, StuID, Intake, Assessment, Supervisor, SecondMarker, RMCP_Lecture, Password));
             }
         }
         catch (Exception ex){
@@ -50,7 +52,8 @@ public class StuData_IO {
                 for (Student student : StuData) {
                     String writeInLine = student.name + "," + student.age + "," + student.id + "," +
                                          student.intake + "," + student.assessment + "," +
-                                         student.supervisor + "," + student.secondMarker;
+                                         student.supervisor + "," + student.secondMarker + "," +
+                                         student.RMCP_lecture + "," + student.password;
                     write.println(writeInLine);
                 }
                 write.close();

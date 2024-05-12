@@ -28,15 +28,9 @@ public class Admin_AddStudent extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
         StudentName_textfield = new javax.swing.JTextField();
         StudentAge_textfield = new javax.swing.JTextField();
         StudentIntake_cmb = new javax.swing.JComboBox<>();
-        StudentAssessment_cmb = new javax.swing.JComboBox<>();
-        StudentSupervisor_cmb = new javax.swing.JComboBox<>();
-        StudentSecMarker = new javax.swing.JComboBox<>();
         AddBtn = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -84,12 +78,6 @@ public class Admin_AddStudent extends javax.swing.JFrame {
 
         jLabel5.setText("Student Intake");
 
-        jLabel6.setText("Student Assessment");
-
-        jLabel7.setText("Student Supervisor");
-
-        jLabel8.setText("Student Second Marker");
-
         StudentName_textfield.setForeground(java.awt.Color.gray);
         StudentName_textfield.setText("Please enter the student name");
         StudentName_textfield.addFocusListener(new java.awt.event.FocusAdapter() {
@@ -124,12 +112,6 @@ public class Admin_AddStudent extends javax.swing.JFrame {
 
         StudentIntake_cmb.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
-        StudentAssessment_cmb.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
-        StudentSupervisor_cmb.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
-        StudentSecMarker.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
         AddBtn.setText("Add Student");
         AddBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -141,36 +123,32 @@ public class Admin_AddStudent extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addGroup(layout.createSequentialGroup()
-                .addGap(92, 92, 92)
+                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel6)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jLabel5))
-                            .addComponent(jLabel7)
-                            .addComponent(jLabel8))
+                        .addGap(218, 218, 218)
+                        .addComponent(AddBtn))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(129, 129, 129)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel5))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(StudentName_textfield)
                             .addComponent(StudentAge_textfield)
-                            .addComponent(StudentIntake_cmb, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(StudentAssessment_cmb, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(StudentSupervisor_cmb, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(StudentSecMarker, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(126, 126, 126)
-                        .addComponent(AddBtn))))
+                            .addComponent(StudentIntake_cmb, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(38, 38, 38)
+                .addGap(88, 88, 88)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(StudentName_textfield, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -182,21 +160,9 @@ public class Admin_AddStudent extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
                     .addComponent(StudentIntake_cmb, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel6)
-                    .addComponent(StudentAssessment_cmb, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel7)
-                    .addComponent(StudentSupervisor_cmb, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel8)
-                    .addComponent(StudentSecMarker, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(34, 34, 34)
+                .addGap(98, 98, 98)
                 .addComponent(AddBtn)
-                .addContainerGap(41, Short.MAX_VALUE))
+                .addContainerGap(47, Short.MAX_VALUE))
         );
 
         pack();
@@ -204,7 +170,7 @@ public class Admin_AddStudent extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void AddBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddBtnActionPerformed
-       // Retrieve student details from input fields
+      // Retrieve student details from input fields
         String name = StudentName_textfield.getText();
         String ageText = StudentAge_textfield.getText(); // Retrieve age text directly
         int age;
@@ -220,20 +186,23 @@ public class Admin_AddStudent extends javax.swing.JFrame {
             return; // Exit the method if age is not a valid integer
         }
         String intake = (String) StudentIntake_cmb.getSelectedItem();
-        String assessment = (String) StudentAssessment_cmb.getSelectedItem();
-        String supervisor = (String) StudentSupervisor_cmb.getSelectedItem();
-        String secondMarker = (String) StudentSecMarker.getSelectedItem();
 
         // Check if any field is empty
-        if (name.equals("Please enter the student name") || intake.isEmpty() || assessment.isEmpty() || supervisor.isEmpty() || secondMarker.isEmpty()) {
+        if (name.equals("Please enter the student name") || intake.isEmpty()) {
             JOptionPane.showMessageDialog(this, "Please fill out all fields.", "Error", JOptionPane.ERROR_MESSAGE);
             return; // Exit the method if any field is empty
         }
 
         // Create a Student object with the retrieved data
-        Student newStudent = new Student(name, age, generateStudentID(), intake, assessment, supervisor, secondMarker);
+        String stuID = generateStudentID();
+        String assessment = "-";
+        String supervisor = "-";
+        String secondMarker = "-";
+        String RMCP_Lecture = "-";
+        String password = "123456";
 
         // Add the student to the ArrayList
+        Student newStudent = new Student(name, age, stuID, intake, assessment, supervisor, secondMarker, RMCP_Lecture, password);
         StuData_IO.add(newStudent);
 
         // Call writeToTxt to update the file with the ArrayList data
@@ -343,17 +312,11 @@ public class Admin_AddStudent extends javax.swing.JFrame {
     private javax.swing.JButton AddBtn;
     private javax.swing.JLabel Back_lbl;
     private javax.swing.JTextField StudentAge_textfield;
-    private javax.swing.JComboBox<String> StudentAssessment_cmb;
     private javax.swing.JComboBox<String> StudentIntake_cmb;
     private javax.swing.JTextField StudentName_textfield;
-    private javax.swing.JComboBox<String> StudentSecMarker;
-    private javax.swing.JComboBox<String> StudentSupervisor_cmb;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel3;
     // End of variables declaration//GEN-END:variables
