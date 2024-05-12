@@ -1,5 +1,8 @@
 package Java_Assignment;
 
+import ProjManagerPackage.AssignSupvElem.LectData_IO;
+import ProjManagerPackage.MainFrame;
+import StuPackage.StuData_IO;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
@@ -171,6 +174,8 @@ public class LoginPage extends javax.swing.JFrame {
             case "Projectmanager":
                 System.out.println("Redirecting to projectmanager dashboard...");
                 // Redirect logic for student dashboard
+                MainFrame fr = new MainFrame();
+                fr.setVisible(true);
                 break;
             default:
                 System.out.println("Invalid role.");
@@ -201,6 +206,8 @@ public class LoginPage extends javax.swing.JFrame {
         //</editor-fold>
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
+                StuData_IO.readFrTxt();
+                LectData_IO.readFrTxt();
                 new LoginPage().setVisible(true);
             }
         });
