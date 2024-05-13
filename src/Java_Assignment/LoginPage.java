@@ -147,16 +147,16 @@ public class LoginPage extends javax.swing.JFrame {
                     String storedPassword = parts[1];
                     String role = file.substring(0, file.indexOf('.'));
                     
-                    if (file.equals("LecData.txt")){
-                        boolean isSupervisor = Boolean.parseBoolean(parts[3]);
-                        if (isSupervisor = true){
-                           role="ProjectMgn";
-                            return role;
-                        }
-                    }
                     if (storedUsername.equals(username) && storedPassword.equals(password)) {
-                        return  role.trim(); // Trim to remove leading/trailing whitespaces
-                    }
+                        role = role.trim();
+                        if (role.equals("LecData")){
+                        boolean isSupervisor = Boolean.parseBoolean(parts[3]);
+                            if (isSupervisor = true){
+                               role="ProjectMgn";
+                                return role;
+                            }
+                        }return  role.trim();
+                   }
                 }
             } catch (IOException e) {
                 e.printStackTrace();
