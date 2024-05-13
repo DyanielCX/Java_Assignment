@@ -41,7 +41,8 @@ public class Lecture_mainframe extends javax.swing.JFrame {
         String UserName = "Shahab";
         AccName.setText(UserName);
         
-        
+      lect_ViewRMCP tab5 = new lect_ViewRMCP(this);
+      TabPanel.add("tab5",tab5);
         
         
         /* Set the tab panel (panel size -> 935, 530) */
