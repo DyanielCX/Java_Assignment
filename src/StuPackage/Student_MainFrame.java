@@ -36,7 +36,7 @@ public class Student_MainFrame extends javax.swing.JFrame {
         PanelPresentation Tab3 = new PanelPresentation(username, password);
         TabPanel.addTab("tab3", Tab3);
     
-        PanelReport Tab4 = new PanelReport();
+        PanelReport Tab4 = new PanelReport(username, password);
         TabPanel.addTab("tab4", Tab4);
     
         PanelConsultation Tab5 = new PanelConsultation();
@@ -389,7 +389,7 @@ public class Student_MainFrame extends javax.swing.JFrame {
         ReportStatusPane.setBackground(navDefaultColor);
         
         //Change to your tab name
-        PanelTitle.setText("Reportt");
+        PanelTitle.setText("Report");
         TabPanel.setSelectedIndex(3);
     }//GEN-LAST:event_navAccMangementMouseClicked
 

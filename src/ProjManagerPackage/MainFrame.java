@@ -1,5 +1,6 @@
 package ProjManagerPackage;
 
+import Java_Assignment.LoginPage;
 import ProjManagerPackage.AssignSupvElem.LectData_IO;
 import StuPackage.StuData_IO;
 import java.awt.Color;
@@ -381,7 +382,7 @@ public class MainFrame extends javax.swing.JFrame {
         ReportStatusPane.setBackground(navDefaultColor);
         
         PanelTitle.setText("Dashboard");
-        TabPanel.setSelectedIndex(0);
+        changedTab(0);
     }//GEN-LAST:event_navDashboardMouseClicked
 
     private void navStuAssessmentMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_navStuAssessmentMouseClicked
@@ -392,7 +393,7 @@ public class MainFrame extends javax.swing.JFrame {
         ReportStatusPane.setBackground(navDefaultColor);
         
         PanelTitle.setText("Student Assessment");
-        TabPanel.setSelectedIndex(1);
+        changedTab(1);
     }//GEN-LAST:event_navStuAssessmentMouseClicked
 
     private void navAssignAdvisorsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_navAssignAdvisorsMouseClicked
@@ -403,7 +404,7 @@ public class MainFrame extends javax.swing.JFrame {
         ReportStatusPane.setBackground(navDefaultColor);
         
         PanelTitle.setText("Assign Advisors");
-        TabPanel.setSelectedIndex(3);
+        changedTab(3);
     }//GEN-LAST:event_navAssignAdvisorsMouseClicked
 
     private void navAccMangementMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_navAccMangementMouseClicked
@@ -414,7 +415,7 @@ public class MainFrame extends javax.swing.JFrame {
         ReportStatusPane.setBackground(navDefaultColor);
         
         PanelTitle.setText("Account Management");
-        TabPanel.setSelectedIndex(5);
+        changedTab(5);
     }//GEN-LAST:event_navAccMangementMouseClicked
 
     private void navReportStatusMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_navReportStatusMouseClicked
@@ -425,12 +426,14 @@ public class MainFrame extends javax.swing.JFrame {
         ReportStatusPane.setBackground(navSelectedColor);
         
         PanelTitle.setText("Report Status");
-        TabPanel.setSelectedIndex(8);
+        changedTab(8);
     }//GEN-LAST:event_navReportStatusMouseClicked
 
     /* Logout Button */
     private void lblLogoutMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblLogoutMouseClicked
-        //Back to the Login Page
+        LoginPage login = new LoginPage();
+        login.setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_lblLogoutMouseClicked
 
     /**

@@ -1,5 +1,8 @@
 package Java_Assignment;
 
+import ProjManagerPackage.AssignSupvElem.LectData_IO;
+import ProjManagerPackage.MainFrame;
+import StuPackage.StuData_IO;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
@@ -115,7 +118,9 @@ public class LoginPage extends javax.swing.JFrame {
     String password = Password_input.getText();
     
     // Call the authenticateUser method to validate the credentials
+    boolean isSupervisor = false;
     String role = authenticateUser(username, password);
+    
     
     if (role != null) {
         // If credentials are valid, redirect to the appropriate dashboard
@@ -141,10 +146,17 @@ public class LoginPage extends javax.swing.JFrame {
                     String storedUsername = parts[0];
                     String storedPassword = parts[1];
                     String role = file.substring(0, file.indexOf('.'));
-
+                    
                     if (storedUsername.equals(username) && storedPassword.equals(password)) {
-                        return role.trim(); // Trim to remove leading/trailing whitespaces
-                    }
+                        role = role.trim();
+                        if (role.equals("LecData")){
+                        boolean isSupervisor = Boolean.parseBoolean(parts[3]);
+                            if (isSupervisor = true){
+                               role="ProjectMgn";
+                                return role;
+                            }
+                        }return  role.trim();
+                   }
                 }
             } catch (IOException e) {
                 e.printStackTrace();
@@ -158,19 +170,18 @@ public class LoginPage extends javax.swing.JFrame {
             case "StuData":
                 StuPackage.Student_MainFrame studentAcc= new StuPackage.Student_MainFrame(username, password);
                 studentAcc.setVisible(true);
-                // Redirect logic for lecturer dashboard
                 break;
             case "LecData":
-                System.out.println("Redirecting to project manager dashboard...");
-                // Redirect logic for project manager dashboard
+                
                 break;
+            case "ProjectMgn":
+                  MainFrame fr = new MainFrame();
+                  fr.setVisible(true);
+                  break;
+                  
             case "admin":
                 System.out.println("Redirecting to admin dashboard...");
                 // Redirect logic for admin dashboard
-                break;
-            case "Projectmanager":
-                System.out.println("Redirecting to projectmanager dashboard...");
-                // Redirect logic for student dashboard
                 break;
             default:
                 System.out.println("Invalid role.");
@@ -201,6 +212,8 @@ public class LoginPage extends javax.swing.JFrame {
         //</editor-fold>
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
+                StuData_IO.readFrTxt();
+                LectData_IO.readFrTxt();
                 new LoginPage().setVisible(true);
             }
         });

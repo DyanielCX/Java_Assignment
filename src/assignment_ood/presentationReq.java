@@ -59,11 +59,12 @@ private Lecture_mainframe lectmainframe;
                 String reason = JOptionPane.showInputDialog(presentationTable, "Enter the reason for rejection:");
                 if (reason != null && !reason.isEmpty()) {
                     // Update the status and reason in the table
-                    presentationTable.setValueAt(currentStatus, selectedRow, 5);
+                    presentationTable.setValueAt(currentStatus + ": " + reason, selectedRow, 5);
                     presentationTable.setValueAt(reason, selectedRow, 6);
 
                     // Update the status and reason in the file
-                    String newStatus = currentStatus;
+                    String[] parts = presentationTable.getValueAt(selectedRow, 5).toString().split(": ");
+                    String newStatus = parts[0];
                     Admin.updateStatusInFile(selectedRow, newStatus, reason);
                 } else {
                     // If the reason is empty or null, show a message
