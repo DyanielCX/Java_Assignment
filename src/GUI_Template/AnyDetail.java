@@ -18,13 +18,14 @@ public class AnyDetail {
     data structure (current) -> Student ID, Lecturer Name, Assessment, Presentation Date, Presentation Time, Request Status, Reject Reason
     
     ReportData.txt
-    data structure (current) -> Student ID, Assesment,  Grading Status, Submission Due Date, Submission Due Time, Submission Date, Submission Link, Submission Feedback
+    data structure (current) -> Student ID, Assesment, Submit Status, Grading Status, Submission Due Date, Submission Due Time, Submission Date, Submission Link, Submission Feedback
     
     AdvisorRecord.txt
     data structure (current) -> Intake, Supervisor1, Supervisor2, Supervisor3, Second Marker1, Second Marker1, Second Marker2, Second Marker3, RMCP Lecturer
     
     ******************************************************************************************************************************************************
     [FUNCTION PROGRESS FLOW]
-    when adding student, addd detail to Report Data? 
+    when adding student, addd detail to Report Data>> Student ID, Stu Asessment, No Attempt,No Graded,  - , -  
+    set duedate whe assign cp
     */
 }
