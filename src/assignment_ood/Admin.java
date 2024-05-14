@@ -168,41 +168,38 @@ public class Admin extends javax.swing.JFrame {
         return lecturers;
     }   
 
-     public static void updateStatusInFile(int row, String newStatus) {
+   public static void updateStatusInFile(int row, String newStatus, String reason) {
     try {
         // Read all lines from the file into a list
         List<String> lines = new ArrayList<>();
-        BufferedReader reader = new BufferedReader(new FileReader("presentation_data.txt"));
+        BufferedReader reader = new BufferedReader(new FileReader("PresentationData.txt"));
         String line;
         while ((line = reader.readLine()) != null) {
             lines.add(line);
         }
         reader.close();
 
-        // Update the status in the corresponding line
-       if (row < lines.size()) {
-      String[] parts = lines.get(row).split(",");
-      if (parts.length >= 4) {
-        parts[3] = newStatus;
-        lines.set(row, String.join(",", parts));
-      }
-    }
+        // Update the status and reason in the corresponding line
+        if (row < lines.size()) {
+            String[] parts = lines.get(row).split(",");
+            if (parts.length >= 7) {
+                parts[5] = newStatus + (reason != null ? ": " + reason : "");
+                lines.set(row, String.join(",", parts));
+            }
+        }
 
-    // Write the updated lines with explicit flush
-    BufferedWriter writer = new BufferedWriter(new FileWriter("presentation_data.txt"));
-    for (String updatedLine : lines) {
-      writer.write(updatedLine);
-      writer.newLine();
+        // Write the updated lines with explicit flush
+        BufferedWriter writer = new BufferedWriter(new FileWriter("PresentationData.txt"));
+        for (String updatedLine : lines) {
+            writer.write(updatedLine);
+            writer.newLine();
+        }
+        writer.flush(); // Flush the buffer before closing
+        writer.close();
+    } catch (IOException e) {
+        e.printStackTrace();
+        JOptionPane.showMessageDialog(null, "Error updating status in file.", "Error", JOptionPane.ERROR_MESSAGE);
     }
-    writer.flush(); // Flush the buffer before closing
-    writer.close();
-  } catch (IOException e) {
-    e.printStackTrace();
-    JOptionPane.showMessageDialog(null, "Error updating status in file.", "Error", JOptionPane.ERROR_MESSAGE);
-  }
-
- 
-    
 }
       public  void populatePresentationTable(JTable ConsultTbl) {
     DefaultTableModel model = (DefaultTableModel) ConsultTbl.getModel();
@@ -211,7 +208,7 @@ public class Admin extends javax.swing.JFrame {
     model.setRowCount(0);
 
     // Read data from presentation_data.txt file
-    try (BufferedReader reader = new BufferedReader(new FileReader("presentation_data.txt"))) {
+    try (BufferedReader reader = new BufferedReader(new FileReader("PresentationData.txt"))) {
         String line;
         List<String[]> rows = new ArrayList<>(); // Store rows temporarily
         while ((line = reader.readLine()) != null) {
@@ -228,26 +225,27 @@ public class Admin extends javax.swing.JFrame {
         JOptionPane.showMessageDialog(this, "Error reading presentation data file.", "Error", JOptionPane.ERROR_MESSAGE);
     }
 }
- public  void populateDashBoardTable(JTable AssignedStuTbl,String supervisor) {
+public  void populateDashBoardTable(JTable AssignedStuTbl,String supervisor) {
      DefaultTableModel tableModel = (DefaultTableModel) AssignedStuTbl.getModel();
     tableModel.setRowCount(0); 
 
-    try (BufferedReader reader = new BufferedReader(new FileReader("presentation_data.txt"))) {
+    try (BufferedReader reader = new BufferedReader(new FileReader("PresentationData.txt"))) {
         String line;
         while ((line = reader.readLine()) != null) {
             
             String[] parts = line.split(",");
 
             
-           if (parts.length >= 4 && parts[1].trim().equalsIgnoreCase(supervisor)) {
+           if (parts.length >= 7 && parts[1].trim().equalsIgnoreCase(supervisor)) {
 
-    tableModel.addRow(new Object[]{parts[0], parts[1], parts[2], parts[3]});
+    tableModel.addRow(new Object[]{parts[0], parts[1], parts[2], parts[3],parts[4],parts[5],parts[6]});
 }
         }
     } catch (IOException e) {
         e.printStackTrace();
         
     }
+
 }
    
 

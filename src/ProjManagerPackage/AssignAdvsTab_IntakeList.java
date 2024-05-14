@@ -1,10 +1,5 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
- */
 package ProjManagerPackage;
 
-import ProjManagerPackage.AssignSupvElem.CrossIcon_TableActionCellRender;
 import ProjManagerPackage.AssignSupvElem.TickCrossIcon_TableActionCellRender;
 import ProjManagerPackage.StuAssessElem.ModernScrollBarUI;
 import ProjManagerPackage.StuAssessElem.TableActionCellEditor;
@@ -39,9 +34,9 @@ public class AssignAdvsTab_IntakeList extends javax.swing.JPanel {
         fixTable(jScrollPane1);
         
         /* Set the header to customize header */
-        LectRoleTable.getTableHeader().setReorderingAllowed(false);
-        LectRoleTable.getTableHeader().setResizingAllowed(false);
-        LectRoleTable.getTableHeader().setDefaultRenderer(new DefaultTableCellRenderer(){
+        IntakeListTable.getTableHeader().setReorderingAllowed(false);
+        IntakeListTable.getTableHeader().setResizingAllowed(false);
+        IntakeListTable.getTableHeader().setDefaultRenderer(new DefaultTableCellRenderer(){
             @Override
             public Component getTableCellRendererComponent(JTable table, Object o, boolean isSelected, boolean hasFocus, int row, int column) {
                 TableHeader header = new TableHeader(o + "");
@@ -51,52 +46,69 @@ public class AssignAdvsTab_IntakeList extends javax.swing.JPanel {
 
         
         //Insert data into table
-        /*Show the student haven't been alloted assesment*/
-//        for (Student stu :StuData_IO.StuData){
-//            String StuName = stu.name;
-//            String StuID = stu.id;
-//            String Intake = stu.intake;
-//            String Assessment = stu.assessment;
-//            
-//            if (Assessment.equals("-")) {
-//            Object[] InsertRow = {StuName, StuID, Intake, Assessment};
-//
-//            DefaultTableModel model = (DefaultTableModel) LectRoleTable.getModel();
-//            model.addRow(InsertRow);
-//            }
-//        }
+        AdvisorsRecord.readFrTxt();
         
-        /*Show the student have been alloted assesment*/
-        for (int count = 0; count < 3; count++){
-            String Intake = "AG2109";
+        IntakeListTable.getColumnModel().getColumn(1).setCellRenderer(new TickCrossIcon_TableActionCellRender());
+        IntakeListTable.getColumnModel().getColumn(2).setCellRenderer(new TickCrossIcon_TableActionCellRender());
+        IntakeListTable.getColumnModel().getColumn(3).setCellRenderer(new TickCrossIcon_TableActionCellRender());
+        
+        for (AdvisorsRecord advisorsRecord :AdvisorsRecord.AdvisorsRecordData){
+            String Intake = advisorsRecord.Intake;
             Boolean isSupervisor = true;
             Boolean isSecondMarker = true;
-            
-            if (isSupervisor == true) {
-                LectRoleTable.getColumnModel().getColumn(1).setCellRenderer(new TickCrossIcon_TableActionCellRender());
-            }
-            
-            if (isSecondMarker == true) {
-                LectRoleTable.getColumnModel().getColumn(2).setCellRenderer(new CrossIcon_TableActionCellRender());
-            }
-            
-            Object[] InsertRow = {Intake};
+            Boolean isRMCPLecturer = true;
 
-            DefaultTableModel model = (DefaultTableModel) LectRoleTable.getModel();
+            if (advisorsRecord.Spv1.equals("-") && advisorsRecord.Spv2.equals("-") && advisorsRecord.Spv3.equals("-")) {
+                isSupervisor = false;
+            }
+            if (advisorsRecord.SecondMkr1.equals("-") && advisorsRecord.SecondMkr2.equals("-") && advisorsRecord.SecondMkr3.equals("-")) {
+                isSecondMarker = false;
+            }
+            if (advisorsRecord.RMCP_Lecturer.equals("-")) {
+                isRMCPLecturer = false;
+            }
+
+            Object[] InsertRow = {Intake};
+            
+            DefaultTableModel model = (DefaultTableModel) IntakeListTable.getModel();
             model.addRow(InsertRow);
+            
+            // Set the appropriate icon based on the value of isSupervisor and isSecondMarker
+            if (isSupervisor==true) {
+                model.setValueAt(true, model.getRowCount() - 1, 1);
+            } else {
+                model.setValueAt(false, model.getRowCount() - 1, 1);
+            }
+
+            if (isSecondMarker==true) {
+                model.setValueAt(true, model.getRowCount() - 1, 2);
+            } else {
+                model.setValueAt(false, model.getRowCount() - 1, 2);
+            }
+
+            if (isRMCPLecturer==true) {
+                model.setValueAt(true, model.getRowCount() - 1, 3);
+            } else {
+                model.setValueAt(false, model.getRowCount() - 1, 3);
+            }
         }
         
         /*Set the edit button and its function*/
         TableActionEvent event = new TableActionEvent() {
             @Override
             public void onEdit(int row) {
-                mainFrame.changedTab(6);
+                //Get the intake of selected intake
+                String selectedIntake = (String) IntakeListTable.getValueAt(row, 0);
+                
+                mainFrame.createIntakeAdvsAllotPane(mainFrame, selectedIntake);
+                int tabIndex = mainFrame.TabPanel.getTabCount()-1;
+                mainFrame.changedTab(tabIndex);
             }
         };
         
         //Insert edit button into table
-        LectRoleTable.getColumnModel().getColumn(3).setCellRenderer(new TableActionCellRender());
-        LectRoleTable.getColumnModel().getColumn(3).setCellEditor(new TableActionCellEditor(event));
+        IntakeListTable.getColumnModel().getColumn(4).setCellRenderer(new TableActionCellRender());
+        IntakeListTable.getColumnModel().getColumn(4).setCellEditor(new TableActionCellEditor(event));
     }
 
     /**
@@ -109,32 +121,32 @@ public class AssignAdvsTab_IntakeList extends javax.swing.JPanel {
     private void initComponents() {
 
         jScrollPane1 = new javax.swing.JScrollPane();
-        LectRoleTable = new javax.swing.JTable();
+        IntakeListTable = new javax.swing.JTable();
         btbBack = new javax.swing.JLabel();
         TabTitle = new javax.swing.JLabel();
 
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        LectRoleTable.setFont(new java.awt.Font("Dubai Medium", 0, 20)); // NOI18N
-        LectRoleTable.setModel(new javax.swing.table.DefaultTableModel(
+        IntakeListTable.setFont(new java.awt.Font("Dubai Medium", 0, 20)); // NOI18N
+        IntakeListTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "Intake", "Supervisor", "Second Marker", "Action"
+                "Intake", "Supervisor", "Second Marker", "RMCP Lecturer", "Action"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, true
+                false, false, false, false, true
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
             }
         });
-        LectRoleTable.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        LectRoleTable.setRowHeight(40);
-        jScrollPane1.setViewportView(LectRoleTable);
+        IntakeListTable.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        IntakeListTable.setRowHeight(40);
+        jScrollPane1.setViewportView(IntakeListTable);
 
         add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 90, 886, 440));
 
@@ -178,7 +190,7 @@ public class AssignAdvsTab_IntakeList extends javax.swing.JPanel {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTable LectRoleTable;
+    private javax.swing.JTable IntakeListTable;
     private javax.swing.JLabel TabTitle;
     private javax.swing.JLabel btbBack;
     private javax.swing.JScrollPane jScrollPane1;

@@ -45,34 +45,25 @@ public class MainFrame extends javax.swing.JFrame {
     
         AssignAdvsTab_LectRoleList Tab5 = new AssignAdvsTab_LectRoleList(this);
         TabPanel.addTab("tab5", Tab5);
-    
-        AssignAdvsTab_IntakeList Tab6 = new AssignAdvsTab_IntakeList(this);
-        TabPanel.addTab("tab6", Tab6);
-        
-        AssignAdvsTab_IntakeAdvsAllot Tab7 = new AssignAdvsTab_IntakeAdvsAllot(this);
-        TabPanel.addTab("tab7", Tab7);//Need to move to external method
-        
-        AssignAdvsTab_StuAdvsList Tab8 = new AssignAdvsTab_StuAdvsList(this);
-        TabPanel.addTab("tab8", Tab8);//Need to move to external method
-    
+  
         
         //Account Management Panel Section
-        AccMgmtTab Tab9 = new AccMgmtTab(this);
-        TabPanel.addTab("tab9", Tab9);
+        AccMgmtTab Tab6 = new AccMgmtTab(this);
+        TabPanel.addTab("tab6", Tab6);
         
-        AccMgmtTab_LectAcc Tab10 = new AccMgmtTab_LectAcc(this);
-        TabPanel.addTab("tab10", Tab10);
+        AccMgmtTab_LectAcc Tab7 = new AccMgmtTab_LectAcc(this);
+        TabPanel.addTab("tab7", Tab7);
         
-        AccMgmtTab_StuIntake Tab11 = new AccMgmtTab_StuIntake(this);
-        TabPanel.addTab("tab11", Tab11);
+        AccMgmtTab_StuIntake Tab8 = new AccMgmtTab_StuIntake(this);
+        TabPanel.addTab("tab8", Tab8);
         
         
         //Report Status Panel Section
-        RptStatus_StuIntake Tab12 = new RptStatus_StuIntake(this);
-        TabPanel.addTab("tab12", Tab12);
+        RptStatus_StuIntake Tab9 = new RptStatus_StuIntake(this);
+        TabPanel.addTab("tab9", Tab9);
         
-        RptStatus_StuList Tab13 = new RptStatus_StuList(this);
-        TabPanel.addTab("tab13", Tab13);//Need to move to external method
+        RptStatus_StuList currentTab2 = new RptStatus_StuList(this);
+        TabPanel.addTab("currentTab2", currentTab2);//Need to move to external method
         
         //Set the Dashboard Panel as the default panel
         TabPanel.setSelectedIndex(0);
@@ -374,6 +365,8 @@ public class MainFrame extends javax.swing.JFrame {
         );
 
         getContentPane().add(CoverTabPane, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 100, 940, 30));
+
+        TabPanel.setTabLayoutPolicy(javax.swing.JTabbedPane.SCROLL_TAB_LAYOUT);
         getContentPane().add(TabPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(295, 94, -1, 570));
 
         pack();
@@ -421,7 +414,7 @@ public class MainFrame extends javax.swing.JFrame {
         ReportStatusPane.setBackground(navDefaultColor);
         
         PanelTitle.setText("Account Management");
-        TabPanel.setSelectedIndex(8);
+        TabPanel.setSelectedIndex(5);
     }//GEN-LAST:event_navAccMangementMouseClicked
 
     private void navReportStatusMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_navReportStatusMouseClicked
@@ -432,7 +425,7 @@ public class MainFrame extends javax.swing.JFrame {
         ReportStatusPane.setBackground(navSelectedColor);
         
         PanelTitle.setText("Report Status");
-        TabPanel.setSelectedIndex(11);
+        TabPanel.setSelectedIndex(8);
     }//GEN-LAST:event_navReportStatusMouseClicked
 
     /* Logout Button */
@@ -447,6 +440,25 @@ public class MainFrame extends javax.swing.JFrame {
     //Change panel tab method
     public static void changedTab(int TabIndex){
         TabPanel.setSelectedIndex(TabIndex);
+    }
+    
+    
+    //Create new temperory panel tab - AssignAdvsTab_IntakeList
+    public static void createIntakeListPane(MainFrame mainFrame){
+        AssignAdvsTab_IntakeList lastTab = new AssignAdvsTab_IntakeList(mainFrame);
+        TabPanel.addTab("IntakeListtab", lastTab);
+    }
+    
+    //Create new temperory panel tab - AssignAdvsTab_IntakeAdvsAllot
+    public static void createIntakeAdvsAllotPane(MainFrame mainFrame, String selectedIntake){
+        AssignAdvsTab_IntakeAdvsAllot lastTab = new AssignAdvsTab_IntakeAdvsAllot(mainFrame, selectedIntake);
+        TabPanel.addTab("IntakeAdvsAllot_tab", lastTab);
+    }
+    
+    //Create new temperory panel tab - AssignAdvsTab_StuAdvsList
+    public static void createStuAdvsListPane(MainFrame mainFrame, String selectedIntake, String selectedAsses){
+        AssignAdvsTab_StuAdvsList lastTab = new AssignAdvsTab_StuAdvsList(mainFrame, selectedIntake, selectedAsses);
+        TabPanel.addTab("StuAdvsList_tab", lastTab);
     }
     
     //Create new temperory panel tab - AccMgmtTab_StuAcc

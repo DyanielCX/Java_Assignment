@@ -24,15 +24,15 @@ public class StuData_IO {
                 String[] StuData_Array = currentLine.split(",");
                 
                 // Save the data into variables
-                String Name = StuData_Array[0];
-                int Age = Integer.parseInt(StuData_Array[1]);
-                String StuID = StuData_Array[2];
-                String Intake = StuData_Array[3];
-                String Assessment = StuData_Array[4];
-                String Supervisor = StuData_Array[5];
-                String SecondMarker = StuData_Array[6];
-                String RMCP_Lecture = StuData_Array[7];
-                String Password = StuData_Array[8];
+                String Name = StuData_Array[2];
+                int Age = Integer.parseInt(StuData_Array[3]);
+                String StuID = StuData_Array[0];
+                String Intake = StuData_Array[4];
+                String Assessment = StuData_Array[5];
+                String Supervisor = StuData_Array[6];
+                String SecondMarker = StuData_Array[7];
+                String RMCP_Lecture = StuData_Array[8];
+                String Password = StuData_Array[1];
 
                 // Add into ArrayList
                 StuData.add(new Student(Name, Age, StuID, Intake, Assessment, Supervisor, SecondMarker, RMCP_Lecture, Password));
@@ -50,10 +50,9 @@ public class StuData_IO {
 
                 // Write all student data from the ArrayList into the text file
                 for (Student student : StuData) {
-                    String writeInLine = student.name + "," + student.age + "," + student.id + "," +
-                                         student.intake + "," + student.assessment + "," +
-                                         student.supervisor + "," + student.secondMarker + "," +
-                                         student.RMCP_lecture + "," + student.password;
+                    String writeInLine = student.id + "," + student.password + "," + student.name + "," 
+                                         + student.age + "," + student.intake + "," + student.assessment + "," +
+                                         student.supervisor + "," + student.secondMarker + "," + student.RMCP_lecture ;
                     write.println(writeInLine);
                 }
                 write.close();

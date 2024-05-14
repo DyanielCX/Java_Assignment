@@ -21,15 +21,13 @@ private void readStudentDetailsFromFile(String fileName) {
         String line;
         while ((line = br.readLine()) != null) {
             String[] parts = line.split(",");
-            // Assuming StuID is the username field
-            if (parts[0].trim().equals(username)) { // Assuming StuID is at index 1
+            if (parts[0].trim().equals(username)) { 
                 StuID.setText(parts[0].trim());
                 StuName.setText(parts[2].trim());
                 StuAge.setText(parts[3].trim());
                 StuIntake.setText(parts[4].trim());
                 StuAssessment.setText(parts[5].trim());
                 LecSupName.setText(parts[6].trim());
-                // Assuming other fields are there
                 return; // Exit the loop once the user is found
             }
         }
@@ -77,7 +75,7 @@ private void readStudentDetailsFromFile(String fileName) {
         jPanel1.add(StuName, new org.netbeans.lib.awtextra.AbsoluteConstraints(341, 152, -1, -1));
 
         jLabel3.setText("Age");
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(283, 232, -1, -1));
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 240, -1, -1));
 
         jLabel7.setText("Intake");
         jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 300, -1, -1));
@@ -92,7 +90,7 @@ private void readStudentDetailsFromFile(String fileName) {
         jPanel1.add(StuAssessment, new org.netbeans.lib.awtextra.AbsoluteConstraints(543, 192, -1, -1));
 
         LecSupName.setText("jTextField3");
-        jPanel1.add(LecSupName, new org.netbeans.lib.awtextra.AbsoluteConstraints(543, 280, -1, -1));
+        jPanel1.add(LecSupName, new org.netbeans.lib.awtextra.AbsoluteConstraints(543, 280, 110, -1));
 
         StuID.setText("jTextField4");
         jPanel1.add(StuID, new org.netbeans.lib.awtextra.AbsoluteConstraints(341, 192, -1, -1));

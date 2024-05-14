@@ -1,8 +1,8 @@
 package AdminPackage;
 
-import ProjManagerPackage.StuAssessElem.TableActionCellEditor;
-import ProjManagerPackage.StuAssessElem.TableActionCellRender;
-import ProjManagerPackage.StuAssessElem.TableActionEvent;
+import AdminPackage.TableElement.TableActionCellEditor;
+import AdminPackage.TableElement.TableActionCellRender;
+import AdminPackage.TableElement.TableActionEvent;
 import StuPackage.StuData_IO;
 import StuPackage.Student;
 import javax.swing.JOptionPane;
@@ -19,7 +19,7 @@ public class Admin_Student extends javax.swing.JFrame {
         TableActionEvent event = new TableActionEvent() {
             @Override
             public void onEdit(int row) {
-                String studentID = (String) StudentList.getValueAt(row, 0); // Get student ID from the clicked row
+            String studentID = (String) StudentList.getValueAt(row, 0); // Get student ID from the clicked row
     
             // Get all the student details
             String name = (String) StudentList.getValueAt(row, 1);
@@ -34,7 +34,11 @@ public class Admin_Student extends javax.swing.JFrame {
             Admin_EditStudent editStudentFrame = new Admin_EditStudent(studentID, name, age, intake, assessment, supervisor, secondMarker, RMCP_lecture);
             editStudentFrame.setVisible(true);
             dispose(); // Close the current frame
-        }
+        }  
+            public void onDelete(int row) {           
+               DefaultTableModel model = (DefaultTableModel) StudentList.getModel();
+               model.removeRow(row);
+            }
         };
         
         //Insert edit button into table

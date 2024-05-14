@@ -264,8 +264,8 @@ public class AssignAdvsFrame_LectRole extends javax.swing.JFrame {
         boolean isSupervisor = true;
         boolean isSecondMarker = true;
         
-        //Search the selected student location
-        int lectIndex = LectData_IO.checkStu(SelectedLectID);
+        //Search the selected lecturer location
+        int lectIndex = LectData_IO.checkLect(SelectedLectID);
         
         //Get lecturer role selection
         String SpvSelection = getSelectedRadioButton(isSupervisorBG);

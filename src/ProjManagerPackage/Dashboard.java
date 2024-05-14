@@ -4,13 +4,17 @@
  */
 package ProjManagerPackage;
 
+import ProjManagerPackage.AssignSupvElem.LectData_IO;
 import ProjManagerPackage.DashboardElem.TableActionCellRender_DashMark;
 import ProjManagerPackage.DashboardElem.TableActionCellRender_DashPending;
 import ProjManagerPackage.DashboardElem.TableHeader_Dashboard;
+import ProjManagerPackage.StuAssessElem.IntakeBasedMethod;
 import ProjManagerPackage.StuAssessElem.ModernScrollBarUI;
+import StuPackage.StuData_IO;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
+import java.util.ArrayList;
 import javax.swing.JPanel;
 import javax.swing.JScrollBar;
 import javax.swing.JScrollPane;
@@ -43,6 +47,12 @@ public class Dashboard extends javax.swing.JPanel {
             }
         });
 
+        //Get total intake, total student & total lecturer
+        ArrayList<String> intakeList = IntakeBasedMethod.getIntake();
+        
+        lblNumIntake.setText(Integer.toString(intakeList.size()));   
+        lblNumStu.setText(Integer.toString(StuData_IO.StuData.size()));
+        lblNumLect.setText(Integer.toString(LectData_IO.LectData.size()));
         
         //Insert data into table
         /*Show the student haven't been alloted assesment*/
@@ -82,9 +92,6 @@ public class Dashboard extends javax.swing.JPanel {
             }
         }
 
-            
-            
-        
     }
 
     /**
@@ -225,7 +232,7 @@ public class Dashboard extends javax.swing.JPanel {
         mainFrame.DashboardPane.setBackground(new Color(122, 162, 227));
         mainFrame.ReportStatusPane.setBackground(new Color(106, 212, 221));
         mainFrame.PanelTitle.setText("Report Status");
-        mainFrame.changedTab(11);
+        mainFrame.changedTab(8);
     }//GEN-LAST:event_btbSeeMoreMouseClicked
 
     /* Customize the scrollbar for table */

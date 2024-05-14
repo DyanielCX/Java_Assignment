@@ -18,6 +18,7 @@ import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 import javax.swing.JScrollBar;
+import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumnModel;
@@ -34,42 +35,53 @@ private Lecture_mainframe lectmainframe;
     public presentationReq(Lecture_mainframe lectmainframe) {
         this.lectmainframe = lectmainframe;
         initComponents();
-        populatePresentationTable();
+        populatePresentationTable(presentationTable,"shahab");
         
         
      
-        presentationTable.getColumnModel().getColumn(4).setCellRenderer(new TableActionCellRender());
-        presentationTable.getColumnModel().getColumn(4).setCellEditor(new TableActionCellEditor(event));
+        presentationTable.getColumnModel().getColumn(7).setCellRenderer(new TableActionCellRender());
+        presentationTable.getColumnModel().getColumn(7).setCellEditor(new TableActionCellEditor(event));
         
 
 
     }
     
-    TableActionEvent event = new TableActionEvent() {
+ TableActionEvent event = new TableActionEvent() {
     @Override
     public void onEdit(int row) {
-        // Get the selected row
-         int selectedRow = presentationTable.convertRowIndexToModel(presentationTable.getSelectedRow());
-    if (selectedRow != -1) {
-            // Create a combo box with status options
-            String[] statusOptions = {"Pending", "Rejected", "Accepted"};
-            JComboBox<String> cbStatus = new JComboBox<>(statusOptions);
+        int selectedRow = presentationTable.convertRowIndexToModel(presentationTable.getSelectedRow());
+        if (selectedRow != -1) {
+            String currentStatus = (String) presentationTable.getValueAt(selectedRow, 5);
 
-            // Get the current status of the selected row
-            String currentStatus = (String) presentationTable.getValueAt(selectedRow, 3);
-            cbStatus.setSelectedItem(currentStatus); // Set the combo box to the current status
+            // If the current status is "Rejected"
+            if (currentStatus.equals("Rejected")) {
+                // Display an input dialog for the reason
+                String reason = JOptionPane.showInputDialog(presentationTable, "Enter the reason for rejection:");
+                if (reason != null && !reason.isEmpty()) {
+                    // Update the status and reason in the table
+                    presentationTable.setValueAt(currentStatus, selectedRow, 5);
+                    presentationTable.setValueAt(reason, selectedRow, 6);
 
-            // Display a dialog with the combo box for editing status
-            int option = JOptionPane.showConfirmDialog(presentationTable, cbStatus, "Edit Status", JOptionPane.OK_CANCEL_OPTION);
-            if (option == JOptionPane.OK_OPTION) {
-                // Get the selected status from the combo box
-                String newStatus = (String) cbStatus.getSelectedItem();
-                // Update the status in the table
-                presentationTable.setValueAt(newStatus, selectedRow, 3);
-                // Optionally, update the status in the file or perform any other actions needed
-                // Admin.updateStatusInFile(selectedRow, newStatus);
-                Admin.updateStatusInFile(selectedRow, newStatus);
-              
+                    // Update the status and reason in the file
+                    String newStatus = currentStatus;
+                    Admin.updateStatusInFile(selectedRow, newStatus, reason);
+                } else {
+                    // If the reason is empty or null, show a message
+                    JOptionPane.showMessageDialog(presentationTable, "Reason for rejection is required.");
+                }
+            } else {
+                // If the status is not "Rejected", proceed with the regular status editing
+                String[] statusOptions = {"Pending", "Rejected", "Accepted"};
+                JComboBox<String> cbStatus = new JComboBox<>(statusOptions);
+                cbStatus.setSelectedItem(currentStatus);
+
+                int option = JOptionPane.showConfirmDialog(presentationTable, cbStatus, "Edit Status", JOptionPane.OK_CANCEL_OPTION);
+                if (option == JOptionPane.OK_OPTION) {
+                    String newStatus = (String) cbStatus.getSelectedItem();
+                    presentationTable.setValueAt(newStatus, selectedRow, 5);
+                    presentationTable.setValueAt("-", selectedRow, 6); // Set reason to "-"
+                    Admin.updateStatusInFile(selectedRow, newStatus, "-"); // Set reason to "-"
+                }
             }
         } else {
             JOptionPane.showMessageDialog(presentationTable, "Please select a row to edit.");
@@ -95,13 +107,13 @@ private Lecture_mainframe lectmainframe;
 
         presentationTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "Student", "Lecturer", "Date", "Status", "Action"
+                "Student", "Lecturer", "Course", "Date", "Time", "Status", "Reason", "Action"
             }
         ));
         presentationTable.setRowHeight(50);
@@ -120,24 +132,25 @@ private Lecture_mainframe lectmainframe;
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 412, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
-public void populatePresentationTable() {
+public void populatePresentationTable(JTable presentationTable,String supervisor) {
     DefaultTableModel model = (DefaultTableModel) presentationTable.getModel();
 
+    model.setRowCount(0); 
     // Clear existing rows in the table model
     model.setRowCount(0);
 
     // Read data from presentation_data.txt file
-    try (BufferedReader reader = new BufferedReader(new FileReader("presentation_data.txt"))) {
+   try (BufferedReader reader = new BufferedReader(new FileReader("PresentationData.txt"))) {
         String line;
-        List<String[]> rows = new ArrayList<>(); // Store rows temporarily
         while ((line = reader.readLine()) != null) {
-            String[] rowData = line.split(",");
-            rows.add(rowData); // Add rows to the list
-        }
+            
+            String[] parts = line.split(",");
 
-        // Add rows from the list to the model
-        for (String[] row : rows) {
-            model.addRow(row);
+            
+           if (parts.length >= 7 && parts[1].trim().equalsIgnoreCase(supervisor)) {
+
+    model.addRow(new Object[]{parts[0], parts[1], parts[2], parts[3],parts[4],parts[5],parts[6]});
+}
         }
     } catch (IOException e) {
         e.printStackTrace();
