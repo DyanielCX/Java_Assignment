@@ -1,19 +1,16 @@
-package ProjManagerPackage.StuAssessElem;
+package ProjManagerPackage.StuAssesElem;
 
 import java.awt.Component;
 import javax.swing.DefaultCellEditor;
 import javax.swing.JCheckBox;
 import javax.swing.JTable;
 
-/**
- *
- * @author PC
- */
-public class TableActionCellEditor extends DefaultCellEditor {
 
-    private TableActionEvent event;
+public class TableActionCellEditor_EditButton extends DefaultCellEditor {
+
+    private TableActionEvent_EditButton event;
     
-    public TableActionCellEditor(TableActionEvent event) {
+    public TableActionCellEditor_EditButton(TableActionEvent_EditButton event) {
         super(new JCheckBox());
         this.event = event;
     }

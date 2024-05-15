@@ -1,11 +1,11 @@
 package ProjManagerPackage;
 
-import ProjManagerPackage.AssignSupvElem.TickCrossIcon_TableActionCellRender;
-import ProjManagerPackage.StuAssessElem.ModernScrollBarUI;
-import ProjManagerPackage.StuAssessElem.TableActionCellEditor;
-import ProjManagerPackage.StuAssessElem.TableActionCellRender;
-import ProjManagerPackage.StuAssessElem.TableActionEvent;
-import ProjManagerPackage.StuAssessElem.TableHeader;
+import ProjManagerPackage.AssignSupvElem.AdvisorsRecord;
+import ProjManagerPackage.AssignSupvElem.TableActionCellRender_TickCrossIcon;
+import ProjManagerPackage.StuAssesElem.ModernScrollBarUI;
+import ProjManagerPackage.StuAssesElem.TableActionCellEditor_EditButton;
+import ProjManagerPackage.StuAssesElem.TableActionCellRender_EditButton;
+import ProjManagerPackage.StuAssesElem.TableHeader;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
@@ -16,11 +16,9 @@ import javax.swing.JTable;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
+import ProjManagerPackage.StuAssesElem.TableActionEvent_EditButton;
 
-/**
- *
- * @author PC
- */
+
 public class AssignAdvsTab_IntakeList extends javax.swing.JPanel {
 
     private MainFrame mainFrame;
@@ -44,14 +42,14 @@ public class AssignAdvsTab_IntakeList extends javax.swing.JPanel {
             }
         });
 
+
+        // Set the tick and cross icon for advisors columns
+        IntakeListTable.getColumnModel().getColumn(1).setCellRenderer(new TableActionCellRender_TickCrossIcon());
+        IntakeListTable.getColumnModel().getColumn(2).setCellRenderer(new TableActionCellRender_TickCrossIcon());
+        IntakeListTable.getColumnModel().getColumn(3).setCellRenderer(new TableActionCellRender_TickCrossIcon());
         
-        //Insert data into table
+        // Insert data into table
         AdvisorsRecord.readFrTxt();
-        
-        IntakeListTable.getColumnModel().getColumn(1).setCellRenderer(new TickCrossIcon_TableActionCellRender());
-        IntakeListTable.getColumnModel().getColumn(2).setCellRenderer(new TickCrossIcon_TableActionCellRender());
-        IntakeListTable.getColumnModel().getColumn(3).setCellRenderer(new TickCrossIcon_TableActionCellRender());
-        
         for (AdvisorsRecord advisorsRecord :AdvisorsRecord.AdvisorsRecordData){
             String Intake = advisorsRecord.Intake;
             Boolean isSupervisor = true;
@@ -73,7 +71,7 @@ public class AssignAdvsTab_IntakeList extends javax.swing.JPanel {
             DefaultTableModel model = (DefaultTableModel) IntakeListTable.getModel();
             model.addRow(InsertRow);
             
-            // Set the appropriate icon based on the value of isSupervisor and isSecondMarker
+            // Set the appropriate icon based on the value of isSupervisor, SecondMarker and isRMCPLecturer
             if (isSupervisor==true) {
                 model.setValueAt(true, model.getRowCount() - 1, 1);
             } else {
@@ -94,12 +92,13 @@ public class AssignAdvsTab_IntakeList extends javax.swing.JPanel {
         }
         
         /*Set the edit button and its function*/
-        TableActionEvent event = new TableActionEvent() {
+        TableActionEvent_EditButton event = new TableActionEvent_EditButton() {
             @Override
             public void onEdit(int row) {
                 //Get the intake of selected intake
                 String selectedIntake = (String) IntakeListTable.getValueAt(row, 0);
                 
+                // Switch to allot intake advisors tab
                 mainFrame.createIntakeAdvsAllotPane(mainFrame, selectedIntake);
                 int tabIndex = mainFrame.TabPanel.getTabCount()-1;
                 mainFrame.changedTab(tabIndex);
@@ -107,8 +106,8 @@ public class AssignAdvsTab_IntakeList extends javax.swing.JPanel {
         };
         
         //Insert edit button into table
-        IntakeListTable.getColumnModel().getColumn(4).setCellRenderer(new TableActionCellRender());
-        IntakeListTable.getColumnModel().getColumn(4).setCellEditor(new TableActionCellEditor(event));
+        IntakeListTable.getColumnModel().getColumn(4).setCellRenderer(new TableActionCellRender_EditButton());
+        IntakeListTable.getColumnModel().getColumn(4).setCellEditor(new TableActionCellEditor_EditButton(event));
     }
 
     /**

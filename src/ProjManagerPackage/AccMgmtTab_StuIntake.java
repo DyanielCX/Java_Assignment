@@ -2,10 +2,9 @@ package ProjManagerPackage;
 
 import ProjManagerPackage.AccMgmtElem.TableActionCellRender_AccTbl;
 import ProjManagerPackage.AccMgmtElem.TableHeader_AccTbl;
-import ProjManagerPackage.StuAssessElem.IntakeBasedMethod;
-import ProjManagerPackage.StuAssessElem.ModernScrollBarUI;
-import ProjManagerPackage.StuAssessElem.TableActionCellEditor;
-import ProjManagerPackage.StuAssessElem.TableActionEvent;
+import ProjManagerPackage.StuAssesElem.IntakeBasedMethod;
+import ProjManagerPackage.StuAssesElem.ModernScrollBarUI;
+import ProjManagerPackage.StuAssesElem.TableActionCellEditor_EditButton;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
@@ -17,6 +16,7 @@ import javax.swing.JTable;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
+import ProjManagerPackage.StuAssesElem.TableActionEvent_EditButton;
 
 
 public class AccMgmtTab_StuIntake extends javax.swing.JPanel {
@@ -71,7 +71,7 @@ public class AccMgmtTab_StuIntake extends javax.swing.JPanel {
         }
         
         /*Set the edit button and its function*/
-        TableActionEvent event = new TableActionEvent() {
+        TableActionEvent_EditButton event = new TableActionEvent_EditButton() {
             @Override
             public void onEdit(int row) {
                 //Get the intake of selected intake
@@ -85,7 +85,7 @@ public class AccMgmtTab_StuIntake extends javax.swing.JPanel {
         
         //Insert edit button into table
         IntakeAssTable.getColumnModel().getColumn(2).setCellRenderer(new TableActionCellRender_AccTbl());
-        IntakeAssTable.getColumnModel().getColumn(2).setCellEditor(new TableActionCellEditor(event));
+        IntakeAssTable.getColumnModel().getColumn(2).setCellEditor(new TableActionCellEditor_EditButton(event));
     }
 
     /**

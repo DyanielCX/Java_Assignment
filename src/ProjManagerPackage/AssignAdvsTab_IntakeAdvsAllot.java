@@ -1,17 +1,15 @@
 package ProjManagerPackage;
 
+import ProjManagerPackage.AssignSupvElem.AdvisorsRecord;
 import ProjManagerPackage.AssignSupvElem.LectData_IO;
-import ProjManagerPackage.StuAssessElem.IntakeBasedMethod;
+import ProjManagerPackage.StuAssesElem.IntakeBasedMethod;
 import StuPackage.StuData_IO;
 import StuPackage.Student;
 import assignment_ood.Lecturer;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
-/**
- *
- * @author PC
- */
+
 public class AssignAdvsTab_IntakeAdvsAllot extends javax.swing.JPanel {
 
     private MainFrame mainFrame;
@@ -499,6 +497,7 @@ public class AssignAdvsTab_IntakeAdvsAllot extends javax.swing.JPanel {
     }//GEN-LAST:event_btbAutoAssignActionPerformed
 
     private void btbSubmitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btbSubmitActionPerformed
+        //Advisors Submission
         switch (Assessment) {
             case "Investigation Report":
                 commonAssesSubmit();
@@ -529,6 +528,7 @@ public class AssignAdvsTab_IntakeAdvsAllot extends javax.swing.JPanel {
     }//GEN-LAST:event_btbSubmitActionPerformed
 
     private void btbManualAssignActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btbManualAssignActionPerformed
+        //Advisors Submission
         switch (Assessment) {
             case "Investigation Report":
                 commonAssesSubmit();
@@ -552,6 +552,7 @@ public class AssignAdvsTab_IntakeAdvsAllot extends javax.swing.JPanel {
                 JOptionPane.showMessageDialog(null,"This intake haven't assign assessment.");
         }
         
+        // Switch to manual assign advisor tab
         mainFrame.createStuAdvsListPane(mainFrame, SelectedIntake, Assessment);
         int tabIndex = mainFrame.TabPanel.getTabCount()-1;
         mainFrame.changedTab(tabIndex);

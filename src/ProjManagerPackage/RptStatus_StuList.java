@@ -1,13 +1,9 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
- */
 package ProjManagerPackage;
 
 import ProjManagerPackage.RptStatusElem.TableActionCellRender_MarkIcon;
 import ProjManagerPackage.RptStatusElem.TableActionCellRender_PendingIcon;
 import ProjManagerPackage.RptStatusElem.TableHeader_StuList;
-import ProjManagerPackage.StuAssessElem.ModernScrollBarUI;
+import ProjManagerPackage.StuAssesElem.ModernScrollBarUI;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;

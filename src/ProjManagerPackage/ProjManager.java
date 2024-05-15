@@ -1,5 +1,6 @@
 package ProjManagerPackage;
 
+import ProjManagerPackage.AssignSupvElem.AdvisorsRecord;
 import ProjManagerPackage.AssignSupvElem.LectData_IO;
 import StuPackage.StuData_IO;
 import StuPackage.Student;
@@ -22,6 +23,7 @@ public class ProjManager {
         String RMCP_Lecture = StuData_IO.StuData.get(stuIndex).RMCP_lecture;
         String Password = StuData_IO.StuData.get(stuIndex).password;
 
+        // Update the student data
         Student editedStudent = new Student(Name, Age, stuID, Intake, Assessment, Supervisor, SecondMaker, RMCP_Lecture, Password);
         StuData_IO.edit(stuIndex, editedStudent);
     }
@@ -39,6 +41,7 @@ public class ProjManager {
         String RMCP_Lecture = StuData_IO.StuData.get(stuIndex).RMCP_lecture;
         String Password = StuData_IO.StuData.get(stuIndex).password;
 
+        // Update the student data
         Student editedStudent = new Student(Name, Age, stuID, Intake, Assessment, Supervisor, SecondMaker, RMCP_Lecture, Password);
         StuData_IO.edit(stuIndex, editedStudent);
     }
@@ -53,6 +56,7 @@ public class ProjManager {
         boolean IsSupervisor = LectData_IO.LectData.get(lectIndex).isSupervisor;
         String password = LectData_IO.LectData.get(lectIndex).password;
 
+        // Update the lecturer data
         Lecturer editedLecturer = new Lecturer(Name, LectID, IsProjectManager, IsSecondMarker, IsSupervisor, password);
         LectData_IO.edit(lectIndex, editedLecturer);
     }
@@ -67,13 +71,14 @@ public class ProjManager {
         boolean IsSupervisor = isSupervisor;
         String password = LectData_IO.LectData.get(lectIndex).password;
 
+        // Update the lecturer data
         Lecturer editedLecturer = new Lecturer(Name, LectID, IsProjectManager, IsSecondMarker, IsSupervisor, password);
         LectData_IO.edit(lectIndex, editedLecturer);
     }
     
     public static void autoAssignAdvisor(String selectedIntake, String selectedAsses){
 
-        //Common Condition
+        /* Common Condition */
         if (selectedAsses.equals("Investigation Report") || selectedAsses.equals("CP1") || selectedAsses.equals("CP2") || selectedAsses.equals("FYP")) {
             //Get advisor list
             int intakeIndex = AdvisorsRecord.checkIntake(selectedIntake);
@@ -82,10 +87,11 @@ public class ProjManager {
             String[] SpvList = {intakeData.Spv1, intakeData.Spv2, intakeData.Spv3};
             String[] SecondMkrList = {intakeData.SecondMkr1, intakeData.SecondMkr2, intakeData.SecondMkr3};
 
-            //auto Assign to Student
+            // Set the count range variable
             int spvCount = 0;
             int secondMkrCount = 0;
 
+            // Auto Assign to Student
             for (int stuIndex = 0; stuIndex < StuData_IO.StuData.size();stuIndex ++){
                 if (StuData_IO.StuData.get(stuIndex).intake.equals(selectedIntake)) {
                     String assignedSecondMkr = null;
@@ -152,14 +158,14 @@ public class ProjManager {
                     String RMCP_Lecture = "-";
                     String Password = StuData_IO.StuData.get(stuIndex).password;
 
-                    //Edit data & write into text file
+                    // Update the student data
                     Student editedStudent = new Student(Name, Age, stuID, Intake, Assessment, Supervisor, SecondMaker, RMCP_Lecture, Password);
                     StuData_IO.edit(stuIndex, editedStudent);
                 }
             }
         }
         
-        //Intern Condition
+        /* Intern Condition */
         else if (selectedAsses.equals("Intern")) {
             //Get advisor list
             int intakeIndex = AdvisorsRecord.checkIntake(selectedIntake);
@@ -167,7 +173,7 @@ public class ProjManager {
 
             String[] SpvList = {intakeData.Spv1, intakeData.Spv2, intakeData.Spv3};
 
-            //auto Assign to Student
+            // Auto Assign to Student
             int spvCount = 0;
 
             for (int stuIndex = 0; stuIndex < StuData_IO.StuData.size();stuIndex ++){
@@ -208,14 +214,14 @@ public class ProjManager {
                     String RMCP_Lecture = "-";
                     String Password = StuData_IO.StuData.get(stuIndex).password;
 
-                    //Edit data & write into text file
+                    // Update the student data
                     Student editedStudent = new Student(Name, Age, stuID, Intake, Assessment, Supervisor, SecondMaker, RMCP_Lecture, Password);
                     StuData_IO.edit(stuIndex, editedStudent);
                 }
             }
         }
         
-        //RMCP Condition
+        /* RMCP Condition */
         else if (selectedAsses.equals("RMCP")) {
             //Get advisor list
             int intakeIndex = AdvisorsRecord.checkIntake(selectedIntake);
@@ -223,7 +229,7 @@ public class ProjManager {
 
             String RMCP_Lect = intakeData.RMCP_Lecturer;
 
-            //auto Assign to Student
+            // Auto Assign to Student
             for (int stuIndex = 0; stuIndex < StuData_IO.StuData.size();stuIndex ++){
                 if (StuData_IO.StuData.get(stuIndex).intake.equals(selectedIntake)) {
 
@@ -238,7 +244,7 @@ public class ProjManager {
                     String RMCP_Lecture = RMCP_Lect;
                     String Password = StuData_IO.StuData.get(stuIndex).password;
 
-                    //Edit data & write into text file
+                    // Update the student data
                     Student editedStudent = new Student(Name, Age, stuID, Intake, Assessment, Supervisor, SecondMaker, RMCP_Lecture, Password);
                     StuData_IO.edit(stuIndex, editedStudent);
                 }
@@ -259,6 +265,7 @@ public class ProjManager {
         String RMCP_Lecture = selectedRMCP_Lect;
         String Password = StuData_IO.StuData.get(stuIndex).password;
 
+        // Update the student data
         Student editedStudent = new Student(Name, Age, stuID, Intake, Assessment, Supervisor, SecondMaker, RMCP_Lecture, Password);
         StuData_IO.edit(stuIndex, editedStudent);
     }

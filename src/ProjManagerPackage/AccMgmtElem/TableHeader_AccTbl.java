@@ -7,10 +7,7 @@ import java.awt.RenderingHints;
 import javax.swing.JLabel;
 import javax.swing.border.EmptyBorder;
 
-/**
- *
- * @author PC
- */
+
 public class TableHeader_AccTbl extends JLabel{
 
     public TableHeader_AccTbl(String text){

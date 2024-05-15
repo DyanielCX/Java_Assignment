@@ -1,18 +1,12 @@
 package ProjManagerPackage.DashboardElem;
 
 import ProjManagerPackage.RptStatusElem.*;
-import ProjManagerPackage.AccMgmtElem.*;
-import ProjManagerPackage.AssignSupvElem.*;
-import ProjManagerPackage.StuAssessElem.EditButton;
 import java.awt.Color;
 import java.awt.Component;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableCellRenderer;
 
-/**
- *
- * @author PC
- */
+
 public class TableActionCellRender_DashMark extends DefaultTableCellRenderer{
 
     @Override

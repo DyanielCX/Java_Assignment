@@ -34,7 +34,7 @@ public class EditButton extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        cmdEdit = new ProjManagerPackage.StuAssessElem.ActionButton();
+        cmdEdit = new ProjManagerPackage.StuAssesElem.ActionButton();
 
         cmdEdit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/edit.png"))); // NOI18N
 
@@ -58,6 +58,6 @@ public class EditButton extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private ProjManagerPackage.StuAssessElem.ActionButton cmdEdit;
+    private ProjManagerPackage.StuAssesElem.ActionButton cmdEdit;
     // End of variables declaration//GEN-END:variables
 }

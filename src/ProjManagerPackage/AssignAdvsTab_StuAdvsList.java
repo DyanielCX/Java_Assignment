@@ -1,10 +1,9 @@
 package ProjManagerPackage;
 
 import ProjManagerPackage.AssignSupvElem.TableHeader_StuAdvsList;
-import ProjManagerPackage.StuAssessElem.ModernScrollBarUI;
-import ProjManagerPackage.StuAssessElem.TableActionCellEditor;
-import ProjManagerPackage.StuAssessElem.TableActionCellRender;
-import ProjManagerPackage.StuAssessElem.TableActionEvent;
+import ProjManagerPackage.StuAssesElem.ModernScrollBarUI;
+import ProjManagerPackage.StuAssesElem.TableActionCellEditor_EditButton;
+import ProjManagerPackage.StuAssesElem.TableActionCellRender_EditButton;
 import StuPackage.StuData_IO;
 import StuPackage.Student;
 import java.awt.Color;
@@ -17,11 +16,9 @@ import javax.swing.JTable;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
+import ProjManagerPackage.StuAssesElem.TableActionEvent_EditButton;
 
-/**
- *
- * @author PC
- */
+
 public class AssignAdvsTab_StuAdvsList extends javax.swing.JPanel {
 
     private MainFrame mainFrame;
@@ -68,7 +65,7 @@ public class AssignAdvsTab_StuAdvsList extends javax.swing.JPanel {
         }
         
         /*Set the edit button and its function*/
-        TableActionEvent event = new TableActionEvent() {
+        TableActionEvent_EditButton event = new TableActionEvent_EditButton() {
             @Override
             public void onEdit(int row) {
                 //Get the student id of selected student
@@ -81,8 +78,8 @@ public class AssignAdvsTab_StuAdvsList extends javax.swing.JPanel {
         };
         
         //Insert edit button into table
-        StuAdvsTable.getColumnModel().getColumn(5).setCellRenderer(new TableActionCellRender());
-        StuAdvsTable.getColumnModel().getColumn(5).setCellEditor(new TableActionCellEditor(event));
+        StuAdvsTable.getColumnModel().getColumn(5).setCellRenderer(new TableActionCellRender_EditButton());
+        StuAdvsTable.getColumnModel().getColumn(5).setCellEditor(new TableActionCellEditor_EditButton(event));
     }
 
     /**
@@ -155,6 +152,8 @@ public class AssignAdvsTab_StuAdvsList extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btbBackMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btbBackMouseClicked
+        
+        // Back to the previous tab
         mainFrame.createIntakeAdvsAllotPane(mainFrame, SelectedIntake);
         int tabIndex = mainFrame.TabPanel.getTabCount()-1;
         mainFrame.changedTab(tabIndex);

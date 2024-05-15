@@ -4,11 +4,10 @@
  */
 package assignment_ood;
 
-import ProjManagerPackage.StuAssessElem.ModernScrollBarUI;
-import ProjManagerPackage.StuAssessElem.TableActionCellEditor;
-import ProjManagerPackage.StuAssessElem.TableActionCellRender;
-import ProjManagerPackage.StuAssessElem.TableActionEvent;
-import ProjManagerPackage.StuAssessElem.TableHeader;
+import ProjManagerPackage.StuAssesElem.ModernScrollBarUI;
+import ProjManagerPackage.StuAssesElem.TableActionCellEditor_EditButton;
+import ProjManagerPackage.StuAssesElem.TableActionCellRender_EditButton;
+import ProjManagerPackage.StuAssesElem.TableHeader;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
@@ -28,6 +27,7 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import assignment_ood.Admin;
+import ProjManagerPackage.StuAssesElem.TableActionEvent_EditButton;
 /**
  *
  * @author User
@@ -57,11 +57,11 @@ public class lect_Panal extends javax.swing.JPanel {
                 return header;
             }
         });
-          lecturePanal.getColumnModel().getColumn(5).setCellRenderer(new TableActionCellRender());
-        lecturePanal.getColumnModel().getColumn(5).setCellEditor(new TableActionCellEditor(event));
+          lecturePanal.getColumnModel().getColumn(5).setCellRenderer(new TableActionCellRender_EditButton());
+        lecturePanal.getColumnModel().getColumn(5).setCellEditor(new TableActionCellEditor_EditButton(event));
     }
     
-    TableActionEvent event = new TableActionEvent() {
+    TableActionEvent_EditButton event = new TableActionEvent_EditButton() {
            @Override
             public void onEdit(int row) {
                 //Get the student id of selected student

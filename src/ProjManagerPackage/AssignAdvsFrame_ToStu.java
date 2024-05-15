@@ -4,6 +4,7 @@
  */
 package ProjManagerPackage;
 
+import ProjManagerPackage.AssignSupvElem.AdvisorsRecord;
 import StuPackage.StuData_IO;
 import java.awt.Color;
 import java.util.ArrayList;

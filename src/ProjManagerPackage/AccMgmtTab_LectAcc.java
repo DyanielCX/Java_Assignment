@@ -3,9 +3,8 @@ package ProjManagerPackage;
 import ProjManagerPackage.AccMgmtElem.TableActionCellRender_AccTbl;
 import ProjManagerPackage.AccMgmtElem.TableHeader_AccTbl;
 import ProjManagerPackage.AssignSupvElem.LectData_IO;
-import ProjManagerPackage.StuAssessElem.ModernScrollBarUI;
-import ProjManagerPackage.StuAssessElem.TableActionCellEditor;
-import ProjManagerPackage.StuAssessElem.TableActionEvent;
+import ProjManagerPackage.StuAssesElem.ModernScrollBarUI;
+import ProjManagerPackage.StuAssesElem.TableActionCellEditor_EditButton;
 import assignment_ood.Lecturer;
 import java.awt.Color;
 import java.awt.Component;
@@ -17,6 +16,7 @@ import javax.swing.JTable;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
+import ProjManagerPackage.StuAssesElem.TableActionEvent_EditButton;
 
 
 public class AccMgmtTab_LectAcc extends javax.swing.JPanel {
@@ -57,7 +57,7 @@ public class AccMgmtTab_LectAcc extends javax.swing.JPanel {
         
         
         /*Set the edit button and its function*/
-        TableActionEvent event = new TableActionEvent() {
+        TableActionEvent_EditButton event = new TableActionEvent_EditButton() {
             @Override
             public void onEdit(int row) {
                 //Get the student id of selected student
@@ -71,7 +71,7 @@ public class AccMgmtTab_LectAcc extends javax.swing.JPanel {
         
         //Insert edit button into table
         LectAccTable.getColumnModel().getColumn(2).setCellRenderer(new TableActionCellRender_AccTbl());
-        LectAccTable.getColumnModel().getColumn(2).setCellEditor(new TableActionCellEditor(event));
+        LectAccTable.getColumnModel().getColumn(2).setCellEditor(new TableActionCellEditor_EditButton(event));
     }
 
     /**

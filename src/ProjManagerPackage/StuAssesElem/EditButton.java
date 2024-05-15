@@ -1,22 +1,17 @@
-package ProjManagerPackage.StuAssessElem;
+package ProjManagerPackage.StuAssesElem;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-/**
- *
- * @author PC
- */
+
 public class EditButton extends javax.swing.JPanel {
 
-    /**
-     * Creates new form PanelAction
-     */
+
     public EditButton() {
         initComponents();
     }
 
-    public void initEvent(TableActionEvent event, int row) {
+    public void initEvent(TableActionEvent_EditButton event, int row) {
         cmdEdit.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -34,7 +29,7 @@ public class EditButton extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        cmdEdit = new ProjManagerPackage.StuAssessElem.ActionButton();
+        cmdEdit = new ProjManagerPackage.StuAssesElem.ActionButton();
 
         cmdEdit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/edit.png"))); // NOI18N
 
@@ -58,6 +53,6 @@ public class EditButton extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private ProjManagerPackage.StuAssessElem.ActionButton cmdEdit;
+    private ProjManagerPackage.StuAssesElem.ActionButton cmdEdit;
     // End of variables declaration//GEN-END:variables
 }

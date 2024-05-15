@@ -5,10 +5,7 @@ import ProjManagerPackage.AssignSupvElem.LectData_IO;
 import StuPackage.StuData_IO;
 import java.awt.Color;
 
-/**
- *
- * @author PC
- */
+
 public class MainFrame extends javax.swing.JFrame {
 
     // Color for side nav bar tab

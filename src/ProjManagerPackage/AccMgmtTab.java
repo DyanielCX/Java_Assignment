@@ -1,13 +1,6 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
- */
 package ProjManagerPackage;
 
-/**
- *
- * @author Dyaniel
- */
+
 public class AccMgmtTab extends javax.swing.JPanel {
 
      private MainFrame mainFrame;

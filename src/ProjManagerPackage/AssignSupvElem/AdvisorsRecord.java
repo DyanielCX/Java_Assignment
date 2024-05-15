@@ -1,4 +1,4 @@
-package ProjManagerPackage;
+package ProjManagerPackage.AssignSupvElem;
 
 import java.io.File;
 import java.io.FileWriter;
@@ -9,7 +9,7 @@ import javax.swing.JOptionPane;
 
 
 public class AdvisorsRecord {
-    String Intake, Spv1, Spv2, Spv3, SecondMkr1, SecondMkr2, SecondMkr3, RMCP_Lecturer;
+    public String Intake, Spv1, Spv2, Spv3, SecondMkr1, SecondMkr2, SecondMkr3, RMCP_Lecturer;
 
     public AdvisorsRecord(String Intake, String spv1, String spv2, String spv3, String secondMkr1, String secondMkr2, String secondMkr3, String RMCP_lecturer) {
         this.Intake = Intake;
@@ -22,6 +22,7 @@ public class AdvisorsRecord {
         this.RMCP_Lecturer = RMCP_lecturer;
     }
     
+    // Array List for advisor record
     public static ArrayList<AdvisorsRecord> AdvisorsRecordData = new ArrayList<>();
     
     // Read all advisor record data from text file
@@ -54,7 +55,8 @@ public class AdvisorsRecord {
         }
     }
     
-    // Write all student data from ArrayList into text file
+    
+    // Write all advisor record data from ArrayList into text file
     public static void writeToTxt() {
         try {
             PrintWriter write = new PrintWriter(new FileWriter("AdvisorRecord.txt"));
@@ -73,8 +75,9 @@ public class AdvisorsRecord {
             JOptionPane.showMessageDialog(null,"!Write text file error!");
         }
     }
-        
-    // Get the index of Advisor Records based on inatke from ArrayList
+    
+    
+    // Get the index of Advisor Records based on intake from ArrayList
     public static int checkIntake(String intake){
         for (int i=0; i< AdvisorsRecordData.size(); i++){
             if(intake.equals(AdvisorsRecordData.get(i).Intake)){
@@ -84,7 +87,7 @@ public class AdvisorsRecord {
         throw new IllegalArgumentException("Student ID not found: " + intake);
     }
     
-    // Edit existing lecturer data in LectData ArrayList
+    // Edit the advisor record data in advisor record ArrayList
     public static void edit(int index, AdvisorsRecord editedData){
         AdvisorsRecordData.set(index, editedData);
         writeToTxt(); // Update text file
