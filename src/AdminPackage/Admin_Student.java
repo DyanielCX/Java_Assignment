@@ -35,10 +35,21 @@ public class Admin_Student extends javax.swing.JFrame {
             editStudentFrame.setVisible(true);
             dispose(); // Close the current frame
         }  
+            @Override
             public void onDelete(int row) {           
-               DefaultTableModel model = (DefaultTableModel) StudentList.getModel();
-               model.removeRow(row);
+               String studentID = (String) StudentList.getValueAt(row, 0); // Get student ID from the clicked row
+                int confirm = JOptionPane.showConfirmDialog(null, "Are you sure you want to delete this student?", "Delete", JOptionPane.YES_NO_OPTION);
+                if (confirm == JOptionPane.YES_OPTION) {
+                    try {
+                        StuData_IO.remove(studentID); // Remove the student from the data source
+                        loadDataFromFile(); // Reload the table data
+                        JOptionPane.showMessageDialog(null, "Student deleted successfully.", "Delete", JOptionPane.INFORMATION_MESSAGE);
+                    } catch (Exception e) {
+                        JOptionPane.showMessageDialog(null, "Error deleting student: " + e.getMessage(), "Delete", JOptionPane.ERROR_MESSAGE);
+                    }
+                }
             }
+            
         };
         
         //Insert edit button into table
@@ -245,6 +256,8 @@ public class Admin_Student extends javax.swing.JFrame {
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(Admin_Student.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
 
