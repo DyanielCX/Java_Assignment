@@ -8,13 +8,13 @@ import GUI_Template.*;
 import ProjManagerPackage.*;
 import StuPackage.StuData_IO;
 import java.awt.Color;
-
+import Java_Assignment.LoginPage;
 /**
  *
  * @author PC
  */
 public class Lecture_mainframe extends javax.swing.JFrame {
-
+    
     // Color for side nav bar tab
     private Color navDefaultColor = new Color(122, 162, 227);
     private Color navSelectedColor = new Color(106, 212, 221);

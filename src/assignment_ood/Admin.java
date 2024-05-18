@@ -145,7 +145,7 @@ public class Admin extends javax.swing.JFrame {
     Admin.loadLecturersFromFile(lecturerTable);
 }
 
-  public static List<Lecturer> readLecturersFromFile() {
+  public static List<Lecturer> readLecturersFromFile(String filename) {
         List<Lecturer> lecturers = new ArrayList<>();
         try (BufferedReader reader = new BufferedReader(new FileReader("LecData.txt"))) {
             String line;
@@ -239,7 +239,28 @@ public  void populateDashBoardTable(JTable AssignedStuTbl,String supervisor) {
     }
 
 }
-   
+public static List<Lecturer> readLectData(String filename) {
+        List<Lecturer> lecturers = new ArrayList<>();
+        try (BufferedReader reader = new BufferedReader(new FileReader("LecData.txt"))) {
+            String line;
+            while ((line = reader.readLine()) != null) {
+                String[] parts = line.split(",");
+                if (parts.length >= 6) {
+                    String name = parts[0];
+                    String password = parts[5];
+                    String lectid = parts[1];
+                    boolean isProjectManager = Boolean.parseBoolean(parts[2]);
+                    boolean isSecondMarker = Boolean.parseBoolean(parts[3]);
+                    boolean isSupervisor = Boolean.parseBoolean(parts[4]);
+                    lecturers.add(new Lecturer(name, lectid, isProjectManager, isSecondMarker, isSupervisor,password));
+                }
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return lecturers;
+    }
+
 
     public static void main(String args[]) {
         JTable lecturerTable = new JTable();
