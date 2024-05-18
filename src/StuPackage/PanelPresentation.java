@@ -184,41 +184,46 @@ private String constructNewLine() {
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
         add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
-        jPanel3.setBackground(new java.awt.Color(204, 204, 255));
+        jPanel3.setBackground(new java.awt.Color(242, 242, 242));
         jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel4.setText("Lecturer ");
-        jPanel3.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 50, -1, -1));
+        jPanel3.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 60, -1, -1));
 
-        jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel5.setText("Assessment");
         jPanel3.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 100, -1, -1));
 
-        jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel3.setText("Presentation Date");
         jPanel3.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 140, -1, -1));
 
-        jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel2.setText("Presentation TIme");
         jPanel3.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 190, -1, -1));
 
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel1.setText(" Request Status");
         jPanel3.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 240, -1, -1));
 
+        Lecturer.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         Lecturer.setText("Name");
-        jPanel3.add(Lecturer, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 50, 80, 20));
+        jPanel3.add(Lecturer, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 60, 80, 20));
 
+        Assessment.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         Assessment.setText("Type");
         jPanel3.add(Assessment, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 100, 50, 20));
 
+        PreDateShow.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         PreDateShow.setText("Date");
         jPanel3.add(PreDateShow, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 140, 90, 20));
 
+        PreTimeShow.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         PreTimeShow.setText("Time");
         jPanel3.add(PreTimeShow, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 190, 90, 20));
 
+        PreStatus.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         PreStatus.setText("Status");
         jPanel3.add(PreStatus, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 240, -1, -1));
 
@@ -237,7 +242,7 @@ private String constructNewLine() {
         });
         jPanel3.add(EditBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 340, 80, 30));
 
-        Modify_Panel.setBackground(new java.awt.Color(242, 242, 252));
+        Modify_Panel.setBackground(new java.awt.Color(198, 198, 206));
         Modify_Panel.setForeground(new java.awt.Color(255, 255, 255));
         Modify_Panel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -292,7 +297,7 @@ private String constructNewLine() {
         jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/presentationPIC.png"))); // NOI18N
         jPanel3.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 100, 260, 190));
 
-        add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 50, 750, 420));
+        add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 50, 750, 420));
     }// </editor-fold>//GEN-END:initComponents
 
     private boolean editMode = true;
