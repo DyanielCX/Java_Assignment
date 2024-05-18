@@ -139,7 +139,7 @@ private String constructNewLine() {
     return username + "," + lecturerValue + "," + assessmentValue + "," + formattedDate + "," + timeValue  + ", Pending, -" ;
 }
     private void setComponentsVisible(boolean visible) {
-        Component[] components = {PreDate, Hour, Minute, Meridiem, modify};
+        Component[] components = {PreDate, Hour, Minute, Meridiem, modify, NewDate, NewTime, Modify_Panel};
         for (Component component : components) {
             component.setVisible(visible);
         }
@@ -150,25 +150,31 @@ private String constructNewLine() {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        SubmitBtn = new javax.swing.JToggleButton();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        PreDate = new com.toedter.calendar.JDateChooser();
-        jLabel3 = new javax.swing.JLabel();
+        jPanel3 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
+        Lecturer = new javax.swing.JLabel();
+        Assessment = new javax.swing.JLabel();
+        PreDateShow = new javax.swing.JLabel();
+        PreTimeShow = new javax.swing.JLabel();
+        PreStatus = new javax.swing.JLabel();
+        RejectReason = new javax.swing.JLabel();
+        EditBtn = new javax.swing.JButton();
+        Modify_Panel = new javax.swing.JPanel();
+        modify = new javax.swing.JLabel();
+        PreDate = new com.toedter.calendar.JDateChooser();
         Hour = new javax.swing.JSpinner();
         Minute = new javax.swing.JSpinner();
         Meridiem = new javax.swing.JComboBox<>();
-        EditBtn = new javax.swing.JButton();
-        jLabel5 = new javax.swing.JLabel();
-        Lecturer = new javax.swing.JLabel();
-        Assessment = new javax.swing.JLabel();
-        PreStatus = new javax.swing.JLabel();
-        PreDateShow = new javax.swing.JLabel();
-        PreTimeShow = new javax.swing.JLabel();
-        modify = new javax.swing.JLabel();
-        RejectReason = new javax.swing.JLabel();
+        SubmitBtn = new javax.swing.JToggleButton();
+        NewDate = new javax.swing.JLabel();
+        NewTime = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
 
+        setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         setMaximumSize(new java.awt.Dimension(935, 530));
         setMinimumSize(new java.awt.Dimension(935, 530));
         setPreferredSize(new java.awt.Dimension(935, 530));
@@ -178,76 +184,115 @@ private String constructNewLine() {
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
         add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
-        SubmitBtn.setText("Submit");
-        SubmitBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                SubmitBtnActionPerformed(evt);
-            }
-        });
-        add(SubmitBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 380, -1, -1));
+        jPanel3.setBackground(new java.awt.Color(204, 204, 255));
+        jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel1.setText(" Request Status");
-        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 300, -1, -1));
-
-        jLabel2.setText("Presentation TIme");
-        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 250, -1, -1));
-        add(PreDate, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 200, 127, -1));
-
-        jLabel3.setText("Presentation Date");
-        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 200, -1, -1));
-
+        jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel4.setText("Lecturer ");
-        add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 120, -1, -1));
+        jPanel3.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 50, -1, -1));
 
-        Hour.addChangeListener(new javax.swing.event.ChangeListener() {
-            public void stateChanged(javax.swing.event.ChangeEvent evt) {
-                HourStateChanged(evt);
-            }
-        });
-        add(Hour, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 250, 50, -1));
+        jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel5.setText("Assessment");
+        jPanel3.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 100, -1, -1));
 
-        Minute.addChangeListener(new javax.swing.event.ChangeListener() {
-            public void stateChanged(javax.swing.event.ChangeEvent evt) {
-                MinuteStateChanged(evt);
-            }
-        });
-        add(Minute, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 250, 60, -1));
+        jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel3.setText("Presentation Date");
+        jPanel3.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 140, -1, -1));
 
-        Meridiem.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "am","pm" }));
-        add(Meridiem, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 250, 70, -1));
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel2.setText("Presentation TIme");
+        jPanel3.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 190, -1, -1));
 
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel1.setText(" Request Status");
+        jPanel3.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 240, -1, -1));
+
+        Lecturer.setText("Name");
+        jPanel3.add(Lecturer, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 50, 80, 20));
+
+        Assessment.setText("Type");
+        jPanel3.add(Assessment, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 100, 50, 20));
+
+        PreDateShow.setText("Date");
+        jPanel3.add(PreDateShow, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 140, 90, 20));
+
+        PreTimeShow.setText("Time");
+        jPanel3.add(PreTimeShow, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 190, 90, 20));
+
+        PreStatus.setText("Status");
+        jPanel3.add(PreStatus, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 240, -1, -1));
+
+        RejectReason.setForeground(new java.awt.Color(255, 51, 0));
+        RejectReason.setText("Reject Reason");
+        jPanel3.add(RejectReason, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 270, -1, -1));
+
+        EditBtn.setBackground(new java.awt.Color(255, 255, 255));
+        EditBtn.setForeground(new java.awt.Color(0, 0, 0));
         EditBtn.setText("Edit");
+        EditBtn.setBorder(null);
         EditBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 EditBtnActionPerformed(evt);
             }
         });
-        add(EditBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 380, -1, -1));
+        jPanel3.add(EditBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 340, 80, 30));
 
-        jLabel5.setText("Assessment");
-        add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 160, -1, -1));
+        Modify_Panel.setBackground(new java.awt.Color(242, 242, 252));
+        Modify_Panel.setForeground(new java.awt.Color(255, 255, 255));
+        Modify_Panel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        Lecturer.setText("Name");
-        add(Lecturer, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 120, 80, 20));
-
-        Assessment.setText("Type");
-        add(Assessment, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 160, 50, 20));
-
-        PreStatus.setText("Status");
-        add(PreStatus, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 300, -1, -1));
-
-        PreDateShow.setText("Date");
-        add(PreDateShow, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 200, 90, 20));
-
-        PreTimeShow.setText("Time");
-        add(PreTimeShow, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 250, 90, 20));
-
+        modify.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         modify.setText("Modify");
-        add(modify, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 160, -1, -1));
+        Modify_Panel.add(modify, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 60, -1, -1));
 
-        RejectReason.setForeground(new java.awt.Color(255, 51, 0));
-        RejectReason.setText("Reject Reason");
-        add(RejectReason, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 330, -1, -1));
+        PreDate.setBackground(new java.awt.Color(255, 255, 255));
+        Modify_Panel.add(PreDate, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 140, 127, -1));
+
+        Hour.setBorder(null);
+        Hour.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                HourStateChanged(evt);
+            }
+        });
+        Modify_Panel.add(Hour, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 200, 50, -1));
+
+        Minute.setBorder(null);
+        Minute.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                MinuteStateChanged(evt);
+            }
+        });
+        Modify_Panel.add(Minute, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 200, 60, -1));
+
+        Meridiem.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "am","pm" }));
+        Meridiem.setBorder(null);
+        Modify_Panel.add(Meridiem, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 200, 70, -1));
+
+        SubmitBtn.setBackground(new java.awt.Color(204, 255, 204));
+        SubmitBtn.setForeground(new java.awt.Color(0, 0, 0));
+        SubmitBtn.setText("Submit");
+        SubmitBtn.setBorder(null);
+        SubmitBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                SubmitBtnActionPerformed(evt);
+            }
+        });
+        Modify_Panel.add(SubmitBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 340, 80, 30));
+
+        NewDate.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        NewDate.setText("Date");
+        Modify_Panel.add(NewDate, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 140, -1, -1));
+
+        NewTime.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        NewTime.setText("Time");
+        Modify_Panel.add(NewTime, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 200, -1, -1));
+
+        jPanel3.add(Modify_Panel, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 0, 330, 420));
+
+        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/presentationPIC.png"))); // NOI18N
+        jPanel3.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 100, 260, 190));
+
+        add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 50, 750, 420));
     }// </editor-fold>//GEN-END:initComponents
 
     private boolean editMode = true;
@@ -349,6 +394,9 @@ private String constructNewLine() {
     private javax.swing.JLabel Lecturer;
     private javax.swing.JComboBox<String> Meridiem;
     private javax.swing.JSpinner Minute;
+    private javax.swing.JPanel Modify_Panel;
+    private javax.swing.JLabel NewDate;
+    private javax.swing.JLabel NewTime;
     private com.toedter.calendar.JDateChooser PreDate;
     private javax.swing.JLabel PreDateShow;
     private javax.swing.JLabel PreStatus;
@@ -360,7 +408,9 @@ private String constructNewLine() {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel3;
     private javax.swing.JLabel modify;
     // End of variables declaration//GEN-END:variables
 }
