@@ -9,20 +9,22 @@ import java.util.List;
 
 public class Lecturer {
     public String lectName;
+    public String password;
     public String lectid;
     public boolean isProjectManager;
     public boolean isSecondMarker;
     public boolean isSupervisor;
-    public List<Lecturer> lecturers;
-    public String password;
     
-    public Lecturer(String name, String lectid, boolean isProjectManager, boolean isSecondMarker, boolean isSupervisor, String password) {
+    
+    
+    public Lecturer(String name,String lectid, boolean isProjectManager, boolean isSecondMarker, boolean isSupervisor,String password) {
         this.lectName = name;
+        this.password = password;
         this.lectid = lectid;
         this.isProjectManager = isProjectManager;
         this.isSecondMarker = isSecondMarker;
         this.isSupervisor = isSupervisor;
-        this.password = password;
+        
     }
     public Lecturer(String name, String lectid) {
     this.lectName = name;
@@ -88,7 +90,7 @@ public class Lecturer {
 
     @Override
     public String toString() {
-        return "Lecturer{" + "lectName=" + lectName + ", lectid=" + lectid + ", isProjectManager=" + isProjectManager + ", isSecondMarker=" + isSecondMarker + ", isSupervisor=" + isSupervisor + ", lecturers=" + lecturers + ",password=" + password +'}';
+        return "Lecturer{" + "lectName=" + lectName + ", lectid=" + lectid + ", isProjectManager=" + isProjectManager + ", isSecondMarker=" + isSecondMarker + ", isSupervisor=" + isSupervisor  + ",password=" + password +'}';
     }
 }
 

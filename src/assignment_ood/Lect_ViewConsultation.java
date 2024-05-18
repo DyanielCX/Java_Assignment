@@ -36,8 +36,8 @@ private Lecture_mainframe lectmainframe;
         initComponents();
         populatePresentationTable();
             
-           ConsultTbl.getColumnModel().getColumn(4).setCellRenderer(new TableActionCellRender_EditButton());
-        ConsultTbl.getColumnModel().getColumn(4).setCellEditor(new TableActionCellEditor_EditButton(event));
+           ConsultTbl.getColumnModel().getColumn(6).setCellRenderer(new TableActionCellRender_EditButton());
+        ConsultTbl.getColumnModel().getColumn(6).setCellEditor(new TableActionCellEditor_EditButton(event));
     }
 
     /**
@@ -54,13 +54,13 @@ private Lecture_mainframe lectmainframe;
 
         ConsultTbl.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null}
             },
             new String [] {
-                "Student", "Supervisor", "Date", "Status", "Action"
+                "Student", "Supervisor", "Intake", "Date", "Time", "Status", "Action"
             }
         ));
         ConsultTbl.setRowHeight(50);
