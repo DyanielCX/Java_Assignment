@@ -1,6 +1,5 @@
 package AdminPackage.TableElement;
 
-import java.awt.Color;
 import java.awt.Component;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableCellRenderer;
@@ -16,7 +15,6 @@ public class TableActionCellRender extends DefaultTableCellRenderer{
         Component com =  super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column); 
         EditButton action = new EditButton();
         action.setBackground(com.getBackground());
-        
         return action;
     }
     

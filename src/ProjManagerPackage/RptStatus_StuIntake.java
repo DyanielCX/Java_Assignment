@@ -3,9 +3,9 @@ package ProjManagerPackage;
 import ProjManagerPackage.RptStatusElem.TableActionCellEditor_ViewIcon;
 import ProjManagerPackage.RptStatusElem.TableActionCellRender_ViewIcon;
 import ProjManagerPackage.RptStatusElem.TableHeader_StuIntake;
-import ProjManagerPackage.StuAssessElem.IntakeBasedMethod;
-import ProjManagerPackage.StuAssessElem.ModernScrollBarUI;
-import ProjManagerPackage.StuAssessElem.TableActionEvent;
+import ProjManagerPackage.RptStatusElem.TableActionEvent;
+import ProjManagerPackage.StuAssesElem.IntakeBasedMethod;
+import ProjManagerPackage.StuAssesElem.ModernScrollBarUI;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
@@ -70,10 +70,10 @@ public class RptStatus_StuIntake extends javax.swing.JPanel {
             }
         }
         
-        /*Set the edit button and its function*/
+        /*Set the view button and its function*/
         TableActionEvent event = new TableActionEvent() {
             @Override
-            public void onEdit(int row) {
+            public void onView(int row) {
                 //Get the student id of selected student
                 String selectedIntake = (String) IntakeAssTable.getValueAt(row, 0);
                 mainFrame.changedTab(9);

@@ -3,17 +3,14 @@ package AdminPackage.TableElement;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-/**
- *
- * @author PC
- */
+
 public class EditButton extends javax.swing.JPanel {
 
-    /**
-     * Creates new form PanelAction
-     */
+
     public EditButton() {
         initComponents();
+        
+        
     }
 
     public void initEvent(TableActionEvent event, int row) {
@@ -21,6 +18,12 @@ public class EditButton extends javax.swing.JPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 event.onEdit(row);
+            }
+        });
+        cmdEdit1.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                event.onDelete(row);
             }
         });
     }
@@ -34,9 +37,12 @@ public class EditButton extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        cmdEdit = new ProjManagerPackage.StuAssessElem.ActionButton();
+        cmdEdit = new ProjManagerPackage.StuAssesElem.ActionButton();
+        cmdEdit1 = new ProjManagerPackage.StuAssesElem.ActionButton();
 
         cmdEdit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/edit.png"))); // NOI18N
+
+        cmdEdit1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/remove.png"))); // NOI18N
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -45,19 +51,24 @@ public class EditButton extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(cmdEdit, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(cmdEdit1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(cmdEdit, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(cmdEdit1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cmdEdit, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private ProjManagerPackage.StuAssessElem.ActionButton cmdEdit;
+    private ProjManagerPackage.StuAssesElem.ActionButton cmdEdit;
+    private ProjManagerPackage.StuAssesElem.ActionButton cmdEdit1;
     // End of variables declaration//GEN-END:variables
 }

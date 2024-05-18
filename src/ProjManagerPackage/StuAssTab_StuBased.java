@@ -1,10 +1,9 @@
 package ProjManagerPackage;
 
-import ProjManagerPackage.StuAssessElem.ModernScrollBarUI;
-import ProjManagerPackage.StuAssessElem.TableActionCellEditor;
-import ProjManagerPackage.StuAssessElem.TableActionCellRender;
-import ProjManagerPackage.StuAssessElem.TableActionEvent;
-import ProjManagerPackage.StuAssessElem.TableHeader;
+import ProjManagerPackage.StuAssesElem.ModernScrollBarUI;
+import ProjManagerPackage.StuAssesElem.TableActionCellEditor_EditButton;
+import ProjManagerPackage.StuAssesElem.TableActionCellRender_EditButton;
+import ProjManagerPackage.StuAssesElem.TableHeader;
 import StuPackage.StuData_IO;
 import StuPackage.Student;
 import java.awt.Color;
@@ -17,6 +16,7 @@ import javax.swing.JTable;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
+import ProjManagerPackage.StuAssesElem.TableActionEvent_EditButton;
 
 
 public class StuAssTab_StuBased extends javax.swing.JPanel {
@@ -76,7 +76,7 @@ public class StuAssTab_StuBased extends javax.swing.JPanel {
         }
         
         /*Set the edit button and its function*/
-        TableActionEvent event = new TableActionEvent() {
+        TableActionEvent_EditButton event = new TableActionEvent_EditButton() {
             @Override
             public void onEdit(int row) {
                 //Get the student id of selected student
@@ -89,8 +89,8 @@ public class StuAssTab_StuBased extends javax.swing.JPanel {
         };
         
         //Insert edit button into table
-        StuAssTable.getColumnModel().getColumn(4).setCellRenderer(new TableActionCellRender());
-        StuAssTable.getColumnModel().getColumn(4).setCellEditor(new TableActionCellEditor(event));
+        StuAssTable.getColumnModel().getColumn(4).setCellRenderer(new TableActionCellRender_EditButton());
+        StuAssTable.getColumnModel().getColumn(4).setCellEditor(new TableActionCellEditor_EditButton(event));
     }
 
     /**

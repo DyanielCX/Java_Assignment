@@ -1,6 +1,5 @@
 package ProjManagerPackage.RptStatusElem;
 
-import ProjManagerPackage.AccMgmtElem.*;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
@@ -8,10 +7,7 @@ import java.awt.RenderingHints;
 import javax.swing.JLabel;
 import javax.swing.border.EmptyBorder;
 
-/**
- *
- * @author PC
- */
+
 public class TableHeader_StuIntake extends JLabel{
 
     public TableHeader_StuIntake(String text){

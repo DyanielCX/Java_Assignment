@@ -1,4 +1,4 @@
-package ProjManagerPackage.StuAssessElem;
+package ProjManagerPackage.StuAssesElem;
 
 import java.awt.Color;
 import java.awt.Graphics;

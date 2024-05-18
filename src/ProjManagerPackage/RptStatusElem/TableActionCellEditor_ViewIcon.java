@@ -1,15 +1,12 @@
 package ProjManagerPackage.RptStatusElem;
 
-import ProjManagerPackage.StuAssessElem.*;
+import ProjManagerPackage.RptStatusElem.TableActionEvent;
 import java.awt.Component;
 import javax.swing.DefaultCellEditor;
 import javax.swing.JCheckBox;
 import javax.swing.JTable;
 
-/**
- *
- * @author PC
- */
+
 public class TableActionCellEditor_ViewIcon extends DefaultCellEditor {
 
     private TableActionEvent event;

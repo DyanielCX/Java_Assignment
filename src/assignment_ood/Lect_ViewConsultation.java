@@ -4,9 +4,8 @@
  */
 package assignment_ood;
 
-import ProjManagerPackage.StuAssessElem.TableActionCellEditor;
-import ProjManagerPackage.StuAssessElem.TableActionCellRender;
-import ProjManagerPackage.StuAssessElem.TableActionEvent;
+import ProjManagerPackage.StuAssesElem.TableActionCellEditor_EditButton;
+import ProjManagerPackage.StuAssesElem.TableActionCellRender_EditButton;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
@@ -22,6 +21,7 @@ import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumnModel;
 import assignment_ood.presentationReq;
+import ProjManagerPackage.StuAssesElem.TableActionEvent_EditButton;
 /**
  *
  * @author User
@@ -36,8 +36,8 @@ private Lecture_mainframe lectmainframe;
         initComponents();
         populatePresentationTable();
             
-           ConsultTbl.getColumnModel().getColumn(4).setCellRenderer(new TableActionCellRender());
-        ConsultTbl.getColumnModel().getColumn(4).setCellEditor(new TableActionCellEditor(event));
+           ConsultTbl.getColumnModel().getColumn(4).setCellRenderer(new TableActionCellRender_EditButton());
+        ConsultTbl.getColumnModel().getColumn(4).setCellEditor(new TableActionCellEditor_EditButton(event));
     }
 
     /**
@@ -77,7 +77,7 @@ private Lecture_mainframe lectmainframe;
             .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 323, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
- TableActionEvent event = new TableActionEvent() {
+ TableActionEvent_EditButton event = new TableActionEvent_EditButton() {
     @Override
     public void onEdit(int row) {
         // Get the selected row

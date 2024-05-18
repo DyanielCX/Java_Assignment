@@ -7,10 +7,7 @@ import java.awt.RenderingHints;
 import javax.swing.JLabel;
 import javax.swing.border.EmptyBorder;
 
-/**
- *
- * @author PC
- */
+
 public class TableHeader_StuAdvsList extends JLabel{
 
     public TableHeader_StuAdvsList(String text){

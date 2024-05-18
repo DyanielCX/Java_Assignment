@@ -1,16 +1,11 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
- */
 package ProjManagerPackage;
 
 import ProjManagerPackage.AssignSupvElem.LectData_IO;
-import ProjManagerPackage.AssignSupvElem.TickCrossIcon_TableActionCellRender;
-import ProjManagerPackage.StuAssessElem.ModernScrollBarUI;
-import ProjManagerPackage.StuAssessElem.TableActionCellEditor;
-import ProjManagerPackage.StuAssessElem.TableActionCellRender;
-import ProjManagerPackage.StuAssessElem.TableActionEvent;
-import ProjManagerPackage.StuAssessElem.TableHeader;
+import ProjManagerPackage.AssignSupvElem.TableActionCellRender_TickCrossIcon;
+import ProjManagerPackage.StuAssesElem.ModernScrollBarUI;
+import ProjManagerPackage.StuAssesElem.TableActionCellEditor_EditButton;
+import ProjManagerPackage.StuAssesElem.TableActionCellRender_EditButton;
+import ProjManagerPackage.StuAssesElem.TableHeader;
 import assignment_ood.Lecturer;
 import java.awt.Color;
 import java.awt.Component;
@@ -22,11 +17,9 @@ import javax.swing.JTable;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
+import ProjManagerPackage.StuAssesElem.TableActionEvent_EditButton;
 
-/**
- *
- * @author PC
- */
+
 public class AssignAdvsTab_LectRoleList extends javax.swing.JPanel {
 
     private MainFrame mainFrame;
@@ -51,10 +44,11 @@ public class AssignAdvsTab_LectRoleList extends javax.swing.JPanel {
         });
 
         
-        //Insert lecturer data into table
-        LectRoleTable.getColumnModel().getColumn(2).setCellRenderer(new TickCrossIcon_TableActionCellRender());
-        LectRoleTable.getColumnModel().getColumn(3).setCellRenderer(new TickCrossIcon_TableActionCellRender());
+        // Set the tick and cross icon for advisors columns
+        LectRoleTable.getColumnModel().getColumn(2).setCellRenderer(new TableActionCellRender_TickCrossIcon());
+        LectRoleTable.getColumnModel().getColumn(3).setCellRenderer(new TableActionCellRender_TickCrossIcon());
         
+        // Insert lecturer data into table
         for (Lecturer lect :LectData_IO.LectData){
             String LectName = lect.lectName;
             String LectID = lect.lectid;
@@ -82,7 +76,7 @@ public class AssignAdvsTab_LectRoleList extends javax.swing.JPanel {
 
         
         /*Set the edit button and its function*/
-        TableActionEvent event = new TableActionEvent() {
+        TableActionEvent_EditButton event = new TableActionEvent_EditButton() {
             @Override
             public void onEdit(int row) {
                 //Get the student id of selected student
@@ -94,9 +88,9 @@ public class AssignAdvsTab_LectRoleList extends javax.swing.JPanel {
             }
         };
         
-        //Insert edit button into table
-        LectRoleTable.getColumnModel().getColumn(4).setCellRenderer(new TableActionCellRender());
-        LectRoleTable.getColumnModel().getColumn(4).setCellEditor(new TableActionCellEditor(event));
+        // Insert edit button into table
+        LectRoleTable.getColumnModel().getColumn(4).setCellRenderer(new TableActionCellRender_EditButton());
+        LectRoleTable.getColumnModel().getColumn(4).setCellEditor(new TableActionCellEditor_EditButton(event));
     }
 
     /**

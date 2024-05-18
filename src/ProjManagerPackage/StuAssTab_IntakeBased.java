@@ -1,11 +1,10 @@
 package ProjManagerPackage;
 
-import ProjManagerPackage.StuAssessElem.IntakeBasedMethod;
-import ProjManagerPackage.StuAssessElem.ModernScrollBarUI;
-import ProjManagerPackage.StuAssessElem.TableActionCellEditor;
-import ProjManagerPackage.StuAssessElem.TableActionCellRender;
-import ProjManagerPackage.StuAssessElem.TableActionEvent;
-import ProjManagerPackage.StuAssessElem.TableHeader;
+import ProjManagerPackage.StuAssesElem.IntakeBasedMethod;
+import ProjManagerPackage.StuAssesElem.ModernScrollBarUI;
+import ProjManagerPackage.StuAssesElem.TableActionCellEditor_EditButton;
+import ProjManagerPackage.StuAssesElem.TableActionCellRender_EditButton;
+import ProjManagerPackage.StuAssesElem.TableHeader;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
@@ -17,6 +16,7 @@ import javax.swing.JTable;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
+import ProjManagerPackage.StuAssesElem.TableActionEvent_EditButton;
 
 
 public class StuAssTab_IntakeBased extends javax.swing.JPanel {
@@ -71,7 +71,7 @@ public class StuAssTab_IntakeBased extends javax.swing.JPanel {
         }
         
         /*Set the edit button and its function*/
-        TableActionEvent event = new TableActionEvent() {
+        TableActionEvent_EditButton event = new TableActionEvent_EditButton() {
             @Override
             public void onEdit(int row) {
                 //Get the student id of selected student
@@ -84,8 +84,8 @@ public class StuAssTab_IntakeBased extends javax.swing.JPanel {
         };
         
         //Insert edit button into table
-        IntakeAssTable.getColumnModel().getColumn(2).setCellRenderer(new TableActionCellRender());
-        IntakeAssTable.getColumnModel().getColumn(2).setCellEditor(new TableActionCellEditor(event));
+        IntakeAssTable.getColumnModel().getColumn(2).setCellRenderer(new TableActionCellRender_EditButton());
+        IntakeAssTable.getColumnModel().getColumn(2).setCellEditor(new TableActionCellEditor_EditButton(event));
     }
 
     /**

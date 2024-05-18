@@ -1,21 +1,15 @@
 package ProjManagerPackage;
 
-import ProjManagerPackage.StuAssessElem.IntakeBasedMethod;
+import ProjManagerPackage.StuAssesElem.IntakeBasedMethod;
 import StuPackage.StuData_IO;
 import java.awt.Color;
 
-/**
- *
- * @author PC
- */
+
 public class EditAssFrame_IntakeBased extends javax.swing.JFrame {
 
     private String Intake;
     private String currentAssessment;
 
-    /**
-     * Creates new form EditAssessmentFrame
-     */
     public EditAssFrame_IntakeBased(String selectedIntake) {
         //Pass the Student ID to class object(stuID)
         Intake = selectedIntake;
@@ -173,8 +167,10 @@ public class EditAssFrame_IntakeBased extends javax.swing.JFrame {
     }//GEN-LAST:event_btbCancelActionPerformed
 
     private void btbSubmitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btbSubmitActionPerformed
+        // Retrieve the selected assessment
         String selectedAssess = (String) cboAssesment.getSelectedItem();
         
+        // Edit the selected student's assessment
         for (int count = 0; count < StuData_IO.StuData.size();count ++){
             if (StuData_IO.StuData.get(count).intake.equals(Intake)) {
                 //Update the edited student data into ArrayList
@@ -223,13 +219,6 @@ public class EditAssFrame_IntakeBased extends javax.swing.JFrame {
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(EditAssFrame_IntakeBased.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */

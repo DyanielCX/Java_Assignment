@@ -1,22 +1,17 @@
 package ProjManagerPackage;
 
-import ProjManagerPackage.StuAssessElem.IntakeBasedMethod;
+import ProjManagerPackage.StuAssesElem.IntakeBasedMethod;
 import StuPackage.StuData_IO;
 import java.awt.Color;
 import javax.swing.JOptionPane;
 
-/**
- *
- * @author PC
- */
+
 public class EditAssFrame_StuBased extends javax.swing.JFrame {
 
     private String stuID;
     private String currentAssessment;
 
-    /**
-     * Creates new form EditAssessmentFrame
-     */
+
     public EditAssFrame_StuBased(String StuID) {
         //Pass the Student ID to class object(stuID)
         stuID = StuID;
@@ -276,9 +271,6 @@ public class EditAssFrame_StuBased extends javax.swing.JFrame {
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(EditAssFrame_StuBased.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */

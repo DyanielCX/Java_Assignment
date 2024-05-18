@@ -4,9 +4,8 @@
  */
 package assignment_ood;
 
-import ProjManagerPackage.StuAssessElem.TableActionCellEditor;
-import ProjManagerPackage.StuAssessElem.TableActionCellRender;
-import ProjManagerPackage.StuAssessElem.TableActionEvent;
+import ProjManagerPackage.StuAssesElem.TableActionCellEditor_EditButton;
+import ProjManagerPackage.StuAssesElem.TableActionCellRender_EditButton;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
@@ -22,6 +21,7 @@ import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumnModel;
+import ProjManagerPackage.StuAssesElem.TableActionEvent_EditButton;
 
 /**
  *
@@ -39,14 +39,14 @@ private Lecture_mainframe lectmainframe;
         
         
      
-        presentationTable.getColumnModel().getColumn(7).setCellRenderer(new TableActionCellRender());
-        presentationTable.getColumnModel().getColumn(7).setCellEditor(new TableActionCellEditor(event));
+        presentationTable.getColumnModel().getColumn(7).setCellRenderer(new TableActionCellRender_EditButton());
+        presentationTable.getColumnModel().getColumn(7).setCellEditor(new TableActionCellEditor_EditButton(event));
         
 
 
     }
     
- TableActionEvent event = new TableActionEvent() {
+ TableActionEvent_EditButton event = new TableActionEvent_EditButton() {
     @Override
     public void onEdit(int row) {
         int selectedRow = presentationTable.convertRowIndexToModel(presentationTable.getSelectedRow());

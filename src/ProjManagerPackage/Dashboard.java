@@ -1,15 +1,11 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
- */
 package ProjManagerPackage;
 
 import ProjManagerPackage.AssignSupvElem.LectData_IO;
 import ProjManagerPackage.DashboardElem.TableActionCellRender_DashMark;
 import ProjManagerPackage.DashboardElem.TableActionCellRender_DashPending;
 import ProjManagerPackage.DashboardElem.TableHeader_Dashboard;
-import ProjManagerPackage.StuAssessElem.IntakeBasedMethod;
-import ProjManagerPackage.StuAssessElem.ModernScrollBarUI;
+import ProjManagerPackage.StuAssesElem.IntakeBasedMethod;
+import ProjManagerPackage.StuAssesElem.ModernScrollBarUI;
 import StuPackage.StuData_IO;
 import java.awt.Color;
 import java.awt.Component;

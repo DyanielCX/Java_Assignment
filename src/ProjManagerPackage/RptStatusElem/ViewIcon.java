@@ -1,18 +1,13 @@
 package ProjManagerPackage.RptStatusElem;
 
-import ProjManagerPackage.StuAssessElem.TableActionEvent;
+import ProjManagerPackage.RptStatusElem.TableActionEvent;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-/**
- *
- * @author PC
- */
+
 public class ViewIcon extends javax.swing.JPanel {
 
-    /**
-     * Creates new form PanelAction
-     */
+
     public ViewIcon() {
         initComponents();
     }
@@ -21,7 +16,7 @@ public class ViewIcon extends javax.swing.JPanel {
         viewIcon.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                event.onEdit(row);
+                event.onView(row);
             }
         });
     }
@@ -35,7 +30,7 @@ public class ViewIcon extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        viewIcon = new ProjManagerPackage.StuAssessElem.ActionButton();
+        viewIcon = new ProjManagerPackage.StuAssesElem.ActionButton();
 
         viewIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/viewIcon.png"))); // NOI18N
 
@@ -59,6 +54,6 @@ public class ViewIcon extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private ProjManagerPackage.StuAssessElem.ActionButton viewIcon;
+    private ProjManagerPackage.StuAssesElem.ActionButton viewIcon;
     // End of variables declaration//GEN-END:variables
 }

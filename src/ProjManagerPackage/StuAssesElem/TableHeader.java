@@ -1,4 +1,4 @@
-package ProjManagerPackage.StuAssessElem;
+package ProjManagerPackage.StuAssesElem;
 
 import java.awt.Color;
 import java.awt.Graphics;
@@ -7,10 +7,7 @@ import java.awt.RenderingHints;
 import javax.swing.JLabel;
 import javax.swing.border.EmptyBorder;
 
-/**
- *
- * @author PC
- */
+
 public class TableHeader extends JLabel{
 
     public TableHeader(String text){

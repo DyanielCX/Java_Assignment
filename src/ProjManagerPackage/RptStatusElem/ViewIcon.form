@@ -34,7 +34,7 @@
     </DimensionLayout>
   </Layout>
   <SubComponents>
-    <Component class="ProjManagerPackage.StuAssessElem.ActionButton" name="viewIcon">
+    <Component class="ProjManagerPackage.StuAssesElem.ActionButton" name="viewIcon">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
           <Image iconType="3" name="/Image/viewIcon.png"/>

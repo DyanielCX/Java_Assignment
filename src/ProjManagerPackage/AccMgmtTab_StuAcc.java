@@ -2,9 +2,8 @@ package ProjManagerPackage;
 
 import ProjManagerPackage.AccMgmtElem.TableActionCellRender_AccTbl;
 import ProjManagerPackage.AccMgmtElem.TableHeader_AccTbl;
-import ProjManagerPackage.StuAssessElem.ModernScrollBarUI;
-import ProjManagerPackage.StuAssessElem.TableActionCellEditor;
-import ProjManagerPackage.StuAssessElem.TableActionEvent;
+import ProjManagerPackage.StuAssesElem.ModernScrollBarUI;
+import ProjManagerPackage.StuAssesElem.TableActionCellEditor_EditButton;
 import StuPackage.StuData_IO;
 import StuPackage.Student;
 import java.awt.Color;
@@ -17,6 +16,7 @@ import javax.swing.JTable;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
+import ProjManagerPackage.StuAssesElem.TableActionEvent_EditButton;
 
 
 public class AccMgmtTab_StuAcc extends javax.swing.JPanel {
@@ -61,7 +61,7 @@ public class AccMgmtTab_StuAcc extends javax.swing.JPanel {
 
         
         /*Set the edit button and its function*/
-        TableActionEvent event = new TableActionEvent() {
+        TableActionEvent_EditButton event = new TableActionEvent_EditButton() {
             @Override
             public void onEdit(int row) {
                 //Get the student id of selected student
@@ -75,7 +75,7 @@ public class AccMgmtTab_StuAcc extends javax.swing.JPanel {
         
         //Insert edit button into table
         StuAccTable.getColumnModel().getColumn(4).setCellRenderer(new TableActionCellRender_AccTbl());
-        StuAccTable.getColumnModel().getColumn(4).setCellEditor(new TableActionCellEditor(event));
+        StuAccTable.getColumnModel().getColumn(4).setCellEditor(new TableActionCellEditor_EditButton(event));
     }
 
     /**

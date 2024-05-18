@@ -1,5 +1,5 @@
 
-package ProjManagerPackage.StuAssessElem;
+package ProjManagerPackage.StuAssesElem;
 
 import StuPackage.StuData_IO;
 import StuPackage.Student;
@@ -7,6 +7,7 @@ import java.util.ArrayList;
 
 public class IntakeBasedMethod {
     
+    // Collect all exist intake
     public static ArrayList getIntake(){
         ArrayList<String> intakeList = new ArrayList<>();
         
@@ -21,12 +22,14 @@ public class IntakeBasedMethod {
         return intakeList;
     }
     
-    public static String getAssessment(String intake){
+    
+    // Get the assessment based on selected intake
+    public static String getAssessment(String selectedIntake){
         int checkNum = 0;
         String assessment = "";
         
         for (Student stu:StuData_IO.StuData){
-            if(stu.intake.equals(intake)){
+            if(stu.intake.equals(selectedIntake)){
                 
                 //Move to next loop when assessment is "-"
                 if (!stu.assessment.equals("-")) {
@@ -51,28 +54,8 @@ public class IntakeBasedMethod {
         return assessment;
     }
     
-    public static void editAssessment(String intake, String selectedAss){
-        
-        for (int Index = 0; Index < StuData_IO.StuData.size();Index ++){
-            if (StuData_IO.StuData.get(Index).intake.equals(intake)) {
-                //Get all the selected student data
-                String Name = StuData_IO.StuData.get(Index).name;
-                int Age = StuData_IO.StuData.get(Index).age;
-                String stuID = StuData_IO.StuData.get(Index).id;
-                String Intake = intake;
-                String Assessment = selectedAss;
-                String Supervisor = StuData_IO.StuData.get(Index).supervisor;
-                String SecondMaker = StuData_IO.StuData.get(Index).secondMarker;
-                String RMCP_Lecture = StuData_IO.StuData.get(Index).RMCP_lecture;
-                String Password = StuData_IO.StuData.get(Index).password;
-
-                //Update the edited data into ArrayList
-                Student Edited_Student = new Student(Name, Age, stuID, Intake, Assessment, Supervisor, SecondMaker, RMCP_Lecture, Password);
-                StuData_IO.edit(Index, Edited_Student);
-            }
-        }
-    }
-    
+   
+    // check the assessment based on student intake
     public static boolean checkAssessment(String stuIntake, String selectedAss){
         String actualAss = getAssessment(stuIntake);
         

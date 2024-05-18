@@ -1,17 +1,8 @@
 package ProjManagerPackage.AssignSupvElem;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
-/**
- *
- * @author PC
- */
 public class TickIcon extends javax.swing.JPanel {
 
-    /**
-     * Creates new form PanelAction
-     */
     public TickIcon() {
         initComponents();
     }
