@@ -9,6 +9,7 @@ import ProjManagerPackage.*;
 import StuPackage.StuData_IO;
 import java.awt.Color;
 import Java_Assignment.LoginPage;
+import Java_Assignment.Session;
 /**
  *
  * @author PC
@@ -23,6 +24,14 @@ public class Lecture_mainframe extends javax.swing.JFrame {
      * Creates new form ProjMng_MainFrame
      */
     public Lecture_mainframe() {
+        if (Session.isLoggedIn()) {
+    
+    String username = Session.getUsername();
+    System.out.println("Logged in as: " + username);
+} else {
+   
+    System.out.println("No user logged in.");
+}
         initComponents();
         getContentPane().setBackground(new Color(248, 246, 227));
         
@@ -38,7 +47,7 @@ public class Lecture_mainframe extends javax.swing.JFrame {
        Lect_ViewConsultation tab4 = new Lect_ViewConsultation(this);
        TabPanel.add("tab4",tab4);
         /* Get the user name */
-        String UserName = "Shahab";
+        String UserName = Session.getUsername();
         AccName.setText(UserName);
         
       lect_ViewRMCP tab5 = new lect_ViewRMCP(this);

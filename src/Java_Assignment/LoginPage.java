@@ -3,11 +3,12 @@ package Java_Assignment;
 import ProjManagerPackage.AssignSupvElem.LectData_IO;
 import ProjManagerPackage.MainFrame;
 import StuPackage.StuData_IO;
+import assignment_ood.Lect_Dashboard;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import javax.swing.JOptionPane;
-
+import assignment_ood.Lecture_mainframe;
 public class LoginPage extends javax.swing.JFrame {
     private String UsernameInput; // Declare as an instance variable
     private String PasswordInput; // Declare as an instance variable
@@ -90,6 +91,7 @@ public class LoginPage extends javax.swing.JFrame {
     
     if (role != null) {
         // If credentials are valid, redirect to the appropriate dashboard
+         Session.setUsername(username);
         redirectToDashboard(username, password, role);
         // Close the login window or do any other necessary action
         dispose();
@@ -116,11 +118,11 @@ public class LoginPage extends javax.swing.JFrame {
                     if (storedUsername.equals(username) && storedPassword.equals(password)) {
                         role = role.trim();
                         if (role.equals("LecData")){
-                        boolean isSupervisor = Boolean.parseBoolean(parts[3]);
-                            if (isSupervisor = true){
-                               role="ProjectMgn";
-                                return role;
-                            }
+                        boolean isSupervisor = Boolean.parseBoolean(parts[2]);
+                           if (isSupervisor) { // Check if isSupervisor is true
+            role = "ProjectMgn"; // Change the role to ProjectMgn
+            return role;
+        }
                         }return  role.trim();
                    }
                 }
@@ -138,7 +140,8 @@ public class LoginPage extends javax.swing.JFrame {
                 studentAcc.setVisible(true);
                 break;
             case "LecData":
-                
+                Lecture_mainframe lect= new Lecture_mainframe();
+                lect.setVisible(true);
                 break;
             case "ProjectMgn":
                   MainFrame fr = new MainFrame();
@@ -153,6 +156,15 @@ public class LoginPage extends javax.swing.JFrame {
                 System.out.println("Invalid role.");
         }
     }
+    private void logoutBtnActionPerformed(java.awt.event.ActionEvent evt) {                                         
+    // Clear the session
+    Session.clearSession();
+
+    // Redirect to login page or close the current window
+    LoginPage loginPage = new LoginPage();
+    loginPage.setVisible(true);
+    this.dispose(); // Close the current window
+}
     
     public static void main(String args[]) {
       //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
