@@ -47,59 +47,103 @@ private void readStudentDetailsFromFile(String fileName) {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jLabel6 = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
-        StuName = new javax.swing.JTextField();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
+        jPanel2 = new javax.swing.JPanel();
+        StuName = new javax.swing.JLabel();
+        StuID = new javax.swing.JLabel();
+        StuIntake = new javax.swing.JLabel();
+        StuAge = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
-        StuAssessment = new javax.swing.JTextField();
-        LecSupName = new javax.swing.JTextField();
-        StuID = new javax.swing.JTextField();
-        StuAge = new javax.swing.JTextField();
-        StuIntake = new javax.swing.JTextField();
+        jPanel3 = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        LecSupName = new javax.swing.JLabel();
+        StuAssessment = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
+        jLabel11 = new javax.swing.JLabel();
+        jLabel12 = new javax.swing.JLabel();
 
         setPreferredSize(new java.awt.Dimension(935, 530));
 
         jPanel1.setPreferredSize(new java.awt.Dimension(935, 530));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel6.setText("Student Name");
-        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(229, 155, -1, -1));
+        jPanel2.setBackground(new java.awt.Color(204, 204, 204));
+        jPanel2.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel1.setText("Student ID");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(249, 195, -1, -1));
+        StuName.setBackground(new java.awt.Color(255, 255, 255));
+        StuName.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
+        StuName.setForeground(new java.awt.Color(255, 255, 255));
+        StuName.setText("Student Name");
+        jPanel2.add(StuName, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 130, -1, -1));
 
-        StuName.setText("jTextField1");
-        jPanel1.add(StuName, new org.netbeans.lib.awtextra.AbsoluteConstraints(341, 152, -1, -1));
+        StuID.setBackground(new java.awt.Color(255, 255, 255));
+        StuID.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        StuID.setForeground(new java.awt.Color(255, 255, 255));
+        StuID.setText("Student ID");
+        jPanel2.add(StuID, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 210, -1, -1));
 
-        jLabel3.setText("Age");
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 240, -1, -1));
+        StuIntake.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        StuIntake.setForeground(new java.awt.Color(255, 255, 255));
+        StuIntake.setText("Intake");
+        jPanel2.add(StuIntake, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 280, 90, -1));
 
-        jLabel7.setText("Intake");
-        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 300, -1, -1));
+        StuAge.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        StuAge.setForeground(new java.awt.Color(255, 255, 255));
+        StuAge.setText("Age");
+        jPanel2.add(StuAge, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 190, -1, -1));
 
-        jLabel8.setText("Supervisor Name");
-        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(543, 239, -1, -1));
+        jLabel8.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel8.setForeground(new java.awt.Color(102, 102, 102));
+        jLabel8.setText("Supervisor/Lecturer Name");
+        jPanel2.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 290, -1, -1));
 
-        jLabel9.setText("Assessment");
-        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(543, 155, -1, -1));
+        jLabel9.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel9.setForeground(new java.awt.Color(102, 102, 102));
+        jLabel9.setText("Student Age");
+        jPanel2.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 160, -1, -1));
 
-        StuAssessment.setText("jTextField2");
-        jPanel1.add(StuAssessment, new org.netbeans.lib.awtextra.AbsoluteConstraints(543, 192, -1, -1));
+        jPanel3.setBackground(new java.awt.Color(51, 51, 51));
+        jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        LecSupName.setText("jTextField3");
-        jPanel1.add(LecSupName, new org.netbeans.lib.awtextra.AbsoluteConstraints(543, 280, 110, -1));
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/Logo(White).png"))); // NOI18N
+        jPanel3.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 10, -1, -1));
 
-        StuID.setText("jTextField4");
-        jPanel1.add(StuID, new org.netbeans.lib.awtextra.AbsoluteConstraints(341, 192, -1, -1));
+        jLabel2.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(204, 204, 204));
+        jLabel2.setText("Academic Guidance Hub ");
+        jPanel3.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 20, 390, 50));
 
-        StuAge.setText("jTextField5");
-        jPanel1.add(StuAge, new org.netbeans.lib.awtextra.AbsoluteConstraints(341, 236, -1, -1));
+        jPanel2.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 650, 100));
 
-        StuIntake.setText("jTextField6");
-        jPanel1.add(StuIntake, new org.netbeans.lib.awtextra.AbsoluteConstraints(341, 295, -1, -1));
+        LecSupName.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        LecSupName.setForeground(new java.awt.Color(255, 255, 255));
+        LecSupName.setText("TEXT");
+        jPanel2.add(LecSupName, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 310, 150, -1));
+
+        StuAssessment.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        StuAssessment.setForeground(new java.awt.Color(255, 255, 255));
+        StuAssessment.setText("TEXT");
+        jPanel2.add(StuAssessment, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 250, 130, -1));
+
+        jLabel10.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel10.setForeground(new java.awt.Color(102, 102, 102));
+        jLabel10.setText("Assessment");
+        jPanel2.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 220, -1, -1));
+
+        jLabel11.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel11.setForeground(new java.awt.Color(102, 102, 102));
+        jLabel11.setText("Student ID");
+        jPanel2.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 190, -1, -1));
+
+        jLabel12.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel12.setForeground(new java.awt.Color(102, 102, 102));
+        jLabel12.setText("Student Intake");
+        jPanel2.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 260, -1, -1));
+
+        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 70, 670, 400));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -115,18 +159,21 @@ private void readStudentDetailsFromFile(String fileName) {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField LecSupName;
-    private javax.swing.JTextField StuAge;
-    private javax.swing.JTextField StuAssessment;
-    private javax.swing.JTextField StuID;
-    private javax.swing.JTextField StuIntake;
-    private javax.swing.JTextField StuName;
+    private javax.swing.JLabel LecSupName;
+    private javax.swing.JLabel StuAge;
+    private javax.swing.JLabel StuAssessment;
+    private javax.swing.JLabel StuID;
+    private javax.swing.JLabel StuIntake;
+    private javax.swing.JLabel StuName;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
     // End of variables declaration//GEN-END:variables
 }

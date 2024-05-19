@@ -244,7 +244,7 @@ public class addLect extends javax.swing.JFrame {
     boolean isSecondMarker = false;
     boolean isSupervisor=false;
     String password =setPassword.getText();
-     Lecturer lecturer = new Lecturer(lecturerName, lecturerId, isProjectManager, isSecondMarker, isSupervisor,password);
+     Lecturer lecturer = new Lecturer(lecturerName,lecturerId, isProjectManager, isSecondMarker, isSupervisor,password);
       
     // Save lecturer details to a text file
 

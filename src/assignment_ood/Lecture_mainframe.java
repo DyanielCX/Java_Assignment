@@ -3,9 +3,14 @@ package assignment_ood;
 
 import StuPackage.StuData_IO;
 import java.awt.Color;
-
+import Java_Assignment.LoginPage;
+import Java_Assignment.Session;
+/**
+ *
+ * @author PC
+ */
 public class Lecture_mainframe extends javax.swing.JFrame {
-
+    
     // Color for side nav bar tab
     private Color navDefaultColor = new Color(122, 162, 227);
     private Color navSelectedColor = new Color(106, 212, 221);
@@ -14,6 +19,14 @@ public class Lecture_mainframe extends javax.swing.JFrame {
      * Creates new form ProjMng_MainFrame
      */
     public Lecture_mainframe() {
+        if (Session.isLoggedIn()) {
+    
+    String username = Session.getUsername();
+    System.out.println("Logged in as: " + username);
+} else {
+   
+    System.out.println("No user logged in.");
+}
         initComponents();
         getContentPane().setBackground(new Color(248, 246, 227));
         
@@ -23,6 +36,7 @@ public class Lecture_mainframe extends javax.swing.JFrame {
         // Set the initial tab to show
         TabPanel.setSelectedIndex(0);
     }
+    
      private void initializeTabs(){
         //Dashboard Panel Section
         Lect_Dashboard dash = new Lect_Dashboard(this);
@@ -49,14 +63,16 @@ public class Lecture_mainframe extends javax.swing.JFrame {
         presentationReq tab6 = new  presentationReq(this);
         TabPanel.add("tab6",tab6);
          
+
         Lect_ViewConsultation tab7 = new Lect_ViewConsultation(this);
         TabPanel.add("tab7",tab7);
         
         lect_ViewRMCP tab8 = new lect_ViewRMCP(this);
         TabPanel.add("tab8",tab8);
-     
-      /* Get the user name */
-        String UserName = "Shahab";
+
+        /* Get the user name */
+        String UserName = Session.getUsername();
+
         AccName.setText(UserName);
         
         

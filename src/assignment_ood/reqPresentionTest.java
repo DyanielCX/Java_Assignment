@@ -41,7 +41,7 @@ public class reqPresentionTest extends javax.swing.JFrame {
     
      private void populateSupervisorComboBox() {
     reqSupervisor.removeAllItems();
-    List<Lecturer> lecturers = Admin.readLecturersFromFile();
+    List<Lecturer> lecturers = Admin.readLecturersFromFile("LecData.txt");
     for (Lecturer lecturer : lecturers) {
         reqSupervisor.addItem(lecturer.getName());
     }
