@@ -188,15 +188,15 @@ private Lecture_mainframe lectmainframe;
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnViewPresent3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnViewPresent3MouseClicked
-      lectmainframe.changeTab(2);
+      lectmainframe.changeTab(6);
     }//GEN-LAST:event_btnViewPresent3MouseClicked
 
     private void btnViewConsultMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnViewConsultMouseClicked
-       lectmainframe.changeTab(3);
+       lectmainframe.changeTab(7);
     }//GEN-LAST:event_btnViewConsultMouseClicked
 
     private void RMCPbtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_RMCPbtnMouseClicked
-        lectmainframe.changeTab(4);
+        lectmainframe.changeTab(8);
     }//GEN-LAST:event_RMCPbtnMouseClicked
 
 

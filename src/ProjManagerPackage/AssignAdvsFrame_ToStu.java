@@ -146,28 +146,22 @@ public class AssignAdvsFrame_ToStu extends javax.swing.JFrame {
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
         lblSelectedName.setFont(new java.awt.Font("Dubai Medium", 0, 20)); // NOI18N
-        lblSelectedName.setForeground(new java.awt.Color(0, 0, 0));
         lblSelectedName.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         lblSelectedName.setText(" ");
 
         lblStuName.setFont(new java.awt.Font("Dubai Medium", 0, 20)); // NOI18N
-        lblStuName.setForeground(new java.awt.Color(0, 0, 0));
         lblStuName.setText("Student Name:");
 
         lblSelectedID.setFont(new java.awt.Font("Dubai Medium", 0, 20)); // NOI18N
-        lblSelectedID.setForeground(new java.awt.Color(0, 0, 0));
         lblSelectedID.setText(" ");
 
         lblSecondMarker.setFont(new java.awt.Font("Dubai Medium", 0, 20)); // NOI18N
-        lblSecondMarker.setForeground(new java.awt.Color(0, 0, 0));
         lblSecondMarker.setText("Second Marker:");
 
         lblStuID.setFont(new java.awt.Font("Dubai Medium", 0, 20)); // NOI18N
-        lblStuID.setForeground(new java.awt.Color(0, 0, 0));
         lblStuID.setText("Student ID:");
 
         lblSupervisor.setFont(new java.awt.Font("Dubai Medium", 0, 20)); // NOI18N
-        lblSupervisor.setForeground(new java.awt.Color(0, 0, 0));
         lblSupervisor.setText("Supervisor:");
 
         btbSubmit.setBackground(new java.awt.Color(106, 212, 221));
@@ -191,15 +185,12 @@ public class AssignAdvsFrame_ToStu extends javax.swing.JFrame {
         });
 
         lblAssess.setFont(new java.awt.Font("Dubai Medium", 0, 20)); // NOI18N
-        lblAssess.setForeground(new java.awt.Color(0, 0, 0));
         lblAssess.setText("Assessment:");
 
         lblSelectedAssess.setFont(new java.awt.Font("Dubai Medium", 0, 18)); // NOI18N
-        lblSelectedAssess.setForeground(new java.awt.Color(0, 0, 0));
         lblSelectedAssess.setText(" ");
 
         lblRMCP_Lect.setFont(new java.awt.Font("Dubai Medium", 0, 20)); // NOI18N
-        lblRMCP_Lect.setForeground(new java.awt.Color(0, 0, 0));
         lblRMCP_Lect.setText("RMCP Lecturer:");
 
         cboSupervisor.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));

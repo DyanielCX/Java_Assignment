@@ -1,18 +1,9 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package assignment_ood;
 
-import GUI_Template.*;
-import ProjManagerPackage.*;
+
 import StuPackage.StuData_IO;
 import java.awt.Color;
 
-/**
- *
- * @author PC
- */
 public class Lecture_mainframe extends javax.swing.JFrame {
 
     // Color for side nav bar tab
@@ -26,23 +17,47 @@ public class Lecture_mainframe extends javax.swing.JFrame {
         initComponents();
         getContentPane().setBackground(new Color(248, 246, 227));
         
-      Lect_Dashboard dash = new Lect_Dashboard(this);
+        // Initialize your tabs
+        initializeTabs();
+        
+        // Set the initial tab to show
+        TabPanel.setSelectedIndex(0);
+    }
+     private void initializeTabs(){
+        //Dashboard Panel Section
+        Lect_Dashboard dash = new Lect_Dashboard(this);
         TabPanel.addTab("tab0", dash);
-       
+        
+        //View Supervisee Panel Section
+        Lect_ViewSupervisee tab1 = new Lect_ViewSupervisee(this);
+        TabPanel.addTab("tab1", tab1);
+        
+        SecondMarker_ViewSupervisee tab2 = new SecondMarker_ViewSupervisee(this);
+        TabPanel.addTab("tab2", tab2);
+        
+        Supervisor_ViewSupervisee tab3 = new Supervisor_ViewSupervisee(this);
+        TabPanel.addTab("tab3", tab3);
+        
+        RMCP_ViewSupervisee tab4 = new RMCP_ViewSupervisee(this);
+        TabPanel.addTab("tab4", tab4);
+        
+        
+        //View Presentation Panel Section
         Lect_ViewPresentation view = new Lect_ViewPresentation(this);
-        TabPanel.addTab("tab2", view);
+        TabPanel.addTab("tab5", view);
        
-        presentationReq tab3 = new  presentationReq(this);
-        TabPanel.add("tab3",tab3);
+        presentationReq tab6 = new  presentationReq(this);
+        TabPanel.add("tab6",tab6);
          
-       Lect_ViewConsultation tab4 = new Lect_ViewConsultation(this);
-       TabPanel.add("tab4",tab4);
-        /* Get the user name */
+        Lect_ViewConsultation tab7 = new Lect_ViewConsultation(this);
+        TabPanel.add("tab7",tab7);
+        
+        lect_ViewRMCP tab8 = new lect_ViewRMCP(this);
+        TabPanel.add("tab8",tab8);
+     
+      /* Get the user name */
         String UserName = "Shahab";
         AccName.setText(UserName);
-        
-      lect_ViewRMCP tab5 = new lect_ViewRMCP(this);
-      TabPanel.add("tab5",tab5);
         
         
         /* Set the tab panel (panel size -> 935, 530) */
@@ -75,10 +90,10 @@ public class Lecture_mainframe extends javax.swing.JFrame {
         imgLogo = new javax.swing.JLabel();
         DashboardPane = new javax.swing.JPanel();
         navDashboard = new javax.swing.JLabel();
-        StuAssessmentPane = new javax.swing.JPanel();
-        navStuAssessment = new javax.swing.JLabel();
-        AssignSupervisorPane = new javax.swing.JPanel();
-        navAssignSupervisor = new javax.swing.JLabel();
+        ViewSuperviseesPane = new javax.swing.JPanel();
+        navViewSupervisees = new javax.swing.JLabel();
+        ViewPresentationPane = new javax.swing.JPanel();
+        navViewPresentation = new javax.swing.JLabel();
         AccManagementPane = new javax.swing.JPanel();
         navAccMangement = new javax.swing.JLabel();
         ReportStatusPane = new javax.swing.JPanel();
@@ -130,67 +145,67 @@ public class Lecture_mainframe extends javax.swing.JFrame {
                 .addGap(20, 20, 20))
         );
 
-        StuAssessmentPane.setBackground(new java.awt.Color(122, 162, 227));
+        ViewSuperviseesPane.setBackground(new java.awt.Color(122, 162, 227));
 
-        navStuAssessment.setFont(new java.awt.Font("Dubai Medium", 0, 20)); // NOI18N
-        navStuAssessment.setForeground(new java.awt.Color(255, 255, 255));
-        navStuAssessment.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        navStuAssessment.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/ProjMngStuAsse.png"))); // NOI18N
-        navStuAssessment.setText("View supervisees");
-        navStuAssessment.setDoubleBuffered(true);
-        navStuAssessment.setIconTextGap(15);
-        navStuAssessment.addMouseListener(new java.awt.event.MouseAdapter() {
+        navViewSupervisees.setFont(new java.awt.Font("Dubai Medium", 0, 20)); // NOI18N
+        navViewSupervisees.setForeground(new java.awt.Color(255, 255, 255));
+        navViewSupervisees.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        navViewSupervisees.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/ProjMngStuAsse.png"))); // NOI18N
+        navViewSupervisees.setText("View Supervisees");
+        navViewSupervisees.setDoubleBuffered(true);
+        navViewSupervisees.setIconTextGap(15);
+        navViewSupervisees.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                navStuAssessmentMouseClicked(evt);
+                navViewSuperviseesMouseClicked(evt);
             }
         });
 
-        javax.swing.GroupLayout StuAssessmentPaneLayout = new javax.swing.GroupLayout(StuAssessmentPane);
-        StuAssessmentPane.setLayout(StuAssessmentPaneLayout);
-        StuAssessmentPaneLayout.setHorizontalGroup(
-            StuAssessmentPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, StuAssessmentPaneLayout.createSequentialGroup()
+        javax.swing.GroupLayout ViewSuperviseesPaneLayout = new javax.swing.GroupLayout(ViewSuperviseesPane);
+        ViewSuperviseesPane.setLayout(ViewSuperviseesPaneLayout);
+        ViewSuperviseesPaneLayout.setHorizontalGroup(
+            ViewSuperviseesPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ViewSuperviseesPaneLayout.createSequentialGroup()
                 .addGap(23, 23, 23)
-                .addComponent(navStuAssessment)
+                .addComponent(navViewSupervisees)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
-        StuAssessmentPaneLayout.setVerticalGroup(
-            StuAssessmentPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(StuAssessmentPaneLayout.createSequentialGroup()
+        ViewSuperviseesPaneLayout.setVerticalGroup(
+            ViewSuperviseesPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(ViewSuperviseesPaneLayout.createSequentialGroup()
                 .addGap(23, 23, 23)
-                .addComponent(navStuAssessment, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(navViewSupervisees, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(20, 20, 20))
         );
 
-        AssignSupervisorPane.setBackground(new java.awt.Color(122, 162, 227));
+        ViewPresentationPane.setBackground(new java.awt.Color(122, 162, 227));
 
-        navAssignSupervisor.setBackground(new java.awt.Color(106, 212, 221));
-        navAssignSupervisor.setFont(new java.awt.Font("Dubai Medium", 0, 20)); // NOI18N
-        navAssignSupervisor.setForeground(new java.awt.Color(255, 255, 255));
-        navAssignSupervisor.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        navAssignSupervisor.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/ProjMngSupervisor.png"))); // NOI18N
-        navAssignSupervisor.setText("view presenation");
-        navAssignSupervisor.setIconTextGap(15);
-        navAssignSupervisor.addMouseListener(new java.awt.event.MouseAdapter() {
+        navViewPresentation.setBackground(new java.awt.Color(106, 212, 221));
+        navViewPresentation.setFont(new java.awt.Font("Dubai Medium", 0, 20)); // NOI18N
+        navViewPresentation.setForeground(new java.awt.Color(255, 255, 255));
+        navViewPresentation.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        navViewPresentation.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/ProjMngSupervisor.png"))); // NOI18N
+        navViewPresentation.setText("View Presentation");
+        navViewPresentation.setIconTextGap(15);
+        navViewPresentation.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                navAssignSupervisorMouseClicked(evt);
+                navViewPresentationMouseClicked(evt);
             }
         });
 
-        javax.swing.GroupLayout AssignSupervisorPaneLayout = new javax.swing.GroupLayout(AssignSupervisorPane);
-        AssignSupervisorPane.setLayout(AssignSupervisorPaneLayout);
-        AssignSupervisorPaneLayout.setHorizontalGroup(
-            AssignSupervisorPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(AssignSupervisorPaneLayout.createSequentialGroup()
+        javax.swing.GroupLayout ViewPresentationPaneLayout = new javax.swing.GroupLayout(ViewPresentationPane);
+        ViewPresentationPane.setLayout(ViewPresentationPaneLayout);
+        ViewPresentationPaneLayout.setHorizontalGroup(
+            ViewPresentationPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(ViewPresentationPaneLayout.createSequentialGroup()
                 .addGap(22, 22, 22)
-                .addComponent(navAssignSupervisor, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(navViewPresentation, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
-        AssignSupervisorPaneLayout.setVerticalGroup(
-            AssignSupervisorPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(AssignSupervisorPaneLayout.createSequentialGroup()
+        ViewPresentationPaneLayout.setVerticalGroup(
+            ViewPresentationPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(ViewPresentationPaneLayout.createSequentialGroup()
                 .addGap(23, 23, 23)
-                .addComponent(navAssignSupervisor, javax.swing.GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE)
+                .addComponent(navViewPresentation, javax.swing.GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE)
                 .addGap(20, 20, 20))
         );
 
@@ -267,8 +282,8 @@ public class Lecture_mainframe extends javax.swing.JFrame {
                 .addComponent(imgLogo, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(79, 79, 79))
             .addComponent(DashboardPane, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(StuAssessmentPane, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(AssignSupervisorPane, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(ViewSuperviseesPane, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(ViewPresentationPane, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(AccManagementPane, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(ReportStatusPane, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
@@ -280,9 +295,9 @@ public class Lecture_mainframe extends javax.swing.JFrame {
                 .addGap(41, 41, 41)
                 .addComponent(DashboardPane, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(15, 15, 15)
-                .addComponent(StuAssessmentPane, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(ViewSuperviseesPane, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(15, 15, 15)
-                .addComponent(AssignSupervisorPane, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(ViewPresentationPane, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(15, 15, 15)
                 .addComponent(AccManagementPane, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(15, 15, 15)
@@ -366,8 +381,8 @@ public class Lecture_mainframe extends javax.swing.JFrame {
 
     private void navDashboardMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_navDashboardMouseClicked
         DashboardPane.setBackground(navSelectedColor);
-        StuAssessmentPane.setBackground(navDefaultColor);
-        AssignSupervisorPane.setBackground(navDefaultColor);
+        ViewSuperviseesPane.setBackground(navDefaultColor);
+        ViewPresentationPane.setBackground(navDefaultColor);
         AccManagementPane.setBackground(navDefaultColor);
         ReportStatusPane.setBackground(navDefaultColor);
         
@@ -376,46 +391,46 @@ public class Lecture_mainframe extends javax.swing.JFrame {
         TabPanel.setSelectedIndex(0);
     }//GEN-LAST:event_navDashboardMouseClicked
 
-    private void navStuAssessmentMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_navStuAssessmentMouseClicked
+    private void navViewSuperviseesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_navViewSuperviseesMouseClicked
         DashboardPane.setBackground(navDefaultColor);
-        StuAssessmentPane.setBackground(navSelectedColor);
-        AssignSupervisorPane.setBackground(navDefaultColor);
+        ViewSuperviseesPane.setBackground(navSelectedColor);
+        ViewPresentationPane.setBackground(navDefaultColor);
         AccManagementPane.setBackground(navDefaultColor);
         ReportStatusPane.setBackground(navDefaultColor);
         
         //Change to your tab name
-        PanelTitle.setText("Student Assessment");
+        PanelTitle.setText("View Supervisee");
         TabPanel.setSelectedIndex(1);
-    }//GEN-LAST:event_navStuAssessmentMouseClicked
+    }//GEN-LAST:event_navViewSuperviseesMouseClicked
 
-    private void navAssignSupervisorMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_navAssignSupervisorMouseClicked
+    private void navViewPresentationMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_navViewPresentationMouseClicked
         DashboardPane.setBackground(navDefaultColor);
-        StuAssessmentPane.setBackground(navDefaultColor);
-        AssignSupervisorPane.setBackground(navSelectedColor);
+        ViewSuperviseesPane.setBackground(navDefaultColor);
+        ViewPresentationPane.setBackground(navSelectedColor);
         AccManagementPane.setBackground(navDefaultColor);
         ReportStatusPane.setBackground(navDefaultColor);
         
         //Change to your tab name
         PanelTitle.setText("View Presentation");
-        //TabPanel.setSelectedIndex(2);
-    }//GEN-LAST:event_navAssignSupervisorMouseClicked
+        TabPanel.setSelectedIndex(5);
+    }//GEN-LAST:event_navViewPresentationMouseClicked
 
     private void navAccMangementMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_navAccMangementMouseClicked
         DashboardPane.setBackground(navDefaultColor);
-        StuAssessmentPane.setBackground(navDefaultColor);
-        AssignSupervisorPane.setBackground(navDefaultColor);
+        ViewSuperviseesPane.setBackground(navDefaultColor);
+        ViewPresentationPane.setBackground(navDefaultColor);
         AccManagementPane.setBackground(navSelectedColor);
         ReportStatusPane.setBackground(navDefaultColor);
         
         //Change to your tab name
         PanelTitle.setText("Account Management");
-        TabPanel.setSelectedIndex(3);
+//        TabPanel.setSelectedIndex(3);
     }//GEN-LAST:event_navAccMangementMouseClicked
 
     private void navReportStatusMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_navReportStatusMouseClicked
         DashboardPane.setBackground(navDefaultColor);
-        StuAssessmentPane.setBackground(navDefaultColor);
-        AssignSupervisorPane.setBackground(navDefaultColor);
+        ViewSuperviseesPane.setBackground(navDefaultColor);
+        ViewPresentationPane.setBackground(navDefaultColor);
         AccManagementPane.setBackground(navDefaultColor);
         ReportStatusPane.setBackground(navSelectedColor);
         
@@ -478,20 +493,20 @@ public class Lecture_mainframe extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JPanel AccManagementPane;
     private javax.swing.JLabel AccName;
-    public javax.swing.JPanel AssignSupervisorPane;
     private javax.swing.JPanel CoverTabPane;
     public javax.swing.JPanel DashboardPane;
     public javax.swing.JLabel PanelTitle;
     public javax.swing.JPanel ReportStatusPane;
-    public javax.swing.JPanel StuAssessmentPane;
     public static javax.swing.JTabbedPane TabPanel;
+    public javax.swing.JPanel ViewPresentationPane;
+    public javax.swing.JPanel ViewSuperviseesPane;
     private javax.swing.JLabel imgLogo;
     private javax.swing.JLabel lblLogout;
     private javax.swing.JLabel navAccMangement;
-    private javax.swing.JLabel navAssignSupervisor;
     private javax.swing.JLabel navDashboard;
     private javax.swing.JLabel navReportStatus;
-    private javax.swing.JLabel navStuAssessment;
+    private javax.swing.JLabel navViewPresentation;
+    private javax.swing.JLabel navViewSupervisees;
     private javax.swing.JPanel sideNavBar;
     private javax.swing.JPanel topNavBar;
     // End of variables declaration//GEN-END:variables
