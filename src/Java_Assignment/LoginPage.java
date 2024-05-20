@@ -1,5 +1,6 @@
 package Java_Assignment;
 
+import ProjManagerPackage.AssignSupvElem.IntakeRecord;
 import ProjManagerPackage.AssignSupvElem.LectData_IO;
 import ProjManagerPackage.MainFrame;
 import StuPackage.StuData_IO;
@@ -32,6 +33,7 @@ public class LoginPage extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setUndecorated(true);
         setResizable(false);
 
         jPanel1.setBackground(new java.awt.Color(85, 128, 214));
@@ -112,7 +114,7 @@ public class LoginPage extends javax.swing.JFrame {
     
     if (role != null) {
         // If credentials are valid, redirect to the appropriate dashboard
-         Session.setUsername(username);
+        Session.setUsername(username);
         redirectToDashboard(username, password, role);
         // Close the login window or do any other necessary action
         dispose();
@@ -217,6 +219,7 @@ public class LoginPage extends javax.swing.JFrame {
         //</editor-fold>
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
+                IntakeRecord.readFrTxt();
                 StuData_IO.readFrTxt();
                 LectData_IO.readFrTxt();
                 new LoginPage().setVisible(true);

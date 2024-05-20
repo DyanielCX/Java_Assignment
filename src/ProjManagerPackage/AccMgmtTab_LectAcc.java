@@ -1,5 +1,6 @@
 package ProjManagerPackage;
 
+import Java_Assignment.Session;
 import ProjManagerPackage.AccMgmtElem.TableActionCellRender_AccTbl;
 import ProjManagerPackage.AccMgmtElem.TableHeader_AccTbl;
 import ProjManagerPackage.AssignSupvElem.LectData_IO;
@@ -45,14 +46,15 @@ public class AccMgmtTab_LectAcc extends javax.swing.JPanel {
         
         //Insert data into table
         for (Lecturer lect :LectData_IO.LectData){
-            String LectName = lect.lectName;
+            if (lect.isProjectManager == false) {
+                String LectName = lect.lectName;
             String LectID = lect.lectid;
 
             Object[] InsertRow = {LectName, LectID};
 
             DefaultTableModel model = (DefaultTableModel) LectAccTable.getModel();
             model.addRow(InsertRow);
-
+            }
         }
         
         

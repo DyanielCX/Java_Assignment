@@ -48,13 +48,15 @@ public class AssignAdvsTab_IntakeAdvsAllot extends javax.swing.JPanel {
         RMCPLect_ArrayList.add("-");
         
         for (Lecturer lect :LectData_IO.LectData){
-            if (lect.isSupervisor == true) {
-                Supervisor_ArrayList.add(lect.lectName);
+            if (lect.isProjectManager == false){
+                if (lect.isSupervisor == true) {
+                    Supervisor_ArrayList.add(lect.lectName);
+                }
+                if(lect.isSecondMarker == true) {
+                    SecondMarker_ArrayList.add(lect.lectName);
+                }
+                RMCPLect_ArrayList.add(lect.lectName);
             }
-            if(lect.isSecondMarker == true) {
-                SecondMarker_ArrayList.add(lect.lectName);
-            }
-            RMCPLect_ArrayList.add(lect.lectName);
         }
         
         //Convert ArrayList into Array

@@ -1,6 +1,7 @@
 package ProjManagerPackage;
 
 import Java_Assignment.LoginPage;
+import Java_Assignment.Session;
 import ProjManagerPackage.AssignSupvElem.IntakeRecord;
 import ProjManagerPackage.AssignSupvElem.LectData_IO;
 import StuPackage.StuData_IO;
@@ -20,7 +21,7 @@ public class MainFrame extends javax.swing.JFrame {
         
         
         /* Get the project manager name */
-        String ProjMngName = "Shahab";
+        String ProjMngName = Session.getUsername();
         AccName.setText(ProjMngName);
         
         
@@ -326,14 +327,15 @@ public class MainFrame extends javax.swing.JFrame {
         topNavBarLayout.setHorizontalGroup(
             topNavBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, topNavBarLayout.createSequentialGroup()
-                .addGap(45, 45, 45)
-                .addComponent(PanelTitle)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 519, Short.MAX_VALUE)
-                .addComponent(AccName, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(44, 44, 44))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, topNavBarLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(lblLogout)
+                .addGroup(topNavBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(topNavBarLayout.createSequentialGroup()
+                        .addGap(45, 45, 45)
+                        .addComponent(PanelTitle)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 485, Short.MAX_VALUE)
+                        .addComponent(AccName, javax.swing.GroupLayout.PREFERRED_SIZE, 222, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(topNavBarLayout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(lblLogout)))
                 .addGap(20, 20, 20))
         );
         topNavBarLayout.setVerticalGroup(
@@ -429,9 +431,13 @@ public class MainFrame extends javax.swing.JFrame {
 
     /* Logout Button */
     private void lblLogoutMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblLogoutMouseClicked
-        LoginPage login = new LoginPage();
-        login.setVisible(true);
-        this.setVisible(false);
+        // Clear the session
+        Session.clearSession();
+
+        // Redirect to login page or close the current window
+        LoginPage loginPage = new LoginPage();
+        loginPage.setVisible(true);
+        this.dispose(); // Close the current window
     }//GEN-LAST:event_lblLogoutMouseClicked
 
     /**
