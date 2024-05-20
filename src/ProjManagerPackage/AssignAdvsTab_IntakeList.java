@@ -1,7 +1,8 @@
 package ProjManagerPackage;
 
-import ProjManagerPackage.AssignSupvElem.AdvisorsRecord;
+import ProjManagerPackage.AssignSupvElem.IntakeRecord;
 import ProjManagerPackage.AssignSupvElem.TableActionCellRender_TickCrossIcon;
+import ProjManagerPackage.StuAssesElem.IntakeBasedMethod;
 import ProjManagerPackage.StuAssesElem.ModernScrollBarUI;
 import ProjManagerPackage.StuAssesElem.TableActionCellEditor_EditButton;
 import ProjManagerPackage.StuAssesElem.TableActionCellRender_EditButton;
@@ -44,14 +45,14 @@ public class AssignAdvsTab_IntakeList extends javax.swing.JPanel {
 
 
         // Set the tick and cross icon for advisors columns
-        IntakeListTable.getColumnModel().getColumn(1).setCellRenderer(new TableActionCellRender_TickCrossIcon());
         IntakeListTable.getColumnModel().getColumn(2).setCellRenderer(new TableActionCellRender_TickCrossIcon());
         IntakeListTable.getColumnModel().getColumn(3).setCellRenderer(new TableActionCellRender_TickCrossIcon());
+        IntakeListTable.getColumnModel().getColumn(4).setCellRenderer(new TableActionCellRender_TickCrossIcon());
         
         // Insert data into table
-        AdvisorsRecord.readFrTxt();
-        for (AdvisorsRecord advisorsRecord :AdvisorsRecord.AdvisorsRecordData){
+        for (IntakeRecord advisorsRecord :IntakeRecord.IntakeRecordData){
             String Intake = advisorsRecord.Intake;
+            String Assessment = IntakeBasedMethod.getAssessment(Intake);
             Boolean isSupervisor = true;
             Boolean isSecondMarker = true;
             Boolean isRMCPLecturer = true;
@@ -66,28 +67,28 @@ public class AssignAdvsTab_IntakeList extends javax.swing.JPanel {
                 isRMCPLecturer = false;
             }
 
-            Object[] InsertRow = {Intake};
+            Object[] InsertRow = {Intake, Assessment};
             
             DefaultTableModel model = (DefaultTableModel) IntakeListTable.getModel();
             model.addRow(InsertRow);
             
             // Set the appropriate icon based on the value of isSupervisor, SecondMarker and isRMCPLecturer
             if (isSupervisor==true) {
-                model.setValueAt(true, model.getRowCount() - 1, 1);
-            } else {
-                model.setValueAt(false, model.getRowCount() - 1, 1);
-            }
-
-            if (isSecondMarker==true) {
                 model.setValueAt(true, model.getRowCount() - 1, 2);
             } else {
                 model.setValueAt(false, model.getRowCount() - 1, 2);
             }
 
-            if (isRMCPLecturer==true) {
+            if (isSecondMarker==true) {
                 model.setValueAt(true, model.getRowCount() - 1, 3);
             } else {
                 model.setValueAt(false, model.getRowCount() - 1, 3);
+            }
+
+            if (isRMCPLecturer==true) {
+                model.setValueAt(true, model.getRowCount() - 1, 4);
+            } else {
+                model.setValueAt(false, model.getRowCount() - 1, 4);
             }
         }
         
@@ -106,8 +107,8 @@ public class AssignAdvsTab_IntakeList extends javax.swing.JPanel {
         };
         
         //Insert edit button into table
-        IntakeListTable.getColumnModel().getColumn(4).setCellRenderer(new TableActionCellRender_EditButton());
-        IntakeListTable.getColumnModel().getColumn(4).setCellEditor(new TableActionCellEditor_EditButton(event));
+        IntakeListTable.getColumnModel().getColumn(5).setCellRenderer(new TableActionCellRender_EditButton());
+        IntakeListTable.getColumnModel().getColumn(5).setCellEditor(new TableActionCellEditor_EditButton(event));
     }
 
     /**
@@ -132,11 +133,11 @@ public class AssignAdvsTab_IntakeList extends javax.swing.JPanel {
 
             },
             new String [] {
-                "Intake", "Supervisor", "Second Marker", "RMCP Lecturer", "Action"
+                "Intake", "Assessment", "Supervisor", "Second Marker", "RMCP Lecturer", "Action"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, true
+                false, false, false, false, false, true
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {

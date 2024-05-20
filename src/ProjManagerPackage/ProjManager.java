@@ -1,6 +1,6 @@
 package ProjManagerPackage;
 
-import ProjManagerPackage.AssignSupvElem.AdvisorsRecord;
+import ProjManagerPackage.AssignSupvElem.IntakeRecord;
 import ProjManagerPackage.AssignSupvElem.LectData_IO;
 import StuPackage.StuData_IO;
 import StuPackage.Student;
@@ -9,6 +9,23 @@ import assignment_ood.Lecturer;
 
 public class ProjManager {
     
+    public static void editIntakeAssessment(String selectedIntake, String selectedAssess){
+        // Get selected intake position
+        int intakeIndex = IntakeRecord.checkIntake(selectedIntake);
+        
+        //Get all intake record data
+        String Spv1 = IntakeRecord.IntakeRecordData.get(intakeIndex).Spv1;
+        String Spv2 = IntakeRecord.IntakeRecordData.get(intakeIndex).Spv2;
+        String Spv3 = IntakeRecord.IntakeRecordData.get(intakeIndex).Spv3;
+        String SecondMkr1 = IntakeRecord.IntakeRecordData.get(intakeIndex).SecondMkr1;
+        String SecondMkr2 = IntakeRecord.IntakeRecordData.get(intakeIndex).SecondMkr2;
+        String SecondMkr3 = IntakeRecord.IntakeRecordData.get(intakeIndex).SecondMkr3;
+        String RMCP_Lect = IntakeRecord.IntakeRecordData.get(intakeIndex).RMCP_Lecturer;
+        
+        // Update the intake record data
+        IntakeRecord editedRecord = new IntakeRecord(selectedIntake, selectedAssess, Spv1, Spv2, Spv3, SecondMkr1, SecondMkr2, SecondMkr3, RMCP_Lect);
+        IntakeRecord.edit(intakeIndex, editedRecord);
+    }
     
     public static void editStuAssessment(int stuIndex, String selectedAssess){
 
@@ -81,8 +98,8 @@ public class ProjManager {
         /* Common Condition */
         if (selectedAsses.equals("Investigation Report") || selectedAsses.equals("CP1") || selectedAsses.equals("CP2") || selectedAsses.equals("FYP")) {
             //Get advisor list
-            int intakeIndex = AdvisorsRecord.checkIntake(selectedIntake);
-            AdvisorsRecord intakeData = AdvisorsRecord.AdvisorsRecordData.get(intakeIndex);
+            int intakeIndex = IntakeRecord.checkIntake(selectedIntake);
+            IntakeRecord intakeData = IntakeRecord.IntakeRecordData.get(intakeIndex);
 
             String[] SpvList = {intakeData.Spv1, intakeData.Spv2, intakeData.Spv3};
             String[] SecondMkrList = {intakeData.SecondMkr1, intakeData.SecondMkr2, intakeData.SecondMkr3};
@@ -168,8 +185,8 @@ public class ProjManager {
         /* Intern Condition */
         else if (selectedAsses.equals("Intern")) {
             //Get advisor list
-            int intakeIndex = AdvisorsRecord.checkIntake(selectedIntake);
-            AdvisorsRecord intakeData = AdvisorsRecord.AdvisorsRecordData.get(intakeIndex);
+            int intakeIndex = IntakeRecord.checkIntake(selectedIntake);
+            IntakeRecord intakeData = IntakeRecord.IntakeRecordData.get(intakeIndex);
 
             String[] SpvList = {intakeData.Spv1, intakeData.Spv2, intakeData.Spv3};
 
@@ -224,8 +241,8 @@ public class ProjManager {
         /* RMCP Condition */
         else if (selectedAsses.equals("RMCP")) {
             //Get advisor list
-            int intakeIndex = AdvisorsRecord.checkIntake(selectedIntake);
-            AdvisorsRecord intakeData = AdvisorsRecord.AdvisorsRecordData.get(intakeIndex);
+            int intakeIndex = IntakeRecord.checkIntake(selectedIntake);
+            IntakeRecord intakeData = IntakeRecord.IntakeRecordData.get(intakeIndex);
 
             String RMCP_Lect = intakeData.RMCP_Lecturer;
 

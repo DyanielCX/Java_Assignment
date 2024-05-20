@@ -195,7 +195,7 @@ private List<Lecturer> lecturers;
 
     private void btnViewPresent3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnViewPresent3MouseClicked
      if (lecturers != null && RoleChecker.isSupervisor("123456", lecturers)) {
-            lectmainframe.changeTab(2); 
+            lectmainframe.changeTab(6); 
         } else {
             JOptionPane.showMessageDialog(this, "Access denied. Only supervisors can view the presentation table.");
         }
@@ -203,17 +203,17 @@ private List<Lecturer> lecturers;
     }//GEN-LAST:event_btnViewPresent3MouseClicked
 
     private void btnViewConsultMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnViewConsultMouseClicked
-               if (lecturers != null && RoleChecker.isSecondMarker("123456", lecturers)) {
-            lectmainframe.changeTab(3); // Show consultation table tab
+        if (lecturers != null && RoleChecker.isSecondMarker("123456", lecturers)) {
+            lectmainframe.changeTab(7); // Show consultation table tab
         } else {
             JOptionPane.showMessageDialog(this, "Access denied. Only second markers can view the consultation table.");
         }
-
     }//GEN-LAST:event_btnViewConsultMouseClicked
 
     private void RMCPbtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_RMCPbtnMouseClicked
+
         if (lecturers != null && !RoleChecker.isProjectManager("123456", lecturers) && !RoleChecker.isSupervisor("123456", lecturers)) {
-            lectmainframe.changeTab(4); // Show RMCP table tab
+            lectmainframe.changeTab(8); // Show RMCP table tab
         } else {
             JOptionPane.showMessageDialog(this, "Access denied. RMCP table is not available for project managers or supervisors.");
         }

@@ -1,6 +1,7 @@
 package ProjManagerPackage;
 
 import Java_Assignment.LoginPage;
+import ProjManagerPackage.AssignSupvElem.IntakeRecord;
 import ProjManagerPackage.AssignSupvElem.LectData_IO;
 import StuPackage.StuData_IO;
 import java.awt.Color;
@@ -495,6 +496,7 @@ public class MainFrame extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
+                IntakeRecord.readFrTxt();
                 StuData_IO.readFrTxt();
                 LectData_IO.readFrTxt();
                 new MainFrame().setVisible(true);

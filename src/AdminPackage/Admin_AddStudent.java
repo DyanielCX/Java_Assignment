@@ -5,6 +5,9 @@ package AdminPackage;
 import StuPackage.StuData_IO;
 import StuPackage.Student;
 import java.awt.Color;
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
@@ -111,6 +114,12 @@ public class Admin_AddStudent extends javax.swing.JFrame {
         });
 
         StudentIntake_cmb.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        StudentIntake_cmb.setToolTipText("");
+        StudentIntake_cmb.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                StudentIntake_cmbActionPerformed(evt);
+            }
+        });
 
         AddBtn.setText("Add Student");
         AddBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -207,13 +216,26 @@ public class Admin_AddStudent extends javax.swing.JFrame {
 
         // Call writeToTxt to update the file with the ArrayList data
         StuData_IO.writeToTxt();
+        
+         // Write to ReportData.txt
+        writeToReportData(stuID);
 
         // Confirmation message
         JOptionPane.showMessageDialog(this, "Student added successfully!");
 
         // Clear input fields for adding a new student
         clearInputFields();
-    }                                          
+    }
+    
+    private void writeToReportData(String studentID) {
+        String reportData = String.format("%s, -,No Attempt,Not Graded, -, -, -, -, -", studentID);
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter("ReportData.txt", true))) {
+            writer.write(reportData);
+            writer.newLine();
+        } catch (IOException e) {
+            JOptionPane.showMessageDialog(this, "Error writing to ReportData.txt", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }
 
     // Method to generate a unique student ID (You can modify this method as needed)
     private String generateStudentID() {
@@ -262,6 +284,10 @@ public class Admin_AddStudent extends javax.swing.JFrame {
         adminStudentFrame.setVisible(true);
         dispose();
     }//GEN-LAST:event_Back_lblMouseClicked
+
+    private void StudentIntake_cmbActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_StudentIntake_cmbActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_StudentIntake_cmbActionPerformed
 
     private void clearInputFields() {
         // Clear input fields and set placeholders
