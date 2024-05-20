@@ -13,7 +13,7 @@ public class TableActionCellRender_TickCrossIcon extends DefaultTableCellRendere
         Component com =  super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column); 
         
         // Check if the column is 2 or 3 (Supervisor or Second Marker)
-        if (column == 1 || column == 2 || column == 3) {
+        if (column == 1 || column == 2 || column == 3 || column == 4) {
             // Set the icon based on the value of the cell
             if ((boolean) value) {
                 // Display tick icon for true

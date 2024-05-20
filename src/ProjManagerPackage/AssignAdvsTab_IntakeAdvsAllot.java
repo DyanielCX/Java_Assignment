@@ -1,6 +1,6 @@
 package ProjManagerPackage;
 
-import ProjManagerPackage.AssignSupvElem.AdvisorsRecord;
+import ProjManagerPackage.AssignSupvElem.IntakeRecord;
 import ProjManagerPackage.AssignSupvElem.LectData_IO;
 import ProjManagerPackage.StuAssesElem.IntakeBasedMethod;
 import StuPackage.StuData_IO;
@@ -74,15 +74,15 @@ public class AssignAdvsTab_IntakeAdvsAllot extends javax.swing.JPanel {
         cboRMCP_Lect.setModel(new javax.swing.DefaultComboBoxModel<>(RMCP_LectList));
         
         //Set the selection of advisor based on intake
-        int intakeIndex = AdvisorsRecord.checkIntake(SelectedIntake);
+        int intakeIndex = IntakeRecord.checkIntake(SelectedIntake);
         
-        cboSupv1.setSelectedItem(AdvisorsRecord.AdvisorsRecordData.get(intakeIndex).Spv1);
-        cboSupv2.setSelectedItem(AdvisorsRecord.AdvisorsRecordData.get(intakeIndex).Spv2);
-        cboSupv3.setSelectedItem(AdvisorsRecord.AdvisorsRecordData.get(intakeIndex).Spv3);
-        cbo2ndMkr1.setSelectedItem(AdvisorsRecord.AdvisorsRecordData.get(intakeIndex).SecondMkr1);
-        cbo2ndMkr2.setSelectedItem(AdvisorsRecord.AdvisorsRecordData.get(intakeIndex).SecondMkr2);
-        cbo2ndMkr3.setSelectedItem(AdvisorsRecord.AdvisorsRecordData.get(intakeIndex).SecondMkr3);
-        cboRMCP_Lect.setSelectedItem(AdvisorsRecord.AdvisorsRecordData.get(intakeIndex).RMCP_Lecturer);
+        cboSupv1.setSelectedItem(IntakeRecord.IntakeRecordData.get(intakeIndex).Spv1);
+        cboSupv2.setSelectedItem(IntakeRecord.IntakeRecordData.get(intakeIndex).Spv2);
+        cboSupv3.setSelectedItem(IntakeRecord.IntakeRecordData.get(intakeIndex).Spv3);
+        cbo2ndMkr1.setSelectedItem(IntakeRecord.IntakeRecordData.get(intakeIndex).SecondMkr1);
+        cbo2ndMkr2.setSelectedItem(IntakeRecord.IntakeRecordData.get(intakeIndex).SecondMkr2);
+        cbo2ndMkr3.setSelectedItem(IntakeRecord.IntakeRecordData.get(intakeIndex).SecondMkr3);
+        cboRMCP_Lect.setSelectedItem(IntakeRecord.IntakeRecordData.get(intakeIndex).RMCP_Lecturer);
         
         //Set the comboBox unable to select based on assessment type
         switch (assessment) {
@@ -560,7 +560,7 @@ public class AssignAdvsTab_IntakeAdvsAllot extends javax.swing.JPanel {
 
     //Submission Method for Invstigation Report, CP1, CP2, FYP
     private void commonAssesSubmit(){
-        int intakeIndex = AdvisorsRecord.checkIntake(SelectedIntake);
+        int intakeIndex = IntakeRecord.checkIntake(SelectedIntake);
         
         String Spv1 = (String) cboSupv1.getSelectedItem();
         String Spv2 = (String) cboSupv2.getSelectedItem();
@@ -569,30 +569,30 @@ public class AssignAdvsTab_IntakeAdvsAllot extends javax.swing.JPanel {
         String SecondMkr2 = (String) cbo2ndMkr2.getSelectedItem();
         String SecondMkr3 = (String) cbo2ndMkr3.getSelectedItem();
         
-        AdvisorsRecord editedRecord = new AdvisorsRecord(SelectedIntake, Spv1, Spv2, Spv3, SecondMkr1, SecondMkr2, SecondMkr3, "-");
-        AdvisorsRecord.edit(intakeIndex, editedRecord);
+        IntakeRecord editedRecord = new IntakeRecord(SelectedIntake, Assessment, Spv1, Spv2, Spv3, SecondMkr1, SecondMkr2, SecondMkr3, "-");
+        IntakeRecord.edit(intakeIndex, editedRecord);
     }
     
     //Submission Method for Intern
     private void internAssesSubmit(){
-        int intakeIndex = AdvisorsRecord.checkIntake(SelectedIntake);
+        int intakeIndex = IntakeRecord.checkIntake(SelectedIntake);
         
         String Spv1 = (String) cboSupv1.getSelectedItem();
         String Spv2 = (String) cboSupv2.getSelectedItem();
         String Spv3 = (String) cboSupv3.getSelectedItem();
         
-        AdvisorsRecord editedRecord = new AdvisorsRecord(SelectedIntake, Spv1, Spv2, Spv3, "-", "-", "-", "-");
-        AdvisorsRecord.edit(intakeIndex, editedRecord);
+        IntakeRecord editedRecord = new IntakeRecord(SelectedIntake, Assessment, Spv1, Spv2, Spv3, "-", "-", "-", "-");
+        IntakeRecord.edit(intakeIndex, editedRecord);
     }
     
     //Submission Method for RMCP
     private void RMCPAssesSubmit(){
-        int intakeIndex = AdvisorsRecord.checkIntake(SelectedIntake);
+        int intakeIndex = IntakeRecord.checkIntake(SelectedIntake);
         
         String RMCP_Lect = (String) cboRMCP_Lect.getSelectedItem();
         
-        AdvisorsRecord editedRecord = new AdvisorsRecord(SelectedIntake, "-", "-", "-", "-", "-", "-", RMCP_Lect);
-        AdvisorsRecord.edit(intakeIndex, editedRecord);
+        IntakeRecord editedRecord = new IntakeRecord(SelectedIntake, Assessment, "-", "-", "-", "-", "-", "-", RMCP_Lect);
+        IntakeRecord.edit(intakeIndex, editedRecord);
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

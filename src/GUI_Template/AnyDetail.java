@@ -20,8 +20,8 @@ public class AnyDetail {
     ReportData.txt
     data structure (current) -> Student ID, Assesment, Submit Status, Grading Status, Submission Due Date, Submission Due Time, Submission Date, Submission Link, Submission Feedback
     
-    AdvisorRecord.txt
-    data structure (current) -> Intake, Supervisor1, Supervisor2, Supervisor3, Second Marker1, Second Marker1, Second Marker2, Second Marker3, RMCP Lecturer
+    IntakeRecord.txt
+    data structure (current) -> Intake, Assessment, Supervisor1, Supervisor2, Supervisor3, Second Marker1, Second Marker1, Second Marker2, Second Marker3, RMCP Lecturer
     
     ******************************************************************************************************************************************************
     [FUNCTION PROGRESS FLOW]

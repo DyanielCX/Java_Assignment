@@ -4,7 +4,7 @@
  */
 package ProjManagerPackage;
 
-import ProjManagerPackage.AssignSupvElem.AdvisorsRecord;
+import ProjManagerPackage.AssignSupvElem.IntakeRecord;
 import StuPackage.StuData_IO;
 import java.awt.Color;
 import java.util.ArrayList;
@@ -46,7 +46,7 @@ public class AssignAdvsFrame_ToStu extends javax.swing.JFrame {
         SecondMarker_ArrayList.add("-");
         RMCPLect_ArrayList.add("-");
         
-        for (AdvisorsRecord advsRecord :AdvisorsRecord.AdvisorsRecordData){
+        for (IntakeRecord advsRecord :IntakeRecord.IntakeRecordData){
             if (advsRecord.Intake.equals(StuIntake)) {
                 if (!advsRecord.Spv1.equals("-")) {
                     Supervisor_ArrayList.add(advsRecord.Spv1);

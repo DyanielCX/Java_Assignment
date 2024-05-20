@@ -8,11 +8,12 @@ import java.util.Scanner;
 import javax.swing.JOptionPane;
 
 
-public class AdvisorsRecord {
-    public String Intake, Spv1, Spv2, Spv3, SecondMkr1, SecondMkr2, SecondMkr3, RMCP_Lecturer;
+public class IntakeRecord {
+    public String Intake, Assessment, Spv1, Spv2, Spv3, SecondMkr1, SecondMkr2, SecondMkr3, RMCP_Lecturer;
 
-    public AdvisorsRecord(String Intake, String spv1, String spv2, String spv3, String secondMkr1, String secondMkr2, String secondMkr3, String RMCP_lecturer) {
+    public IntakeRecord(String Intake, String Assessment, String spv1, String spv2, String spv3, String secondMkr1, String secondMkr2, String secondMkr3, String RMCP_lecturer) {
         this.Intake = Intake;
+        this.Assessment = Assessment;
         this.Spv1 = spv1;
         this.Spv2 = spv2;
         this.Spv3 = spv3;
@@ -23,13 +24,13 @@ public class AdvisorsRecord {
     }
     
     // Array List for advisor record
-    public static ArrayList<AdvisorsRecord> AdvisorsRecordData = new ArrayList<>();
+    public static ArrayList<IntakeRecord> IntakeRecordData = new ArrayList<>();
     
     // Read all advisor record data from text file
     public static void readFrTxt(){
         try{
-            AdvisorsRecordData.clear();
-            Scanner scan = new Scanner(new File("AdvisorRecord.txt"));
+            IntakeRecordData.clear();
+            Scanner scan = new Scanner(new File("IntakeRecord.txt"));
 
             // Read all lines
             while(scan.hasNext()){
@@ -38,16 +39,17 @@ public class AdvisorsRecord {
                 
                 // Save the data into variables
                 String Intake = AdvisorRecord_Array[0];
-                String Supervisor1 = AdvisorRecord_Array[1];
-                String Supervisor2 = AdvisorRecord_Array[2];
-                String Supervisor3 = AdvisorRecord_Array[3];
-                String SecondMarker1 = AdvisorRecord_Array[4];
-                String SecondMarker2 = AdvisorRecord_Array[5];
-                String SecondMarker3 = AdvisorRecord_Array[6];
-                String RMCP_Lecturer = AdvisorRecord_Array[7];
+                String Assessment = AdvisorRecord_Array[1];
+                String Supervisor1 = AdvisorRecord_Array[2];
+                String Supervisor2 = AdvisorRecord_Array[3];
+                String Supervisor3 = AdvisorRecord_Array[4];
+                String SecondMarker1 = AdvisorRecord_Array[5];
+                String SecondMarker2 = AdvisorRecord_Array[6];
+                String SecondMarker3 = AdvisorRecord_Array[7];
+                String RMCP_Lecturer = AdvisorRecord_Array[8];
 
                 // Add into ArrayList
-                AdvisorsRecordData.add(new AdvisorsRecord(Intake, Supervisor1, Supervisor2, Supervisor3, SecondMarker1, SecondMarker2, SecondMarker3, RMCP_Lecturer));
+                IntakeRecordData.add(new IntakeRecord(Intake, Assessment, Supervisor1, Supervisor2, Supervisor3, SecondMarker1, SecondMarker2, SecondMarker3, RMCP_Lecturer));
             }
         }
         catch (Exception ex){
@@ -59,13 +61,13 @@ public class AdvisorsRecord {
     // Write all advisor record data from ArrayList into text file
     public static void writeToTxt() {
         try {
-            PrintWriter write = new PrintWriter(new FileWriter("AdvisorRecord.txt"));
+            PrintWriter write = new PrintWriter(new FileWriter("IntakeRecord.txt"));
 
             // Write all student data from the ArrayList into the text file
-            for (AdvisorsRecord advisorsRecord : AdvisorsRecordData) {
-                String writeInLine = advisorsRecord.Intake + "," + advisorsRecord.Spv1 + "," + advisorsRecord.Spv2 + "," +
-                                     advisorsRecord.Spv3 + "," + advisorsRecord.SecondMkr1 + "," +
-                                     advisorsRecord.SecondMkr2 + "," + advisorsRecord.SecondMkr3 + "," +
+            for (IntakeRecord advisorsRecord : IntakeRecordData) {
+                String writeInLine = advisorsRecord.Intake + "," + advisorsRecord.Assessment + "," +
+                                     advisorsRecord.Spv1 + "," + advisorsRecord.Spv2 + "," + advisorsRecord.Spv3 + "," + 
+                                     advisorsRecord.SecondMkr1 + "," + advisorsRecord.SecondMkr2 + "," + advisorsRecord.SecondMkr3 + "," +
                                      advisorsRecord.RMCP_Lecturer;
                 write.println(writeInLine);
             }
@@ -79,8 +81,8 @@ public class AdvisorsRecord {
     
     // Get the index of Advisor Records based on intake from ArrayList
     public static int checkIntake(String intake){
-        for (int i=0; i< AdvisorsRecordData.size(); i++){
-            if(intake.equals(AdvisorsRecordData.get(i).Intake)){
+        for (int i=0; i< IntakeRecordData.size(); i++){
+            if(intake.equals(IntakeRecordData.get(i).Intake)){
                 return i;
             }
         }
@@ -88,8 +90,8 @@ public class AdvisorsRecord {
     }
     
     // Edit the advisor record data in advisor record ArrayList
-    public static void edit(int index, AdvisorsRecord editedData){
-        AdvisorsRecordData.set(index, editedData);
+    public static void edit(int index, IntakeRecord editedData){
+        IntakeRecordData.set(index, editedData);
         writeToTxt(); // Update text file
     }
 }

@@ -1,8 +1,7 @@
 
 package ProjManagerPackage.StuAssesElem;
 
-import StuPackage.StuData_IO;
-import StuPackage.Student;
+import ProjManagerPackage.AssignSupvElem.IntakeRecord;
 import java.util.ArrayList;
 
 public class IntakeBasedMethod {
@@ -11,13 +10,9 @@ public class IntakeBasedMethod {
     public static ArrayList getIntake(){
         ArrayList<String> intakeList = new ArrayList<>();
         
-        for (Student stu:StuData_IO.StuData){
-            String scanIntake = stu.intake;
-            
-            //Checking whether the intake is exist, if not add into array
-            if (!intakeList.contains(scanIntake)) {
-                intakeList.add(scanIntake);
-            }
+        for (IntakeRecord intakeData:IntakeRecord.IntakeRecordData){
+            String scanIntake = intakeData.Intake;
+            intakeList.add(scanIntake);
         }
         return intakeList;
     }
@@ -25,32 +20,9 @@ public class IntakeBasedMethod {
     
     // Get the assessment based on selected intake
     public static String getAssessment(String selectedIntake){
-        int checkNum = 0;
-        String assessment = "";
+        int intakeIndex = IntakeRecord.checkIntake(selectedIntake);
+        String assessment = IntakeRecord.IntakeRecordData.get(intakeIndex).Assessment;
         
-        for (Student stu:StuData_IO.StuData){
-            if(stu.intake.equals(selectedIntake)){
-                
-                //Move to next loop when assessment is "-"
-                if (!stu.assessment.equals("-")) {
-                    if (checkNum == 0) {
-                        assessment = stu.assessment;
-                    }
-                    
-                    if (stu.assessment.equals(assessment)) {
-                        checkNum ++;
-                    }
-                    else{
-                        assessment = stu.assessment;
-                        checkNum = 1;
-                    }
-                }
-            }
-            if (checkNum == 3) {
-                return assessment;
-            }
-        }
-        assessment = "-";
         return assessment;
     }
     
