@@ -187,7 +187,7 @@ public class LoginPage extends javax.swing.JFrame {
     // Clear the session
     Session.clearSession();
 
-    // Redirect to login page or close the current window
+   
     LoginPage loginPage = new LoginPage();
     loginPage.setVisible(true);
     this.dispose(); // Close the current window

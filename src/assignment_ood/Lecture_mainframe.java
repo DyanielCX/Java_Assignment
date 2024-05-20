@@ -29,7 +29,7 @@ public class Lecture_mainframe extends javax.swing.JFrame {
     String username = Session.getUsername();
     System.out.println("Logged in as: " + username);
 } else {
-   
+    
     System.out.println("No user logged in.");
 }
         initComponents();

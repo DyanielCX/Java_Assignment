@@ -4,6 +4,7 @@
  */
 package assignment_ood;
 
+import Java_Assignment.Session;
 import ProjManagerPackage.StuAssesElem.TableActionCellEditor_EditButton;
 import ProjManagerPackage.StuAssesElem.TableActionCellRender_EditButton;
 import java.io.BufferedReader;
@@ -35,7 +36,7 @@ private Lecture_mainframe lectmainframe;
     public presentationReq(Lecture_mainframe lectmainframe) {
         this.lectmainframe = lectmainframe;
         initComponents();
-        populatePresentationTable(presentationTable,"shahab");
+        populatePresentationTable(presentationTable,Session.getUsername());
         
         
      
