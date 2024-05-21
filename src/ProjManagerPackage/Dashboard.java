@@ -1,8 +1,7 @@
 package ProjManagerPackage;
 
 import ProjManagerPackage.AssignSupvElem.LectData_IO;
-import ProjManagerPackage.DashboardElem.TableActionCellRender_DashMark;
-import ProjManagerPackage.DashboardElem.TableActionCellRender_DashPending;
+import ProjManagerPackage.DashboardElem.TableActionCellRender_DashRptStatusIcon;
 import ProjManagerPackage.DashboardElem.TableHeader_Dashboard;
 import ProjManagerPackage.StuAssesElem.IntakeBasedMethod;
 import ProjManagerPackage.StuAssesElem.ModernScrollBarUI;
@@ -10,7 +9,14 @@ import StuPackage.StuData_IO;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
+import java.io.File;
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Random;
+import java.util.Scanner;
+import java.util.Set;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollBar;
 import javax.swing.JScrollPane;
@@ -50,41 +56,63 @@ public class Dashboard extends javax.swing.JPanel {
         lblNumStu.setText(Integer.toString(StuData_IO.StuData.size()));
         lblNumLect.setText(Integer.toString(LectData_IO.LectData.size()));
         
-        //Insert data into table
-        /*Show the student haven't been alloted assesment*/
-//        for (Student stu :StuData_IO.StuData){
-//            String StuName = stu.name;
-//            String StuID = stu.id;
-//            String Intake = stu.intake;
-//            String Assessment = stu.assessment;
-//            
-//            if (Assessment.equals("-")) {
-//            Object[] InsertRow = {StuName, StuID, Intake, Assessment};
-//
-//            DefaultTableModel model = (DefaultTableModel) LectRoleTable.getModel();
-//            model.addRow(InsertRow);
-//            }
-//        }
+        /* Insert data into table */
+        // Generate 5 unique random index for get student data
+        Random rand = new Random();
+        int size = StuData_IO.StuData.size();
+        Set<Integer> uniqueRandomNumbers = new HashSet<>();
         
-        /*Show the student have been alloted assesment*/
-        for (int count = 0; count < 3; count++){
-            String StuName = "John";
-            String StuID = "TP111222";
-            String Intake = "APU2F2402";
-            String Assessment = "CP2";
-            String RptStatus = "Pending";
+        while (uniqueRandomNumbers.size() < 5) {
+            int randInt = rand.nextInt(size);
+            uniqueRandomNumbers.add(randInt);
+        }
+        
+        // Convert the set to a list to retrieve elements by index
+        List<Integer> randomNumbersList = new ArrayList<>(uniqueRandomNumbers);
 
+        
+        // Retrieve student data
+        for (int i=0; i < 5; i++){
+            int rantNum = randomNumbersList.get(i);
+            
+            String StuName = StuData_IO.StuData.get(rantNum).name;
+            String StuID = StuData_IO.StuData.get(rantNum).id;
+            String Intake = StuData_IO.StuData.get(rantNum).intake;
+            String Assessment = StuData_IO.StuData.get(rantNum).assessment;
 
             Object[] InsertRow = {StuName, StuID, Intake, Assessment};
 
             DefaultTableModel model = (DefaultTableModel) StuRptStatusTable.getModel();
             model.addRow(InsertRow);
-            
-            if (RptStatus.equals("Mark")) {
-                StuRptStatusTable.getColumnModel().getColumn(4).setCellRenderer(new TableActionCellRender_DashMark());
+
+            //Get the report status
+            try{
+                Scanner scan = new Scanner(new File("ReportData.txt"));
+
+                while(scan.hasNext()){
+                    String currentLine = scan.nextLine();
+                    String[] StuData_Array = currentLine.split(",");
+
+                    if (StuData_Array[0].trim().equals(StuID)) {
+                        String SubmitStatus = StuData_Array[2];
+                        String GradeStatus = StuData_Array[3];
+
+                        StuRptStatusTable.getColumnModel().getColumn(4).setCellRenderer(new TableActionCellRender_DashRptStatusIcon());
+
+                        if (SubmitStatus.equals("No Attempt")) {
+                            model.setValueAt(TableActionCellRender_DashRptStatusIcon.STATUS_NOSUBMITTED, model.getRowCount() - 1, 4);
+                        }else{
+                            if (GradeStatus.equals("Not Graded")) {
+                                model.setValueAt(TableActionCellRender_DashRptStatusIcon.STATUS_PENDING, model.getRowCount() - 1, 4);
+                            }else{
+                                model.setValueAt(TableActionCellRender_DashRptStatusIcon.STATUS_MARKED, model.getRowCount() - 1, 4);
+                            }
+                        }
+                    }
+                }
             }
-            else if(RptStatus.equals("Pending")){
-                StuRptStatusTable.getColumnModel().getColumn(4).setCellRenderer(new TableActionCellRender_DashPending());
+            catch (Exception ex){
+                JOptionPane.showMessageDialog(null,"!Read student report status error!");
             }
         }
 

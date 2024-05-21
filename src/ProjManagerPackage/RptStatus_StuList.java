@@ -1,12 +1,17 @@
 package ProjManagerPackage;
 
-import ProjManagerPackage.RptStatusElem.TableActionCellRender_MarkIcon;
-import ProjManagerPackage.RptStatusElem.TableActionCellRender_PendingIcon;
+import ProjManagerPackage.RptStatusElem.TableActionCellRender_RptStatusIcon;
 import ProjManagerPackage.RptStatusElem.TableHeader_StuList;
+import ProjManagerPackage.StuAssesElem.IntakeBasedMethod;
 import ProjManagerPackage.StuAssesElem.ModernScrollBarUI;
+import StuPackage.StuData_IO;
+import StuPackage.Student;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
+import java.io.File;
+import java.util.Scanner;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollBar;
 import javax.swing.JScrollPane;
@@ -20,7 +25,7 @@ public class RptStatus_StuList extends javax.swing.JPanel {
 
     private MainFrame mainFrame;
     
-    public RptStatus_StuList(MainFrame mainFrame) {
+    public RptStatus_StuList(MainFrame mainFrame, String selectedIntake) {
         this.mainFrame = mainFrame;
         initComponents();
         
@@ -41,47 +46,59 @@ public class RptStatus_StuList extends javax.swing.JPanel {
 
         
         //Insert data into table
-        /*Show the student haven't been alloted assesment*/
-//        for (Student stu :StuData_IO.StuData){
-//            String StuName = stu.name;
-//            String StuID = stu.id;
-//            String Intake = stu.intake;
-//            String Assessment = stu.assessment;
-//            
-//            if (Assessment.equals("-")) {
-//            Object[] InsertRow = {StuName, StuID, Intake, Assessment};
-//
-//            DefaultTableModel model = (DefaultTableModel) LectRoleTable.getModel();
-//            model.addRow(InsertRow);
-//            }
-//        }
+        TabTitle.setText(selectedIntake);
+        selectedAssessment.setText(IntakeBasedMethod.getAssessment(selectedIntake));
         
-        /*Show the student have been alloted assesment*/
-        for (int count = 0; count < 3; count++){
-            String StuName = "John";
-            String StuID = "TP111222";
-            String Supervisor = "Shahab";
-            String SecondMkr = "Qistina";
-            String RMCP_Lect = "-";
-            String RptStatus = "Mark";
+        /*Retrieve student data*/
+        for (Student stu :StuData_IO.StuData){
+            if (stu.intake.equals(selectedIntake)) {
+                String StuName = stu.name;
+                String StuID = stu.id;
+                String Supervisor = stu.supervisor;
+                String SecondMkr = stu.secondMarker;
+                String RMCP_Lect = stu.RMCP_lecture;
 
 
-            Object[] InsertRow = {StuName, StuID,Supervisor, SecondMkr, RMCP_Lect};
+                Object[] InsertRow = {StuName, StuID, Supervisor, SecondMkr, RMCP_Lect};
 
-            DefaultTableModel model = (DefaultTableModel) StuRptStatusTable.getModel();
-            model.addRow(InsertRow);
-            
-            if (RptStatus.equals("Mark")) {
-                StuRptStatusTable.getColumnModel().getColumn(5).setCellRenderer(new TableActionCellRender_MarkIcon());
-            }
-            else if(RptStatus.equals("Pending")){
-                StuRptStatusTable.getColumnModel().getColumn(5).setCellRenderer(new TableActionCellRender_PendingIcon());
+                DefaultTableModel model = (DefaultTableModel) StuRptStatusTable.getModel();
+                model.addRow(InsertRow);
+                
+                //Get the report status
+                try{
+                    System.out.println("test");
+                    Scanner scan = new Scanner(new File("ReportData.txt"));
+
+                    while(scan.hasNext()){
+                        String currentLine = scan.nextLine();
+                        String[] StuData_Array = currentLine.split(",");
+
+                        if (StuData_Array[0].trim().equals(StuID)) {
+                            String SubmitStatus = StuData_Array[2];
+                            String GradeStatus = StuData_Array[3];
+                            
+                            System.out.println(SubmitStatus);
+                            System.out.println(GradeStatus);
+                            
+                            StuRptStatusTable.getColumnModel().getColumn(5).setCellRenderer(new TableActionCellRender_RptStatusIcon());
+                            
+                            if (SubmitStatus.equals("No Attempt")) {
+                                model.setValueAt(TableActionCellRender_RptStatusIcon.STATUS_NOSUBMITTED, model.getRowCount() - 1, 5);
+                            }else{
+                                if (GradeStatus.equals("Not Graded")) {
+                                    model.setValueAt(TableActionCellRender_RptStatusIcon.STATUS_PENDING, model.getRowCount() - 1, 5);
+                                }else{
+                                    model.setValueAt(TableActionCellRender_RptStatusIcon.STATUS_MARKED, model.getRowCount() - 1, 5);
+                                }
+                            }
+                        }
+                    }
+                }
+                catch (Exception ex){
+                    JOptionPane.showMessageDialog(null,"!Read student report status error!");
+                }
             }
         }
-
-            
-            
-        
     }
 
     /**

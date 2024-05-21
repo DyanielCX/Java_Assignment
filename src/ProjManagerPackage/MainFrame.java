@@ -62,9 +62,6 @@ public class MainFrame extends javax.swing.JFrame {
         RptStatus_StuIntake Tab9 = new RptStatus_StuIntake(this);
         TabPanel.addTab("tab9", Tab9);
         
-        RptStatus_StuList currentTab2 = new RptStatus_StuList(this);
-        TabPanel.addTab("currentTab2", currentTab2);//Need to move to external method
-        
         //Set the Dashboard Panel as the default panel
         TabPanel.setSelectedIndex(0);
     }
@@ -471,6 +468,12 @@ public class MainFrame extends javax.swing.JFrame {
     //Create new temperory panel tab - AccMgmtTab_StuAcc
     public static void createStuAccMgmtPane(MainFrame mainFrame, String selectedIntake){
         AccMgmtTab_StuAcc lastTab = new AccMgmtTab_StuAcc(mainFrame, selectedIntake);
+        TabPanel.addTab("StuAccMgmt_Tab", lastTab);
+    }
+    
+    //Create new temperory panel tab - RptStatus_StuList
+    public static void createStuReportStatusPane(MainFrame mainFrame, String selectedIntake){
+        RptStatus_StuList lastTab = new RptStatus_StuList(mainFrame, selectedIntake);
         TabPanel.addTab("StuAccMgmt_Tab", lastTab);
     }
     
