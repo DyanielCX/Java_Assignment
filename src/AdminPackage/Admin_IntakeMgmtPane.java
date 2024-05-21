@@ -1,4 +1,4 @@
-package ProjManagerPackage;
+package AdminPackage;
 
 import ProjManagerPackage.StuAssesElem.IntakeBasedMethod;
 import ProjManagerPackage.StuAssesElem.ModernScrollBarUI;
@@ -17,13 +17,14 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import ProjManagerPackage.StuAssesElem.TableActionEvent_EditButton;
+import javax.swing.JOptionPane;
 
 
-public class StuAssTab_IntakeBased extends javax.swing.JPanel {
+public class Admin_IntakeMgmtPane extends javax.swing.JPanel {
 
-    private ProjManager_MainFrame mainFrame;
+    private Admin_MainFrame mainFrame;
     
-    public StuAssTab_IntakeBased(ProjManager_MainFrame mainFrame) {
+    public Admin_IntakeMgmtPane(Admin_MainFrame mainFrame) {
         this.mainFrame = mainFrame;
         initComponents();
         
@@ -78,7 +79,7 @@ public class StuAssTab_IntakeBased extends javax.swing.JPanel {
                 String selectedIntake = (String) IntakeAssTable.getValueAt(row, 0);
                 mainFrame.dispose();
                 
-                EditAssFrame_IntakeBased editPage = new EditAssFrame_IntakeBased(selectedIntake);
+                Admin_EditIntakeFrame editPage = new Admin_EditIntakeFrame(selectedIntake);
                 editPage.setVisible(true);
             }
         };
@@ -100,12 +101,8 @@ public class StuAssTab_IntakeBased extends javax.swing.JPanel {
         jScrollPane1 = new javax.swing.JScrollPane();
         IntakeAssTable = new javax.swing.JTable();
         TabTitle = new javax.swing.JLabel();
-        btbStuBased = new javax.swing.JPanel();
-        lblStuBased = new javax.swing.JLabel();
-        btbIntakeBased = new javax.swing.JPanel();
-        lblIntakeBased = new javax.swing.JLabel();
-
-        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        btbNewIntake = new javax.swing.JPanel();
+        lblNewIntake = new javax.swing.JLabel();
 
         IntakeAssTable.setFont(new java.awt.Font("Dubai Medium", 0, 20)); // NOI18N
         IntakeAssTable.setModel(new javax.swing.table.DefaultTableModel(
@@ -128,51 +125,80 @@ public class StuAssTab_IntakeBased extends javax.swing.JPanel {
         IntakeAssTable.setRowHeight(40);
         jScrollPane1.setViewportView(IntakeAssTable);
 
-        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(23, 65, 886, 465));
-
         TabTitle.setFont(new java.awt.Font("Dubai Medium", 0, 24)); // NOI18N
-        TabTitle.setText("Intake Data");
-        add(TabTitle, new org.netbeans.lib.awtextra.AbsoluteConstraints(34, 17, -1, -1));
+        TabTitle.setText("Intake List");
 
-        btbStuBased.setBackground(new java.awt.Color(255, 255, 255));
-        btbStuBased.setForeground(new java.awt.Color(255, 255, 255));
-        btbStuBased.addMouseListener(new java.awt.event.MouseAdapter() {
+        btbNewIntake.setBackground(new java.awt.Color(255, 255, 255));
+        btbNewIntake.setForeground(new java.awt.Color(255, 255, 255));
+        btbNewIntake.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btbStuBasedMouseClicked(evt);
+                btbNewIntakeMouseClicked(evt);
             }
         });
 
-        lblStuBased.setFont(new java.awt.Font("Dubai Medium", 0, 20)); // NOI18N
-        lblStuBased.setForeground(new java.awt.Color(0, 0, 0));
-        lblStuBased.setText("Student");
-        btbStuBased.add(lblStuBased);
+        lblNewIntake.setFont(new java.awt.Font("Dubai Medium", 0, 18)); // NOI18N
+        lblNewIntake.setForeground(new java.awt.Color(0, 0, 0));
+        lblNewIntake.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/AdminAddBtb.png"))); // NOI18N
+        lblNewIntake.setText("New");
+        lblNewIntake.setIconTextGap(12);
 
-        add(btbStuBased, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 20, 90, 40));
+        javax.swing.GroupLayout btbNewIntakeLayout = new javax.swing.GroupLayout(btbNewIntake);
+        btbNewIntake.setLayout(btbNewIntakeLayout);
+        btbNewIntakeLayout.setHorizontalGroup(
+            btbNewIntakeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(btbNewIntakeLayout.createSequentialGroup()
+                .addGap(16, 16, 16)
+                .addComponent(lblNewIntake, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        btbNewIntakeLayout.setVerticalGroup(
+            btbNewIntakeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(btbNewIntakeLayout.createSequentialGroup()
+                .addGap(0, 0, 0)
+                .addComponent(lblNewIntake)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
 
-        btbIntakeBased.setBackground(new java.awt.Color(106, 212, 221));
-        btbIntakeBased.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btbIntakeBasedMouseClicked(evt);
-            }
-        });
-
-        lblIntakeBased.setFont(new java.awt.Font("Dubai Medium", 0, 20)); // NOI18N
-        lblIntakeBased.setForeground(new java.awt.Color(255, 255, 255));
-        lblIntakeBased.setText("Intake");
-        btbIntakeBased.add(lblIntakeBased);
-
-        add(btbIntakeBased, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 20, 90, 40));
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
+        this.setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(23, 23, 23)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 880, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(34, 34, 34)
+                .addComponent(TabTitle)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btbNewIntake, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(70, 70, 70))
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(20, 20, 20)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(TabTitle)
+                    .addComponent(btbNewIntake, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(6, 6, 6)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 450, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
     }// </editor-fold>//GEN-END:initComponents
 
-    //Change to Intake Table
-    private void btbIntakeBasedMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btbIntakeBasedMouseClicked
-        mainFrame.changedTab(1);
-    }//GEN-LAST:event_btbIntakeBasedMouseClicked
+    private void btbNewIntakeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btbNewIntakeMouseClicked
+        // Create a dialog to get user input
+        String newIntake = JOptionPane.showInputDialog(this, "Enter new intake", "Create New Intake", JOptionPane.INFORMATION_MESSAGE);
+        
+        if (newIntake != null && !newIntake.isEmpty()){
+            Admin.addNewIntake(newIntake);
+        }
 
-    //Change to Student Table
-    private void btbStuBasedMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btbStuBasedMouseClicked
-        mainFrame.changedTab(2);
-    }//GEN-LAST:event_btbStuBasedMouseClicked
+        // Refresh the intake list
+        mainFrame.updateIntakeMgmtPane(mainFrame);
+        int tabIndex = mainFrame.TabPanel.getTabCount()-1;
+        mainFrame.changedTab(tabIndex);
+    }//GEN-LAST:event_btbNewIntakeMouseClicked
 
     /* Customize the scrollbar for table */
     public void fixTable (JScrollPane scroll){
@@ -196,10 +222,8 @@ public class StuAssTab_IntakeBased extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTable IntakeAssTable;
     private javax.swing.JLabel TabTitle;
-    private javax.swing.JPanel btbIntakeBased;
-    private javax.swing.JPanel btbStuBased;
+    private javax.swing.JPanel btbNewIntake;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JLabel lblIntakeBased;
-    private javax.swing.JLabel lblStuBased;
+    private javax.swing.JLabel lblNewIntake;
     // End of variables declaration//GEN-END:variables
 }

@@ -1,10 +1,10 @@
 package Java_Assignment;
 
-import ProjManagerPackage.AssignSupvElem.IntakeRecord;
+import AdminPackage.Admin_MainFrame;
+import AdminPackage.IntakeRecord;
 import ProjManagerPackage.AssignSupvElem.LectData_IO;
-import ProjManagerPackage.MainFrame;
+import ProjManagerPackage.ProjManager_MainFrame;
 import StuPackage.StuData_IO;
-import assignment_ood.Lect_Dashboard;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
@@ -131,6 +131,10 @@ public class LoginPage extends javax.swing.JFrame {
     }//GEN-LAST:event_jLabel4MouseClicked
     
     public static String authenticateUser(String username, String password) {
+        if (username.equals("admin") && password.equals("admin")) {
+            return "admin";
+        }
+
         // Array to hold the filenames for each role
         String[] roleFiles = {"LecData.txt","StuData.txt"};
 
@@ -173,13 +177,13 @@ public class LoginPage extends javax.swing.JFrame {
                 lect.setVisible(true);
                 break;
             case "ProjectMgn":
-                  MainFrame fr = new MainFrame();
-                  fr.setVisible(true);
-                  break;
+                ProjManager_MainFrame ProjManager = new ProjManager_MainFrame();
+                ProjManager.setVisible(true);
+                break;
                   
             case "admin":
-                System.out.println("Redirecting to admin dashboard...");
-                // Redirect logic for admin dashboard
+                Admin_MainFrame Admin = new Admin_MainFrame();
+                Admin.setVisible(true);
                 break;
             default:
                 System.out.println("Invalid role.");

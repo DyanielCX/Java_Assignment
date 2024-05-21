@@ -28,9 +28,9 @@ import javax.swing.table.DefaultTableModel;
 
 public class Dashboard extends javax.swing.JPanel {
 
-    private MainFrame mainFrame;
+    private ProjManager_MainFrame mainFrame;
     
-    public Dashboard(MainFrame mainFrame) {
+    public Dashboard(ProjManager_MainFrame mainFrame) {
         this.mainFrame = mainFrame;
         initComponents();
         

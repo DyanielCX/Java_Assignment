@@ -23,9 +23,9 @@ import javax.swing.table.DefaultTableModel;
 
 public class RptStatus_StuList extends javax.swing.JPanel {
 
-    private MainFrame mainFrame;
+    private ProjManager_MainFrame mainFrame;
     
-    public RptStatus_StuList(MainFrame mainFrame, String selectedIntake) {
+    public RptStatus_StuList(ProjManager_MainFrame mainFrame, String selectedIntake) {
         this.mainFrame = mainFrame;
         initComponents();
         
@@ -66,7 +66,6 @@ public class RptStatus_StuList extends javax.swing.JPanel {
                 
                 //Get the report status
                 try{
-                    System.out.println("test");
                     Scanner scan = new Scanner(new File("ReportData.txt"));
 
                     while(scan.hasNext()){
@@ -76,9 +75,6 @@ public class RptStatus_StuList extends javax.swing.JPanel {
                         if (StuData_Array[0].trim().equals(StuID)) {
                             String SubmitStatus = StuData_Array[2];
                             String GradeStatus = StuData_Array[3];
-                            
-                            System.out.println(SubmitStatus);
-                            System.out.println(GradeStatus);
                             
                             StuRptStatusTable.getColumnModel().getColumn(5).setCellRenderer(new TableActionCellRender_RptStatusIcon());
                             

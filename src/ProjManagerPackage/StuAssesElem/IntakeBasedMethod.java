@@ -1,7 +1,7 @@
 
 package ProjManagerPackage.StuAssesElem;
 
-import ProjManagerPackage.AssignSupvElem.IntakeRecord;
+import AdminPackage.IntakeRecord;
 import java.util.ArrayList;
 
 public class IntakeBasedMethod {

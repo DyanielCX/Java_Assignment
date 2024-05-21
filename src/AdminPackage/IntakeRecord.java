@@ -1,4 +1,4 @@
-package ProjManagerPackage.AssignSupvElem;
+package AdminPackage;
 
 import java.io.File;
 import java.io.FileWriter;
@@ -79,17 +79,23 @@ public class IntakeRecord {
     }
     
     
-    // Get the index of Advisor Records based on intake from ArrayList
+    // Get the index of Intake Records based on intake from ArrayList
     public static int checkIntake(String intake){
         for (int i=0; i< IntakeRecordData.size(); i++){
             if(intake.equals(IntakeRecordData.get(i).Intake)){
                 return i;
             }
         }
-        throw new IllegalArgumentException("Student ID not found: " + intake);
+        throw new IllegalArgumentException("Intake not found: " + intake);
     }
     
-    // Edit the advisor record data in advisor record ArrayList
+    // Add new intake record data into intake record ArrayList & text file
+    public static void add(IntakeRecord newRecord){
+        IntakeRecordData.add(newRecord);
+        writeToTxt(); // Update text file
+    }
+    
+    // Edit the intake record data in intake record ArrayList & text file
     public static void edit(int index, IntakeRecord editedData){
         IntakeRecordData.set(index, editedData);
         writeToTxt(); // Update text file

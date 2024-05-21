@@ -1,15 +1,13 @@
 package ProjManagerPackage;
 
-import ProjManagerPackage.AssignSupvElem.IntakeRecord;
+import AdminPackage.IntakeRecord;
 import ProjManagerPackage.AssignSupvElem.LectData_IO;
 import StuPackage.StuData_IO;
-import static StuPackage.StuData_IO.StuData;
 import StuPackage.Student;
 import assignment_ood.Lecturer;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 import javax.swing.JOptionPane;

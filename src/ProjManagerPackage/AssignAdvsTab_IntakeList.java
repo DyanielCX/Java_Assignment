@@ -1,6 +1,6 @@
 package ProjManagerPackage;
 
-import ProjManagerPackage.AssignSupvElem.IntakeRecord;
+import AdminPackage.IntakeRecord;
 import ProjManagerPackage.AssignSupvElem.TableActionCellRender_TickCrossIcon;
 import ProjManagerPackage.StuAssesElem.IntakeBasedMethod;
 import ProjManagerPackage.StuAssesElem.ModernScrollBarUI;
@@ -22,9 +22,9 @@ import ProjManagerPackage.StuAssesElem.TableActionEvent_EditButton;
 
 public class AssignAdvsTab_IntakeList extends javax.swing.JPanel {
 
-    private MainFrame mainFrame;
+    private ProjManager_MainFrame mainFrame;
     
-    public AssignAdvsTab_IntakeList(MainFrame mainFrame) {
+    public AssignAdvsTab_IntakeList(ProjManager_MainFrame mainFrame) {
         this.mainFrame = mainFrame;
         initComponents();
         

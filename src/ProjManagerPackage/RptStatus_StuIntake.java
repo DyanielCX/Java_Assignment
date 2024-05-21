@@ -22,7 +22,7 @@ import javax.swing.table.DefaultTableModel;
 public class RptStatus_StuIntake extends javax.swing.JPanel {
 
     
-    public RptStatus_StuIntake(MainFrame mainFrame) {
+    public RptStatus_StuIntake(ProjManager_MainFrame mainFrame) {
         initComponents();
         
         //Customize Table Modification

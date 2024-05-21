@@ -1,27 +1,27 @@
-package ProjManagerPackage;
+package AdminPackage;
 
 import ProjManagerPackage.StuAssesElem.IntakeBasedMethod;
 import StuPackage.StuData_IO;
 import java.awt.Color;
 
 
-public class EditAssFrame_IntakeBased extends javax.swing.JFrame {
+public class Admin_EditIntakeFrame extends javax.swing.JFrame {
 
     private String Intake;
     private String currentAssessment;
 
-    public EditAssFrame_IntakeBased(String selectedIntake) {
+    public Admin_EditIntakeFrame(String selectedIntake) {
         //Pass the Student ID to class object(stuID)
         Intake = selectedIntake;
 
         //GUI setting
         initComponents();
-        getContentPane().setBackground(new Color(204, 204, 255));
+        getContentPane().setBackground(new Color(252, 188, 188));
 
         //Get the selected intake and its assessment
         String currentAss = IntakeBasedMethod.getAssessment(selectedIntake);
         
-        lblSelectedIntake.setText(selectedIntake);
+        tfIntake.setText(selectedIntake);
         currentAssessment = currentAss;
         
         cboAssesment.setModel(new javax.swing.DefaultComboBoxModel<>(new String[]{"-", "Intern", "Investigation Report", "CP1", "CP2", "RMCP", "FYP"}));
@@ -40,7 +40,7 @@ public class EditAssFrame_IntakeBased extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         lblTitle = new javax.swing.JLabel();
         lblIntake = new javax.swing.JLabel();
-        lblSelectedIntake = new javax.swing.JLabel();
+        tfIntake = new javax.swing.JTextField();
         lbAssesment = new javax.swing.JLabel();
         cboAssesment = new javax.swing.JComboBox<>();
         btbSubmit = new javax.swing.JButton();
@@ -52,29 +52,26 @@ public class EditAssFrame_IntakeBased extends javax.swing.JFrame {
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
         lblTitle.setFont(new java.awt.Font("Dubai Medium", 1, 28)); // NOI18N
-        lblTitle.setForeground(new java.awt.Color(115, 96, 223));
+        lblTitle.setForeground(new java.awt.Color(255, 148, 148));
         lblTitle.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        lblTitle.setText("Student Assessment");
+        lblTitle.setText("Edit Intake");
 
         lblIntake.setFont(new java.awt.Font("Dubai Medium", 1, 22)); // NOI18N
-        lblIntake.setForeground(new java.awt.Color(115, 96, 223));
+        lblIntake.setForeground(new java.awt.Color(255, 148, 148));
         lblIntake.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lblIntake.setText("Intake: ");
 
-        lblSelectedIntake.setFont(new java.awt.Font("Dubai Medium", 1, 22)); // NOI18N
-        lblSelectedIntake.setForeground(new java.awt.Color(115, 96, 223));
-        lblSelectedIntake.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        lblSelectedIntake.setText(" ");
+        tfIntake.setFont(new java.awt.Font("Dubai Medium", 0, 14)); // NOI18N
 
         lbAssesment.setFont(new java.awt.Font("Dubai Medium", 1, 22)); // NOI18N
-        lbAssesment.setForeground(new java.awt.Color(115, 96, 223));
+        lbAssesment.setForeground(new java.awt.Color(255, 148, 148));
         lbAssesment.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lbAssesment.setText("Assessment: ");
 
         cboAssesment.setFont(new java.awt.Font("Dubai Medium", 0, 14)); // NOI18N
         cboAssesment.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
-        btbSubmit.setBackground(new java.awt.Color(115, 96, 223));
+        btbSubmit.setBackground(new java.awt.Color(255, 148, 148));
         btbSubmit.setFont(new java.awt.Font("Dubai Medium", 1, 16)); // NOI18N
         btbSubmit.setForeground(new java.awt.Color(255, 255, 255));
         btbSubmit.setText("Submit");
@@ -84,7 +81,7 @@ public class EditAssFrame_IntakeBased extends javax.swing.JFrame {
             }
         });
 
-        btbCancel.setBackground(new java.awt.Color(115, 96, 223));
+        btbCancel.setBackground(new java.awt.Color(255, 148, 148));
         btbCancel.setFont(new java.awt.Font("Dubai Medium", 1, 15)); // NOI18N
         btbCancel.setForeground(new java.awt.Color(255, 255, 255));
         btbCancel.setText("Cancel");
@@ -98,36 +95,37 @@ public class EditAssFrame_IntakeBased extends javax.swing.JFrame {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(141, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(btbSubmit)
-                        .addGap(82, 82, 82)
-                        .addComponent(btbCancel)
-                        .addGap(12, 12, 12))
-                    .addComponent(lblTitle, javax.swing.GroupLayout.Alignment.TRAILING))
-                .addGap(135, 135, 135))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(112, 112, 112)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(lblIntake)
                     .addComponent(lbAssesment))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 52, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(cboAssesment, 0, 130, Short.MAX_VALUE)
+                    .addComponent(tfIntake))
+                .addGap(107, 107, 107))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblSelectedIntake, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cboAssesment, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(87, 87, 87))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(btbSubmit)
+                        .addGap(82, 82, 82)
+                        .addComponent(btbCancel)
+                        .addGap(147, 147, 147))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(lblTitle)
+                        .addGap(181, 181, 181))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGap(35, 35, 35)
+                .addContainerGap(79, Short.MAX_VALUE)
                 .addComponent(lblTitle)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 82, Short.MAX_VALUE)
+                .addGap(38, 38, 38)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblIntake)
-                    .addComponent(lblSelectedIntake))
+                    .addComponent(tfIntake, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(45, 45, 45)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(cboAssesment, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -143,17 +141,17 @@ public class EditAssFrame_IntakeBased extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(59, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(63, 63, 63)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(60, 60, 60))
+                .addContainerGap(62, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(74, 74, 74)
+                .addGap(50, 50, 50)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(17, Short.MAX_VALUE))
+                .addContainerGap(39, Short.MAX_VALUE))
         );
 
         pack();
@@ -167,17 +165,18 @@ public class EditAssFrame_IntakeBased extends javax.swing.JFrame {
     }//GEN-LAST:event_btbCancelActionPerformed
 
     private void btbSubmitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btbSubmitActionPerformed
-        // Retrieve the selected assessment
+        // Retrieve the intake and selected assessment
+        String editedIntake = tfIntake.getText();
         String selectedAssess = (String) cboAssesment.getSelectedItem();
         
         // Update the intake record data
-        ProjManager.editIntakeAssessment(Intake, selectedAssess);
+        Admin.editIntake(Intake, editedIntake, selectedAssess);
         
         // Edit the all student's assessment under selected intake
         for (int count = 0; count < StuData_IO.StuData.size();count ++){
             if (StuData_IO.StuData.get(count).intake.equals(Intake)) {
                 //Update the edited student data into ArrayList
-                ProjManager.editStuAssessment(count, selectedAssess);
+                Admin.editStuAssessment(count, editedIntake, selectedAssess);
             }
         }
         
@@ -191,13 +190,13 @@ public class EditAssFrame_IntakeBased extends javax.swing.JFrame {
      */
     
     public void backMainFrame(){
-        ProjManager_MainFrame fr = new ProjManager_MainFrame();
+        Admin_MainFrame fr = new Admin_MainFrame();
         fr.setVisible(true);
         
-        fr.DashboardPane.setBackground(new Color(122, 162, 227));
-        fr.StuAssessmentPane.setBackground(new Color(106, 212, 221));
-        fr.PanelTitle.setText("Student Assessment");
-        fr.changedTab(1);
+        // Switch to allot intake advisors tab
+        fr.updateIntakeMgmtPane(fr);
+        int tabIndex = fr.TabPanel.getTabCount()-1;
+        fr.changedTab(tabIndex);
     }
     
     public static void main(String args[]) {
@@ -214,13 +213,13 @@ public class EditAssFrame_IntakeBased extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(EditAssFrame_IntakeBased.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Admin_EditIntakeFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(EditAssFrame_IntakeBased.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Admin_EditIntakeFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(EditAssFrame_IntakeBased.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Admin_EditIntakeFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(EditAssFrame_IntakeBased.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Admin_EditIntakeFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
@@ -239,7 +238,7 @@ public class EditAssFrame_IntakeBased extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel lbAssesment;
     private javax.swing.JLabel lblIntake;
-    private javax.swing.JLabel lblSelectedIntake;
     private javax.swing.JLabel lblTitle;
+    private javax.swing.JTextField tfIntake;
     // End of variables declaration//GEN-END:variables
 }

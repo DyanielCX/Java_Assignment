@@ -22,9 +22,9 @@ import ProjManagerPackage.StuAssesElem.TableActionEvent_EditButton;
 
 public class AssignAdvsTab_LectRoleList extends javax.swing.JPanel {
 
-    private MainFrame mainFrame;
+    private ProjManager_MainFrame mainFrame;
     
-    public AssignAdvsTab_LectRoleList(MainFrame mainFrame) {
+    public AssignAdvsTab_LectRoleList(ProjManager_MainFrame mainFrame) {
         this.mainFrame = mainFrame;
         initComponents();
         

@@ -4,7 +4,7 @@
  */
 package ProjManagerPackage;
 
-import ProjManagerPackage.AssignSupvElem.IntakeRecord;
+import AdminPackage.IntakeRecord;
 import StuPackage.StuData_IO;
 import java.awt.Color;
 import java.util.ArrayList;
@@ -345,7 +345,7 @@ public class AssignAdvsFrame_ToStu extends javax.swing.JFrame {
     }//GEN-LAST:event_btbCancelActionPerformed
 
     public void backMainFrame(){
-        MainFrame fr = new MainFrame();
+        ProjManager_MainFrame fr = new ProjManager_MainFrame();
         fr.setVisible(true);
 
         fr.DashboardPane.setBackground(new Color(122, 162, 227));

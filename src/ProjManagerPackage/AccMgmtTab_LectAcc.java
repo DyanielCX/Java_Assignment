@@ -22,9 +22,9 @@ import ProjManagerPackage.StuAssesElem.TableActionEvent_EditButton;
 
 public class AccMgmtTab_LectAcc extends javax.swing.JPanel {
 
-    private MainFrame mainFrame;
+    private ProjManager_MainFrame mainFrame;
     
-    public AccMgmtTab_LectAcc(MainFrame mainFrame) {
+    public AccMgmtTab_LectAcc(ProjManager_MainFrame mainFrame) {
         this.mainFrame = mainFrame;
         initComponents();
         

@@ -3,12 +3,12 @@ package ProjManagerPackage;
 
 public class AccMgmtTab extends javax.swing.JPanel {
 
-     private MainFrame mainFrame;
+     private ProjManager_MainFrame mainFrame;
     
     /**
      * Creates new form AssignSupervisorPane
      */
-    public AccMgmtTab(MainFrame mainFrame) {
+    public AccMgmtTab(ProjManager_MainFrame mainFrame) {
         this.mainFrame = mainFrame;
         initComponents();
     }
