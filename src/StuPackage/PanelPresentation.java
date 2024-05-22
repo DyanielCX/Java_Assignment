@@ -15,7 +15,6 @@ import javax.swing.SpinnerNumberModel;
 public class PanelPresentation extends javax.swing.JPanel {
     private String username; // Declare as an instance variable
     private String password;
-
     
     public PanelPresentation(String username, String password) {
         initComponents();
@@ -35,22 +34,22 @@ public class PanelPresentation extends javax.swing.JPanel {
     }
     
     private void readStudentDetailsFromFile(String fileName) {
-    try (BufferedReader br = new BufferedReader(new FileReader(fileName))) {
-        String line;
-        while ((line = br.readLine()) != null) {
-            String[] parts = line.split(",");
-            if (parts[0].trim().equals(username)) { 
-                Assessment.setText(parts[5].trim());
-                Lecturer.setText(parts[6].trim());
-                return; // Exit the loop once the user is found
+        try (BufferedReader br = new BufferedReader(new FileReader(fileName))) {
+            String line;
+            while ((line = br.readLine()) != null) {
+                String[] parts = line.split(",");
+                if (parts[0].trim().equals(username)) { 
+                    Assessment.setText(parts[5].trim());
+                    Lecturer.setText(parts[6].trim());
+                    return; // Exit the loop once the user is found
+                }
             }
+            // If the loop completes without finding the user
+            System.err.println("User not found in the file.");
+        } catch (IOException e) {
+            System.err.println("Error reading the file: " + e.getMessage());
         }
-        // If the loop completes without finding the user
-        System.err.println("User not found in the file.");
-    } catch (IOException e) {
-        System.err.println("Error reading the file: " + e.getMessage());
     }
-}
     private void readPresentationDetailsFromFile(String fileName) {
     try (BufferedReader br = new BufferedReader(new FileReader(fileName))) {
         String line;

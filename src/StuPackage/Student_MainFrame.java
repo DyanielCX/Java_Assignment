@@ -39,7 +39,7 @@ public class Student_MainFrame extends javax.swing.JFrame {
         PanelReport Tab4 = new PanelReport(username, password);
         TabPanel.addTab("tab4", Tab4);
     
-        PanelConsultation Tab5 = new PanelConsultation();
+        PanelConsultation Tab5 = new PanelConsultation(username, password);
         TabPanel.addTab("tab5", Tab5);
     }
 
