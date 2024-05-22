@@ -21,10 +21,10 @@ import ProjManagerPackage.StuAssesElem.TableActionEvent_EditButton;
 
 public class AssignAdvsTab_StuAdvsList extends javax.swing.JPanel {
 
-    private MainFrame mainFrame;
+    private ProjManager_MainFrame mainFrame;
     private String SelectedIntake;
     
-    public AssignAdvsTab_StuAdvsList(MainFrame mainFrame, String selectedIntake, String selectedAsses) {
+    public AssignAdvsTab_StuAdvsList(ProjManager_MainFrame mainFrame, String selectedIntake, String selectedAsses) {
         this.mainFrame = mainFrame;
         SelectedIntake = selectedIntake;
         initComponents();

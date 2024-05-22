@@ -21,9 +21,9 @@ import ProjManagerPackage.StuAssesElem.TableActionEvent_EditButton;
 
 public class AccMgmtTab_StuAcc extends javax.swing.JPanel {
 
-    private MainFrame mainFrame;
+    private ProjManager_MainFrame mainFrame;
     
-    public AccMgmtTab_StuAcc(MainFrame mainFrame, String selectedIntake) {
+    public AccMgmtTab_StuAcc(ProjManager_MainFrame mainFrame, String selectedIntake) {
         this.mainFrame = mainFrame;
         initComponents();
         

@@ -5,7 +5,7 @@
 package assignment_ood;
 import ProjManagerPackage.Dashboard;
 import ProjManagerPackage.DashboardElem.TableHeader_Dashboard;
-import ProjManagerPackage.MainFrame;
+import ProjManagerPackage.ProjManager_MainFrame;
 import ProjManagerPackage.StuAssesElem.ModernScrollBarUI;
 import java.io.BufferedReader;
 import java.io.FileReader;

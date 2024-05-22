@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package ProjManagerPackage;
 
 import ProjManagerPackage.AssignSupvElem.LectData_IO;
@@ -298,7 +294,7 @@ public class AssignAdvsFrame_LectRole extends javax.swing.JFrame {
 
     //Method to back to Main Frame
     public void backMainFrame(){
-        MainFrame fr = new MainFrame();
+        ProjManager_MainFrame fr = new ProjManager_MainFrame();
         fr.setVisible(true);
 
         fr.DashboardPane.setBackground(new Color(122, 162, 227));

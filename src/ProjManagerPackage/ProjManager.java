@@ -1,10 +1,16 @@
 package ProjManagerPackage;
 
-import ProjManagerPackage.AssignSupvElem.IntakeRecord;
+import AdminPackage.IntakeRecord;
 import ProjManagerPackage.AssignSupvElem.LectData_IO;
 import StuPackage.StuData_IO;
 import StuPackage.Student;
 import assignment_ood.Lecturer;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.util.ArrayList;
+import java.util.Scanner;
+import javax.swing.JOptionPane;
 
 
 public class ProjManager {
@@ -29,6 +35,7 @@ public class ProjManager {
     
     public static void editStuAssessment(int stuIndex, String selectedAssess){
 
+        /* Edit the StuData.txt file */
         //Get all the selected student data
         String Name = StuData_IO.StuData.get(stuIndex).name;
         int Age = StuData_IO.StuData.get(stuIndex).age;
@@ -43,6 +50,40 @@ public class ProjManager {
         // Update the student data
         Student editedStudent = new Student(Name, Age, stuID, Intake, Assessment, Supervisor, SecondMaker, RMCP_Lecture, Password);
         StuData_IO.edit(stuIndex, editedStudent);
+        
+        
+        /* Edit in ReportData.txt file */
+        ArrayList<String> StuData = new ArrayList<>();
+        // Read data from text file
+        try{
+            Scanner scan = new Scanner(new File("ReportData.txt"));
+            String line;
+
+            // Read all lines and modified the assessment of selected student
+            while(scan.hasNext()){
+                String currentLine = scan.nextLine();
+                String[] StuData_Array = currentLine.split(",");
+                
+                if (StuData_Array[0].trim().equals(stuID)) {
+                    StuData_Array[1] = selectedAssess;
+                }
+
+                // Add into ArrayList
+                line = String.join(",", StuData_Array);
+                StuData.add(line);
+            }
+            
+            // Write the updated contents back to the file
+            try (BufferedWriter writer = new BufferedWriter(new FileWriter("ReportData.txt"))) {
+                for (String eachLine : StuData) {
+                    writer.write(eachLine);
+                    writer.newLine();
+                }
+            } 
+        }
+        catch (Exception ex){
+            JOptionPane.showMessageDialog(null,"!Edit student assessment error!");
+        }   
     }
     
     public static void editStuAcc(int stuIndex, String editedName, String editedID, int editedAge, String editedIntake){

@@ -32,6 +32,10 @@ public class TableActionCellRender_TickCrossIcon extends DefaultTableCellRendere
         else{
             com.setBackground(com.getBackground());
         }
+        
+        if (isSelected == true) {
+            com.setBackground(new java.awt.Color(57, 105, 138));
+        }
 
         return com;
     }

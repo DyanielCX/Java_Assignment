@@ -1,6 +1,6 @@
 package ProjManagerPackage;
 
-import ProjManagerPackage.AssignSupvElem.IntakeRecord;
+import AdminPackage.IntakeRecord;
 import ProjManagerPackage.AssignSupvElem.LectData_IO;
 import ProjManagerPackage.StuAssesElem.IntakeBasedMethod;
 import StuPackage.StuData_IO;
@@ -12,11 +12,11 @@ import javax.swing.JOptionPane;
 
 public class AssignAdvsTab_IntakeAdvsAllot extends javax.swing.JPanel {
 
-    private MainFrame mainFrame;
+    private ProjManager_MainFrame mainFrame;
     private String SelectedIntake;
     private String Assessment;
     
-    public AssignAdvsTab_IntakeAdvsAllot(MainFrame mainFrame, String selectedIntake) {
+    public AssignAdvsTab_IntakeAdvsAllot(ProjManager_MainFrame mainFrame, String selectedIntake) {
         this.mainFrame = mainFrame;
         SelectedIntake = selectedIntake;
         Assessment = IntakeBasedMethod.getAssessment(selectedIntake);
@@ -48,13 +48,15 @@ public class AssignAdvsTab_IntakeAdvsAllot extends javax.swing.JPanel {
         RMCPLect_ArrayList.add("-");
         
         for (Lecturer lect :LectData_IO.LectData){
-            if (lect.isSupervisor == true) {
-                Supervisor_ArrayList.add(lect.lectName);
+            if (lect.isProjectManager == false){
+                if (lect.isSupervisor == true) {
+                    Supervisor_ArrayList.add(lect.lectName);
+                }
+                if(lect.isSecondMarker == true) {
+                    SecondMarker_ArrayList.add(lect.lectName);
+                }
+                RMCPLect_ArrayList.add(lect.lectName);
             }
-            if(lect.isSecondMarker == true) {
-                SecondMarker_ArrayList.add(lect.lectName);
-            }
-            RMCPLect_ArrayList.add(lect.lectName);
         }
         
         //Convert ArrayList into Array

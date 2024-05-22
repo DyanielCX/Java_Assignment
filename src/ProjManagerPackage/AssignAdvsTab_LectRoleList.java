@@ -22,9 +22,9 @@ import ProjManagerPackage.StuAssesElem.TableActionEvent_EditButton;
 
 public class AssignAdvsTab_LectRoleList extends javax.swing.JPanel {
 
-    private MainFrame mainFrame;
+    private ProjManager_MainFrame mainFrame;
     
-    public AssignAdvsTab_LectRoleList(MainFrame mainFrame) {
+    public AssignAdvsTab_LectRoleList(ProjManager_MainFrame mainFrame) {
         this.mainFrame = mainFrame;
         initComponents();
         
@@ -50,27 +50,29 @@ public class AssignAdvsTab_LectRoleList extends javax.swing.JPanel {
         
         // Insert lecturer data into table
         for (Lecturer lect :LectData_IO.LectData){
-            String LectName = lect.lectName;
-            String LectID = lect.lectid;
-            Boolean isSupervisor = lect.isSupervisor;
-            Boolean isSecondMarker = lect.isSecondMarker;
-            
-            Object[] InsertRow = {LectName, LectID};
+            if (lect.isProjectManager == false){
+                String LectName = lect.lectName;
+                String LectID = lect.lectid;
+                Boolean isSupervisor = lect.isSupervisor;
+                Boolean isSecondMarker = lect.isSecondMarker;
 
-            DefaultTableModel model = (DefaultTableModel) LectRoleTable.getModel();
-            model.addRow(InsertRow);
-            
-            // Set the appropriate icon based on the value of isSupervisor and isSecondMarker
-            if (isSupervisor) {
-                model.setValueAt(true, model.getRowCount() - 1, 2);
-            } else {
-                model.setValueAt(false, model.getRowCount() - 1, 2);
-            }
+                Object[] InsertRow = {LectName, LectID};
 
-            if (isSecondMarker) {
-                model.setValueAt(true, model.getRowCount() - 1, 3);
-            } else {
-                model.setValueAt(false, model.getRowCount() - 1, 3);
+                DefaultTableModel model = (DefaultTableModel) LectRoleTable.getModel();
+                model.addRow(InsertRow);
+
+                // Set the appropriate icon based on the value of isSupervisor and isSecondMarker
+                if (isSupervisor) {
+                    model.setValueAt(true, model.getRowCount() - 1, 2);
+                } else {
+                    model.setValueAt(false, model.getRowCount() - 1, 2);
+                }
+
+                if (isSecondMarker) {
+                    model.setValueAt(true, model.getRowCount() - 1, 3);
+                } else {
+                    model.setValueAt(false, model.getRowCount() - 1, 3);
+                }
             }
         }
 

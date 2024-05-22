@@ -1,26 +1,27 @@
 package ProjManagerPackage;
 
 import Java_Assignment.LoginPage;
-import ProjManagerPackage.AssignSupvElem.IntakeRecord;
+import Java_Assignment.Session;
+import AdminPackage.IntakeRecord;
 import ProjManagerPackage.AssignSupvElem.LectData_IO;
 import StuPackage.StuData_IO;
 import java.awt.Color;
 
 
-public class MainFrame extends javax.swing.JFrame {
+public class ProjManager_MainFrame extends javax.swing.JFrame {
 
     // Color for side nav bar tab
     private Color navDefaultColor = new Color(122, 162, 227);
     private Color navSelectedColor = new Color(106, 212, 221);
     
     
-    public MainFrame() {
+    public ProjManager_MainFrame() {
         initComponents();
         getContentPane().setBackground(new Color(248, 246, 227));
         
         
         /* Get the project manager name */
-        String ProjMngName = "Shahab";
+        String ProjMngName = Session.getUsername();
         AccName.setText(ProjMngName);
         
         
@@ -60,9 +61,6 @@ public class MainFrame extends javax.swing.JFrame {
         //Report Status Panel Section
         RptStatus_StuIntake Tab9 = new RptStatus_StuIntake(this);
         TabPanel.addTab("tab9", Tab9);
-        
-        RptStatus_StuList currentTab2 = new RptStatus_StuList(this);
-        TabPanel.addTab("currentTab2", currentTab2);//Need to move to external method
         
         //Set the Dashboard Panel as the default panel
         TabPanel.setSelectedIndex(0);
@@ -326,14 +324,15 @@ public class MainFrame extends javax.swing.JFrame {
         topNavBarLayout.setHorizontalGroup(
             topNavBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, topNavBarLayout.createSequentialGroup()
-                .addGap(45, 45, 45)
-                .addComponent(PanelTitle)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 519, Short.MAX_VALUE)
-                .addComponent(AccName, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(44, 44, 44))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, topNavBarLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(lblLogout)
+                .addGroup(topNavBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(topNavBarLayout.createSequentialGroup()
+                        .addGap(45, 45, 45)
+                        .addComponent(PanelTitle)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 485, Short.MAX_VALUE)
+                        .addComponent(AccName, javax.swing.GroupLayout.PREFERRED_SIZE, 222, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(topNavBarLayout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(lblLogout)))
                 .addGap(20, 20, 20))
         );
         topNavBarLayout.setVerticalGroup(
@@ -429,9 +428,13 @@ public class MainFrame extends javax.swing.JFrame {
 
     /* Logout Button */
     private void lblLogoutMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblLogoutMouseClicked
-        LoginPage login = new LoginPage();
-        login.setVisible(true);
-        this.setVisible(false);
+        // Clear the session
+        Session.clearSession();
+
+        // Redirect to login page or close the current window
+        LoginPage loginPage = new LoginPage();
+        loginPage.setVisible(true);
+        this.dispose(); // Close the current window
     }//GEN-LAST:event_lblLogoutMouseClicked
 
     /**
@@ -445,26 +448,32 @@ public class MainFrame extends javax.swing.JFrame {
     
     
     //Create new temperory panel tab - AssignAdvsTab_IntakeList
-    public static void createIntakeListPane(MainFrame mainFrame){
+    public static void createIntakeListPane(ProjManager_MainFrame mainFrame){
         AssignAdvsTab_IntakeList lastTab = new AssignAdvsTab_IntakeList(mainFrame);
         TabPanel.addTab("IntakeListtab", lastTab);
     }
     
     //Create new temperory panel tab - AssignAdvsTab_IntakeAdvsAllot
-    public static void createIntakeAdvsAllotPane(MainFrame mainFrame, String selectedIntake){
+    public static void createIntakeAdvsAllotPane(ProjManager_MainFrame mainFrame, String selectedIntake){
         AssignAdvsTab_IntakeAdvsAllot lastTab = new AssignAdvsTab_IntakeAdvsAllot(mainFrame, selectedIntake);
         TabPanel.addTab("IntakeAdvsAllot_tab", lastTab);
     }
     
     //Create new temperory panel tab - AssignAdvsTab_StuAdvsList
-    public static void createStuAdvsListPane(MainFrame mainFrame, String selectedIntake, String selectedAsses){
+    public static void createStuAdvsListPane(ProjManager_MainFrame mainFrame, String selectedIntake, String selectedAsses){
         AssignAdvsTab_StuAdvsList lastTab = new AssignAdvsTab_StuAdvsList(mainFrame, selectedIntake, selectedAsses);
         TabPanel.addTab("StuAdvsList_tab", lastTab);
     }
     
     //Create new temperory panel tab - AccMgmtTab_StuAcc
-    public static void createStuAccMgmtPane(MainFrame mainFrame, String selectedIntake){
+    public static void createStuAccMgmtPane(ProjManager_MainFrame mainFrame, String selectedIntake){
         AccMgmtTab_StuAcc lastTab = new AccMgmtTab_StuAcc(mainFrame, selectedIntake);
+        TabPanel.addTab("StuAccMgmt_Tab", lastTab);
+    }
+    
+    //Create new temperory panel tab - RptStatus_StuList
+    public static void createStuReportStatusPane(ProjManager_MainFrame mainFrame, String selectedIntake){
+        RptStatus_StuList lastTab = new RptStatus_StuList(mainFrame, selectedIntake);
         TabPanel.addTab("StuAccMgmt_Tab", lastTab);
     }
     
@@ -482,14 +491,16 @@ public class MainFrame extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(MainFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ProjManager_MainFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(MainFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ProjManager_MainFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(MainFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ProjManager_MainFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(MainFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ProjManager_MainFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
 
@@ -499,7 +510,7 @@ public class MainFrame extends javax.swing.JFrame {
                 IntakeRecord.readFrTxt();
                 StuData_IO.readFrTxt();
                 LectData_IO.readFrTxt();
-                new MainFrame().setVisible(true);
+                new ProjManager_MainFrame().setVisible(true);
             }
         });
     }

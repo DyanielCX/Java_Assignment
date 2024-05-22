@@ -21,10 +21,8 @@ import javax.swing.table.DefaultTableModel;
 
 public class RptStatus_StuIntake extends javax.swing.JPanel {
 
-    private MainFrame mainFrame;
     
-    public RptStatus_StuIntake(MainFrame mainFrame) {
-        this.mainFrame = mainFrame;
+    public RptStatus_StuIntake(ProjManager_MainFrame mainFrame) {
         initComponents();
         
         //Customize Table Modification
@@ -74,12 +72,13 @@ public class RptStatus_StuIntake extends javax.swing.JPanel {
         TableActionEvent event = new TableActionEvent() {
             @Override
             public void onView(int row) {
-                //Get the student id of selected student
+                //Get the intake of selected intake
                 String selectedIntake = (String) IntakeAssTable.getValueAt(row, 0);
-                mainFrame.changedTab(9);
-//                mainFrame.createStuAccMgmtPane(mainFrame, selectedIntake);
-//                int tabIndex = mainFrame.TabPanel.getTabCount();
-//                mainFrame.changedTab(tabIndex-1);
+                
+                // Switch to allot intake advisors tab
+                mainFrame.createStuReportStatusPane(mainFrame, selectedIntake);
+                int tabIndex = mainFrame.TabPanel.getTabCount()-1;
+                mainFrame.changedTab(tabIndex);
             }
         };
         

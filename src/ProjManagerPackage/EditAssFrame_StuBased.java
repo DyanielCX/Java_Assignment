@@ -237,7 +237,7 @@ public class EditAssFrame_StuBased extends javax.swing.JFrame {
 
     
     public void backMainFrame(){
-        MainFrame fr = new MainFrame();
+        ProjManager_MainFrame fr = new ProjManager_MainFrame();
         fr.setVisible(true);
         
         fr.DashboardPane.setBackground(new Color(122, 162, 227));

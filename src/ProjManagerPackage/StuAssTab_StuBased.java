@@ -21,9 +21,9 @@ import ProjManagerPackage.StuAssesElem.TableActionEvent_EditButton;
 
 public class StuAssTab_StuBased extends javax.swing.JPanel {
 
-    private MainFrame mainFrame;
+    private ProjManager_MainFrame mainFrame;
     
-    public StuAssTab_StuBased(MainFrame mainFrame) {
+    public StuAssTab_StuBased(ProjManager_MainFrame mainFrame) {
         this.mainFrame = mainFrame;
         initComponents();
         
@@ -177,7 +177,7 @@ public class StuAssTab_StuBased extends javax.swing.JPanel {
 
     //Change to Student Table
     private void btbStuBasedMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btbStuBasedMouseClicked
-        MainFrame fr = new MainFrame();
+        ProjManager_MainFrame fr = new ProjManager_MainFrame();
         mainFrame.changedTab(2);
     }//GEN-LAST:event_btbStuBasedMouseClicked
 
