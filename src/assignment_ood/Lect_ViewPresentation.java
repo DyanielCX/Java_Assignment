@@ -4,6 +4,7 @@
  */
 package assignment_ood;
 import GUI_Template.*;
+import Java_Assignment.Session;
 import ProjManagerPackage.*;
 import StuPackage.StuData_IO;
 import java.awt.Color;
@@ -24,11 +25,19 @@ private List<Lecturer> lecturers;
      * Creates new form Lect_ViewPresentation
      */
     public Lect_ViewPresentation(Lecture_mainframe lectmainframe) {
+           if (Session.isLoggedIn()) {
+    
+    String username = Session.getUsername();
+    System.out.println("Logged in as: " + username);
+} else {
+    
+    System.out.println("No user logged in.");
+}
         lecturers = Admin.readLectData("LecData.txt");
         initComponents();
         this.lectmainframe= lectmainframe;
          
-
+        String UserName = Session.getUsername();
         
     }
 
@@ -194,7 +203,7 @@ private List<Lecturer> lecturers;
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnViewPresent3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnViewPresent3MouseClicked
-     if (lecturers != null && RoleChecker.isSupervisor("123456", lecturers)) {
+     if (lecturers != null && RoleChecker.isSupervisor(Session.getUsername(), lecturers)) {
             lectmainframe.changeTab(6); 
         } else {
             JOptionPane.showMessageDialog(this, "Access denied. Only supervisors can view the presentation table.");
@@ -203,7 +212,7 @@ private List<Lecturer> lecturers;
     }//GEN-LAST:event_btnViewPresent3MouseClicked
 
     private void btnViewConsultMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnViewConsultMouseClicked
-        if (lecturers != null && RoleChecker.isSecondMarker("123456", lecturers)) {
+        if (lecturers != null && RoleChecker.isSecondMarker(Session.getUsername(), lecturers)) {
             lectmainframe.changeTab(7); // Show consultation table tab
         } else {
             JOptionPane.showMessageDialog(this, "Access denied. Only second markers can view the consultation table.");
@@ -212,7 +221,7 @@ private List<Lecturer> lecturers;
 
     private void RMCPbtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_RMCPbtnMouseClicked
 
-        if (lecturers != null && !RoleChecker.isProjectManager("123456", lecturers) && !RoleChecker.isSupervisor("123456", lecturers)) {
+        if (lecturers != null && !RoleChecker.isProjectManager(Session.getUsername(), lecturers) && !RoleChecker.isSupervisor(Session.getUsername(), lecturers)) {
             lectmainframe.changeTab(8); // Show RMCP table tab
         } else {
             JOptionPane.showMessageDialog(this, "Access denied. RMCP table is not available for project managers or supervisors.");

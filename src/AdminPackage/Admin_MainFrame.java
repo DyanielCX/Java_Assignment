@@ -3,6 +3,7 @@ package AdminPackage;
 import Java_Assignment.LoginPage;
 import ProjManagerPackage.AssignSupvElem.LectData_IO;
 import StuPackage.StuData_IO;
+import assignment_ood.lect_Panal;
 import java.awt.Color;
 
 
@@ -22,6 +23,10 @@ public class Admin_MainFrame extends javax.swing.JFrame {
         //Intake Management Panel Section
         Admin_IntakeMgmtPane Tab1 = new Admin_IntakeMgmtPane(this);
         TabPanel.addTab("tab1", Tab1);
+        //tab2,student panel
+        
+        lect_Panal lect_panal = new lect_Panal(this);
+          TabPanel.addTab("tab3", lect_panal);
 
         //Student Management Panel Section
 //        Admin_IntakeMgmtPane Tab1 = new Admin_IntakeMgmtPane(this);
@@ -288,7 +293,7 @@ public class Admin_MainFrame extends javax.swing.JFrame {
         LectMgmtPane.setBackground(navSelectedColor);
         
         PanelTitle.setText("Lecturer Management");
-        changedTab(0);
+        changedTab(1);
     }//GEN-LAST:event_navAssignAdvisorsMouseClicked
 
     /* Logout Button */

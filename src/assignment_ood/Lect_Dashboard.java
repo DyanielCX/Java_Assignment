@@ -3,6 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
 package assignment_ood;
+import Java_Assignment.Session;
 import ProjManagerPackage.Dashboard;
 import ProjManagerPackage.DashboardElem.TableHeader_Dashboard;
 import ProjManagerPackage.ProjManager_MainFrame;
@@ -40,11 +41,20 @@ private Lecture_mainframe lectmainframe;
      * Creates new form Lect_Dashboard
      */
     public Lect_Dashboard(Lecture_mainframe lectmainframe) {
-       
+          if (Session.isLoggedIn()) {
+    
+    String username = Session.getUsername();
+    System.out.println("Logged in as: " + username);
+} else {
+    
+    System.out.println("No user logged in.");
+}
         initComponents();
          this.lectmainframe = lectmainframe;
+           String UserName = Session.getUsername();
+           lectName.setText(UserName);
          Admin admin = new Admin(AssignedStuTbl);
-         admin.populateDashBoardTable(AssignedStuTbl,"shahab");
+         admin.populateDashBoardTable(AssignedStuTbl,Session.getUsername());
           int numberOfSupervisees = AssignedStuTbl.getRowCount();
          assigned_Supervisees.setText(String.valueOf(numberOfSupervisees));
           updatePresentationDateLabel(AssignedStuTbl);
@@ -133,6 +143,7 @@ private Lecture_mainframe lectmainframe;
         jScrollPane1 = new javax.swing.JScrollPane();
         AssignedStuTbl = new javax.swing.JTable();
         TabTitle = new javax.swing.JLabel();
+        lectName = new javax.swing.JLabel();
         boxTtlLect = new javax.swing.JPanel();
         lblTtlLect = new javax.swing.JLabel();
         LectIcon = new javax.swing.JLabel();
@@ -178,8 +189,12 @@ private Lecture_mainframe lectmainframe;
 
         TabTitle.setFont(new java.awt.Font("Dubai Medium", 0, 23)); // NOI18N
         TabTitle.setForeground(new java.awt.Color(0, 0, 0));
-        TabTitle.setText("Assigned Supervisees for Shahab");
-        boxRptStatus.add(TabTitle, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, 380, 30));
+        TabTitle.setText("Assigned Supervisees for ");
+        boxRptStatus.add(TabTitle, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, 250, 30));
+
+        lectName.setFont(new java.awt.Font("Dubai Medium", 1, 23)); // NOI18N
+        lectName.setText("jLabel1");
+        boxRptStatus.add(lectName, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 10, -1, -1));
 
         jPanel1.add(boxRptStatus, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 170, 880, 350));
 
@@ -285,6 +300,7 @@ private Lecture_mainframe lectmainframe;
     private javax.swing.JLabel lblTtlIntake;
     private javax.swing.JLabel lblTtlLect;
     private javax.swing.JLabel lblTtlStu;
+    private javax.swing.JLabel lectName;
     public javax.swing.JLabel presentationDate;
     // End of variables declaration//GEN-END:variables
 }

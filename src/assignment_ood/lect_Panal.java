@@ -28,6 +28,7 @@ import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import assignment_ood.Admin;
 import ProjManagerPackage.StuAssesElem.TableActionEvent_EditButton;
+import AdminPackage.Admin_MainFrame;
 /**
  *
  * @author User
@@ -37,8 +38,8 @@ public class lect_Panal extends javax.swing.JPanel {
     /**
      
      */
-    private admin_mainframe2 mainframe;
-    public lect_Panal(admin_mainframe2 mainframe) {
+    private Admin_MainFrame mainframe;
+    public lect_Panal(Admin_MainFrame mainframe) {
         this.mainframe = mainframe;
         initComponents();
         Admin admin = new Admin(lecturePanal);
@@ -125,6 +126,9 @@ public class lect_Panal extends javax.swing.JPanel {
 
         jScrollPane1 = new javax.swing.JScrollPane();
         lecturePanal = new javax.swing.JTable();
+        jLabel1 = new javax.swing.JLabel();
+        btbNewLect = new javax.swing.JPanel();
+        lblNewLect = new javax.swing.JLabel();
 
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -153,8 +157,51 @@ public class lect_Panal extends javax.swing.JPanel {
         lecturePanal.setRowHeight(50);
         jScrollPane1.setViewportView(lecturePanal);
 
-        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 0, 780, -1));
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 50, 760, 420));
+
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel1.setText("Lecturers");
+        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, -1, -1));
+
+        btbNewLect.setBackground(new java.awt.Color(255, 255, 255));
+        btbNewLect.setForeground(new java.awt.Color(255, 255, 255));
+        btbNewLect.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btbNewLectMouseClicked(evt);
+            }
+        });
+
+        lblNewLect.setFont(new java.awt.Font("Dubai Medium", 0, 18)); // NOI18N
+        lblNewLect.setForeground(new java.awt.Color(0, 0, 0));
+        lblNewLect.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/AdminAddBtb.png"))); // NOI18N
+        lblNewLect.setText("New");
+        lblNewLect.setIconTextGap(12);
+
+        javax.swing.GroupLayout btbNewLectLayout = new javax.swing.GroupLayout(btbNewLect);
+        btbNewLect.setLayout(btbNewLectLayout);
+        btbNewLectLayout.setHorizontalGroup(
+            btbNewLectLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, btbNewLectLayout.createSequentialGroup()
+                .addContainerGap(25, Short.MAX_VALUE)
+                .addComponent(lblNewLect, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(35, 35, 35))
+        );
+        btbNewLectLayout.setVerticalGroup(
+            btbNewLectLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, btbNewLectLayout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(lblNewLect))
+        );
+
+        add(btbNewLect, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 10, 150, 30));
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btbNewLectMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btbNewLectMouseClicked
+        
+       addLect addlect= new addLect();
+        addlect.setVisible(true);
+        mainframe.dispose();
+    }//GEN-LAST:event_btbNewLectMouseClicked
 
  public void fixTable (JScrollPane scroll){
         scroll.getViewport().setBackground(Color.WHITE);
@@ -174,7 +221,10 @@ public class lect_Panal extends javax.swing.JPanel {
         scroll.setBorder(new EmptyBorder(5, 10, 5, 10));
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel btbNewLect;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel lblNewLect;
     private javax.swing.JTable lecturePanal;
     // End of variables declaration//GEN-END:variables
 }

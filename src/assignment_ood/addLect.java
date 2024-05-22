@@ -10,6 +10,7 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.awt.BorderLayout;
+import AdminPackage.Admin_MainFrame;
 /**
  *
  * @author User
@@ -300,8 +301,8 @@ private void saveLecturerToFile(String lecturerName, String lecturerId, boolean 
     }//GEN-LAST:event_delLectActionPerformed
 
     private void backBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backBtnActionPerformed
-       admin_mainframe2 mainframe2 = new admin_mainframe2();
-       mainframe2.setVisible(true);
+       Admin_MainFrame mainframe = new Admin_MainFrame();
+       mainframe.setVisible(true);
        this.dispose();
     }//GEN-LAST:event_backBtnActionPerformed
 

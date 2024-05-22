@@ -4,6 +4,7 @@
  */
 package assignment_ood;
 
+import Java_Assignment.Session;
 import java.util.List;
 
 /**
@@ -11,27 +12,28 @@ import java.util.List;
  * @author User
  */
 public class RoleChecker {
-    public static boolean isProjectManager(String lecturerId, List<Lecturer> lecturers) {
+    String UserName = Session.getUsername();
+    public static boolean isProjectManager(String lecturerName, List<Lecturer> lecturers) {
         for (Lecturer lecturer : lecturers) {
-            if (lecturer.lectid.equals(lecturerId)) {
+            if (lecturer.lectName.equals(lecturerName)) {
                 return lecturer.isProjectManager;
             }
         }
         return false;
     }
 
-    public static boolean isSupervisor(String lecturerId, List<Lecturer> lecturers) {
+    public static boolean isSupervisor(String lecturerName, List<Lecturer> lecturers) {
         for (Lecturer lecturer : lecturers) {
-            if (lecturer.lectid.equals(lecturerId)) {
+            if (lecturer.lectName.equals(lecturerName)) {
                 return lecturer.isSupervisor;
             }
         }
         return false;
     }
 
-    public static boolean isSecondMarker(String lecturerId, List<Lecturer> lecturers) {
+    public static boolean isSecondMarker(String lecturerName, List<Lecturer> lecturers) {
         for (Lecturer lecturer : lecturers) {
-            if (lecturer.lectid.equals(lecturerId)) {
+            if (lecturer.lectName.equals(lecturerName)) {
                 return lecturer.isSecondMarker;
             }
         }
