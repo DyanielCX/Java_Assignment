@@ -2,9 +2,14 @@ package StuPackage;
 
 import java.awt.Component;
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.File;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class PanelConsultation extends javax.swing.JPanel {
@@ -16,13 +21,16 @@ public class PanelConsultation extends javax.swing.JPanel {
         this.password = password; 
         initComponents();
         
+        setEditVisible(false);
         EditPanel.setVisible(false);
+        SaveBtn.setVisible(false);
         readConsultationFile("ConsultationData.txt");
         List<String> lecturerNames = readLecturerNamesFromFile("LecData.txt");
         for (String name : lecturerNames) {
             LecChoose.addItem(name);
         }
     }
+    
     private void readConsultationFile(String fileName) {
         try (BufferedReader br = new BufferedReader(new FileReader(fileName))) {
             String line;
@@ -32,6 +40,10 @@ public class PanelConsultation extends javax.swing.JPanel {
                     ConStatus.setText("You have one consultation");
                     ReqBtn.setText("Check Consultation");
                     ConStatus2.setText(parts[5].trim());
+                    Lec.setText(parts[1].trim());
+                    Obj.setText(parts[2].trim());
+                    Date.setText(parts[3].trim());
+                    Time.setText(parts[4].trim());
                     
                     return; // Exit the loop once the user is found
                 }else{
@@ -39,8 +51,6 @@ public class PanelConsultation extends javax.swing.JPanel {
                     ReqBtn.setText("Request Consultation");
                 }
             }
-            // If the loop completes without finding the user
-            System.err.println("User not found in the file.");
         } catch (IOException e) {
             System.err.println("Error reading the file: " + e.getMessage());
         }
@@ -61,13 +71,71 @@ public class PanelConsultation extends javax.swing.JPanel {
         }
         return lecturerNames;
     }
-     
+     private String constructNewLine() {
+        // Get the selected date from the JCalendar component
+        Date selectedDate = DateChoose.getDate();
+        // Format the date as desired
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
+        String formattedDate = dateFormat.format(selectedDate);
+
+        // Get assessment and lecturer
+        String ObjValue = ObjChoose.getText();
+        String lecturerValue = LecChoose.getSelectedItem().toString().trim();
+
+        // Get hour, minute, and meridiem values
+        int hourValue = (int) HourChoose.getValue();
+        int minuteValue = (int) MinuteChoose.getValue();
+        String meridiemValue = (String) MeridiemChoose.getSelectedItem();
+
+        // Concatenate hour, minute, and meridiem into one string
+        String timeValue = hourValue + ":" + String.format("%02d", minuteValue) + " " + meridiemValue;
+
+        // Construct the new line
+        return username + "," + lecturerValue  + "," + ObjValue +"," + formattedDate + "," + timeValue  + ", Pending" ;
+    }
+     private void writeDataToFile() {
+        try {
+            // Read existing content of the file into a StringBuilder
+            File file = new File("ConsultationData.txt");
+            StringBuilder fileContent = new StringBuilder();
+            boolean usernameFound = false; // Flag to track if the username is found
+            if (file.exists()) {
+                BufferedReader reader = new BufferedReader(new FileReader(file));
+                String line;
+                while ((line = reader.readLine()) != null) {
+                    if (line.startsWith(username)) {
+                        // Replace the line with the new data
+                        line = constructNewLine();
+                        usernameFound = true;
+                    }
+                    fileContent.append(line).append(System.lineSeparator());
+                }
+                reader.close();
+            }
+
+            // If username was not found, append new line
+            if (!usernameFound) {
+                fileContent.append(constructNewLine()).append(System.lineSeparator());
+            }
+
+            // Write the updated content back to the file
+            BufferedWriter writer = new BufferedWriter(new FileWriter(file));
+            writer.write(fileContent.toString());
+            writer.close();
+
+            System.out.println("Data written to ConsultationData.txt successfully.");
+        } catch (IOException ex) {
+            System.err.println("Error writing to file: " + ex.getMessage());
+        }
+    }
+
      private void setEditVisible(boolean visible) {
         Component[] components = {LecChoose,ObjChoose,DateChoose,HourChoose,MinuteChoose,MeridiemChoose};
         for (Component component : components) {
             component.setVisible(visible);
         }
     }
+
      
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -77,22 +145,22 @@ public class PanelConsultation extends javax.swing.JPanel {
         jPanel4 = new javax.swing.JPanel();
         EditPanel = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
-        Lec = new javax.swing.JLabel();
         LecChoose = new javax.swing.JComboBox<>();
+        Lec = new javax.swing.JLabel();
         Time = new javax.swing.JLabel();
         Date = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
         HourChoose = new javax.swing.JSpinner();
         MinuteChoose = new javax.swing.JSpinner();
         MeridiemChoose = new javax.swing.JComboBox<>();
+        jLabel2 = new javax.swing.JLabel();
         ConStatus2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
         DateChoose = new com.toedter.calendar.JDateChooser();
+        jLabel3 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         AddEditBtn = new javax.swing.JButton();
-        jToggleButton1 = new javax.swing.JToggleButton();
-        Obj = new javax.swing.JLabel();
+        SaveBtn = new javax.swing.JToggleButton();
         ObjChoose = new javax.swing.JTextField();
+        Obj = new javax.swing.JLabel();
         ConStatus = new javax.swing.JLabel();
         ReqBtn = new javax.swing.JButton();
         jLabel12 = new javax.swing.JLabel();
@@ -106,54 +174,75 @@ public class PanelConsultation extends javax.swing.JPanel {
         jPanel4.setBackground(new java.awt.Color(255, 255, 255));
         jPanel4.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        EditPanel.setBackground(new java.awt.Color(255, 255, 255));
+        EditPanel.setBackground(new java.awt.Color(204, 204, 255));
         EditPanel.setForeground(new java.awt.Color(255, 255, 255));
         EditPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel4.setText("Lecturer ");
-        EditPanel.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 140, -1, -1));
-
-        Lec.setText("Lecturer");
-        EditPanel.add(Lec, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 170, -1, -1));
+        EditPanel.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 130, -1, -1));
 
         LecChoose.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { }));
-        EditPanel.add(LecChoose, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 170, -1, -1));
+        EditPanel.add(LecChoose, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 180, 120, 30));
+
+        Lec.setText("Lecturer");
+        EditPanel.add(Lec, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 160, -1, -1));
 
         Time.setText("-");
         EditPanel.add(Time, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 240, 80, -1));
 
         Date.setText("- ");
         EditPanel.add(Date, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 160, 80, -1));
-
-        jLabel2.setText("Consultation TIme");
-        EditPanel.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 200, -1, -1));
-        EditPanel.add(HourChoose, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 240, 50, -1));
-        EditPanel.add(MinuteChoose, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 240, 50, -1));
+        EditPanel.add(HourChoose, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 270, 50, -1));
+        EditPanel.add(MinuteChoose, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 270, 50, -1));
 
         MeridiemChoose.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "am", "pm" }));
-        EditPanel.add(MeridiemChoose, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 240, 60, -1));
+        EditPanel.add(MeridiemChoose, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 270, 60, -1));
 
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel2.setText("Consultation TIme");
+        EditPanel.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 210, -1, -1));
+
+        ConStatus2.setBackground(new java.awt.Color(204, 204, 255));
+        ConStatus2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         ConStatus2.setText("Status");
-        EditPanel.add(ConStatus2, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 90, -1, -1));
+        EditPanel.add(ConStatus2, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 60, 120, 30));
+        EditPanel.add(DateChoose, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 180, 127, -1));
 
+        jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel3.setText("Consultation Date");
         EditPanel.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 130, -1, -1));
-        EditPanel.add(DateChoose, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 160, 127, -1));
 
+        jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel5.setText("Consultation Objective");
-        EditPanel.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 220, -1, -1));
+        EditPanel.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 230, -1, -1));
 
+        AddEditBtn.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         AddEditBtn.setText("Edit");
-        EditPanel.add(AddEditBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 350, -1, -1));
+        AddEditBtn.setBorder(null);
+        AddEditBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                AddEditBtnActionPerformed(evt);
+            }
+        });
+        EditPanel.add(AddEditBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 350, 60, 30));
 
-        jToggleButton1.setText("Submit");
-        EditPanel.add(jToggleButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 350, -1, -1));
-
-        Obj.setText("- ");
-        EditPanel.add(Obj, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 310, 70, 20));
+        SaveBtn.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        SaveBtn.setText("Submit");
+        SaveBtn.setBorder(null);
+        SaveBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                SaveBtnActionPerformed(evt);
+            }
+        });
+        EditPanel.add(SaveBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 350, 70, 30));
 
         ObjChoose.setText("jTextField1");
-        EditPanel.add(ObjChoose, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 250, -1, -1));
+        EditPanel.add(ObjChoose, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 290, 130, 30));
+
+        Obj.setText("- ");
+        Obj.setAutoscrolls(true);
+        EditPanel.add(Obj, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 250, 250, 40));
 
         jPanel4.add(EditPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 770, 420));
 
@@ -198,6 +287,29 @@ public class PanelConsultation extends javax.swing.JPanel {
     private void ReqBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ReqBtnActionPerformed
         EditPanel.setVisible(true);
     }//GEN-LAST:event_ReqBtnActionPerformed
+    private boolean editMode = true;
+    private void handleEditMode(boolean editMode) {
+        if (!editMode) {
+            SaveBtn.setVisible(false);
+            setEditVisible(false);
+            AddEditBtn.setText("Add");
+            this.editMode = true;
+        } else {
+            SaveBtn.setVisible(true);
+            setEditVisible(true);
+            AddEditBtn.setText("Cancel");
+            this.editMode = false;
+        }
+    }
+    private void AddEditBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddEditBtnActionPerformed
+        handleEditMode(editMode);
+    }//GEN-LAST:event_AddEditBtnActionPerformed
+
+    private void SaveBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SaveBtnActionPerformed
+        writeDataToFile();
+        handleEditMode(false);
+        readConsultationFile("ConsultationData.txt");
+    }//GEN-LAST:event_SaveBtnActionPerformed
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -215,6 +327,7 @@ public class PanelConsultation extends javax.swing.JPanel {
     private javax.swing.JLabel Obj;
     private javax.swing.JTextField ObjChoose;
     private javax.swing.JButton ReqBtn;
+    private javax.swing.JToggleButton SaveBtn;
     private javax.swing.JLabel Time;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel2;
@@ -223,6 +336,5 @@ public class PanelConsultation extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel4;
-    private javax.swing.JToggleButton jToggleButton1;
     // End of variables declaration//GEN-END:variables
 }

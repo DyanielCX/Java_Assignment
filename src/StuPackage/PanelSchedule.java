@@ -8,12 +8,11 @@ public class PanelSchedule extends javax.swing.JPanel {
     private String username; // Declare as an instance variable
     private String password;
 
-    public PanelSchedule() {
+    public PanelSchedule(String username, String password) {
         initComponents();
         this.username = username; // Assign the parameter value to the instance variable
         this.password = password; 
         
-        PresentationSchedule.setVisible(false);
         readPresentationDetailsFromFile("PresentationData.txt");
         readConsultationDetailsFromFile("ConsultationData.txt");
     }
@@ -26,6 +25,7 @@ public class PanelSchedule extends javax.swing.JPanel {
                 if (parts[0].trim().equals(username)) { 
                     PreDate.setText(parts[3].trim());
                     PreTime.setText(parts[4].trim());
+                    PreLec.setText(parts[1].trim());
                     return; // Exit the loop once the user is found
                 }
             }
@@ -44,6 +44,7 @@ public class PanelSchedule extends javax.swing.JPanel {
                 if (parts[0].trim().equals(username)) { 
                     ConDate.setText(parts[3].trim());
                     ConTime.setText(parts[4].trim());
+                    ConLec.setText(parts[1].trim());
                     return; // Exit the loop once the user is found
                 }
             }
