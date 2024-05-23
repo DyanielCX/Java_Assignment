@@ -13,7 +13,7 @@ public class Admin_EditStudent extends javax.swing.JFrame {
     private final String filePath = "StuData.txt";
 
     public Admin_EditStudent(String studentID, String name, int age, String intake, String assessment, String supervisor, String secondMarker, String RMCP_lecture) {
-         initComponents();
+        initComponents();
         setVisible(true);
         StudentID_textfield.setText(studentID);
         StudentName_textfield.setText(name);
@@ -96,9 +96,9 @@ public class Admin_EditStudent extends javax.swing.JFrame {
         // Check if the update was successful
         if (updated) {
             JOptionPane.showMessageDialog(this, "Student details updated successfully!", "Success", JOptionPane.INFORMATION_MESSAGE);
-            Admin_Student adminStudentFrame = new Admin_Student();
-            adminStudentFrame.setVisible(true);
-            dispose();
+            //Return back to the student list page
+            this.setVisible(false);
+            backMainFrame();
         } else {
             // If the student with the provided ID was not found
             JOptionPane.showMessageDialog(this, "Student ID not found!", "Error", JOptionPane.ERROR_MESSAGE);
@@ -133,11 +133,13 @@ public class Admin_EditStudent extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jPanel3.setBackground(new java.awt.Color(102, 204, 255));
+        jPanel3.setBackground(new java.awt.Color(255, 148, 148));
 
         jLabel9.setFont(new java.awt.Font("Serif", 1, 24)); // NOI18N
+        jLabel9.setForeground(new java.awt.Color(255, 255, 255));
         jLabel9.setText("Edit Student");
 
+        Back_lbl.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/Back.png"))); // NOI18N
         Back_lbl.setText("Back");
         Back_lbl.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         Back_lbl.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -151,11 +153,11 @@ public class Admin_EditStudent extends javax.swing.JFrame {
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addGap(24, 24, 24)
-                .addComponent(Back_lbl, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(156, 156, 156)
+                .addGap(14, 14, 14)
+                .addComponent(Back_lbl, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(169, 169, 169)
                 .addComponent(jLabel9)
-                .addContainerGap(251, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -165,7 +167,7 @@ public class Admin_EditStudent extends javax.swing.JFrame {
                         .addGap(29, 29, 29)
                         .addComponent(jLabel9))
                     .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGap(20, 20, 20)
+                        .addContainerGap()
                         .addComponent(Back_lbl)))
                 .addContainerGap(29, Short.MAX_VALUE))
         );
@@ -217,9 +219,6 @@ public class Admin_EditStudent extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
                 .addGap(22, 22, 22)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
@@ -257,11 +256,12 @@ public class Admin_EditStudent extends javax.swing.JFrame {
                     .addComponent(StudentSupervisor_textfield, javax.swing.GroupLayout.DEFAULT_SIZE, 120, Short.MAX_VALUE)
                     .addComponent(StudentSecMarker_textfield)
                     .addComponent(RMCPlecture_textfield))
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addGap(0, 60, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addComponent(EditBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(246, 246, 246))
+            .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -317,18 +317,24 @@ public class Admin_EditStudent extends javax.swing.JFrame {
     }//GEN-LAST:event_EditBtnActionPerformed
 
     private void Back_lblMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Back_lblMouseClicked
-        Admin_Student adminStudentFrame = new Admin_Student();
-        adminStudentFrame.setVisible(true);
-        dispose();
+        this.setVisible(false);
+        backMainFrame();
     }//GEN-LAST:event_Back_lblMouseClicked
 
     private void StudentAge_textfieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_StudentAge_textfieldActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_StudentAge_textfieldActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
+    public void backMainFrame(){
+        Admin_MainFrame fr = new Admin_MainFrame();
+        fr.setVisible(true);
+        
+        // Switch to allot intake advisors tab
+        fr.updateIntakeMgmtPane(fr);
+        int tabIndex = fr.TabPanel.getTabCount()-1;
+        fr.changedTab(tabIndex);
+    }
+    
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -351,6 +357,38 @@ public class Admin_EditStudent extends javax.swing.JFrame {
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(Admin_EditStudent.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>

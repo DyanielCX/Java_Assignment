@@ -259,7 +259,7 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
-                      <Component id="navAccMangement" min="-2" max="-2" attributes="0"/>
+                      <Component id="navViewReport" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="32767" attributes="0"/>
                   </Group>
               </Group>
@@ -268,14 +268,14 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
-                      <Component id="navAccMangement" pref="62" max="32767" attributes="0"/>
+                      <Component id="navViewReport" pref="62" max="32767" attributes="0"/>
                       <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
           </Layout>
           <SubComponents>
-            <Component class="javax.swing.JLabel" name="navAccMangement">
+            <Component class="javax.swing.JLabel" name="navViewReport">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="e3" green="a2" red="7a" type="rgb"/>
@@ -290,11 +290,11 @@
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                   <Image iconType="3" name="/Image/ProjMngAcc.png"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="Account Management"/>
+                <Property name="text" type="java.lang.String" value="View Report"/>
                 <Property name="iconTextGap" type="int" value="15"/>
               </Properties>
               <Events>
-                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="navAccMangementMouseClicked"/>
+                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="navViewReportMouseClicked"/>
               </Events>
             </Component>
           </SubComponents>

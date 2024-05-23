@@ -38,11 +38,13 @@ public class Admin_AddStudent extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jPanel3.setBackground(new java.awt.Color(102, 204, 255));
+        jPanel3.setBackground(new java.awt.Color(255, 148, 148));
 
         jLabel9.setFont(new java.awt.Font("Serif", 1, 24)); // NOI18N
+        jLabel9.setForeground(new java.awt.Color(255, 255, 255));
         jLabel9.setText("Add New Student");
 
+        Back_lbl.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/Back.png"))); // NOI18N
         Back_lbl.setText("Back");
         Back_lbl.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         Back_lbl.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -280,9 +282,8 @@ public class Admin_AddStudent extends javax.swing.JFrame {
     }//GEN-LAST:event_StudentAge_textfieldActionPerformed
 
     private void Back_lblMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Back_lblMouseClicked
-        Admin_Student adminStudentFrame = new Admin_Student();
-        adminStudentFrame.setVisible(true);
-        dispose();
+        this.setVisible(false);
+        backMainFrame();
     }//GEN-LAST:event_Back_lblMouseClicked
 
     private void StudentIntake_cmbActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_StudentIntake_cmbActionPerformed
@@ -302,6 +303,16 @@ public class Admin_AddStudent extends javax.swing.JFrame {
         // You may add similar code to clear other input fields if needed
     }
     
+    public void backMainFrame(){
+        Admin_MainFrame fr = new Admin_MainFrame();
+        fr.setVisible(true);
+        
+        // Switch to allot intake advisors tab
+        fr.updateIntakeMgmtPane(fr);
+        int tabIndex = fr.TabPanel.getTabCount()-1;
+        fr.changedTab(tabIndex);
+    }
+    
     public static void main(String[] args) {
          /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -316,13 +327,13 @@ public class Admin_AddStudent extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Admin_Student.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Admin_StudentManagement.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Admin_Student.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Admin_StudentManagement.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Admin_Student.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Admin_StudentManagement.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Admin_Student.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Admin_StudentManagement.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
         

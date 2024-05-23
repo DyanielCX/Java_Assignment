@@ -68,11 +68,23 @@ public class Lecture_mainframe extends javax.swing.JFrame {
         TabPanel.add("tab7",tab7);
         
         lect_ViewRMCP tab8 = new lect_ViewRMCP(this);
-        TabPanel.add("tab8",tab8);
+        TabPanel.add("tab8",tab8);       
+        
+        //View Report Panel Section
+        Lect_ViewReport tab9 = new Lect_ViewReport(this);
+        TabPanel.addTab("tab9", tab9);       
+        
+        SecondMarker_ViewReport tab10 = new SecondMarker_ViewReport(this);
+        TabPanel.addTab("SecondMarker_ViewReport", tab10);
+        
+        Supervisor_ViewReport tab11 = new Supervisor_ViewReport(this);
+        TabPanel.addTab("Supervisor_ViewReport", tab11);
+        
+        RMCP_ViewReport tab12 = new RMCP_ViewReport(this);
+        TabPanel.addTab("RMCP_ViewReport", tab12);
 
         /* Get the user name */
         String UserName = Session.getUsername();
-
         AccName.setText(UserName);
         
         
@@ -111,7 +123,7 @@ public class Lecture_mainframe extends javax.swing.JFrame {
         ViewPresentationPane = new javax.swing.JPanel();
         navViewPresentation = new javax.swing.JLabel();
         AccManagementPane = new javax.swing.JPanel();
-        navAccMangement = new javax.swing.JLabel();
+        navViewReport = new javax.swing.JLabel();
         ReportStatusPane = new javax.swing.JPanel();
         navReportStatus = new javax.swing.JLabel();
         topNavBar = new javax.swing.JPanel();
@@ -227,16 +239,16 @@ public class Lecture_mainframe extends javax.swing.JFrame {
 
         AccManagementPane.setBackground(new java.awt.Color(122, 162, 227));
 
-        navAccMangement.setBackground(new java.awt.Color(122, 162, 227));
-        navAccMangement.setFont(new java.awt.Font("Dubai Medium", 0, 20)); // NOI18N
-        navAccMangement.setForeground(new java.awt.Color(255, 255, 255));
-        navAccMangement.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        navAccMangement.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/ProjMngAcc.png"))); // NOI18N
-        navAccMangement.setText("Account Management");
-        navAccMangement.setIconTextGap(15);
-        navAccMangement.addMouseListener(new java.awt.event.MouseAdapter() {
+        navViewReport.setBackground(new java.awt.Color(122, 162, 227));
+        navViewReport.setFont(new java.awt.Font("Dubai Medium", 0, 20)); // NOI18N
+        navViewReport.setForeground(new java.awt.Color(255, 255, 255));
+        navViewReport.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        navViewReport.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/ProjMngAcc.png"))); // NOI18N
+        navViewReport.setText("View Report");
+        navViewReport.setIconTextGap(15);
+        navViewReport.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                navAccMangementMouseClicked(evt);
+                navViewReportMouseClicked(evt);
             }
         });
 
@@ -246,14 +258,14 @@ public class Lecture_mainframe extends javax.swing.JFrame {
             AccManagementPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(AccManagementPaneLayout.createSequentialGroup()
                 .addGap(25, 25, 25)
-                .addComponent(navAccMangement)
+                .addComponent(navViewReport)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         AccManagementPaneLayout.setVerticalGroup(
             AccManagementPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(AccManagementPaneLayout.createSequentialGroup()
                 .addGap(23, 23, 23)
-                .addComponent(navAccMangement, javax.swing.GroupLayout.DEFAULT_SIZE, 62, Short.MAX_VALUE)
+                .addComponent(navViewReport, javax.swing.GroupLayout.DEFAULT_SIZE, 62, Short.MAX_VALUE)
                 .addGap(20, 20, 20))
         );
 
@@ -431,7 +443,7 @@ public class Lecture_mainframe extends javax.swing.JFrame {
         TabPanel.setSelectedIndex(5);
     }//GEN-LAST:event_navViewPresentationMouseClicked
 
-    private void navAccMangementMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_navAccMangementMouseClicked
+    private void navViewReportMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_navViewReportMouseClicked
         DashboardPane.setBackground(navDefaultColor);
         ViewSuperviseesPane.setBackground(navDefaultColor);
         ViewPresentationPane.setBackground(navDefaultColor);
@@ -439,9 +451,9 @@ public class Lecture_mainframe extends javax.swing.JFrame {
         ReportStatusPane.setBackground(navDefaultColor);
         
         //Change to your tab name
-        PanelTitle.setText("Account Management");
-//        TabPanel.setSelectedIndex(3);
-    }//GEN-LAST:event_navAccMangementMouseClicked
+        PanelTitle.setText("View Report");
+        TabPanel.setSelectedIndex(9);
+    }//GEN-LAST:event_navViewReportMouseClicked
 
     private void navReportStatusMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_navReportStatusMouseClicked
         DashboardPane.setBackground(navDefaultColor);
@@ -518,10 +530,10 @@ public class Lecture_mainframe extends javax.swing.JFrame {
     public javax.swing.JPanel ViewSuperviseesPane;
     private javax.swing.JLabel imgLogo;
     private javax.swing.JLabel lblLogout;
-    private javax.swing.JLabel navAccMangement;
     private javax.swing.JLabel navDashboard;
     private javax.swing.JLabel navReportStatus;
     private javax.swing.JLabel navViewPresentation;
+    private javax.swing.JLabel navViewReport;
     private javax.swing.JLabel navViewSupervisees;
     private javax.swing.JPanel sideNavBar;
     private javax.swing.JPanel topNavBar;

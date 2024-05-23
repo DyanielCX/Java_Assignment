@@ -21,20 +21,16 @@ public class Admin_MainFrame extends javax.swing.JFrame {
         
         /* Set the tab panel */
         //Intake Management Panel Section
-        Admin_IntakeMgmtPane Tab1 = new Admin_IntakeMgmtPane(this);
-        TabPanel.addTab("tab1", Tab1);
-        //tab2,student panel
-        
-        lect_Panal lect_panal = new lect_Panal(this);
-          TabPanel.addTab("tab3", lect_panal);
+        Admin_IntakeMgmtPane Tab0 = new Admin_IntakeMgmtPane(this);
+        TabPanel.addTab("Tab0", Tab0);            
 
-        //Student Management Panel Section
-//        Admin_IntakeMgmtPane Tab1 = new Admin_IntakeMgmtPane(this);
-//        TabPanel.addTab("tab1", Tab1);
+//        Student Management Panel Section
+        Admin_StudentManagement Tab1 = new Admin_StudentManagement(this);
+        TabPanel.addTab("Tab1", Tab1);
 
         //Lecturer Management Panel Section
-//        Admin_IntakeMgmtPane Tab1 = new Admin_IntakeMgmtPane(this);
-//        TabPanel.addTab("tab1", Tab1);
+        lect_Panal lect_panal = new lect_Panal(this);
+        TabPanel.addTab("Tab2", lect_panal);
     }
 
     /**
@@ -284,7 +280,7 @@ public class Admin_MainFrame extends javax.swing.JFrame {
         LectMgmtPane.setBackground(navDefaultColor);
         
         PanelTitle.setText("Student Management");
-        changedTab(0);
+        changedTab(1);
     }//GEN-LAST:event_navStuMgmtMouseClicked
 
     private void navAssignAdvisorsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_navAssignAdvisorsMouseClicked
@@ -293,7 +289,7 @@ public class Admin_MainFrame extends javax.swing.JFrame {
         LectMgmtPane.setBackground(navSelectedColor);
         
         PanelTitle.setText("Lecturer Management");
-        changedTab(1);
+        changedTab(2);
     }//GEN-LAST:event_navAssignAdvisorsMouseClicked
 
     /* Logout Button */
