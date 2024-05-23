@@ -11,8 +11,7 @@ public class SecondMarker_GradingFrame extends javax.swing.JFrame {
 
     private Lecture_mainframe lectmainframe;
     private String studentId;
-
-
+    
     public SecondMarker_GradingFrame(Lecture_mainframe lectmainframe, String studentId) {
         this.lectmainframe = lectmainframe;
         this.studentId = studentId;
@@ -84,54 +83,93 @@ public class SecondMarker_GradingFrame extends javax.swing.JFrame {
         DueDate_txt = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
         SubmissionDate_txt = new javax.swing.JTextField();
+        Back_lbl = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setLocationByPlatform(true);
+        setUndecorated(true);
 
-        jPanel1.setBackground(new java.awt.Color(248, 246, 227));
+        jPanel1.setBackground(new java.awt.Color(106, 212, 221));
+
+        jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
         jLabel1.setText("Grading Page");
+        jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(136, 11, -1, 40));
 
+        jLabel2.setFont(new java.awt.Font("Segoe UI Semibold", 0, 12)); // NOI18N
         jLabel2.setText("Student ID");
+        jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(26, 61, 60, 20));
 
+        jLabel3.setFont(new java.awt.Font("Segoe UI Semibold", 0, 12)); // NOI18N
         jLabel3.setText("Name");
+        jPanel2.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(237, 61, 50, 20));
 
+        jLabel4.setFont(new java.awt.Font("Segoe UI Semibold", 0, 12)); // NOI18N
         jLabel4.setText("Intake");
+        jPanel2.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(46, 89, 40, 20));
 
+        jLabel5.setFont(new java.awt.Font("Segoe UI Semibold", 0, 12)); // NOI18N
         jLabel5.setText("Assessment");
+        jPanel2.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(207, 89, 70, 20));
 
+        jLabel6.setFont(new java.awt.Font("Segoe UI Semibold", 0, 12)); // NOI18N
         jLabel6.setText("Submission Link:");
+        jPanel2.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(26, 165, -1, -1));
 
+        jLabel7.setFont(new java.awt.Font("Segoe UI Semibold", 0, 12)); // NOI18N
         jLabel7.setText("Feedback");
+        jPanel2.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(26, 199, -1, -1));
 
         jTextArea1.setColumns(20);
         jTextArea1.setRows(5);
         jScrollPane1.setViewportView(jTextArea1);
 
-        StudentID_txt.setBackground(new java.awt.Color(248, 246, 227));
+        jPanel2.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(26, 219, 330, -1));
+
+        StudentID_txt.setEditable(false);
+        StudentID_txt.setBackground(new java.awt.Color(242, 242, 242));
         StudentID_txt.setText("jTextField1");
+        StudentID_txt.setBorder(null);
         StudentID_txt.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 StudentID_txtActionPerformed(evt);
             }
         });
+        jPanel2.add(StudentID_txt, new org.netbeans.lib.awtextra.AbsoluteConstraints(92, 63, -1, -1));
 
         Name_txt.setEditable(false);
-        Name_txt.setBackground(new java.awt.Color(248, 246, 227));
         Name_txt.setText("jTextField2");
+        Name_txt.setBorder(null);
         Name_txt.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 Name_txtActionPerformed(evt);
             }
         });
+        jPanel2.add(Name_txt, new org.netbeans.lib.awtextra.AbsoluteConstraints(277, 61, -1, -1));
 
-        Intake_txt.setBackground(new java.awt.Color(248, 246, 227));
+        Intake_txt.setEditable(false);
+        Intake_txt.setBackground(new java.awt.Color(242, 242, 242));
         Intake_txt.setText("jTextField3");
+        Intake_txt.setBorder(null);
+        Intake_txt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Intake_txtActionPerformed(evt);
+            }
+        });
+        jPanel2.add(Intake_txt, new org.netbeans.lib.awtextra.AbsoluteConstraints(92, 91, -1, -1));
 
-        Assessment_txt.setBackground(new java.awt.Color(248, 246, 227));
+        Assessment_txt.setEditable(false);
+        Assessment_txt.setBackground(new java.awt.Color(242, 242, 242));
         Assessment_txt.setText("jTextField4");
+        Assessment_txt.setBorder(null);
+        jPanel2.add(Assessment_txt, new org.netbeans.lib.awtextra.AbsoluteConstraints(277, 89, -1, -1));
 
+        SubmissionLink_txt.setEditable(false);
+        SubmissionLink_txt.setBackground(new java.awt.Color(242, 242, 242));
         SubmissionLink_txt.setText("jTextField5");
+        SubmissionLink_txt.setBorder(null);
+        jPanel2.add(SubmissionLink_txt, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 165, 240, -1));
 
         btnSubmit.setText("Submit");
         btnSubmit.addActionListener(new java.awt.event.ActionListener() {
@@ -139,120 +177,59 @@ public class SecondMarker_GradingFrame extends javax.swing.JFrame {
                 btnSubmitActionPerformed(evt);
             }
         });
+        jPanel2.add(btnSubmit, new org.netbeans.lib.awtextra.AbsoluteConstraints(156, 329, -1, -1));
 
+        jLabel8.setFont(new java.awt.Font("Segoe UI Semibold", 0, 12)); // NOI18N
         jLabel8.setText("Due Date");
+        jPanel2.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(26, 117, 60, 20));
 
-        DueDate_txt.setBackground(new java.awt.Color(248, 246, 227));
+        DueDate_txt.setEditable(false);
+        DueDate_txt.setBackground(new java.awt.Color(242, 242, 242));
         DueDate_txt.setText("jTextField1");
+        DueDate_txt.setBorder(null);
+        jPanel2.add(DueDate_txt, new org.netbeans.lib.awtextra.AbsoluteConstraints(92, 119, -1, -1));
 
+        jLabel9.setFont(new java.awt.Font("Segoe UI Semibold", 0, 12)); // NOI18N
         jLabel9.setText("Submission ");
+        jPanel2.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(207, 117, 70, 20));
 
-        SubmissionDate_txt.setBackground(new java.awt.Color(248, 246, 227));
+        SubmissionDate_txt.setEditable(false);
+        SubmissionDate_txt.setBackground(new java.awt.Color(242, 242, 242));
         SubmissionDate_txt.setText("jTextField1");
+        SubmissionDate_txt.setBorder(null);
+        jPanel2.add(SubmissionDate_txt, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 120, -1, -1));
 
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 374, Short.MAX_VALUE)
-            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel2Layout.createSequentialGroup()
-                    .addGap(0, 20, Short.MAX_VALUE)
-                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(jPanel2Layout.createSequentialGroup()
-                            .addGap(110, 110, 110)
-                            .addComponent(jLabel1))
-                        .addGroup(jPanel2Layout.createSequentialGroup()
-                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(0, 0, 0)
-                            .addComponent(StudentID_txt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(87, 87, 87)
-                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(jPanel2Layout.createSequentialGroup()
-                                    .addGap(40, 40, 40)
-                                    .addComponent(Name_txt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGroup(jPanel2Layout.createSequentialGroup()
-                            .addGap(20, 20, 20)
-                            .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(0, 0, 0)
-                            .addComponent(Intake_txt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(57, 57, 57)
-                            .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(0, 0, 0)
-                            .addComponent(Assessment_txt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(jPanel2Layout.createSequentialGroup()
-                            .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(0, 0, 0)
-                            .addComponent(DueDate_txt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(57, 57, 57)
-                            .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(0, 0, 0)
-                            .addComponent(SubmissionDate_txt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(jPanel2Layout.createSequentialGroup()
-                            .addComponent(jLabel6)
-                            .addGap(4, 4, 4)
-                            .addComponent(SubmissionLink_txt, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addComponent(jLabel7)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 330, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGroup(jPanel2Layout.createSequentialGroup()
-                            .addGap(130, 130, 130)
-                            .addComponent(btnSubmit)))
-                    .addGap(0, 21, Short.MAX_VALUE)))
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 372, Short.MAX_VALUE)
-            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel2Layout.createSequentialGroup()
-                    .addGap(0, 9, Short.MAX_VALUE)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(10, 10, 10)
-                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(StudentID_txt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(Name_txt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGap(8, 8, 8)
-                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(Intake_txt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(Assessment_txt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGap(8, 8, 8)
-                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(DueDate_txt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(SubmissionDate_txt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGap(28, 28, 28)
-                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jLabel6)
-                        .addComponent(SubmissionLink_txt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGap(18, 18, 18)
-                    .addComponent(jLabel7)
-                    .addGap(4, 4, 4)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(24, 24, 24)
-                    .addComponent(btnSubmit)
-                    .addGap(0, 10, Short.MAX_VALUE)))
-        );
+        Back_lbl.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/Back.png"))); // NOI18N
+        Back_lbl.setText("Back");
+        Back_lbl.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        Back_lbl.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                Back_lblMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(57, Short.MAX_VALUE)
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(56, 56, 56))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(Back_lbl))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(47, 47, 47)
+                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 388, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(52, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(40, 40, 40)
+                .addContainerGap()
+                .addComponent(Back_lbl)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(29, Short.MAX_VALUE))
+                .addContainerGap(37, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -280,11 +257,9 @@ public class SecondMarker_GradingFrame extends javax.swing.JFrame {
     private void btnSubmitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSubmitActionPerformed
         // Save grading data
         String feedback = jTextArea1.getText().trim();
-        String submissionLink = SubmissionLink_txt.getText().trim();
-        String dueDate = DueDate_txt.getText().trim();
-        String submissionDate = SubmissionDate_txt.getText().trim();
+        String gradingStatus = "Graded"; // Set the grading status to "Graded"
 
-        // Update the report data with the new feedback and submission details
+        // Update the report data with the new feedback and grading status
         try (BufferedReader reportReader = new BufferedReader(new FileReader("ReportData.txt"))) {
             StringBuilder reportContent = new StringBuilder();
             String reportLine;
@@ -292,10 +267,8 @@ public class SecondMarker_GradingFrame extends javax.swing.JFrame {
             while ((reportLine = reportReader.readLine()) != null) {
                 String[] reportParts = reportLine.split(",");
                 if (reportParts[0].trim().equals(studentId)) {
-                    reportParts[5] = submissionLink;
-                    reportParts[3] = dueDate;
-                    reportParts[4] = submissionDate;
-                    reportParts[8] = feedback;
+                    reportParts[8] = feedback; // Update feedback
+                    reportParts[3] = gradingStatus; // Update grading status
                     reportContent.append(String.join(",", reportParts)).append("\n");
                 } else {
                     reportContent.append(reportLine).append("\n");
@@ -306,16 +279,26 @@ public class SecondMarker_GradingFrame extends javax.swing.JFrame {
             Files.write(Paths.get("ReportData.txt"), reportContent.toString().getBytes());
 
             JOptionPane.showMessageDialog(this, "Grading saved successfully.", "Success", JOptionPane.INFORMATION_MESSAGE);
+
+            // Navigate back to the main frame
+            this.dispose(); // Close the current frame
+            lectmainframe.setVisible(true); // Show the main frame
         } catch (IOException e) {
             e.printStackTrace();
             JOptionPane.showMessageDialog(this, "Error saving grading data.", "Error", JOptionPane.ERROR_MESSAGE);
         }
-    
+
     }//GEN-LAST:event_btnSubmitActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
+    private void Intake_txtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Intake_txtActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_Intake_txtActionPerformed
+
+    private void Back_lblMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Back_lblMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_Back_lblMouseClicked
+
+    
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -345,6 +328,7 @@ public class SecondMarker_GradingFrame extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField Assessment_txt;
+    private javax.swing.JLabel Back_lbl;
     private javax.swing.JTextField DueDate_txt;
     private javax.swing.JTextField Intake_txt;
     private javax.swing.JTextField Name_txt;

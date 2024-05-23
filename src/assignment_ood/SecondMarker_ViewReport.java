@@ -29,7 +29,7 @@ public class SecondMarker_ViewReport extends javax.swing.JPanel {
     private String UserName; 
     
     public SecondMarker_ViewReport(Lecture_mainframe mainFrame) {
-        this.lectmainframe = lectmainframe;
+        this.lectmainframe = mainFrame;
         this.UserName = Session.getUsername();
         
         initComponents();
@@ -54,17 +54,26 @@ public class SecondMarker_ViewReport extends javax.swing.JPanel {
         
     }
     
- TableActionEvent_EditButton event = new TableActionEvent_EditButton() {
+    
+    
+    TableActionEvent_EditButton event = new TableActionEvent_EditButton() {
         @Override
         public void onEdit(int row) {
             // Get the student ID from the table model
             String studentId = (String) SecondMarker_Report_Table.getValueAt(row, 0);
-            
-            // Create and show the SecondMarker_GradingFrame
-            SecondMarker_GradingFrame gradingFrame = new SecondMarker_GradingFrame(lectmainframe, studentId);
-            lectmainframe.setContentPane(gradingFrame);
-            lectmainframe.revalidate();
-            lectmainframe.repaint();
+
+            // Check the grading status and submit status
+            String gradingStatus = (String) SecondMarker_Report_Table.getValueAt(row, 6);
+            String submitStatus = (String) SecondMarker_Report_Table.getValueAt(row, 5);
+
+            if (submitStatus.equalsIgnoreCase("No Attempt") && gradingStatus.equalsIgnoreCase("No Graded")) {
+                JOptionPane.showMessageDialog(SecondMarker_ViewReport.this, "This report has not been attempted and not graded.", "Info", JOptionPane.INFORMATION_MESSAGE);
+            } else {
+                // Create and show the SecondMarker_GradingFrame
+                SecondMarker_GradingFrame gradingFrame = new SecondMarker_GradingFrame(lectmainframe, studentId);
+                gradingFrame.setVisible(true);
+                lectmainframe.setVisible(false); // Hide the main frame
+            }
         }
     };
  
@@ -106,16 +115,9 @@ public class SecondMarker_ViewReport extends javax.swing.JPanel {
                     model.addRow(new Object[]{
                         stuParts[0].trim(),  // Student ID
                         stuParts[2].trim(),  // Name
-//                        stuParts[3].trim(),  // Age
                         stuParts[4].trim(),  // Intake
                         stuParts[5].trim(),  // Assessment
-                        
-                        
                         reportParts[4].trim(),  // Submission Due Date
-//                        reportParts[5].trim(),  // Submission Due Time
-//                        reportParts[6].trim(),  // Submission Date
-//                        reportParts[7].trim(),  // Submission Link
-//                        reportParts[8].trim()   // Submission Feedback
                         reportParts[2].trim(),  // Submit Status
                         reportParts[3].trim(),  // Grading Status
                     });
@@ -128,39 +130,6 @@ public class SecondMarker_ViewReport extends javax.swing.JPanel {
     }
     
     
-    
-
-    private String[] getStudentDetails(String studentId) {
-        try (BufferedReader stuReader = new BufferedReader(new FileReader("StuData.txt"))) {
-            String stuLine;
-            while ((stuLine = stuReader.readLine()) != null) {
-                String[] stuParts = stuLine.split(",");
-                if (stuParts[0].trim().equals(studentId)) {
-                    return stuParts;
-                }
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-            JOptionPane.showMessageDialog(this, "Error reading Student data file.", "Error", JOptionPane.ERROR_MESSAGE);
-        }
-        return null;
-    }
-
-    private String[] getReportDetails(String studentId) {
-        try (BufferedReader reportReader = new BufferedReader(new FileReader("ReportData.txt"))) {
-            String reportLine;
-            while ((reportLine = reportReader.readLine()) != null) {
-                String[] reportParts = reportLine.split(",");
-                if (reportParts[0].trim().equals(studentId)) {
-                    return reportParts;
-                }
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-            JOptionPane.showMessageDialog(this, "Error reading Report data file.", "Error", JOptionPane.ERROR_MESSAGE);
-        }
-        return null;
-    }
 
     public void fixTable(JScrollPane scroll) {
         scroll.getViewport().setBackground(Color.WHITE);
@@ -203,7 +172,7 @@ public class SecondMarker_ViewReport extends javax.swing.JPanel {
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, false
+                false, false, false, false, false, false, false, true
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
