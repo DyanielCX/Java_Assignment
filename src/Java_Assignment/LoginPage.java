@@ -24,13 +24,13 @@ public class LoginPage extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         LoginBtn = new javax.swing.JButton();
         Username_input = new javax.swing.JTextField();
-        Password_input = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
+        Password_input = new javax.swing.JPasswordField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -54,9 +54,6 @@ public class LoginPage extends javax.swing.JFrame {
         Username_input.setBackground(new java.awt.Color(255, 255, 255));
         Username_input.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jPanel1.add(Username_input, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 220, 130, 30));
-
-        Password_input.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel1.add(Password_input, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 280, 130, 30));
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(242, 242, 242));
@@ -86,6 +83,11 @@ public class LoginPage extends javax.swing.JFrame {
 
         jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/LoginPic.png"))); // NOI18N
         jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 60, -1, -1));
+
+        Password_input.setBackground(new java.awt.Color(255, 255, 255));
+        Password_input.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        Password_input.setForeground(new java.awt.Color(0, 0, 0));
+        jPanel1.add(Password_input, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 280, 130, 30));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -234,7 +236,7 @@ public class LoginPage extends javax.swing.JFrame {
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton LoginBtn;
-    private javax.swing.JTextField Password_input;
+    private javax.swing.JPasswordField Password_input;
     private javax.swing.JTextField Username_input;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

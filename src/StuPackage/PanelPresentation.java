@@ -301,20 +301,20 @@ private String constructNewLine() {
 
     private boolean editMode = true;
     private void handleEditMode(boolean editMode) {
-    if (!editMode) {
-        // If currently in "Cancel" state, revert to "Edit" state
-        SubmitBtn.setVisible(false);
-        setComponentsVisible(false);
-        EditBtn.setText("Edit");
-        this.editMode = true;
-    } else {
-        // If currently in "Edit" state, switch to "Cancel" state
-        SubmitBtn.setVisible(true);
-        setComponentsVisible(true);
-        EditBtn.setText("Cancel");
-        this.editMode = false;
+        if (!editMode) {
+            // If currently in "Cancel" state, revert to "Edit" state
+            SubmitBtn.setVisible(false);
+            setComponentsVisible(false);
+            EditBtn.setText("Edit");
+            this.editMode = true;
+        } else {
+            // If currently in "Edit" state, switch to "Cancel" state
+            SubmitBtn.setVisible(true);
+            setComponentsVisible(true);
+            EditBtn.setText("Cancel");
+            this.editMode = false;
+        }
     }
-}
     private void EditBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EditBtnActionPerformed
         handleEditMode(editMode);
     }//GEN-LAST:event_EditBtnActionPerformed
