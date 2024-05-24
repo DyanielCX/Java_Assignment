@@ -469,7 +469,12 @@ public class Lecture_mainframe extends javax.swing.JFrame {
     
     /* Logout Button */
     private void lblLogoutMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblLogoutMouseClicked
-        //Back to the Login Page
+     Session.clearSession();
+
+        // Redirect to login page or close the current window
+        LoginPage loginPage = new LoginPage();
+        loginPage.setVisible(true);
+        this.dispose(); // Close the current window
     }//GEN-LAST:event_lblLogoutMouseClicked
 
     /**

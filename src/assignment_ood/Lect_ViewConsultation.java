@@ -4,6 +4,7 @@
  */
 package assignment_ood;
 
+import Java_Assignment.Session;
 import ProjManagerPackage.StuAssesElem.TableActionCellEditor_EditButton;
 import ProjManagerPackage.StuAssesElem.TableActionCellRender_EditButton;
 import java.io.BufferedReader;
@@ -22,6 +23,7 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumnModel;
 import assignment_ood.presentationReq;
 import ProjManagerPackage.StuAssesElem.TableActionEvent_EditButton;
+import javax.swing.JTable;
 /**
  *
  * @author User
@@ -34,11 +36,12 @@ private Lecture_mainframe lectmainframe;
     public Lect_ViewConsultation(Lecture_mainframe lectmainframe) {
          this.lectmainframe = lectmainframe;
         initComponents();
-        populatePresentationTable();
+        populateConsultationTable(ConsultTbl,Session.getUsername());
             
            ConsultTbl.getColumnModel().getColumn(6).setCellRenderer(new TableActionCellRender_EditButton());
         ConsultTbl.getColumnModel().getColumn(6).setCellEditor(new TableActionCellEditor_EditButton(event));
     }
+
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -80,52 +83,52 @@ private Lecture_mainframe lectmainframe;
  TableActionEvent_EditButton event = new TableActionEvent_EditButton() {
     @Override
     public void onEdit(int row) {
-        // Get the selected row
-         int selectedRow = ConsultTbl.convertRowIndexToModel(ConsultTbl.getSelectedRow());
-    if (selectedRow != -1) {
-            // Create a combo box with status options
-            String[] statusOptions = {"Pending", "Rejected", "Accepted"};
-            JComboBox<String> cbStatus = new JComboBox<>(statusOptions);
+      
+        
+        
+       
+        int modelRow = ConsultTbl.convertRowIndexToModel(row);
 
-            // Get the current status of the selected row
-            String currentStatus = (String) ConsultTbl.getValueAt(selectedRow, 3);
-            cbStatus.setSelectedItem(currentStatus); // Set the combo box to the current status
+        
+        String[] statusOptions = {"Pending", "Rejected", "Accepted"};
+        JComboBox<String> cbStatus = new JComboBox<>(statusOptions);
 
-            // Display a dialog with the combo box for editing status
-            int option = JOptionPane.showConfirmDialog(ConsultTbl, cbStatus, "Edit Status", JOptionPane.OK_CANCEL_OPTION);
-            if (option == JOptionPane.OK_OPTION) {
-                // Get the selected status from the combo box
-                String newStatus = (String) cbStatus.getSelectedItem();
-                // Update the status in the table
-                ConsultTbl.setValueAt(newStatus, selectedRow, 3);
-                
-                // Admin.updateStatusInFile(selectedRow, newStatus);
-                //Admin.updateStatusInFile(selectedRow, newStatus,reason);
-              
-            }
+        // Get the current status of the selected row
+        String currentStatus = (String) ConsultTbl.getValueAt(modelRow, 5);
+        cbStatus.setSelectedItem(currentStatus);
+
+        int option = JOptionPane.showConfirmDialog(ConsultTbl, cbStatus, "Edit Status", JOptionPane.OK_CANCEL_OPTION);
+        if (option == JOptionPane.OK_OPTION) {
+            // Get the selected status from the combo box
+            String newStatus = (String) cbStatus.getSelectedItem();
+            // Update the status in the table
+            ConsultTbl.setValueAt(newStatus, modelRow, 5);
+
+            // Update the status in the file
+            Admin.updateStatusInConsult(modelRow, newStatus);
         } else {
             JOptionPane.showMessageDialog(ConsultTbl, "Please select a row to edit.");
         }
     }
 };
-  public  void populatePresentationTable() {
+  public  void populateConsultationTable(JTable presentationTable,String supervisor) {
     DefaultTableModel model = (DefaultTableModel) ConsultTbl.getModel();
 
     // Clear existing rows in the table model
     model.setRowCount(0);
 
     // Read data from presentation_data.txt file
-    try (BufferedReader reader = new BufferedReader(new FileReader("PresentationData.txt"))) {
+    try (BufferedReader reader = new BufferedReader(new FileReader("ConsultationData.txt"))) {
         String line;
-        List<String[]> rows = new ArrayList<>(); // Store rows temporarily
-        while ((line = reader.readLine()) != null) {
-            String[] rowData = line.split(",");
-            rows.add(rowData); // Add rows to the list
-        }
+         while ((line = reader.readLine()) != null) {
+            
+            String[] parts = line.split(",");
 
-        // Add rows from the list to the model
-        for (String[] row : rows) {
-            model.addRow(row);
+            
+           if (parts.length >= 6 && parts[1].trim().equalsIgnoreCase(supervisor)) {
+
+    model.addRow(new Object[]{parts[0], parts[1], parts[2], parts[3],parts[4],parts[5]});
+}
         }
     } catch (IOException e) {
         e.printStackTrace();

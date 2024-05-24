@@ -56,9 +56,6 @@ private List<Lecturer> lecturers;
         btnViewConsult = new javax.swing.JPanel();
         jLabel6 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
-        RMCPbtn = new javax.swing.JPanel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setPreferredSize(new java.awt.Dimension(932, 530));
@@ -136,44 +133,6 @@ private List<Lecturer> lecturers;
                 .addGap(27, 27, 27))
         );
 
-        RMCPbtn.setBackground(new java.awt.Color(255, 51, 51));
-        RMCPbtn.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 10));
-        RMCPbtn.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                RMCPbtnMouseClicked(evt);
-            }
-        });
-
-        jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 32)); // NOI18N
-        jLabel2.setText("RMCP");
-
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/ProjMngAcc.png"))); // NOI18N
-
-        javax.swing.GroupLayout RMCPbtnLayout = new javax.swing.GroupLayout(RMCPbtn);
-        RMCPbtn.setLayout(RMCPbtnLayout);
-        RMCPbtnLayout.setHorizontalGroup(
-            RMCPbtnLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(RMCPbtnLayout.createSequentialGroup()
-                .addContainerGap(111, Short.MAX_VALUE)
-                .addGroup(RMCPbtnLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, RMCPbtnLayout.createSequentialGroup()
-                        .addComponent(jLabel2)
-                        .addGap(108, 108, 108))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, RMCPbtnLayout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addGap(135, 135, 135))))
-        );
-        RMCPbtnLayout.setVerticalGroup(
-            RMCPbtnLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, RMCPbtnLayout.createSequentialGroup()
-                .addContainerGap(85, Short.MAX_VALUE)
-                .addComponent(jLabel1)
-                .addGap(37, 37, 37)
-                .addComponent(jLabel2)
-                .addGap(16, 16, 16))
-        );
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -184,10 +143,6 @@ private List<Lecturer> lecturers;
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 137, Short.MAX_VALUE)
                 .addComponent(btnViewConsult, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(58, 58, 58))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(RMCPbtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(262, 262, 262))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -196,9 +151,7 @@ private List<Lecturer> lecturers;
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnViewPresent3, javax.swing.GroupLayout.PREFERRED_SIZE, 243, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnViewConsult, javax.swing.GroupLayout.PREFERRED_SIZE, 243, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(RMCPbtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addContainerGap(254, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -219,22 +172,10 @@ private List<Lecturer> lecturers;
         }
     }//GEN-LAST:event_btnViewConsultMouseClicked
 
-    private void RMCPbtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_RMCPbtnMouseClicked
-
-        if (lecturers != null && !RoleChecker.isProjectManager(Session.getUsername(), lecturers) && !RoleChecker.isSupervisor(Session.getUsername(), lecturers)) {
-            lectmainframe.changeTab(8); // Show RMCP table tab
-        } else {
-            JOptionPane.showMessageDialog(this, "Access denied. RMCP table is not available for project managers or supervisors.");
-        }
-    }//GEN-LAST:event_RMCPbtnMouseClicked
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JPanel RMCPbtn;
     private javax.swing.JPanel btnViewConsult;
     private javax.swing.JPanel btnViewPresent3;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;

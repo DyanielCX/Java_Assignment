@@ -239,6 +239,38 @@ public  void populateDashBoardTable(JTable AssignedStuTbl,String supervisor) {
     }
 
 }
+public static void updateStatusInConsult(int row, String newStatus) {
+    try {
+        // Read all lines from the file into a list
+        List<String> lines = new ArrayList<>();
+        BufferedReader reader = new BufferedReader(new FileReader("ConsultationData.txt"));
+        String line;
+        while ((line = reader.readLine()) != null) {
+            lines.add(line);
+        }
+        reader.close();
+
+        // Update the status in the corresponding line
+        if (row < lines.size()) {
+            String[] parts = lines.get(row).split(",");
+            if (parts.length >= 6) { // Ensure you have enough columns for status
+                parts[5] = newStatus; // Update status column
+                lines.set(row, String.join(",", parts)); // Join the parts back into a line
+            }
+        }
+
+        // Write the updated lines back to the file
+        BufferedWriter writer = new BufferedWriter(new FileWriter("ConsultationData.txt"));
+        for (String updatedLine : lines) {
+            writer.write(updatedLine);
+            writer.newLine();
+        }
+        writer.close();
+    } catch (IOException e) {
+        e.printStackTrace();
+        JOptionPane.showMessageDialog(null, "Error updating status in file.", "Error", JOptionPane.ERROR_MESSAGE);
+    }
+}
 public static List<Lecturer> readLectData(String filename) {
         List<Lecturer> lecturers = new ArrayList<>();
         try (BufferedReader reader = new BufferedReader(new FileReader("LecData.txt"))) {
