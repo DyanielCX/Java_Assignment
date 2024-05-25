@@ -2,16 +2,16 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
-package assignment_ood;
+package Lecturer_Package;
 import GUI_Template.*;
 import Java_Assignment.Session;
 import ProjManagerPackage.*;
 import StuPackage.StuData_IO;
 import java.awt.Color;
 import javax.swing.SwingUtilities;
-import assignment_ood.addLect;
-import assignment_ood.Admin;
-import assignment_ood.Lecturer;
+import AdminPackage.addLect;
+import Lecturer_Package.Admin;
+import Lecturer_Package.Lecturer;
 import java.util.List;
 import javax.swing.JOptionPane;
 /**

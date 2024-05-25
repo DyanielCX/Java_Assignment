@@ -1,4 +1,4 @@
-package assignment_ood;
+package Lecturer_Package;
 
 import java.awt.Color;
 import java.io.BufferedReader;
@@ -8,11 +8,12 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import javax.swing.JOptionPane;
 
-public class RMCP_GradingFrame extends javax.swing.JFrame {
- private Lecture_mainframe lectmainframe;
+public class SecondMarker_GradingFrame extends javax.swing.JFrame {
+
+    private Lecture_mainframe lectmainframe;
     private String studentId;
     
-    public RMCP_GradingFrame(Lecture_mainframe lectmainframe, String studentId) {
+    public SecondMarker_GradingFrame(Lecture_mainframe lectmainframe, String studentId) {
         this.lectmainframe = lectmainframe;
         this.studentId = studentId;
 
@@ -57,8 +58,7 @@ public class RMCP_GradingFrame extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Error reading Report data file.", "Error", JOptionPane.ERROR_MESSAGE);
         }
     }
-
-
+      
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -87,6 +87,8 @@ public class RMCP_GradingFrame extends javax.swing.JFrame {
         Back_lbl = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setLocationByPlatform(true);
+        setUndecorated(true);
 
         jPanel1.setBackground(new java.awt.Color(106, 212, 221));
 
@@ -236,10 +238,13 @@ public class RMCP_GradingFrame extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void StudentID_txtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_StudentID_txtActionPerformed
@@ -250,12 +255,8 @@ public class RMCP_GradingFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_Name_txtActionPerformed
 
-    private void Intake_txtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Intake_txtActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_Intake_txtActionPerformed
-
     private void btnDoneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDoneActionPerformed
-        // Show confirmation dialog
+      // Show confirmation dialog
         int response = JOptionPane.showConfirmDialog(this, "Are you done marking?", "Confirm", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
 
         if (response == JOptionPane.YES_OPTION) {
@@ -293,7 +294,12 @@ public class RMCP_GradingFrame extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(this, "Error updating grading status.", "Error", JOptionPane.ERROR_MESSAGE);
             }
         }
+
     }//GEN-LAST:event_btnDoneActionPerformed
+
+    private void Intake_txtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Intake_txtActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_Intake_txtActionPerformed
 
     private void Back_lblMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Back_lblMouseClicked
         // TODO add your handling code here:
@@ -306,13 +312,13 @@ public class RMCP_GradingFrame extends javax.swing.JFrame {
         fr.setVisible(true);
 
         // Switch to the appropriate tab
-        fr.RMCP_ViewReport(fr);
+        fr.SecondMarker_ViewReport(fr);
         int tabIndex = fr.TabPanel.getTabCount() - 1;
         fr.changeTab(tabIndex);
         
         fr.DashboardPane.setBackground(new Color(122, 162, 227));
         fr.ViewReportPane.setBackground(new Color(106, 212, 221));
-        fr.PanelTitle.setText("View RMCP Report");
+        fr.PanelTitle.setText("View Second Marker Report");
        }
     
     public static void main(String args[]) {
@@ -329,17 +335,18 @@ public class RMCP_GradingFrame extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(RMCP_GradingFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(SecondMarker_GradingFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(RMCP_GradingFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(SecondMarker_GradingFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(RMCP_GradingFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(SecondMarker_GradingFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(RMCP_GradingFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(SecondMarker_GradingFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
         //</editor-fold>
 
+       
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

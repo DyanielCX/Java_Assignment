@@ -1,4 +1,4 @@
-package assignment_ood;
+package Lecturer_Package;
 
 import java.util.List;
 import javax.swing.JOptionPane;

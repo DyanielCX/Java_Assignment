@@ -1,4 +1,4 @@
-package assignment_ood;
+package Lecturer_Package;
 
 public class Lect_ViewReport extends javax.swing.JPanel {
 

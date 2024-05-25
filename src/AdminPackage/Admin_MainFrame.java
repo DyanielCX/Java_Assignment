@@ -3,7 +3,7 @@ package AdminPackage;
 import Java_Assignment.LoginPage;
 import ProjManagerPackage.AssignSupvElem.LectData_IO;
 import StuPackage.StuData_IO;
-import assignment_ood.lect_Panal;
+import Lecturer_Package.lect_Panal;
 import java.awt.Color;
 
 

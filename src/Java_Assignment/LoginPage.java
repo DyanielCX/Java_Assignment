@@ -9,7 +9,7 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import javax.swing.JOptionPane;
-import assignment_ood.Lecture_mainframe;
+import Lecturer_Package.Lecture_mainframe;
 public class LoginPage extends javax.swing.JFrame {
     private String UsernameInput; // Declare as an instance variable
     private String PasswordInput; // Declare as an instance variable
