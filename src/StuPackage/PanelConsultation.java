@@ -136,7 +136,7 @@ public class PanelConsultation extends javax.swing.JPanel {
     }
 
      private void setEditVisible(boolean visible) {
-        Component[] components = {LecChoose,ObjChoose,DateChoose,HourChoose,MinuteChoose,MeridiemChoose};
+        Component[] components = {LecChoose,ObjChoose,DateChoose,HourChoose,MinuteChoose,MeridiemChoose,SubLogo};
         for (Component component : components) {
             component.setVisible(visible);
         }
@@ -167,8 +167,9 @@ public class PanelConsultation extends javax.swing.JPanel {
         SaveBtn = new javax.swing.JToggleButton();
         ObjChoose = new javax.swing.JTextField();
         Obj = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
+        EditLogo = new javax.swing.JLabel();
+        SubLogo = new javax.swing.JLabel();
+        BackBtn = new javax.swing.JLabel();
         ConStatus = new javax.swing.JLabel();
         ReqBtn = new javax.swing.JButton();
         jLabel12 = new javax.swing.JLabel();
@@ -268,11 +269,19 @@ public class PanelConsultation extends javax.swing.JPanel {
         Obj.setAutoscrolls(true);
         EditPanel.add(Obj, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 250, 250, 40));
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/requestCon.png"))); // NOI18N
-        EditPanel.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 220, -1, -1));
+        EditLogo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/requestCon.png"))); // NOI18N
+        EditPanel.add(EditLogo, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 220, -1, -1));
 
-        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/submit.png"))); // NOI18N
-        EditPanel.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 300, -1, -1));
+        SubLogo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/submit.png"))); // NOI18N
+        EditPanel.add(SubLogo, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 300, -1, -1));
+
+        BackBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/Back.png"))); // NOI18N
+        BackBtn.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                BackBtnMouseClicked(evt);
+            }
+        });
+        EditPanel.add(BackBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 40, -1, -1));
 
         jPanel4.add(EditPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 770, 420));
 
@@ -405,6 +414,10 @@ public class PanelConsultation extends javax.swing.JPanel {
                     MinuteChoose.setValue(55);
                 }
     }//GEN-LAST:event_MinuteChooseStateChanged
+
+    private void BackBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BackBtnMouseClicked
+        EditPanel.setVisible(false);
+    }//GEN-LAST:event_BackBtnMouseClicked
     private boolean checkUsernameInFile() {
         try (BufferedReader br = new BufferedReader(new FileReader("PresentationData.txt"))) {
             String line;
@@ -423,10 +436,12 @@ public class PanelConsultation extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton AddEditBtn;
+    private javax.swing.JLabel BackBtn;
     private javax.swing.JLabel ConStatus;
     private javax.swing.JLabel ConStatus2;
     private javax.swing.JLabel Date;
     private com.toedter.calendar.JDateChooser DateChoose;
+    private javax.swing.JLabel EditLogo;
     private javax.swing.JPanel EditPanel;
     private javax.swing.JSpinner HourChoose;
     private javax.swing.JLabel Lec;
@@ -437,14 +452,13 @@ public class PanelConsultation extends javax.swing.JPanel {
     private javax.swing.JTextField ObjChoose;
     private javax.swing.JButton ReqBtn;
     private javax.swing.JToggleButton SaveBtn;
+    private javax.swing.JLabel SubLogo;
     private javax.swing.JLabel Time;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel4;
     // End of variables declaration//GEN-END:variables
