@@ -11,6 +11,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import javax.swing.JOptionPane;
 import javax.swing.SpinnerNumberModel;
 
 public class PanelConsultation extends javax.swing.JPanel {
@@ -335,9 +336,52 @@ public class PanelConsultation extends javax.swing.JPanel {
     }//GEN-LAST:event_AddEditBtnActionPerformed
 
     private void SaveBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SaveBtnActionPerformed
-        writeDataToFile();
-        handleEditMode(false);
-        readConsultationFile("ConsultationData.txt");
+         // Check if the JSpinners and JDateChooser have valid values
+        int hourValue = (int) HourChoose.getValue();
+        Date selectedDate = DateChoose.getDate();
+        String objText = ObjChoose.getText();
+        boolean allValid = hourValue != 0 && selectedDate != null && selectedDate.after(new Date()) && objText != null && !objText.trim().isEmpty() && objText.length() <= 30;
+
+        if (!allValid) {
+            String errorMessage = "";
+
+            if (hourValue == 0) {
+                errorMessage += "Please select a valid hour.\n";
+            }
+            if (selectedDate == null || !selectedDate.after(new Date())) {
+                errorMessage += "Please select a valid date.\n";
+            }
+            if (objText == null || objText.trim().isEmpty()) {
+                errorMessage += "Objective cannot be empty.\n";
+            }
+            if (objText.length() > 30) {
+                errorMessage += "Objective cannot be longer than 30 characters.\n";
+            }
+
+            JOptionPane.showMessageDialog(null, errorMessage, "Validation Error", JOptionPane.ERROR_MESSAGE);
+            return; // Exit the method if any of the values are invalid
+        }
+
+        // Check if the username exists in the file
+        boolean usernameFound = checkUsernameInFile();
+
+        // Display confirmation dialog based on whether the username is found
+        int confirmOption;
+        if (usernameFound) {
+            confirmOption = JOptionPane.showConfirmDialog(null, "A presentation already exists for this username. Do you want to update it?", "Confirmation", JOptionPane.YES_NO_OPTION);
+        } else {
+            confirmOption = JOptionPane.showConfirmDialog(null, "No presentation found for this username. Do you want to request a presentation?", "Confirmation", JOptionPane.YES_NO_OPTION);
+        }
+
+        if (confirmOption == JOptionPane.YES_OPTION) {
+            // Proceed with writing data to file
+            writeDataToFile();
+             readConsultationFile("ConsultationData.txt");
+            handleEditMode(false);
+            JOptionPane.showMessageDialog(null, "Request has been sent successfully", "Success", JOptionPane.INFORMATION_MESSAGE);
+        } else {
+            handleEditMode(true);
+        }
     }//GEN-LAST:event_SaveBtnActionPerformed
 
     private void HourChooseStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_HourChooseStateChanged
