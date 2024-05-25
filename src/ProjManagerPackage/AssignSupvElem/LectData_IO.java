@@ -1,6 +1,6 @@
 package ProjManagerPackage.AssignSupvElem;
 
-import assignment_ood.Lecturer;
+import Lecturer_Package.Lecturer;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.PrintWriter;

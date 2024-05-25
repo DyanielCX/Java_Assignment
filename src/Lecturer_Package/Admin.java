@@ -1,4 +1,4 @@
-package assignment_ood;
+package Lecturer_Package;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -7,11 +7,11 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.table.DefaultTableModel;
-import assignment_ood.addLect;
+import AdminPackage.addLect;
 import java.io.BufferedWriter;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
-import assignment_ood.presentationReq;
+import Lecturer_Package.presentationReq;
 import java.util.Arrays;
 public class Admin extends javax.swing.JFrame {
     private javax.swing.JPanel AdminPane;

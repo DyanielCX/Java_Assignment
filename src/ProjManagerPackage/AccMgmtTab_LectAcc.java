@@ -6,7 +6,7 @@ import ProjManagerPackage.AccMgmtElem.TableHeader_AccTbl;
 import ProjManagerPackage.AssignSupvElem.LectData_IO;
 import ProjManagerPackage.StuAssesElem.ModernScrollBarUI;
 import ProjManagerPackage.StuAssesElem.TableActionCellEditor_EditButton;
-import assignment_ood.Lecturer;
+import Lecturer_Package.Lecturer;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;

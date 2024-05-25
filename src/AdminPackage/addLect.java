@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package assignment_ood;
+package AdminPackage;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.io.BufferedReader;
@@ -11,6 +11,8 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.awt.BorderLayout;
 import AdminPackage.Admin_MainFrame;
+import Lecturer_Package.Admin;
+import Lecturer_Package.Lecturer;
 /**
  *
  * @author User

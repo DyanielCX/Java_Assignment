@@ -1,4 +1,4 @@
-package assignment_ood;
+package Lecturer_Package;
 
 import java.awt.Color;
 import java.io.BufferedReader;
@@ -8,12 +8,11 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import javax.swing.JOptionPane;
 
-public class Supervisor_GradingFrame extends javax.swing.JFrame {
-    
-    private Lecture_mainframe lectmainframe;
+public class RMCP_GradingFrame extends javax.swing.JFrame {
+ private Lecture_mainframe lectmainframe;
     private String studentId;
-
-    public Supervisor_GradingFrame(Lecture_mainframe lectmainframe, String studentId) {
+    
+    public RMCP_GradingFrame(Lecture_mainframe lectmainframe, String studentId) {
         this.lectmainframe = lectmainframe;
         this.studentId = studentId;
 
@@ -58,6 +57,7 @@ public class Supervisor_GradingFrame extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Error reading Report data file.", "Error", JOptionPane.ERROR_MESSAGE);
         }
     }
+
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -120,6 +120,7 @@ public class Supervisor_GradingFrame extends javax.swing.JFrame {
         jLabel7.setText("Feedback");
         jPanel2.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(26, 199, -1, -1));
 
+        Feedback_txt.setEditable(false);
         Feedback_txt.setColumns(20);
         Feedback_txt.setForeground(new java.awt.Color(153, 153, 153));
         Feedback_txt.setRows(5);
@@ -224,7 +225,7 @@ public class Supervisor_GradingFrame extends javax.swing.JFrame {
                 .addComponent(Back_lbl)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 359, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(30, Short.MAX_VALUE))
+                .addContainerGap(39, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -239,7 +240,6 @@ public class Supervisor_GradingFrame extends javax.swing.JFrame {
         );
 
         pack();
-        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void StudentID_txtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_StudentID_txtActionPerformed
@@ -255,8 +255,6 @@ public class Supervisor_GradingFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_Intake_txtActionPerformed
 
     private void btnDoneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDoneActionPerformed
-        String assessmentType = Assessment_txt.getText().trim();
-    
         // Show confirmation dialog
         int response = JOptionPane.showConfirmDialog(this, "Are you done marking?", "Confirm", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
 
@@ -270,18 +268,12 @@ public class Supervisor_GradingFrame extends javax.swing.JFrame {
                     String[] reportParts = reportLine.split(",");
                     if (reportParts[0].trim().equals(studentId)) {
                         String currentStatus = reportParts[3].trim();
-                        if (assessmentType.equals("Intern")) {
-                            reportParts[3] = "Graded"; // Update status to Graded for Intern
-                            reportParts[8] = Feedback_txt.getText().trim();
-                        } else if (assessmentType.equals("Investigation Report") || assessmentType.equals("CP1") ||
-                                   assessmentType.equals("CP2") || assessmentType.equals("FYP")) {
-                            if (currentStatus.equals("Not Graded")) {
-                                reportParts[3] = "Half Graded"; // Update status to Half Graded
-                            } else if (currentStatus.equals("Half Graded")) {
-                                reportParts[3] = "Graded"; // Update status to Graded
-                            }
-                            reportParts[8] = Feedback_txt.getText().trim(); // Update feedback
+                        if (currentStatus.equals("Not Graded")) {
+                            reportParts[3] = "Half Graded"; // Update status to Half Graded
+                        } else if (currentStatus.equals("Half Graded")) {
+                            reportParts[3] = "Graded"; // Update status to Graded
                         }
+                        // If the status is "Graded", it remains unchanged
                         reportContent.append(String.join(",", reportParts)).append("\n");
                     } else {
                         reportContent.append(reportLine).append("\n");
@@ -310,17 +302,17 @@ public class Supervisor_GradingFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_Back_lblMouseClicked
 
     public void backMainFrame(){
-        Lecture_mainframe fr = new Lecture_mainframe();
+         Lecture_mainframe fr = new Lecture_mainframe();
         fr.setVisible(true);
 
         // Switch to the appropriate tab
-        fr.Supervisor_ViewReport(fr);
+        fr.RMCP_ViewReport(fr);
         int tabIndex = fr.TabPanel.getTabCount() - 1;
         fr.changeTab(tabIndex);
         
         fr.DashboardPane.setBackground(new Color(122, 162, 227));
         fr.ViewReportPane.setBackground(new Color(106, 212, 221));
-        fr.PanelTitle.setText("View Supervisor Report");
+        fr.PanelTitle.setText("View RMCP Report");
        }
     
     public static void main(String args[]) {
@@ -337,16 +329,14 @@ public class Supervisor_GradingFrame extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Supervisor_GradingFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(RMCP_GradingFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Supervisor_GradingFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(RMCP_GradingFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Supervisor_GradingFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(RMCP_GradingFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Supervisor_GradingFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(RMCP_GradingFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        //</editor-fold>
-        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
 

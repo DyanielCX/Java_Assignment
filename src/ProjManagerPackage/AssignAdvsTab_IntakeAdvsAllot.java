@@ -5,7 +5,7 @@ import ProjManagerPackage.AssignSupvElem.LectData_IO;
 import ProjManagerPackage.StuAssesElem.IntakeBasedMethod;
 import StuPackage.StuData_IO;
 import StuPackage.Student;
-import assignment_ood.Lecturer;
+import Lecturer_Package.Lecturer;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 

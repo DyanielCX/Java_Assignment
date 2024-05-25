@@ -1,4 +1,4 @@
-package assignment_ood;
+package Lecturer_Package;
 
 import Java_Assignment.Session;
 import ProjManagerPackage.AccMgmtElem.TableHeader_AccTbl;

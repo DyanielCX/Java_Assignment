@@ -2,8 +2,9 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
-package assignment_ood;
+package Lecturer_Package;
 
+import AdminPackage.addLect;
 import ProjManagerPackage.StuAssesElem.ModernScrollBarUI;
 import ProjManagerPackage.StuAssesElem.TableActionCellEditor_EditButton;
 import ProjManagerPackage.StuAssesElem.TableActionCellRender_EditButton;
@@ -26,7 +27,7 @@ import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
-import assignment_ood.Admin;
+import Lecturer_Package.Admin;
 import ProjManagerPackage.StuAssesElem.TableActionEvent_EditButton;
 import AdminPackage.Admin_MainFrame;
 /**

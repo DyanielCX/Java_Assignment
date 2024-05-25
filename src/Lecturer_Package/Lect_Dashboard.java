@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
-package assignment_ood;
+package Lecturer_Package;
 import Java_Assignment.Session;
 import ProjManagerPackage.Dashboard;
 import ProjManagerPackage.DashboardElem.TableHeader_Dashboard;
@@ -16,7 +16,7 @@ import java.util.List;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumnModel;
-import assignment_ood.presentationReq;
+import Lecturer_Package.presentationReq;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;

@@ -1,4 +1,4 @@
-package assignment_ood;
+package Lecturer_Package;
 
 
 import StuPackage.StuData_IO;

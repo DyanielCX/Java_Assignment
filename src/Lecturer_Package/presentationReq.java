@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
-package assignment_ood;
+package Lecturer_Package;
 
 import Java_Assignment.Session;
 import ProjManagerPackage.StuAssesElem.TableActionCellEditor_EditButton;
