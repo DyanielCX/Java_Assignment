@@ -11,15 +11,20 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import javax.swing.SpinnerNumberModel;
 
 public class PanelConsultation extends javax.swing.JPanel {
     private String username; // Declare as an instance variable
     private String password;
     
     public PanelConsultation(String username, String password) {
+        initComponents();
         this.username = username; // Assign the parameter value to the instance variable
         this.password = password; 
-        initComponents();
+        // initiate 0, min 1, max 12 , step size 1
+         HourChoose.setModel(new SpinnerNumberModel(0, -1, 13, 1));
+        // initiate 0, min 1, max 59 , step size 5
+        MinuteChoose.setModel(new SpinnerNumberModel(0, -5, 60, 5));
         
         setEditVisible(false);
         EditPanel.setVisible(false);
@@ -195,7 +200,19 @@ public class PanelConsultation extends javax.swing.JPanel {
 
         Date.setText("- ");
         EditPanel.add(Date, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 150, 80, -1));
+
+        HourChoose.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                HourChooseStateChanged(evt);
+            }
+        });
         EditPanel.add(HourChoose, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 250, 50, -1));
+
+        MinuteChoose.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                MinuteChooseStateChanged(evt);
+            }
+        });
         EditPanel.add(MinuteChoose, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 250, 50, -1));
 
         MeridiemChoose.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "am", "pm" }));
@@ -322,7 +339,43 @@ public class PanelConsultation extends javax.swing.JPanel {
         handleEditMode(false);
         readConsultationFile("ConsultationData.txt");
     }//GEN-LAST:event_SaveBtnActionPerformed
-    
+
+    private void HourChooseStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_HourChooseStateChanged
+        int value = (int) HourChoose.getValue();
+                if (value == 13) {
+                    // If the spinner value is 12, reset it to 1
+                    HourChoose.setValue(1);
+                }else if(value == 0 || value == -1) {
+                    // If the spinner value is 0, reset it to 12
+                    HourChoose.setValue(12);
+                }
+    }//GEN-LAST:event_HourChooseStateChanged
+
+    private void MinuteChooseStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_MinuteChooseStateChanged
+         int value = (int) MinuteChoose.getValue();
+                if (value == 60) {
+                    // If the spinner value is 60, reset it to 0
+                    MinuteChoose.setValue(0);
+                }else if(value == -5) {
+                    // If the spinner value is -5 , reset it to 55
+                    MinuteChoose.setValue(55);
+                }
+    }//GEN-LAST:event_MinuteChooseStateChanged
+    private boolean checkUsernameInFile() {
+        try (BufferedReader br = new BufferedReader(new FileReader("PresentationData.txt"))) {
+            String line;
+            while ((line = br.readLine()) != null) {
+                String[] parts = line.split(",");
+                if (parts.length > 0 && parts[0].trim().equals(username)) {
+                    return true; // Username found in the file
+                }
+            }
+        } catch (IOException e) {
+            System.err.println("Error reading the file: " + e.getMessage());
+        }
+        return false; // Username not found in the file
+    }
+        
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton AddEditBtn;
