@@ -287,7 +287,7 @@ public class PanelConsultation extends javax.swing.JPanel {
 
         ConStatus.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         ConStatus.setText("Consultation Status");
-        jPanel4.add(ConStatus, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 180, -1, -1));
+        jPanel4.add(ConStatus, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 180, -1, -1));
 
         ReqBtn.setBackground(new java.awt.Color(0, 102, 153));
         ReqBtn.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
@@ -299,7 +299,7 @@ public class PanelConsultation extends javax.swing.JPanel {
                 ReqBtnActionPerformed(evt);
             }
         });
-        jPanel4.add(ReqBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 230, 130, 30));
+        jPanel4.add(ReqBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 230, 130, 30));
 
         jLabel12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/consultation.png"))); // NOI18N
         jLabel12.setText("jLabel12");
@@ -313,7 +313,7 @@ public class PanelConsultation extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(27, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
