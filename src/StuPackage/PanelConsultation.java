@@ -192,10 +192,10 @@ public class PanelConsultation extends javax.swing.JPanel {
         EditPanel.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 120, -1, -1));
 
         LecChoose.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { }));
-        EditPanel.add(LecChoose, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 160, 120, 30));
+        EditPanel.add(LecChoose, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 170, 120, 30));
 
         Lec.setText("Lecturer");
-        EditPanel.add(Lec, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 140, -1, -1));
+        EditPanel.add(Lec, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 150, -1, -1));
 
         Time.setText("-");
         EditPanel.add(Time, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 220, 80, -1));
@@ -236,7 +236,7 @@ public class PanelConsultation extends javax.swing.JPanel {
 
         jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel5.setText("Consultation Objective");
-        EditPanel.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 230, -1, -1));
+        EditPanel.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 220, -1, -1));
 
         AddEditBtn.setBackground(new java.awt.Color(102, 102, 255));
         AddEditBtn.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
@@ -261,13 +261,11 @@ public class PanelConsultation extends javax.swing.JPanel {
             }
         });
         EditPanel.add(SaveBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 340, 60, 30));
-
-        ObjChoose.setText("jTextField1");
-        EditPanel.add(ObjChoose, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 290, 130, 30));
+        EditPanel.add(ObjChoose, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 280, 220, 30));
 
         Obj.setText("- ");
         Obj.setAutoscrolls(true);
-        EditPanel.add(Obj, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 250, 250, 40));
+        EditPanel.add(Obj, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 240, 250, 40));
 
         EditLogo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/requestCon.png"))); // NOI18N
         EditPanel.add(EditLogo, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 220, -1, -1));
@@ -331,7 +329,7 @@ public class PanelConsultation extends javax.swing.JPanel {
         if (!editMode) {
             SaveBtn.setVisible(false);
             setEditVisible(false);
-            AddEditBtn.setText("Add");
+            AddEditBtn.setText("Edit");
             this.editMode = true;
         } else {
             SaveBtn.setVisible(true);
@@ -377,9 +375,9 @@ public class PanelConsultation extends javax.swing.JPanel {
         // Display confirmation dialog based on whether the username is found
         int confirmOption;
         if (usernameFound) {
-            confirmOption = JOptionPane.showConfirmDialog(null, "A presentation already exists for this username. Do you want to update it?", "Confirmation", JOptionPane.YES_NO_OPTION);
+            confirmOption = JOptionPane.showConfirmDialog(null, "A consultation already exists for this username. Do you want to update it?", "Confirmation", JOptionPane.YES_NO_OPTION);
         } else {
-            confirmOption = JOptionPane.showConfirmDialog(null, "No presentation found for this username. Do you want to request a presentation?", "Confirmation", JOptionPane.YES_NO_OPTION);
+            confirmOption = JOptionPane.showConfirmDialog(null, "No consultation found for this username. Do you want to request a consultation?", "Confirmation", JOptionPane.YES_NO_OPTION);
         }
 
         if (confirmOption == JOptionPane.YES_OPTION) {
@@ -419,7 +417,7 @@ public class PanelConsultation extends javax.swing.JPanel {
         EditPanel.setVisible(false);
     }//GEN-LAST:event_BackBtnMouseClicked
     private boolean checkUsernameInFile() {
-        try (BufferedReader br = new BufferedReader(new FileReader("PresentationData.txt"))) {
+        try (BufferedReader br = new BufferedReader(new FileReader("ConsultationData.txt"))) {
             String line;
             while ((line = br.readLine()) != null) {
                 String[] parts = line.split(",");
