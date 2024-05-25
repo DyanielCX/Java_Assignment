@@ -305,7 +305,7 @@ public class Admin_MainFrame extends javax.swing.JFrame {
      * @param args the command line arguments
      */
     
-    //Change panel tab method
+   //Change panel tab method
     public static void changedTab(int TabIndex){
         TabPanel.setSelectedIndex(TabIndex);
     }
@@ -313,6 +313,11 @@ public class Admin_MainFrame extends javax.swing.JFrame {
     //Create new temperory panel tab - AssignAdvsTab_IntakeList
     public static void updateIntakeMgmtPane(Admin_MainFrame mainFrame){
         Admin_IntakeMgmtPane lastTab = new Admin_IntakeMgmtPane(mainFrame);
+        TabPanel.addTab("IntakeListtab", lastTab);
+    }
+    
+    public static void Admin_StudentManagement(Admin_MainFrame mainFrame){
+        Admin_StudentManagement lastTab = new Admin_StudentManagement(mainFrame);
         TabPanel.addTab("IntakeListtab", lastTab);
     }
     

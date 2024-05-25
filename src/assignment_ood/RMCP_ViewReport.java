@@ -3,6 +3,9 @@ package assignment_ood;
 import Java_Assignment.Session;
 import ProjManagerPackage.AccMgmtElem.TableHeader_AccTbl;
 import ProjManagerPackage.StuAssesElem.ModernScrollBarUI;
+import ProjManagerPackage.StuAssesElem.TableActionCellEditor_EditButton;
+import ProjManagerPackage.StuAssesElem.TableActionCellRender_EditButton;
+import ProjManagerPackage.StuAssesElem.TableActionEvent_EditButton;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
@@ -26,7 +29,7 @@ public class RMCP_ViewReport extends javax.swing.JPanel {
     private String UserName; 
 
     public RMCP_ViewReport(Lecture_mainframe mainFrame) {
-        this.lectmainframe = lectmainframe;
+        this.lectmainframe = mainFrame;
         this.UserName = Session.getUsername();
         initComponents();
         
@@ -44,8 +47,31 @@ public class RMCP_ViewReport extends javax.swing.JPanel {
             }
         });
         populateTable();
-        RMCP_Report_Table.setRowHeight(40);
+      
+        RMCP_Report_Table.getColumnModel().getColumn(7).setCellRenderer(new TableActionCellRender_EditButton());
+        RMCP_Report_Table.getColumnModel().getColumn(7).setCellEditor(new TableActionCellEditor_EditButton(event));       
     }
+    
+    TableActionEvent_EditButton event = new TableActionEvent_EditButton() {
+        @Override
+        public void onEdit(int row) {
+            // Get the student ID from the table model
+            String studentId = (String) RMCP_Report_Table.getValueAt(row, 0);
+
+            // Check the grading status and submit status
+            String gradingStatus = (String) RMCP_Report_Table.getValueAt(row, 3);
+            String submitStatus = (String) RMCP_Report_Table.getValueAt(row, 2);
+
+            if (!submitStatus.equals("No Attempt") && !gradingStatus.equals("Not Graded")) {
+                JOptionPane.showMessageDialog(RMCP_ViewReport.this, "This report has not been attempted and not graded.", "Info", JOptionPane.INFORMATION_MESSAGE);
+            } else {
+                // Create and show the SecondMarker_GradingFrame
+                SecondMarker_GradingFrame gradingFrame = new SecondMarker_GradingFrame(lectmainframe, studentId);
+                gradingFrame.setVisible(true);
+                lectmainframe.setVisible(false); // Hide the main frame
+            }
+        }
+    };
     
     public void populateTable() {
         DefaultTableModel model = (DefaultTableModel) RMCP_Report_Table.getModel();
@@ -84,17 +110,11 @@ public class RMCP_ViewReport extends javax.swing.JPanel {
                     model.addRow(new Object[]{
                         stuParts[0].trim(),  // Student ID
                         stuParts[2].trim(),  // Name
-                        stuParts[3].trim(),  // Age
                         stuParts[4].trim(),  // Intake
                         stuParts[5].trim(),  // Assessment
-                        
+                        reportParts[4].trim(),  // Submission Due Date
                         reportParts[2].trim(),  // Submit Status
                         reportParts[3].trim(),  // Grading Status
-                        reportParts[4].trim(),  // Submission Due Date
-                        reportParts[5].trim(),  // Submission Due Time
-                        reportParts[6].trim(),  // Submission Date
-                        reportParts[7].trim(),  // Submission Link
-                        reportParts[8].trim()   // Submission Feedback
                     });
                 }
             }
@@ -104,9 +124,9 @@ public class RMCP_ViewReport extends javax.swing.JPanel {
         }
     }
     
-    public void fixTable (JScrollPane scroll){
+    public void fixTable(JScrollPane scroll) {
         scroll.getViewport().setBackground(Color.WHITE);
-        
+
         JScrollBar verticalScrollBar = scroll.getVerticalScrollBar();
         verticalScrollBar.setUI(new ModernScrollBarUI());
 
@@ -115,7 +135,7 @@ public class RMCP_ViewReport extends javax.swing.JPanel {
         verticalScrollBar.setForeground(new Color(71, 105, 231, 178));
         verticalScrollBar.setUnitIncrement(20);
         verticalScrollBar.setOpaque(false);
-        
+
         JPanel p = new JPanel();
         p.setBackground(Color.WHITE);
         scroll.setCorner(JScrollPane.UPPER_RIGHT_CORNER, p);
@@ -134,15 +154,24 @@ public class RMCP_ViewReport extends javax.swing.JPanel {
 
         RMCP_Report_Table.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null}
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "Student ID", "Name", "Age", "Intake", "Assessment", "Submit Status", "Grading Status", "Submission Due Date", "Submission Due Time", "Submission Date", "Link", "Feedback"
+                "ID", "Name", "Intake", "Assessment", "Due Date", "Submission", "Grading", "Action"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false, false, true
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        RMCP_Report_Table.setRowHeight(40);
         jScrollPane1.setViewportView(RMCP_Report_Table);
 
         add(jScrollPane1);

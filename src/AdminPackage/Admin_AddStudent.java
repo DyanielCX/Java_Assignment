@@ -5,20 +5,26 @@ package AdminPackage;
 import StuPackage.StuData_IO;
 import StuPackage.Student;
 import java.awt.Color;
+import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashSet;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 
 public class Admin_AddStudent extends javax.swing.JFrame {
 
     // ArrayList to store student details
     private ArrayList<String> studentList = new ArrayList<>();
+    private HashSet<String> intakeSet = new HashSet<>(); 
     
     
     public Admin_AddStudent() {
         initComponents();
+        populateStudentIntakeComboBox();
     }
 
     @SuppressWarnings("unchecked")
@@ -123,6 +129,9 @@ public class Admin_AddStudent extends javax.swing.JFrame {
             }
         });
 
+        AddBtn.setBackground(new java.awt.Color(255, 148, 148));
+        AddBtn.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        AddBtn.setForeground(new java.awt.Color(255, 255, 255));
         AddBtn.setText("Add Student");
         AddBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -140,9 +149,6 @@ public class Admin_AddStudent extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(218, 218, 218)
-                        .addComponent(AddBtn))
-                    .addGroup(layout.createSequentialGroup()
                         .addGap(129, 129, 129)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -152,7 +158,10 @@ public class Admin_AddStudent extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(StudentName_textfield)
                             .addComponent(StudentAge_textfield)
-                            .addComponent(StudentIntake_cmb, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(StudentIntake_cmb, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(201, 201, 201)
+                        .addComponent(AddBtn)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -171,9 +180,9 @@ public class Admin_AddStudent extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
                     .addComponent(StudentIntake_cmb, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(98, 98, 98)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 88, Short.MAX_VALUE)
                 .addComponent(AddBtn)
-                .addContainerGap(47, Short.MAX_VALUE))
+                .addGap(53, 53, 53))
         );
 
         pack();
@@ -227,6 +236,24 @@ public class Admin_AddStudent extends javax.swing.JFrame {
 
         // Clear input fields for adding a new student
         clearInputFields();
+    }
+    
+    private void loadIntakeRecords() {
+        try (BufferedReader br = new BufferedReader(new FileReader("IntakeRecord.txt"))) {
+            String line;
+            while ((line = br.readLine()) != null) {
+                String[] fields = line.split(","); // Assuming comma-separated values
+                if (fields.length > 0) {
+                    String intake = fields[0].trim();
+                    if (!intake.isEmpty() && !intakeSet.contains(intake)) {
+                        intakeSet.add(intake);
+                        StudentIntake_cmb.addItem(intake);
+                    }
+                }
+            }
+        } catch (IOException e) {
+            JOptionPane.showMessageDialog(this, "Error loading intake records.", "Error", JOptionPane.ERROR_MESSAGE);
+        }
     }
     
     private void writeToReportData(String studentID) {
@@ -287,9 +314,25 @@ public class Admin_AddStudent extends javax.swing.JFrame {
     }//GEN-LAST:event_Back_lblMouseClicked
 
     private void StudentIntake_cmbActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_StudentIntake_cmbActionPerformed
-        // TODO add your handling code here:
+
     }//GEN-LAST:event_StudentIntake_cmbActionPerformed
 
+    private void populateStudentIntakeComboBox() {
+        try (BufferedReader br = new BufferedReader(new FileReader("IntakeRecord.txt"))) {
+            String line;
+            DefaultComboBoxModel<String> model = new DefaultComboBoxModel<>();
+            while ((line = br.readLine()) != null) {
+                String[] columns = line.split(","); // assuming CSV format
+                if (columns.length > 0) {
+                    model.addElement(columns[0]); // add the first column (Intake) to the model
+                }
+            }
+            StudentIntake_cmb.setModel(model);
+        } catch (IOException e) {
+            JOptionPane.showMessageDialog(this, "Error reading IntakeRecord.txt", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+    
     private void clearInputFields() {
         // Clear input fields and set placeholders
         StudentName_textfield.setText("");
@@ -303,14 +346,19 @@ public class Admin_AddStudent extends javax.swing.JFrame {
         // You may add similar code to clear other input fields if needed
     }
     
-    public void backMainFrame(){
+     public void backMainFrame(){
         Admin_MainFrame fr = new Admin_MainFrame();
         fr.setVisible(true);
         
         // Switch to allot intake advisors tab
-        fr.updateIntakeMgmtPane(fr);
+        fr.Admin_StudentManagement(fr);
         int tabIndex = fr.TabPanel.getTabCount()-1;
         fr.changedTab(tabIndex);
+        
+        fr.IntakeMgmtPane.setBackground(new Color(255, 148, 148));
+        fr.StuMgmtPane.setBackground(new Color(252, 188, 188));
+        fr.LectMgmtPane.setBackground(new Color(255, 148, 148));
+        fr.PanelTitle.setText("Student Management");
     }
     
     public static void main(String[] args) {

@@ -54,28 +54,52 @@ public class SecondMarker_ViewReport extends javax.swing.JPanel {
         
     }
     
-    
-    
+     
     TableActionEvent_EditButton event = new TableActionEvent_EditButton() {
         @Override
         public void onEdit(int row) {
-            // Get the student ID from the table model
             String studentId = (String) SecondMarker_Report_Table.getValueAt(row, 0);
-
-            // Check the grading status and submit status
             String gradingStatus = (String) SecondMarker_Report_Table.getValueAt(row, 6);
             String submitStatus = (String) SecondMarker_Report_Table.getValueAt(row, 5);
 
-            if (submitStatus.equalsIgnoreCase("No Attempt") && gradingStatus.equalsIgnoreCase("No Graded")) {
-                JOptionPane.showMessageDialog(SecondMarker_ViewReport.this, "This report has not been attempted and not graded.", "Info", JOptionPane.INFORMATION_MESSAGE);
-            } else {
-                // Create and show the SecondMarker_GradingFrame
+            if (submitStatus.equals("No Attempt") && gradingStatus.equals("Not Graded")) {
+                JOptionPane.showMessageDialog(SecondMarker_ViewReport.this, "No attempt made. Cannot grade.", "Information", JOptionPane.INFORMATION_MESSAGE);
+            } else if (submitStatus.equals("Attempt") && (gradingStatus.equals("Not Graded") || gradingStatus.equals("Half Graded"))) {
+                if (gradingStatus.equals("Half Graded")) {
+                    // Check if the report data is present
+                    try (BufferedReader reportReader = new BufferedReader(new FileReader("ReportData.txt"))) {
+                        String reportLine;
+                        boolean hasData = false;
+                        while ((reportLine = reportReader.readLine()) != null) {
+                            String[] reportParts = reportLine.split(",");
+                            if (reportParts[0].trim().equals(studentId)) {
+                                if (reportParts[3].trim().equals("Half Graded") && !reportParts[8].trim().equals("-") && !reportParts[8].trim().isEmpty()) {
+                                    hasData = true;
+                                    break;
+                                }
+                            }
+                        }
+                        if (!hasData) {
+                            JOptionPane.showMessageDialog(SecondMarker_ViewReport.this, "This report has already been graded by you. You can review back after it is fully graded by supervisor.", "Information", JOptionPane.INFORMATION_MESSAGE);
+                            return;
+                        }
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                        JOptionPane.showMessageDialog(SecondMarker_ViewReport.this, "Error reading Report data file.", "Error", JOptionPane.ERROR_MESSAGE);
+                        return;
+                    }
+                }
                 SecondMarker_GradingFrame gradingFrame = new SecondMarker_GradingFrame(lectmainframe, studentId);
                 gradingFrame.setVisible(true);
-                lectmainframe.setVisible(false); // Hide the main frame
+                lectmainframe.setVisible(false);
+            } else if (submitStatus.equals("Attempt") && gradingStatus.equals("Graded")) {
+                SecondMarker_GradingFrame gradingFrame = new SecondMarker_GradingFrame(lectmainframe, studentId);
+                gradingFrame.setVisible(true);
+                lectmainframe.setVisible(false);
             }
         }
     };
+
  
     
     public void populateTable() {

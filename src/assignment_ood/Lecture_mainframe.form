@@ -52,7 +52,7 @@
               <Component id="DashboardPane" alignment="1" max="32767" attributes="0"/>
               <Component id="ViewSuperviseesPane" alignment="0" max="32767" attributes="0"/>
               <Component id="ViewPresentationPane" alignment="0" max="32767" attributes="0"/>
-              <Component id="AccManagementPane" alignment="0" max="32767" attributes="0"/>
+              <Component id="ViewReportPane" alignment="0" max="32767" attributes="0"/>
               <Component id="ReportStatusPane" alignment="0" max="32767" attributes="0"/>
           </Group>
         </DimensionLayout>
@@ -68,7 +68,7 @@
                   <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
                   <Component id="ViewPresentationPane" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
-                  <Component id="AccManagementPane" min="-2" max="-2" attributes="0"/>
+                  <Component id="ViewReportPane" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
                   <Component id="ReportStatusPane" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="32767" attributes="0"/>
@@ -244,7 +244,7 @@
             </Component>
           </SubComponents>
         </Container>
-        <Container class="javax.swing.JPanel" name="AccManagementPane">
+        <Container class="javax.swing.JPanel" name="ViewReportPane">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="e3" green="a2" red="7a" type="rgb"/>

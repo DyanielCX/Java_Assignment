@@ -8,12 +8,12 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import javax.swing.JOptionPane;
 
-public class SecondMarker_GradingFrame extends javax.swing.JFrame {
-
+public class Supervisor_GradingFrame extends javax.swing.JFrame {
+    
     private Lecture_mainframe lectmainframe;
     private String studentId;
-    
-    public SecondMarker_GradingFrame(Lecture_mainframe lectmainframe, String studentId) {
+
+    public Supervisor_GradingFrame(Lecture_mainframe lectmainframe, String studentId) {
         this.lectmainframe = lectmainframe;
         this.studentId = studentId;
 
@@ -58,7 +58,7 @@ public class SecondMarker_GradingFrame extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Error reading Report data file.", "Error", JOptionPane.ERROR_MESSAGE);
         }
     }
-      
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -87,8 +87,6 @@ public class SecondMarker_GradingFrame extends javax.swing.JFrame {
         Back_lbl = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setLocationByPlatform(true);
-        setUndecorated(true);
 
         jPanel1.setBackground(new java.awt.Color(106, 212, 221));
 
@@ -122,7 +120,6 @@ public class SecondMarker_GradingFrame extends javax.swing.JFrame {
         jLabel7.setText("Feedback");
         jPanel2.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(26, 199, -1, -1));
 
-        Feedback_txt.setEditable(false);
         Feedback_txt.setColumns(20);
         Feedback_txt.setForeground(new java.awt.Color(153, 153, 153));
         Feedback_txt.setRows(5);
@@ -227,7 +224,7 @@ public class SecondMarker_GradingFrame extends javax.swing.JFrame {
                 .addComponent(Back_lbl)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 359, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(39, Short.MAX_VALUE))
+                .addContainerGap(30, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -238,9 +235,7 @@ public class SecondMarker_GradingFrame extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
@@ -255,8 +250,14 @@ public class SecondMarker_GradingFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_Name_txtActionPerformed
 
+    private void Intake_txtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Intake_txtActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_Intake_txtActionPerformed
+
     private void btnDoneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDoneActionPerformed
-      // Show confirmation dialog
+        String assessmentType = Assessment_txt.getText().trim();
+    
+        // Show confirmation dialog
         int response = JOptionPane.showConfirmDialog(this, "Are you done marking?", "Confirm", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
 
         if (response == JOptionPane.YES_OPTION) {
@@ -269,12 +270,18 @@ public class SecondMarker_GradingFrame extends javax.swing.JFrame {
                     String[] reportParts = reportLine.split(",");
                     if (reportParts[0].trim().equals(studentId)) {
                         String currentStatus = reportParts[3].trim();
-                        if (currentStatus.equals("Not Graded")) {
-                            reportParts[3] = "Half Graded"; // Update status to Half Graded
-                        } else if (currentStatus.equals("Half Graded")) {
-                            reportParts[3] = "Graded"; // Update status to Graded
+                        if (assessmentType.equals("Intern")) {
+                            reportParts[3] = "Graded"; // Update status to Graded for Intern
+                            reportParts[8] = Feedback_txt.getText().trim();
+                        } else if (assessmentType.equals("Investigation Report") || assessmentType.equals("CP1") ||
+                                   assessmentType.equals("CP2") || assessmentType.equals("FYP")) {
+                            if (currentStatus.equals("Not Graded")) {
+                                reportParts[3] = "Half Graded"; // Update status to Half Graded
+                            } else if (currentStatus.equals("Half Graded")) {
+                                reportParts[3] = "Graded"; // Update status to Graded
+                            }
+                            reportParts[8] = Feedback_txt.getText().trim(); // Update feedback
                         }
-                        // If the status is "Graded", it remains unchanged
                         reportContent.append(String.join(",", reportParts)).append("\n");
                     } else {
                         reportContent.append(reportLine).append("\n");
@@ -294,12 +301,7 @@ public class SecondMarker_GradingFrame extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(this, "Error updating grading status.", "Error", JOptionPane.ERROR_MESSAGE);
             }
         }
-
     }//GEN-LAST:event_btnDoneActionPerformed
-
-    private void Intake_txtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Intake_txtActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_Intake_txtActionPerformed
 
     private void Back_lblMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Back_lblMouseClicked
         // TODO add your handling code here:
@@ -308,17 +310,17 @@ public class SecondMarker_GradingFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_Back_lblMouseClicked
 
     public void backMainFrame(){
-         Lecture_mainframe fr = new Lecture_mainframe();
+        Lecture_mainframe fr = new Lecture_mainframe();
         fr.setVisible(true);
 
         // Switch to the appropriate tab
-        fr.SecondMarker_ViewReport(fr);
+        fr.Supervisor_ViewReport(fr);
         int tabIndex = fr.TabPanel.getTabCount() - 1;
         fr.changeTab(tabIndex);
         
         fr.DashboardPane.setBackground(new Color(122, 162, 227));
         fr.ViewReportPane.setBackground(new Color(106, 212, 221));
-        fr.PanelTitle.setText("View Second Marker Report");
+        fr.PanelTitle.setText("View Supervisor Report");
        }
     
     public static void main(String args[]) {
@@ -335,18 +337,19 @@ public class SecondMarker_GradingFrame extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(SecondMarker_GradingFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Supervisor_GradingFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(SecondMarker_GradingFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Supervisor_GradingFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(SecondMarker_GradingFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Supervisor_GradingFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(SecondMarker_GradingFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Supervisor_GradingFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
         //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
 
-       
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

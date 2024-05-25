@@ -122,7 +122,7 @@ public class Lecture_mainframe extends javax.swing.JFrame {
         navViewSupervisees = new javax.swing.JLabel();
         ViewPresentationPane = new javax.swing.JPanel();
         navViewPresentation = new javax.swing.JLabel();
-        AccManagementPane = new javax.swing.JPanel();
+        ViewReportPane = new javax.swing.JPanel();
         navViewReport = new javax.swing.JLabel();
         ReportStatusPane = new javax.swing.JPanel();
         navReportStatus = new javax.swing.JLabel();
@@ -237,7 +237,7 @@ public class Lecture_mainframe extends javax.swing.JFrame {
                 .addGap(20, 20, 20))
         );
 
-        AccManagementPane.setBackground(new java.awt.Color(122, 162, 227));
+        ViewReportPane.setBackground(new java.awt.Color(122, 162, 227));
 
         navViewReport.setBackground(new java.awt.Color(122, 162, 227));
         navViewReport.setFont(new java.awt.Font("Dubai Medium", 0, 20)); // NOI18N
@@ -252,18 +252,18 @@ public class Lecture_mainframe extends javax.swing.JFrame {
             }
         });
 
-        javax.swing.GroupLayout AccManagementPaneLayout = new javax.swing.GroupLayout(AccManagementPane);
-        AccManagementPane.setLayout(AccManagementPaneLayout);
-        AccManagementPaneLayout.setHorizontalGroup(
-            AccManagementPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(AccManagementPaneLayout.createSequentialGroup()
+        javax.swing.GroupLayout ViewReportPaneLayout = new javax.swing.GroupLayout(ViewReportPane);
+        ViewReportPane.setLayout(ViewReportPaneLayout);
+        ViewReportPaneLayout.setHorizontalGroup(
+            ViewReportPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(ViewReportPaneLayout.createSequentialGroup()
                 .addGap(25, 25, 25)
                 .addComponent(navViewReport)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
-        AccManagementPaneLayout.setVerticalGroup(
-            AccManagementPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(AccManagementPaneLayout.createSequentialGroup()
+        ViewReportPaneLayout.setVerticalGroup(
+            ViewReportPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(ViewReportPaneLayout.createSequentialGroup()
                 .addGap(23, 23, 23)
                 .addComponent(navViewReport, javax.swing.GroupLayout.DEFAULT_SIZE, 62, Short.MAX_VALUE)
                 .addGap(20, 20, 20))
@@ -312,7 +312,7 @@ public class Lecture_mainframe extends javax.swing.JFrame {
             .addComponent(DashboardPane, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(ViewSuperviseesPane, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(ViewPresentationPane, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(AccManagementPane, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(ViewReportPane, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(ReportStatusPane, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         sideNavBarLayout.setVerticalGroup(
@@ -327,7 +327,7 @@ public class Lecture_mainframe extends javax.swing.JFrame {
                 .addGap(15, 15, 15)
                 .addComponent(ViewPresentationPane, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(15, 15, 15)
-                .addComponent(AccManagementPane, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(ViewReportPane, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(15, 15, 15)
                 .addComponent(ReportStatusPane, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -411,7 +411,7 @@ public class Lecture_mainframe extends javax.swing.JFrame {
         DashboardPane.setBackground(navSelectedColor);
         ViewSuperviseesPane.setBackground(navDefaultColor);
         ViewPresentationPane.setBackground(navDefaultColor);
-        AccManagementPane.setBackground(navDefaultColor);
+        ViewReportPane.setBackground(navDefaultColor);
         ReportStatusPane.setBackground(navDefaultColor);
         
         //Change to your tab name
@@ -423,7 +423,7 @@ public class Lecture_mainframe extends javax.swing.JFrame {
         DashboardPane.setBackground(navDefaultColor);
         ViewSuperviseesPane.setBackground(navSelectedColor);
         ViewPresentationPane.setBackground(navDefaultColor);
-        AccManagementPane.setBackground(navDefaultColor);
+        ViewReportPane.setBackground(navDefaultColor);
         ReportStatusPane.setBackground(navDefaultColor);
         
         //Change to your tab name
@@ -435,7 +435,7 @@ public class Lecture_mainframe extends javax.swing.JFrame {
         DashboardPane.setBackground(navDefaultColor);
         ViewSuperviseesPane.setBackground(navDefaultColor);
         ViewPresentationPane.setBackground(navSelectedColor);
-        AccManagementPane.setBackground(navDefaultColor);
+        ViewReportPane.setBackground(navDefaultColor);
         ReportStatusPane.setBackground(navDefaultColor);
         
         //Change to your tab name
@@ -447,7 +447,7 @@ public class Lecture_mainframe extends javax.swing.JFrame {
         DashboardPane.setBackground(navDefaultColor);
         ViewSuperviseesPane.setBackground(navDefaultColor);
         ViewPresentationPane.setBackground(navDefaultColor);
-        AccManagementPane.setBackground(navSelectedColor);
+        ViewReportPane.setBackground(navSelectedColor);
         ReportStatusPane.setBackground(navDefaultColor);
         
         //Change to your tab name
@@ -459,7 +459,7 @@ public class Lecture_mainframe extends javax.swing.JFrame {
         DashboardPane.setBackground(navDefaultColor);
         ViewSuperviseesPane.setBackground(navDefaultColor);
         ViewPresentationPane.setBackground(navDefaultColor);
-        AccManagementPane.setBackground(navDefaultColor);
+        ViewReportPane.setBackground(navDefaultColor);
         ReportStatusPane.setBackground(navSelectedColor);
         
         //Change to your tab name
@@ -477,12 +477,26 @@ public class Lecture_mainframe extends javax.swing.JFrame {
         this.dispose(); // Close the current window
     }//GEN-LAST:event_lblLogoutMouseClicked
 
-    /**
-     * @param args the command line arguments
-     */
-     public static void changeTab(int TabIndex){
+    public static void changeTab(int TabIndex){
         TabPanel.setSelectedIndex(TabIndex);
     }
+     
+     //Create new temperory panel tab - AssignAdvsTab_IntakeList
+    public static void SecondMarker_ViewReport(Lecture_mainframe mainFrame){
+        SecondMarker_ViewReport lastTab = new SecondMarker_ViewReport(mainFrame);
+        TabPanel.addTab("IntakeListtab", lastTab);
+    }
+    
+    public static void Supervisor_ViewReport(Lecture_mainframe mainFrame){
+        Supervisor_ViewReport lastTab = new Supervisor_ViewReport(mainFrame);
+        TabPanel.addTab("IntakeListtab", lastTab);
+    }
+    
+    public static void RMCP_ViewReport(Lecture_mainframe mainFrame){
+        RMCP_ViewReport lastTab = new RMCP_ViewReport(mainFrame);
+        TabPanel.addTab("IntakeListtab", lastTab);
+    }
+    
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -524,7 +538,6 @@ public class Lecture_mainframe extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    public javax.swing.JPanel AccManagementPane;
     private javax.swing.JLabel AccName;
     private javax.swing.JPanel CoverTabPane;
     public javax.swing.JPanel DashboardPane;
@@ -532,6 +545,7 @@ public class Lecture_mainframe extends javax.swing.JFrame {
     public javax.swing.JPanel ReportStatusPane;
     public static javax.swing.JTabbedPane TabPanel;
     public javax.swing.JPanel ViewPresentationPane;
+    public javax.swing.JPanel ViewReportPane;
     public javax.swing.JPanel ViewSuperviseesPane;
     private javax.swing.JLabel imgLogo;
     private javax.swing.JLabel lblLogout;
