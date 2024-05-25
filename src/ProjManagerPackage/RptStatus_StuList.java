@@ -81,7 +81,7 @@ public class RptStatus_StuList extends javax.swing.JPanel {
                             if (SubmitStatus.equals("No Attempt")) {
                                 model.setValueAt(TableActionCellRender_RptStatusIcon.STATUS_NOSUBMITTED, model.getRowCount() - 1, 5);
                             }else{
-                                if (GradeStatus.equals("Not Graded")) {
+                                if (GradeStatus.equals("Not Graded") || GradeStatus.equals("Half Graded")) {
                                     model.setValueAt(TableActionCellRender_RptStatusIcon.STATUS_PENDING, model.getRowCount() - 1, 5);
                                 }else{
                                     model.setValueAt(TableActionCellRender_RptStatusIcon.STATUS_MARKED, model.getRowCount() - 1, 5);
