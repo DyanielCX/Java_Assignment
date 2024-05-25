@@ -22,8 +22,7 @@ public class Student_MainFrame extends javax.swing.JFrame {
         
         
         /* Get the user name */
-        String UserName = "Shahab";
-        AccName.setText(UserName);
+        AccName.setText(username);
         
         
         /* Set the tab panel (panel size -> 935, 350) */

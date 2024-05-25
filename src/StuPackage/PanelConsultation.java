@@ -161,6 +161,8 @@ public class PanelConsultation extends javax.swing.JPanel {
         SaveBtn = new javax.swing.JToggleButton();
         ObjChoose = new javax.swing.JTextField();
         Obj = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
         ConStatus = new javax.swing.JLabel();
         ReqBtn = new javax.swing.JButton();
         jLabel12 = new javax.swing.JLabel();
@@ -180,42 +182,42 @@ public class PanelConsultation extends javax.swing.JPanel {
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel4.setText("Lecturer ");
-        EditPanel.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 130, -1, -1));
+        EditPanel.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 120, -1, -1));
 
         LecChoose.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { }));
-        EditPanel.add(LecChoose, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 180, 120, 30));
+        EditPanel.add(LecChoose, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 160, 120, 30));
 
         Lec.setText("Lecturer");
-        EditPanel.add(Lec, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 160, -1, -1));
+        EditPanel.add(Lec, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 140, -1, -1));
 
         Time.setText("-");
-        EditPanel.add(Time, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 240, 80, -1));
+        EditPanel.add(Time, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 220, 80, -1));
 
         Date.setText("- ");
-        EditPanel.add(Date, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 160, 80, -1));
-        EditPanel.add(HourChoose, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 270, 50, -1));
-        EditPanel.add(MinuteChoose, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 270, 50, -1));
+        EditPanel.add(Date, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 150, 80, -1));
+        EditPanel.add(HourChoose, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 250, 50, -1));
+        EditPanel.add(MinuteChoose, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 250, 50, -1));
 
         MeridiemChoose.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "am", "pm" }));
-        EditPanel.add(MeridiemChoose, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 270, 60, -1));
+        EditPanel.add(MeridiemChoose, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 250, 60, -1));
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel2.setText("Consultation TIme");
-        EditPanel.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 210, -1, -1));
+        EditPanel.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 200, -1, -1));
 
         ConStatus2.setBackground(new java.awt.Color(204, 204, 255));
         ConStatus2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         ConStatus2.setText("Status");
-        EditPanel.add(ConStatus2, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 60, 120, 30));
-        EditPanel.add(DateChoose, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 180, 127, -1));
+        EditPanel.add(ConStatus2, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 70, 120, 30));
+        EditPanel.add(DateChoose, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 170, 127, -1));
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel3.setText("Consultation Date");
-        EditPanel.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 130, -1, -1));
+        EditPanel.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 130, -1, -1));
 
         jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel5.setText("Consultation Objective");
-        EditPanel.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 230, -1, -1));
+        EditPanel.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 230, -1, -1));
 
         AddEditBtn.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         AddEditBtn.setText("Edit");
@@ -225,7 +227,7 @@ public class PanelConsultation extends javax.swing.JPanel {
                 AddEditBtnActionPerformed(evt);
             }
         });
-        EditPanel.add(AddEditBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 350, 60, 30));
+        EditPanel.add(AddEditBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 270, 60, 30));
 
         SaveBtn.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         SaveBtn.setText("Submit");
@@ -235,14 +237,20 @@ public class PanelConsultation extends javax.swing.JPanel {
                 SaveBtnActionPerformed(evt);
             }
         });
-        EditPanel.add(SaveBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 350, 70, 30));
+        EditPanel.add(SaveBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 340, 60, 30));
 
         ObjChoose.setText("jTextField1");
-        EditPanel.add(ObjChoose, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 290, 130, 30));
+        EditPanel.add(ObjChoose, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 290, 130, 30));
 
         Obj.setText("- ");
         Obj.setAutoscrolls(true);
-        EditPanel.add(Obj, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 250, 250, 40));
+        EditPanel.add(Obj, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 250, 250, 40));
+
+        jLabel1.setText("jLabel1");
+        EditPanel.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 250, -1, -1));
+
+        jLabel6.setText("jLabel6");
+        EditPanel.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 320, -1, -1));
 
         jPanel4.add(EditPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 770, 420));
 
@@ -274,13 +282,13 @@ public class PanelConsultation extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(882, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(85, Short.MAX_VALUE))
+                .addContainerGap(69, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -329,11 +337,13 @@ public class PanelConsultation extends javax.swing.JPanel {
     private javax.swing.JButton ReqBtn;
     private javax.swing.JToggleButton SaveBtn;
     private javax.swing.JLabel Time;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel4;
     // End of variables declaration//GEN-END:variables

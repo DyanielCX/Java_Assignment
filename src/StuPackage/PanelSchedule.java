@@ -73,6 +73,7 @@ public class PanelSchedule extends javax.swing.JPanel {
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         PreLec = new javax.swing.JLabel();
+        RefreshBtn = new javax.swing.JLabel();
 
         setMaximumSize(new java.awt.Dimension(935, 530));
         setMinimumSize(new java.awt.Dimension(935, 530));
@@ -139,8 +140,23 @@ public class PanelSchedule extends javax.swing.JPanel {
 
         jPanel1.add(PresentationSchedule, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 80, 750, 160));
 
+        RefreshBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/refresh.png"))); // NOI18N
+        RefreshBtn.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                RefreshBtnMouseClicked(evt);
+            }
+        });
+        jPanel1.add(RefreshBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 20, -1, -1));
+
         add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 30, 870, 470));
     }// </editor-fold>//GEN-END:initComponents
+
+    private void RefreshBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_RefreshBtnMouseClicked
+        readPresentationDetailsFromFile("PresentationData.txt");
+        readConsultationDetailsFromFile("ConsultationData.txt");
+        // Show a pop-up dialog saying "Refresh Done"
+        javax.swing.JOptionPane.showMessageDialog(null, "Refresh Done", "Info", javax.swing.JOptionPane.INFORMATION_MESSAGE);
+    }//GEN-LAST:event_RefreshBtnMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -151,6 +167,7 @@ public class PanelSchedule extends javax.swing.JPanel {
     private javax.swing.JLabel PreLec;
     private javax.swing.JLabel PreTime;
     private javax.swing.JPanel PresentationSchedule;
+    private javax.swing.JLabel RefreshBtn;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
