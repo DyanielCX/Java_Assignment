@@ -219,7 +219,9 @@ public class PanelConsultation extends javax.swing.JPanel {
         jLabel5.setText("Consultation Objective");
         EditPanel.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 230, -1, -1));
 
+        AddEditBtn.setBackground(new java.awt.Color(102, 102, 255));
         AddEditBtn.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        AddEditBtn.setForeground(new java.awt.Color(255, 255, 255));
         AddEditBtn.setText("Edit");
         AddEditBtn.setBorder(null);
         AddEditBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -227,9 +229,11 @@ public class PanelConsultation extends javax.swing.JPanel {
                 AddEditBtnActionPerformed(evt);
             }
         });
-        EditPanel.add(AddEditBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 270, 60, 30));
+        EditPanel.add(AddEditBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 260, 60, 30));
 
+        SaveBtn.setBackground(new java.awt.Color(102, 51, 255));
         SaveBtn.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        SaveBtn.setForeground(new java.awt.Color(255, 255, 255));
         SaveBtn.setText("Submit");
         SaveBtn.setBorder(null);
         SaveBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -237,7 +241,7 @@ public class PanelConsultation extends javax.swing.JPanel {
                 SaveBtnActionPerformed(evt);
             }
         });
-        EditPanel.add(SaveBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 340, 60, 30));
+        EditPanel.add(SaveBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 340, 60, 30));
 
         ObjChoose.setText("jTextField1");
         EditPanel.add(ObjChoose, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 290, 130, 30));
@@ -246,11 +250,11 @@ public class PanelConsultation extends javax.swing.JPanel {
         Obj.setAutoscrolls(true);
         EditPanel.add(Obj, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 250, 250, 40));
 
-        jLabel1.setText("jLabel1");
-        EditPanel.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 250, -1, -1));
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/requestCon.png"))); // NOI18N
+        EditPanel.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 220, -1, -1));
 
-        jLabel6.setText("jLabel6");
-        EditPanel.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 320, -1, -1));
+        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/submit.png"))); // NOI18N
+        EditPanel.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 300, -1, -1));
 
         jPanel4.add(EditPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 770, 420));
 
