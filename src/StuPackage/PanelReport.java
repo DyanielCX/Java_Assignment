@@ -325,6 +325,8 @@ public class PanelReport extends javax.swing.JPanel {
             // Proceed to save the input to ReportData.txt
             saveSubmissionLink(input);
             readReportDetailsFromFile("ReportData.txt");
+            
+            JOptionPane.showMessageDialog(null, "Your submission link has been submitted successfully", "Success", JOptionPane.INFORMATION_MESSAGE);
         }
     }//GEN-LAST:event_EditBtnActionPerformed
 
