@@ -12,7 +12,7 @@ import java.util.List;
  * @author User
  */
 public class RoleChecker {
-    String UserName = Session.getUsername();
+    String UserName = Session.getUserID();
     public static boolean isProjectManager(String lecturerName, List<Lecturer> lecturers) {
         for (Lecturer lecturer : lecturers) {
             if (lecturer.lectName.equals(lecturerName)) {

@@ -116,7 +116,7 @@ public class LoginPage extends javax.swing.JFrame {
     
     if (role != null) {
         // If credentials are valid, redirect to the appropriate dashboard
-        Session.setUsername(username);
+        Session.setUserID(username);
         redirectToDashboard(username, password, role);
         // Close the login window or do any other necessary action
         dispose();
@@ -142,7 +142,8 @@ public class LoginPage extends javax.swing.JFrame {
 
         // Loop through each role file
         for (String file : roleFiles) {
-            try (BufferedReader br = new BufferedReader(new FileReader(file))) {
+            if (file.equals("StuData.txt")) {
+                try (BufferedReader br = new BufferedReader(new FileReader(file))) {
                 String line;
                 while ((line = br.readLine()) != null) {
                     String[] parts = line.split(",");
@@ -152,17 +153,35 @@ public class LoginPage extends javax.swing.JFrame {
                     
                     if (storedUsername.equals(username) && storedPassword.equals(password)) {
                         role = role.trim();
-                        if (role.equals("LecData")){
-                        boolean isSupervisor = Boolean.parseBoolean(parts[2]);
-                           if (isSupervisor) { // Check if isSupervisor is true
-            role = "ProjectMgn"; // Change the role to ProjectMgn
-            return role;
-        }
-                        }return  role.trim();
+                        return  role.trim();
                    }
                 }
             } catch (IOException e) {
                 e.printStackTrace();
+            }
+            }else{
+                try (BufferedReader br = new BufferedReader(new FileReader(file))) {
+                    String line;
+                    while ((line = br.readLine()) != null) {
+                        String[] parts = line.split(",");
+                        String storedID = parts[1];
+                        String storedPassword = parts[5];
+                        String role = file.substring(0, file.indexOf('.'));
+
+                        if (storedID.equals(username) && storedPassword.equals(password)) {
+                            role = role.trim();
+                            if (role.equals("LecData")){
+                            boolean isSupervisor = Boolean.parseBoolean(parts[2]);
+                               if (isSupervisor) { // Check if isSupervisor is true
+                                    role = "ProjectMgn"; // Change the role to ProjectMgn
+                                    return role;
+                                }
+                            }return  role.trim();
+                       }
+                    }
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
             }
         }
         return null; // User not found or invalid credentials

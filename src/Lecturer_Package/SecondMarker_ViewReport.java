@@ -30,7 +30,7 @@ public class SecondMarker_ViewReport extends javax.swing.JPanel {
     
     public SecondMarker_ViewReport(Lecture_mainframe mainFrame) {
         this.lectmainframe = mainFrame;
-        this.UserName = Session.getUsername();
+        this.UserName = Session.getUserID();
         
         initComponents();
         /* Set the scrollbar to customize scrollbar*/
