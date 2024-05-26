@@ -5,7 +5,6 @@ import StuPackage.StuData_IO;
 import java.awt.Color;
 import Java_Assignment.LoginPage;
 import Java_Assignment.Session;
-import ProjManagerPackage.AssignSupvElem.LectData_IO;
 /**
  *
  * @author PC
@@ -85,9 +84,7 @@ public class Lecture_mainframe extends javax.swing.JFrame {
         TabPanel.addTab("RMCP_ViewReport", tab12);
 
         /* Get the user name */
-        String UserID = Session.getUserID();
-        int UserIndex = LectData_IO.checkLect(UserID);
-        String UserName = LectData_IO.LectData.get(UserIndex).lectName;
+        String UserName = Session.getUserID();
         AccName.setText(UserName);
         
         

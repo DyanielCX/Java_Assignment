@@ -106,19 +106,26 @@ public class LoginPage extends javax.swing.JFrame {
 
     private void LoginBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LoginBtnActionPerformed
          // Get the username and password input from the text fields
-    String username = Username_input.getText();
+    String userID = Username_input.getText();
     String password = Password_input.getText();
     
     // Call the authenticateUser method to validate the credentials
     boolean isSupervisor = false;
-    String role = authenticateUser(username, password);
+    String role = authenticateUser(userID, password);
     
     
     if (role != null) {
-        // If credentials are valid, redirect to the appropriate dashboard
-        Session.setUserID(username);
-        redirectToDashboard(username, password, role);
-        // Close the login window or do any other necessary action
+        if (role.equals("LecData") || role.equals("ProjectMgn")) {
+            int ProjMngIndex = LectData_IO.checkLect(userID);
+            String userName = LectData_IO.LectData.get(ProjMngIndex).lectName;
+            Session.setUserID(userName);
+            redirectToDashboard(userID, password, role);
+        }else{
+            // If credentials are valid, redirect to the appropriate dashboard
+            Session.setUserID(userID);
+            redirectToDashboard(userID, password, role);
+            // Close the login window or do any other necessary action
+        }
         dispose();
     } else {
         // If credentials are invalid, show an error message

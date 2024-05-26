@@ -15,8 +15,8 @@ public class Session {
         return userID;
     }
 
-    public static void setUserID(String username) {
-        Session.userID = username;
+    public static void setUserID(String userID) {
+        Session.userID = userID;
     }
 
     public static void clearSession() {
