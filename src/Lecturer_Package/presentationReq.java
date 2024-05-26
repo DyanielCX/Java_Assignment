@@ -36,7 +36,7 @@ private Lecture_mainframe lectmainframe;
     public presentationReq(Lecture_mainframe lectmainframe) {
         this.lectmainframe = lectmainframe;
         initComponents();
-        populatePresentationTable(presentationTable,Session.getUsername());
+        populatePresentationTable(presentationTable,Session.getUserID());
         
         
      

@@ -25,7 +25,7 @@ public class RMCP_ViewSupervisee extends javax.swing.JPanel {
 
     public RMCP_ViewSupervisee(Lecture_mainframe lectmainframe) {
         this.lectmainframe = lectmainframe;
-        this.UserName = Session.getUsername();
+        this.UserName = Session.getUserID();
         initComponents();
         
         /* Set the scrollbar to customize scrollbar*/

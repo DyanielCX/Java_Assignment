@@ -27,7 +27,7 @@ private List<Lecturer> lecturers;
     public Lect_ViewPresentation(Lecture_mainframe lectmainframe) {
            if (Session.isLoggedIn()) {
     
-    String username = Session.getUsername();
+    String username = Session.getUserID();
     System.out.println("Logged in as: " + username);
 } else {
     
@@ -37,7 +37,7 @@ private List<Lecturer> lecturers;
         initComponents();
         this.lectmainframe= lectmainframe;
          
-        String UserName = Session.getUsername();
+        String UserName = Session.getUserID();
         
     }
 
@@ -156,7 +156,7 @@ private List<Lecturer> lecturers;
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnViewPresent3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnViewPresent3MouseClicked
-     if (lecturers != null && RoleChecker.isSupervisor(Session.getUsername(), lecturers)) {
+     if (lecturers != null && RoleChecker.isSupervisor(Session.getUserID(), lecturers)) {
             lectmainframe.changeTab(6); 
         } else {
             JOptionPane.showMessageDialog(this, "Access denied. Only supervisors can view the presentation table.");
@@ -165,7 +165,7 @@ private List<Lecturer> lecturers;
     }//GEN-LAST:event_btnViewPresent3MouseClicked
 
     private void btnViewConsultMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnViewConsultMouseClicked
-        if (lecturers != null && RoleChecker.isSecondMarker(Session.getUsername(), lecturers)) {
+        if (lecturers != null && RoleChecker.isSecondMarker(Session.getUserID(), lecturers)) {
             lectmainframe.changeTab(7); // Show consultation table tab
         } else {
             JOptionPane.showMessageDialog(this, "Access denied. Only second markers can view the consultation table.");

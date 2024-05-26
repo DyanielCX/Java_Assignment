@@ -36,7 +36,7 @@ private Lecture_mainframe lectmainframe;
     public Lect_ViewConsultation(Lecture_mainframe lectmainframe) {
          this.lectmainframe = lectmainframe;
         initComponents();
-        populateConsultationTable(ConsultTbl,Session.getUsername());
+        populateConsultationTable(ConsultTbl,Session.getUserID());
             
            ConsultTbl.getColumnModel().getColumn(6).setCellRenderer(new TableActionCellRender_EditButton());
         ConsultTbl.getColumnModel().getColumn(6).setCellEditor(new TableActionCellEditor_EditButton(event));

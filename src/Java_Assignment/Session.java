@@ -9,21 +9,21 @@ package Java_Assignment;
  * @author User
  */
 public class Session {
-     private static String username;
+     private static String userID;
 
-    public static String getUsername() {
-        return username;
+    public static String getUserID() {
+        return userID;
     }
 
-    public static void setUsername(String username) {
-        Session.username = username;
+    public static void setUserID(String username) {
+        Session.userID = username;
     }
 
     public static void clearSession() {
-        username = null;
+        userID = null;
     }
 
     public static boolean isLoggedIn() {
-        return username != null;
+        return userID != null;
     }
 }

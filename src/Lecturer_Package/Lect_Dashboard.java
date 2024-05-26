@@ -4,26 +4,15 @@
  */
 package Lecturer_Package;
 import Java_Assignment.Session;
-import ProjManagerPackage.Dashboard;
 import ProjManagerPackage.DashboardElem.TableHeader_Dashboard;
-import ProjManagerPackage.ProjManager_MainFrame;
 import ProjManagerPackage.StuAssesElem.ModernScrollBarUI;
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
-import javax.swing.table.DefaultTableModel;
-import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableColumnModel;
-import Lecturer_Package.presentationReq;
+import ProjManagerPackage.AssignSupvElem.LectData_IO;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollBar;
 import javax.swing.JScrollPane;
@@ -43,18 +32,20 @@ private Lecture_mainframe lectmainframe;
     public Lect_Dashboard(Lecture_mainframe lectmainframe) {
           if (Session.isLoggedIn()) {
     
-    String username = Session.getUsername();
+    String username = Session.getUserID();
     System.out.println("Logged in as: " + username);
 } else {
     
     System.out.println("No user logged in.");
-}
+}          
         initComponents();
          this.lectmainframe = lectmainframe;
-           String UserName = Session.getUsername();
+           String UserID = Session.getUserID();
+           int UserIndex = LectData_IO.checkLect(UserID);
+           String UserName = LectData_IO.LectData.get(UserIndex).lectName;
            lectName.setText(UserName);
          Admin admin = new Admin(AssignedStuTbl);
-         admin.populateDashBoardTable(AssignedStuTbl,Session.getUsername());
+         admin.populateDashBoardTable(AssignedStuTbl,Session.getUserID());
           int numberOfSupervisees = AssignedStuTbl.getRowCount();
          assigned_Supervisees.setText(String.valueOf(numberOfSupervisees));
           updatePresentationDateLabel(AssignedStuTbl);
