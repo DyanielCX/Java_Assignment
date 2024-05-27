@@ -134,6 +134,7 @@ public class Admin_EditStudent extends javax.swing.JFrame {
         RMCP_textfield = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setUndecorated(true);
 
         jPanel3.setBackground(new java.awt.Color(255, 148, 148));
 

@@ -136,10 +136,7 @@ public class lect_Panal extends javax.swing.JPanel {
         lecturePanal.setFont(new java.awt.Font("Dubai Medium", 0, 20)); // NOI18N
         lecturePanal.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null}
+
             },
             new String [] {
                 "Name", "ID", "project Manager", "password", "Supervisseess", "Action"

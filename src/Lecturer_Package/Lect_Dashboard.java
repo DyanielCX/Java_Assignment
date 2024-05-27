@@ -212,6 +212,7 @@ private Lecture_mainframe lectmainframe;
         boxTtlLect.add(LectIcon, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 0, -1, -1));
 
         presentationDate.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        presentationDate.setForeground(new java.awt.Color(255, 255, 255));
         boxTtlLect.add(presentationDate, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 60, 250, 60));
 
         jPanel1.add(boxTtlLect, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 20, 270, 130));
@@ -254,7 +255,7 @@ private Lecture_mainframe lectmainframe;
         boxTtlStu.add(StuIcon, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 50, -1, -1));
 
         assigned_Supervisees.setFont(new java.awt.Font("Dubai Medium", 1, 30)); // NOI18N
-        assigned_Supervisees.setForeground(new java.awt.Color(0, 0, 0));
+        assigned_Supervisees.setForeground(new java.awt.Color(255, 255, 255));
         boxTtlStu.add(assigned_Supervisees, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 70, 80, 30));
 
         jPanel1.add(boxTtlStu, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 20, 270, 130));

@@ -564,6 +564,12 @@ public class AssignAdvsTab_IntakeAdvsAllot extends javax.swing.JPanel {
                 break;
             default:
                 JOptionPane.showMessageDialog(null,"This intake haven't assign assessment.");
+                selectionCheck = false;
+                
+                //Back to previous page
+                mainFrame.createIntakeListPane(mainFrame);
+                int tabIndex = mainFrame.TabPanel.getTabCount()-1;
+                mainFrame.changedTab(tabIndex);
         }
 
         if (selectionCheck == true) {

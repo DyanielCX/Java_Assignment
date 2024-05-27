@@ -294,7 +294,13 @@ public class Admin_MainFrame extends javax.swing.JFrame {
 
     /* Logout Button */
     private void lblLogoutMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblLogoutMouseClicked
-
+        IntakeRecord.IntakeRecordData.clear();
+        IntakeRecord.readFrTxt();
+        StuData_IO.StuData.clear();
+        StuData_IO.readFrTxt();
+        LectData_IO.LectData.clear();
+        LectData_IO.readFrTxt();
+        
         // Redirect to login page or close the current window
         LoginPage loginPage = new LoginPage();
         loginPage.setVisible(true);
