@@ -23,7 +23,6 @@ public class ProjManager_MainFrame extends javax.swing.JFrame {
         /* Get the project manager name */
         String ProjMngName = Session.getUserID();
         AccName.setText(ProjMngName);
-        System.out.println(ProjMngName);
         
         
         /* Set the tab panel */
