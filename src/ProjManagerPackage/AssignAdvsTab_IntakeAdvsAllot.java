@@ -5,8 +5,10 @@ import ProjManagerPackage.AssignSupvElem.LectData_IO;
 import ProjManagerPackage.StuAssesElem.IntakeBasedMethod;
 import StuPackage.StuData_IO;
 import StuPackage.Student;
-import assignment_ood.Lecturer;
+import Lecturer_Package.Lecturer;
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Set;
 import javax.swing.JOptionPane;
 
 
@@ -465,22 +467,24 @@ public class AssignAdvsTab_IntakeAdvsAllot extends javax.swing.JPanel {
     }//GEN-LAST:event_btbBackMouseClicked
 
     private void btbAutoAssignActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btbAutoAssignActionPerformed
+        boolean selectionCheck = true;
+
         //Advisors Submission
         switch (Assessment) {
             case "Investigation Report":
-                commonAssesSubmit();
+                selectionCheck = commonAssesSubmit();
                 break;
             case "CP1":
-                commonAssesSubmit();
+                selectionCheck = commonAssesSubmit();
                 break;
             case "CP2":
-                commonAssesSubmit();
+                selectionCheck = commonAssesSubmit();
                 break;
             case "FYP":
-                commonAssesSubmit();
+                selectionCheck = commonAssesSubmit();
                 break;
             case "Intern":
-                internAssesSubmit();
+                selectionCheck = internAssesSubmit();
                 break;
             case "RMCP":
                 RMCPAssesSubmit();
@@ -489,32 +493,36 @@ public class AssignAdvsTab_IntakeAdvsAllot extends javax.swing.JPanel {
                 JOptionPane.showMessageDialog(null,"This intake haven't assign assessment.");
         }
         
-        //Auto assign to student
-        ProjManager.autoAssignAdvisor(SelectedIntake, Assessment);
-        
-        //Back to previous page
-        mainFrame.createIntakeListPane(mainFrame);
-        int tabIndex = mainFrame.TabPanel.getTabCount()-1;
-        mainFrame.changedTab(tabIndex);
+        if (selectionCheck == true) {
+            //Auto assign to student
+            ProjManager.autoAssignAdvisor(SelectedIntake, Assessment);
+
+            //Back to previous page
+            mainFrame.createIntakeListPane(mainFrame);
+            int tabIndex = mainFrame.TabPanel.getTabCount()-1;
+            mainFrame.changedTab(tabIndex);
+        }
     }//GEN-LAST:event_btbAutoAssignActionPerformed
 
     private void btbSubmitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btbSubmitActionPerformed
+        boolean selectionCheck = true;
+
         //Advisors Submission
         switch (Assessment) {
             case "Investigation Report":
-                commonAssesSubmit();
+                selectionCheck = commonAssesSubmit();
                 break;
             case "CP1":
-                commonAssesSubmit();
+                selectionCheck = commonAssesSubmit();
                 break;
             case "CP2":
-                commonAssesSubmit();
+                selectionCheck = commonAssesSubmit();
                 break;
             case "FYP":
-                commonAssesSubmit();
+                selectionCheck = commonAssesSubmit();
                 break;
             case "Intern":
-                internAssesSubmit();
+                selectionCheck = internAssesSubmit();
                 break;
             case "RMCP":
                 RMCPAssesSubmit();
@@ -523,47 +531,62 @@ public class AssignAdvsTab_IntakeAdvsAllot extends javax.swing.JPanel {
                 JOptionPane.showMessageDialog(null,"This intake haven't assign assessment.");
         }
         
-        //Back to previous page
-        mainFrame.createIntakeListPane(mainFrame);
-        int tabIndex = mainFrame.TabPanel.getTabCount()-1;
-        mainFrame.changedTab(tabIndex);
+        if (selectionCheck == true) {
+            //Back to previous page
+            mainFrame.createIntakeListPane(mainFrame);
+            int tabIndex = mainFrame.TabPanel.getTabCount()-1;
+            mainFrame.changedTab(tabIndex);
+        }
     }//GEN-LAST:event_btbSubmitActionPerformed
 
     private void btbManualAssignActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btbManualAssignActionPerformed
+        boolean selectionCheck = true;
+
         //Advisors Submission
         switch (Assessment) {
             case "Investigation Report":
-                commonAssesSubmit();
+                selectionCheck = commonAssesSubmit();
                 break;
             case "CP1":
-                commonAssesSubmit();
+                selectionCheck = commonAssesSubmit();
                 break;
             case "CP2":
-                commonAssesSubmit();
+                selectionCheck = commonAssesSubmit();
                 break;
             case "FYP":
-                commonAssesSubmit();
+                selectionCheck = commonAssesSubmit();
                 break;
             case "Intern":
-                internAssesSubmit();
+                selectionCheck = internAssesSubmit();
                 break;
             case "RMCP":
                 RMCPAssesSubmit();
                 break;
             default:
                 JOptionPane.showMessageDialog(null,"This intake haven't assign assessment.");
+                selectionCheck = false;
+                
+                //Back to previous page
+                mainFrame.createIntakeListPane(mainFrame);
+                int tabIndex = mainFrame.TabPanel.getTabCount()-1;
+                mainFrame.changedTab(tabIndex);
         }
-        
-        // Switch to manual assign advisor tab
-        mainFrame.createStuAdvsListPane(mainFrame, SelectedIntake, Assessment);
-        int tabIndex = mainFrame.TabPanel.getTabCount()-1;
-        mainFrame.changedTab(tabIndex);
+
+        if (selectionCheck == true) {
+            // Switch to manual assign advisor tab
+            mainFrame.createStuAdvsListPane(mainFrame, SelectedIntake, Assessment);
+            int tabIndex = mainFrame.TabPanel.getTabCount()-1;
+            mainFrame.changedTab(tabIndex);
+        }
     }//GEN-LAST:event_btbManualAssignActionPerformed
 
     //Submission Method for Invstigation Report, CP1, CP2, FYP
-    private void commonAssesSubmit(){
+    private boolean commonAssesSubmit(){
+        Set<String> SpvSet = new HashSet<>();
+        Set<String> SecondMkrSet = new HashSet<>();
         int intakeIndex = IntakeRecord.checkIntake(SelectedIntake);
         
+        //Rerieve data from comboBox
         String Spv1 = (String) cboSupv1.getSelectedItem();
         String Spv2 = (String) cboSupv2.getSelectedItem();
         String Spv3 = (String) cboSupv3.getSelectedItem();
@@ -571,20 +594,66 @@ public class AssignAdvsTab_IntakeAdvsAllot extends javax.swing.JPanel {
         String SecondMkr2 = (String) cbo2ndMkr2.getSelectedItem();
         String SecondMkr3 = (String) cbo2ndMkr3.getSelectedItem();
         
-        IntakeRecord editedRecord = new IntakeRecord(SelectedIntake, Assessment, Spv1, Spv2, Spv3, SecondMkr1, SecondMkr2, SecondMkr3, "-");
-        IntakeRecord.edit(intakeIndex, editedRecord);
+        //Add data into HashSet
+        SpvSet.add(Spv1);
+        SpvSet.add(Spv2);
+        SpvSet.add(Spv3);
+        SecondMkrSet.add(SecondMkr1);
+        SecondMkrSet.add(SecondMkr2);
+        SecondMkrSet.add(SecondMkr3);
+        
+        //Checking is there any repeated selection
+        if (SpvSet.size() == 3 && SecondMkrSet.size() == 3 || (Spv1.equals("-") && Spv2.equals("-") && Spv3.equals("-")) || 
+        (Spv1.equals("-") && Spv2.equals("-")) || (Spv2.equals("-") && Spv3.equals("-")) ||
+        (Spv1.equals("-") && Spv3.equals("-")) || (SecondMkr1.equals("-") && SecondMkr2.equals("-") && SecondMkr3.equals("-")) || 
+        (SecondMkr1.equals("-") && SecondMkr2.equals("-")) || (SecondMkr2.equals("-") && SecondMkr3.equals("-")) ||
+        (SecondMkr1.equals("-") && SecondMkr3.equals("-"))) {
+            IntakeRecord editedRecord = new IntakeRecord(SelectedIntake, Assessment, Spv1, Spv2, Spv3, SecondMkr1, SecondMkr2, SecondMkr3, "-");
+            IntakeRecord.edit(intakeIndex, editedRecord);
+            return true;
+        } else {
+            JOptionPane.showMessageDialog(null,"You cannot select the same lecturer as supervisor / second marker.", "Invalid Selection", JOptionPane.ERROR_MESSAGE);
+            
+            cboSupv1.setSelectedItem(Spv1);
+            cboSupv2.setSelectedItem(Spv2);
+            cboSupv3.setSelectedItem(Spv3);
+            cbo2ndMkr1.setSelectedItem(SecondMkr1);
+            cbo2ndMkr2.setSelectedItem(SecondMkr2);
+            cbo2ndMkr3.setSelectedItem(SecondMkr3);
+            return false;
+        } 
     }
     
     //Submission Method for Intern
-    private void internAssesSubmit(){
+    private boolean internAssesSubmit(){
+        Set<String> SpvSet = new HashSet<>();
         int intakeIndex = IntakeRecord.checkIntake(SelectedIntake);
         
+        //Rerieve data from comboBox
         String Spv1 = (String) cboSupv1.getSelectedItem();
         String Spv2 = (String) cboSupv2.getSelectedItem();
         String Spv3 = (String) cboSupv3.getSelectedItem();
         
-        IntakeRecord editedRecord = new IntakeRecord(SelectedIntake, Assessment, Spv1, Spv2, Spv3, "-", "-", "-", "-");
-        IntakeRecord.edit(intakeIndex, editedRecord);
+        //Add data into HashSet
+        SpvSet.add(Spv1);
+        SpvSet.add(Spv2);
+        SpvSet.add(Spv3);
+
+        //Checking is there any repeated selection
+        if (SpvSet.size() == 3 || (Spv1.equals("-") && Spv2.equals("-") && Spv3.equals("-")) || 
+        (Spv1.equals("-") && Spv2.equals("-")) || (Spv2.equals("-") && Spv3.equals("-")) ||
+        (Spv1.equals("-") && Spv3.equals("-"))) {
+            IntakeRecord editedRecord = new IntakeRecord(SelectedIntake, Assessment, Spv1, Spv2, Spv3, "-", "-", "-", "-");
+            IntakeRecord.edit(intakeIndex, editedRecord);
+            return true;
+        } else {
+            JOptionPane.showMessageDialog(null,"You cannot select the same lecturer as supervisor.", "Invalid Selection", JOptionPane.ERROR_MESSAGE);
+            
+            cboSupv1.setSelectedItem(Spv1);
+            cboSupv2.setSelectedItem(Spv2);
+            cboSupv3.setSelectedItem(Spv3);
+            return false;
+        } 
     }
     
     //Submission Method for RMCP

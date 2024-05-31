@@ -102,7 +102,7 @@ public class Dashboard extends javax.swing.JPanel {
                         if (SubmitStatus.equals("No Attempt")) {
                             model.setValueAt(TableActionCellRender_DashRptStatusIcon.STATUS_NOSUBMITTED, model.getRowCount() - 1, 4);
                         }else{
-                            if (GradeStatus.equals("Not Graded")) {
+                            if (GradeStatus.equals("Not Graded") || GradeStatus.equals("Half Graded")) {
                                 model.setValueAt(TableActionCellRender_DashRptStatusIcon.STATUS_PENDING, model.getRowCount() - 1, 4);
                             }else{
                                 model.setValueAt(TableActionCellRender_DashRptStatusIcon.STATUS_MARKED, model.getRowCount() - 1, 4);

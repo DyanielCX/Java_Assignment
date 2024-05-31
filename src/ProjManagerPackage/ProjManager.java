@@ -4,7 +4,7 @@ import AdminPackage.IntakeRecord;
 import ProjManagerPackage.AssignSupvElem.LectData_IO;
 import StuPackage.StuData_IO;
 import StuPackage.Student;
-import assignment_ood.Lecturer;
+import Lecturer_Package.Lecturer;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;

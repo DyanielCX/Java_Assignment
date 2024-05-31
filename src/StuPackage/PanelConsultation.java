@@ -11,15 +11,21 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import javax.swing.JOptionPane;
+import javax.swing.SpinnerNumberModel;
 
 public class PanelConsultation extends javax.swing.JPanel {
     private String username; // Declare as an instance variable
     private String password;
     
     public PanelConsultation(String username, String password) {
+        initComponents();
         this.username = username; // Assign the parameter value to the instance variable
         this.password = password; 
-        initComponents();
+        // initiate 0, min 1, max 12 , step size 1
+         HourChoose.setModel(new SpinnerNumberModel(0, -1, 13, 1));
+        // initiate 0, min 1, max 59 , step size 5
+        MinuteChoose.setModel(new SpinnerNumberModel(0, -5, 60, 5));
         
         setEditVisible(false);
         EditPanel.setVisible(false);
@@ -130,7 +136,7 @@ public class PanelConsultation extends javax.swing.JPanel {
     }
 
      private void setEditVisible(boolean visible) {
-        Component[] components = {LecChoose,ObjChoose,DateChoose,HourChoose,MinuteChoose,MeridiemChoose};
+        Component[] components = {LecChoose,ObjChoose,DateChoose,HourChoose,MinuteChoose,MeridiemChoose,SubLogo};
         for (Component component : components) {
             component.setVisible(visible);
         }
@@ -161,6 +167,9 @@ public class PanelConsultation extends javax.swing.JPanel {
         SaveBtn = new javax.swing.JToggleButton();
         ObjChoose = new javax.swing.JTextField();
         Obj = new javax.swing.JLabel();
+        EditLogo = new javax.swing.JLabel();
+        SubLogo = new javax.swing.JLabel();
+        BackBtn = new javax.swing.JLabel();
         ConStatus = new javax.swing.JLabel();
         ReqBtn = new javax.swing.JButton();
         jLabel12 = new javax.swing.JLabel();
@@ -180,44 +189,58 @@ public class PanelConsultation extends javax.swing.JPanel {
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel4.setText("Lecturer ");
-        EditPanel.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 130, -1, -1));
+        EditPanel.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 120, -1, -1));
 
         LecChoose.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { }));
-        EditPanel.add(LecChoose, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 180, 120, 30));
+        EditPanel.add(LecChoose, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 170, 120, 30));
 
         Lec.setText("Lecturer");
-        EditPanel.add(Lec, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 160, -1, -1));
+        EditPanel.add(Lec, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 150, -1, -1));
 
         Time.setText("-");
-        EditPanel.add(Time, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 240, 80, -1));
+        EditPanel.add(Time, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 220, 80, -1));
 
         Date.setText("- ");
-        EditPanel.add(Date, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 160, 80, -1));
-        EditPanel.add(HourChoose, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 270, 50, -1));
-        EditPanel.add(MinuteChoose, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 270, 50, -1));
+        EditPanel.add(Date, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 150, 80, -1));
+
+        HourChoose.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                HourChooseStateChanged(evt);
+            }
+        });
+        EditPanel.add(HourChoose, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 250, 50, -1));
+
+        MinuteChoose.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                MinuteChooseStateChanged(evt);
+            }
+        });
+        EditPanel.add(MinuteChoose, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 250, 50, -1));
 
         MeridiemChoose.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "am", "pm" }));
-        EditPanel.add(MeridiemChoose, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 270, 60, -1));
+        EditPanel.add(MeridiemChoose, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 250, 60, -1));
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel2.setText("Consultation TIme");
-        EditPanel.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 210, -1, -1));
+        EditPanel.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 200, -1, -1));
 
         ConStatus2.setBackground(new java.awt.Color(204, 204, 255));
         ConStatus2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         ConStatus2.setText("Status");
-        EditPanel.add(ConStatus2, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 60, 120, 30));
-        EditPanel.add(DateChoose, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 180, 127, -1));
+        EditPanel.add(ConStatus2, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 70, 120, 30));
+        EditPanel.add(DateChoose, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 170, 127, -1));
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel3.setText("Consultation Date");
-        EditPanel.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 130, -1, -1));
+        EditPanel.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 130, -1, -1));
 
         jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel5.setText("Consultation Objective");
-        EditPanel.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 230, -1, -1));
+        EditPanel.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 220, -1, -1));
 
+        AddEditBtn.setBackground(new java.awt.Color(102, 102, 255));
         AddEditBtn.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        AddEditBtn.setForeground(new java.awt.Color(255, 255, 255));
         AddEditBtn.setText("Edit");
         AddEditBtn.setBorder(null);
         AddEditBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -225,9 +248,11 @@ public class PanelConsultation extends javax.swing.JPanel {
                 AddEditBtnActionPerformed(evt);
             }
         });
-        EditPanel.add(AddEditBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 350, 60, 30));
+        EditPanel.add(AddEditBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 260, 60, 30));
 
+        SaveBtn.setBackground(new java.awt.Color(102, 51, 255));
         SaveBtn.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        SaveBtn.setForeground(new java.awt.Color(255, 255, 255));
         SaveBtn.setText("Submit");
         SaveBtn.setBorder(null);
         SaveBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -235,20 +260,32 @@ public class PanelConsultation extends javax.swing.JPanel {
                 SaveBtnActionPerformed(evt);
             }
         });
-        EditPanel.add(SaveBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 350, 70, 30));
-
-        ObjChoose.setText("jTextField1");
-        EditPanel.add(ObjChoose, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 290, 130, 30));
+        EditPanel.add(SaveBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 340, 60, 30));
+        EditPanel.add(ObjChoose, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 280, 220, 30));
 
         Obj.setText("- ");
         Obj.setAutoscrolls(true);
-        EditPanel.add(Obj, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 250, 250, 40));
+        EditPanel.add(Obj, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 240, 250, 40));
+
+        EditLogo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/requestCon.png"))); // NOI18N
+        EditPanel.add(EditLogo, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 220, -1, -1));
+
+        SubLogo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/submit.png"))); // NOI18N
+        EditPanel.add(SubLogo, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 300, -1, -1));
+
+        BackBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/Back.png"))); // NOI18N
+        BackBtn.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                BackBtnMouseClicked(evt);
+            }
+        });
+        EditPanel.add(BackBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 40, -1, -1));
 
         jPanel4.add(EditPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 770, 420));
 
         ConStatus.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         ConStatus.setText("Consultation Status");
-        jPanel4.add(ConStatus, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 180, -1, -1));
+        jPanel4.add(ConStatus, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 180, -1, -1));
 
         ReqBtn.setBackground(new java.awt.Color(0, 102, 153));
         ReqBtn.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
@@ -260,7 +297,7 @@ public class PanelConsultation extends javax.swing.JPanel {
                 ReqBtnActionPerformed(evt);
             }
         });
-        jPanel4.add(ReqBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 230, 130, 30));
+        jPanel4.add(ReqBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 230, 130, 30));
 
         jLabel12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/consultation.png"))); // NOI18N
         jLabel12.setText("jLabel12");
@@ -274,13 +311,13 @@ public class PanelConsultation extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(882, Short.MAX_VALUE))
+                .addContainerGap(27, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(85, Short.MAX_VALUE))
+                .addContainerGap(69, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -292,7 +329,7 @@ public class PanelConsultation extends javax.swing.JPanel {
         if (!editMode) {
             SaveBtn.setVisible(false);
             setEditVisible(false);
-            AddEditBtn.setText("Add");
+            AddEditBtn.setText("Edit");
             this.editMode = true;
         } else {
             SaveBtn.setVisible(true);
@@ -306,18 +343,103 @@ public class PanelConsultation extends javax.swing.JPanel {
     }//GEN-LAST:event_AddEditBtnActionPerformed
 
     private void SaveBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SaveBtnActionPerformed
-        writeDataToFile();
-        handleEditMode(false);
-        readConsultationFile("ConsultationData.txt");
+         // Check if the JSpinners and JDateChooser have valid values
+        int hourValue = (int) HourChoose.getValue();
+        Date selectedDate = DateChoose.getDate();
+        String objText = ObjChoose.getText();
+        boolean allValid = hourValue != 0 && selectedDate != null && selectedDate.after(new Date()) && objText != null && !objText.trim().isEmpty() && objText.length() <= 30;
+
+        if (!allValid) {
+            String errorMessage = "";
+
+            if (hourValue == 0) {
+                errorMessage += "Please select a valid hour.\n";
+            }
+            if (selectedDate == null || !selectedDate.after(new Date())) {
+                errorMessage += "Please select a valid date.\n";
+            }
+            if (objText == null || objText.trim().isEmpty()) {
+                errorMessage += "Objective cannot be empty.\n";
+            }
+            if (objText.length() > 30) {
+                errorMessage += "Objective cannot be longer than 30 characters.\n";
+            }
+
+            JOptionPane.showMessageDialog(null, errorMessage, "Validation Error", JOptionPane.ERROR_MESSAGE);
+            return; // Exit the method if any of the values are invalid
+        }
+
+        // Check if the username exists in the file
+        boolean usernameFound = checkUsernameInFile();
+
+        // Display confirmation dialog based on whether the username is found
+        int confirmOption;
+        if (usernameFound) {
+            confirmOption = JOptionPane.showConfirmDialog(null, "A consultation already exists for this username. Do you want to update it?", "Confirmation", JOptionPane.YES_NO_OPTION);
+        } else {
+            confirmOption = JOptionPane.showConfirmDialog(null, "No consultation found for this username. Do you want to request a consultation?", "Confirmation", JOptionPane.YES_NO_OPTION);
+        }
+
+        if (confirmOption == JOptionPane.YES_OPTION) {
+            // Proceed with writing data to file
+            writeDataToFile();
+             readConsultationFile("ConsultationData.txt");
+            handleEditMode(false);
+            JOptionPane.showMessageDialog(null, "Request has been sent successfully", "Success", JOptionPane.INFORMATION_MESSAGE);
+        } else {
+            handleEditMode(true);
+        }
     }//GEN-LAST:event_SaveBtnActionPerformed
-    
+
+    private void HourChooseStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_HourChooseStateChanged
+        int value = (int) HourChoose.getValue();
+                if (value == 13) {
+                    // If the spinner value is 12, reset it to 1
+                    HourChoose.setValue(1);
+                }else if(value == 0 || value == -1) {
+                    // If the spinner value is 0, reset it to 12
+                    HourChoose.setValue(12);
+                }
+    }//GEN-LAST:event_HourChooseStateChanged
+
+    private void MinuteChooseStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_MinuteChooseStateChanged
+         int value = (int) MinuteChoose.getValue();
+                if (value == 60) {
+                    // If the spinner value is 60, reset it to 0
+                    MinuteChoose.setValue(0);
+                }else if(value == -5) {
+                    // If the spinner value is -5 , reset it to 55
+                    MinuteChoose.setValue(55);
+                }
+    }//GEN-LAST:event_MinuteChooseStateChanged
+
+    private void BackBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BackBtnMouseClicked
+        EditPanel.setVisible(false);
+    }//GEN-LAST:event_BackBtnMouseClicked
+    private boolean checkUsernameInFile() {
+        try (BufferedReader br = new BufferedReader(new FileReader("ConsultationData.txt"))) {
+            String line;
+            while ((line = br.readLine()) != null) {
+                String[] parts = line.split(",");
+                if (parts.length > 0 && parts[0].trim().equals(username)) {
+                    return true; // Username found in the file
+                }
+            }
+        } catch (IOException e) {
+            System.err.println("Error reading the file: " + e.getMessage());
+        }
+        return false; // Username not found in the file
+    }
+        
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton AddEditBtn;
+    private javax.swing.JLabel BackBtn;
     private javax.swing.JLabel ConStatus;
     private javax.swing.JLabel ConStatus2;
     private javax.swing.JLabel Date;
     private com.toedter.calendar.JDateChooser DateChoose;
+    private javax.swing.JLabel EditLogo;
     private javax.swing.JPanel EditPanel;
     private javax.swing.JSpinner HourChoose;
     private javax.swing.JLabel Lec;
@@ -328,6 +450,7 @@ public class PanelConsultation extends javax.swing.JPanel {
     private javax.swing.JTextField ObjChoose;
     private javax.swing.JButton ReqBtn;
     private javax.swing.JToggleButton SaveBtn;
+    private javax.swing.JLabel SubLogo;
     private javax.swing.JLabel Time;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel2;

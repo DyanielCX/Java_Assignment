@@ -326,7 +326,7 @@ private String constructNewLine() {
         boolean allValid = hourValue != 0 && selectedDate != null && selectedDate.after(new Date());
         
         if (!allValid) {
-            JOptionPane.showMessageDialog(this, "Please select valid date and time", "Validation Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Please select valid date and time", "Validation Error", JOptionPane.ERROR_MESSAGE);
             return; // Exit the method if any of the values are invalid
         }
 
@@ -336,9 +336,9 @@ private String constructNewLine() {
         // Display confirmation dialog based on whether the username is found
         int confirmOption;
         if (usernameFound) {
-            confirmOption = JOptionPane.showConfirmDialog(this, "A presentation already exists for this username. Do you want to update it?", "Confirmation", JOptionPane.YES_NO_OPTION);
+            confirmOption = JOptionPane.showConfirmDialog(null, "A presentation already exists for this username. Do you want to update it?", "Confirmation", JOptionPane.YES_NO_OPTION);
         } else {
-            confirmOption = JOptionPane.showConfirmDialog(this, "No presentation found for this username. Do you want to request a presentation?", "Confirmation", JOptionPane.YES_NO_OPTION);
+            confirmOption = JOptionPane.showConfirmDialog(null, "No presentation found for this username. Do you want to request a presentation?", "Confirmation", JOptionPane.YES_NO_OPTION);
         }
 
         if (confirmOption == JOptionPane.YES_OPTION) {
@@ -347,7 +347,7 @@ private String constructNewLine() {
             readStudentDetailsFromFile("StuData.txt");
             readPresentationDetailsFromFile("PresentationData.txt");
             handleEditMode(false);
-            JOptionPane.showMessageDialog(this, "Request has been sent successfully", "Success", JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Request has been sent successfully", "Success", JOptionPane.INFORMATION_MESSAGE);
         } else {
             handleEditMode(true);
         }

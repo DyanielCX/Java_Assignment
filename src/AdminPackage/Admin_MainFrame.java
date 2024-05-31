@@ -3,7 +3,7 @@ package AdminPackage;
 import Java_Assignment.LoginPage;
 import ProjManagerPackage.AssignSupvElem.LectData_IO;
 import StuPackage.StuData_IO;
-import assignment_ood.lect_Panal;
+import Lecturer_Package.lect_Panal;
 import java.awt.Color;
 
 
@@ -294,7 +294,13 @@ public class Admin_MainFrame extends javax.swing.JFrame {
 
     /* Logout Button */
     private void lblLogoutMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblLogoutMouseClicked
-
+        IntakeRecord.IntakeRecordData.clear();
+        IntakeRecord.readFrTxt();
+        StuData_IO.StuData.clear();
+        StuData_IO.readFrTxt();
+        LectData_IO.LectData.clear();
+        LectData_IO.readFrTxt();
+        
         // Redirect to login page or close the current window
         LoginPage loginPage = new LoginPage();
         loginPage.setVisible(true);

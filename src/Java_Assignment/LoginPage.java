@@ -9,7 +9,7 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import javax.swing.JOptionPane;
-import assignment_ood.Lecture_mainframe;
+import Lecturer_Package.Lecture_mainframe;
 public class LoginPage extends javax.swing.JFrame {
     private String UsernameInput; // Declare as an instance variable
     private String PasswordInput; // Declare as an instance variable
@@ -28,7 +28,7 @@ public class LoginPage extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
+        BackBtn = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         Password_input = new javax.swing.JPasswordField();
 
@@ -57,7 +57,7 @@ public class LoginPage extends javax.swing.JFrame {
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(242, 242, 242));
-        jLabel2.setText("Username");
+        jLabel2.setText("User ID");
         jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 220, 80, -1));
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -73,13 +73,13 @@ public class LoginPage extends javax.swing.JFrame {
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/Logo(White).png"))); // NOI18N
         jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 70, 160, 90));
 
-        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/Back.png"))); // NOI18N
-        jLabel4.addMouseListener(new java.awt.event.MouseAdapter() {
+        BackBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/Back.png"))); // NOI18N
+        BackBtn.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel4MouseClicked(evt);
+                BackBtnMouseClicked(evt);
             }
         });
-        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 20, -1, -1));
+        jPanel1.add(BackBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 20, -1, -1));
 
         jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/LoginPic.png"))); // NOI18N
         jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 60, -1, -1));
@@ -106,19 +106,26 @@ public class LoginPage extends javax.swing.JFrame {
 
     private void LoginBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LoginBtnActionPerformed
          // Get the username and password input from the text fields
-    String username = Username_input.getText();
+    String userID = Username_input.getText();
     String password = Password_input.getText();
     
     // Call the authenticateUser method to validate the credentials
     boolean isSupervisor = false;
-    String role = authenticateUser(username, password);
+    String role = authenticateUser(userID, password);
     
     
     if (role != null) {
-        // If credentials are valid, redirect to the appropriate dashboard
-        Session.setUsername(username);
-        redirectToDashboard(username, password, role);
-        // Close the login window or do any other necessary action
+        if (role.equals("LecData") || role.equals("ProjectMgn")) {
+            int ProjMngIndex = LectData_IO.checkLect(userID);
+            String userName = LectData_IO.LectData.get(ProjMngIndex).lectName;
+            Session.setUserID(userName);
+            redirectToDashboard(userID, password, role);
+        }else{
+            // If credentials are valid, redirect to the appropriate dashboard
+            Session.setUserID(userID);
+            redirectToDashboard(userID, password, role);
+            // Close the login window or do any other necessary action
+        }
         dispose();
     } else {
         // If credentials are invalid, show an error message
@@ -126,11 +133,11 @@ public class LoginPage extends javax.swing.JFrame {
     }
     }//GEN-LAST:event_LoginBtnActionPerformed
 
-    private void jLabel4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel4MouseClicked
+    private void BackBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BackBtnMouseClicked
         HomePage home = new HomePage();
         home.setVisible(true); // Show the new window
         this.dispose();
-    }//GEN-LAST:event_jLabel4MouseClicked
+    }//GEN-LAST:event_BackBtnMouseClicked
     
     public static String authenticateUser(String username, String password) {
         if (username.equals("admin") && password.equals("admin")) {
@@ -142,7 +149,8 @@ public class LoginPage extends javax.swing.JFrame {
 
         // Loop through each role file
         for (String file : roleFiles) {
-            try (BufferedReader br = new BufferedReader(new FileReader(file))) {
+            if (file.equals("StuData.txt")) {
+                try (BufferedReader br = new BufferedReader(new FileReader(file))) {
                 String line;
                 while ((line = br.readLine()) != null) {
                     String[] parts = line.split(",");
@@ -152,17 +160,35 @@ public class LoginPage extends javax.swing.JFrame {
                     
                     if (storedUsername.equals(username) && storedPassword.equals(password)) {
                         role = role.trim();
-                        if (role.equals("LecData")){
-                        boolean isSupervisor = Boolean.parseBoolean(parts[2]);
-                           if (isSupervisor) { // Check if isSupervisor is true
-            role = "ProjectMgn"; // Change the role to ProjectMgn
-            return role;
-        }
-                        }return  role.trim();
+                        return  role.trim();
                    }
                 }
             } catch (IOException e) {
                 e.printStackTrace();
+            }
+            }else{
+                try (BufferedReader br = new BufferedReader(new FileReader(file))) {
+                    String line;
+                    while ((line = br.readLine()) != null) {
+                        String[] parts = line.split(",");
+                        String storedID = parts[1];
+                        String storedPassword = parts[5];
+                        String role = file.substring(0, file.indexOf('.'));
+
+                        if (storedID.equals(username) && storedPassword.equals(password)) {
+                            role = role.trim();
+                            if (role.equals("LecData")){
+                            boolean isSupervisor = Boolean.parseBoolean(parts[2]);
+                               if (isSupervisor) { // Check if isSupervisor is true
+                                    role = "ProjectMgn"; // Change the role to ProjectMgn
+                                    return role;
+                                }
+                            }return  role.trim();
+                       }
+                    }
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
             }
         }
         return null; // User not found or invalid credentials
@@ -235,13 +261,13 @@ public class LoginPage extends javax.swing.JFrame {
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel BackBtn;
     private javax.swing.JButton LoginBtn;
     private javax.swing.JPasswordField Password_input;
     private javax.swing.JTextField Username_input;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;

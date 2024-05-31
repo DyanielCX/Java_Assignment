@@ -43,6 +43,7 @@ public class Admin_AddStudent extends javax.swing.JFrame {
         AddBtn = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setUndecorated(true);
 
         jPanel3.setBackground(new java.awt.Color(255, 148, 148));
 

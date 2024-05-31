@@ -1,0 +1,50 @@
+TP3466,CP1,Attempt,Half Graded, -, -,01-06-2024,https://lms2.apiit.edu.my/mod/assign/view.php?id=518473,Good job!!!
+TP12237,CP1,Attempt,Half Graded, -, -,01-06-2024,https://lms2.apiit.edu.my/mod/assign/view.php?id=518473, -
+TP73193,CP1,Attempt,Half Graded, -, -,01-06-2024,https://lms2.apiit.edu.my/mod/assign/view.php?id=518473,Good job!!
+TP58548,CP1,Attempt,Half Graded, -, -,01-06-2024,https://lms2.apiit.edu.my/mod/assign/view.php?id=518473, -
+TP20821,CP1,Attempt,Not Graded, -, -,01-06-2024,https://lms2.apiit.edu.my/mod/assign/view.php?id=518473, -
+TP37444,CP1,No Attempt,Not Graded, -, -, -, -, -
+TP78453,CP1,Attempt,Not Graded, -, -,01-06-2024,https://lms2.apiit.edu.my/mod/assign/view.php?id=518473, -
+TP25775,CP1,No Attempt,Not Graded, -, -, -, -, -
+TP51777,CP1,No Attempt,Not Graded, -, -, -, -, -
+TP34841,CP1,No Attempt,Not Graded, -, -, -, -, -
+TP29541,Intern,No Attempt,Not Graded, -, -, -, -, -
+TP51570,Intern,No Attempt,Not Graded, -, -, -, -, -
+TP8869,Intern,No Attempt,Not Graded, -, -, -, -, -
+TP8160,Intern,No Attempt,Not Graded, -, -, -, -, -
+TP48033,Intern,No Attempt,Not Graded, -, -, -, -, -
+TP83174,Intern,No Attempt,Not Graded, -, -, -, -, -
+TP80750,Intern,No Attempt,Not Graded, -, -, -, -, -
+TP63969,Intern,No Attempt,Not Graded, -, -, -, -, -
+TP70095,Intern,No Attempt,Not Graded, -, -, -, -, -
+TP59600,Intern,No Attempt,Not Graded, -, -, -, -, -
+TP14612,RMCP,No Attempt,Not Graded, -, -, -, -, -
+TP23989,RMCP,No Attempt,Not Graded, -, -, -, -, -
+TP89514,RMCP,No Attempt,Not Graded, -, -, -, -, -
+TP49237,RMCP,No Attempt,Not Graded, -, -, -, -, -
+TP59001,RMCP,No Attempt,Not Graded, -, -, -, -, -
+TP640,RMCP,No Attempt,Not Graded, -, -, -, -, -
+TP5217,RMCP,No Attempt,Not Graded, -, -, -, -, -
+TP59396,RMCP,No Attempt,Not Graded, -, -, -, -, -
+TP10320,RMCP,No Attempt,Not Graded, -, -, -, -, -
+TP1491,RMCP,No Attempt,Not Graded, -, -, -, -, -
+TP2166, -,No Attempt,Not Graded, -, -, -, -, -
+TP96007, -,No Attempt,Not Graded, -, -, -, -, -
+TP70486, -,No Attempt,Not Graded, -, -, -, -, -
+TP95630, -,No Attempt,Not Graded, -, -, -, -, -
+TP55766, -,No Attempt,Not Graded, -, -, -, -, -
+TP36744, -,No Attempt,Not Graded, -, -, -, -, -
+TP19021, -,No Attempt,Not Graded, -, -, -, -, -
+TP63368, -,No Attempt,Not Graded, -, -, -, -, -
+TP71689, -,No Attempt,Not Graded, -, -, -, -, -
+TP76131, -,No Attempt,Not Graded, -, -, -, -, -
+TP80350, -,No Attempt,Not Graded, -, -, -, -, -
+TP19037, -,No Attempt,Not Graded, -, -, -, -, -
+TP65058, -,No Attempt,Not Graded, -, -, -, -, -
+TP69293, -,No Attempt,Not Graded, -, -, -, -, -
+TP14582, -,No Attempt,Not Graded, -, -, -, -, -
+TP26895, -,No Attempt,Not Graded, -, -, -, -, -
+TP99720, -,No Attempt,Not Graded, -, -, -, -, -
+TP75868, -,No Attempt,Not Graded, -, -, -, -, -
+TP22787, -,No Attempt,Not Graded, -, -, -, -, -
+TP34353, -,No Attempt,Not Graded, -, -, -, -, -

@@ -30,7 +30,7 @@ public class PanelSchedule extends javax.swing.JPanel {
                 }
             }
             // If the loop completes without finding the user
-            System.err.println("User not found in the file.");
+            PreSche.setText("You have no presentation schedule");
         } catch (IOException e) {
             System.err.println("Error reading the file: " + e.getMessage());
         }
@@ -49,7 +49,7 @@ public class PanelSchedule extends javax.swing.JPanel {
                 }
             }
             // If the loop completes without finding the user
-            System.err.println("User not found in the file.");
+            ConSche.setText("You have no consultation schedule");
         } catch (IOException e) {
             System.err.println("Error reading the file: " + e.getMessage());
         }
@@ -64,15 +64,16 @@ public class PanelSchedule extends javax.swing.JPanel {
         jPanel2 = new javax.swing.JPanel();
         ConDate = new javax.swing.JLabel();
         ConTime = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
+        ConSche = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         ConLec = new javax.swing.JLabel();
         PresentationSchedule = new javax.swing.JPanel();
         PreDate = new javax.swing.JLabel();
         PreTime = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
+        PreSche = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         PreLec = new javax.swing.JLabel();
+        RefreshBtn = new javax.swing.JLabel();
 
         setMaximumSize(new java.awt.Dimension(935, 530));
         setMinimumSize(new java.awt.Dimension(935, 530));
@@ -99,10 +100,10 @@ public class PanelSchedule extends javax.swing.JPanel {
         ConTime.setText("Current Assesment");
         jPanel2.add(ConTime, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 100, -1, -1));
 
-        jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel4.setText("Consultation Scheduule");
-        jPanel2.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 20, -1, -1));
+        ConSche.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        ConSche.setForeground(new java.awt.Color(0, 0, 0));
+        ConSche.setText("Consultation Scheduule");
+        jPanel2.add(ConSche, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 20, -1, -1));
 
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/time.png"))); // NOI18N
         jPanel2.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 90, -1, 30));
@@ -125,10 +126,10 @@ public class PanelSchedule extends javax.swing.JPanel {
         PreTime.setText("Current Assesment");
         PresentationSchedule.add(PreTime, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 110, -1, -1));
 
-        jLabel8.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel8.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel8.setText("Presentation Schedule");
-        PresentationSchedule.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 20, 170, 30));
+        PreSche.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        PreSche.setForeground(new java.awt.Color(0, 0, 0));
+        PreSche.setText("Presentation Schedule");
+        PresentationSchedule.add(PreSche, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 20, 170, 30));
 
         jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/time.png"))); // NOI18N
         PresentationSchedule.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 100, -1, 30));
@@ -139,22 +140,38 @@ public class PanelSchedule extends javax.swing.JPanel {
 
         jPanel1.add(PresentationSchedule, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 80, 750, 160));
 
+        RefreshBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/refresh.png"))); // NOI18N
+        RefreshBtn.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                RefreshBtnMouseClicked(evt);
+            }
+        });
+        jPanel1.add(RefreshBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 20, -1, -1));
+
         add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 30, 870, 470));
     }// </editor-fold>//GEN-END:initComponents
+
+    private void RefreshBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_RefreshBtnMouseClicked
+        readPresentationDetailsFromFile("PresentationData.txt");
+        readConsultationDetailsFromFile("ConsultationData.txt");
+        // Show a pop-up dialog saying "Refresh Done"
+        javax.swing.JOptionPane.showMessageDialog(null, "Refresh Done", "Info", javax.swing.JOptionPane.INFORMATION_MESSAGE);
+    }//GEN-LAST:event_RefreshBtnMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel ConDate;
     private javax.swing.JLabel ConLec;
+    private javax.swing.JLabel ConSche;
     private javax.swing.JLabel ConTime;
     private javax.swing.JLabel PreDate;
     private javax.swing.JLabel PreLec;
+    private javax.swing.JLabel PreSche;
     private javax.swing.JLabel PreTime;
     private javax.swing.JPanel PresentationSchedule;
+    private javax.swing.JLabel RefreshBtn;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;

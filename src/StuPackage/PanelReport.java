@@ -32,9 +32,15 @@ public class PanelReport extends javax.swing.JPanel {
                 SubStatus.setText(parts[2].trim());
                 GradeStatus.setText(parts[3].trim());
                 SubDeadLine.setText(parts[4].trim());
-                SubDate.setText(parts[5].trim());
-                SubLink.setText(parts[6].trim());
-                SubFeedback.setText(parts[7].trim());
+                SubDate.setText(parts[6].trim());
+                SubLink.setText(parts[7].trim());
+                SubFeedback.setText(parts[8].trim());
+                
+                if (parts[2].trim().equals("No Submission")) {
+                    DeleteBtn.setVisible(false); // Hide the delete button
+                } else {
+                    DeleteBtn.setVisible(true); // Show the delete button if there's a submission
+                }
                 return; // Exit the loop once the user is found
             }
         }
@@ -59,10 +65,10 @@ public class PanelReport extends javax.swing.JPanel {
             while ((line = br.readLine()) != null) {
                 String[] parts = line.split(",");
                 if (parts[0].trim().equals(username)) {
-                    parts[2] = "Submit for grading";
+                    parts[2] = "Attempt";
                     parts[3] = "Not Graded";
-                    parts[5] = formattedDate;
-                    parts[6] = input; // Replace the SubLink (part 6) with the input
+                    parts[6] = formattedDate;
+                    parts[7] = input; // Replace the SubLink (part 6) with the input
                     line = String.join(",", parts);
                     userFound = true;
                 }
@@ -81,6 +87,47 @@ public class PanelReport extends javax.swing.JPanel {
                     writer.newLine();
                 }
                 System.out.println("Data written to ReportData.txt successfully.");
+            } catch (IOException ex) {
+                System.err.println("Error writing to file: " + ex.getMessage());
+            }
+        } else {
+            System.err.println("User not found in the file.");
+        }
+    }
+    private void DeleteSubmissionLink(String filename) {
+        String fileName = "ReportData.txt";
+        List<String> fileContents = new ArrayList<>();
+        boolean userFound = false;
+
+        // Read the file contents into a list
+        try (BufferedReader br = new BufferedReader(new FileReader(fileName))) {
+            String line;
+            while ((line = br.readLine()) != null) {
+                String[] parts = line.split(",");
+                if (parts[0].trim().equals(username)) {
+                    parts[2] = "No Attempt";
+                    parts[3] = "Not Graded";
+                    parts[6] = "-"; 
+                    parts[7] = "-"; 
+                    parts[8] = "-"; 
+                    line = String.join(",", parts);
+                    userFound = true;
+                }
+                fileContents.add(line);
+            }
+        } catch (IOException e) {
+            System.err.println("Error reading the file: " + e.getMessage());
+            return;
+        }
+
+        if (userFound) {
+            // Write the updated contents back to the file
+            try (BufferedWriter writer = new BufferedWriter(new FileWriter(fileName))) {
+                for (String line : fileContents) {
+                    writer.write(line);
+                    writer.newLine();
+                }
+                System.out.println("Submission Delete from ReportData.txt successfully.");
             } catch (IOException ex) {
                 System.err.println("Error writing to file: " + ex.getMessage());
             }
@@ -127,6 +174,7 @@ public class PanelReport extends javax.swing.JPanel {
         SubDeadLine = new javax.swing.JLabel();
         jPanel18 = new javax.swing.JPanel();
         SubDate = new javax.swing.JLabel();
+        DeleteBtn = new javax.swing.JButton();
 
         setMaximumSize(new java.awt.Dimension(935, 530));
         setMinimumSize(new java.awt.Dimension(935, 530));
@@ -141,7 +189,7 @@ public class PanelReport extends javax.swing.JPanel {
                 EditBtnActionPerformed(evt);
             }
         });
-        add(EditBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 480, 120, 40));
+        add(EditBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 480, 120, 40));
 
         jPanel1.setMaximumSize(new java.awt.Dimension(170, 98));
         jPanel1.setMinimumSize(new java.awt.Dimension(170, 98));
@@ -314,6 +362,17 @@ public class PanelReport extends javax.swing.JPanel {
         jPanel1.add(jPanel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 240, 710, 60));
 
         add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 30, 880, 420));
+
+        DeleteBtn.setBackground(new java.awt.Color(255, 153, 153));
+        DeleteBtn.setForeground(new java.awt.Color(0, 0, 0));
+        DeleteBtn.setText("Delete Submission");
+        DeleteBtn.setBorder(null);
+        DeleteBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                DeleteBtnActionPerformed(evt);
+            }
+        });
+        add(DeleteBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 480, 120, 40));
     }// </editor-fold>//GEN-END:initComponents
 
     private void EditBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EditBtnActionPerformed
@@ -325,12 +384,27 @@ public class PanelReport extends javax.swing.JPanel {
             // Proceed to save the input to ReportData.txt
             saveSubmissionLink(input);
             readReportDetailsFromFile("ReportData.txt");
+            
+            JOptionPane.showMessageDialog(null, "Your submission link has been submitted successfully", "Success", JOptionPane.INFORMATION_MESSAGE);
         }
     }//GEN-LAST:event_EditBtnActionPerformed
+
+    private void DeleteBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DeleteBtnActionPerformed
+        int response = JOptionPane.showConfirmDialog(null, "Are you sure you want to delete the submission?", "Confirm Deletion", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
+        
+        // Check the user's response
+        if (response == JOptionPane.YES_OPTION) {
+            // If user confirmed, proceed with the deletion
+            DeleteSubmissionLink("ReportData.txt");
+            readReportDetailsFromFile("ReportData.txt");
+            JOptionPane.showMessageDialog(null, "Your submission  has been delete successfully", "Success", JOptionPane.INFORMATION_MESSAGE);
+        }
+    }//GEN-LAST:event_DeleteBtnActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel Assessment;
+    private javax.swing.JButton DeleteBtn;
     private javax.swing.JButton EditBtn;
     private javax.swing.JLabel GradeStatus;
     private javax.swing.JLabel SubDate;

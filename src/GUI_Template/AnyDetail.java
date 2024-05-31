@@ -12,7 +12,7 @@ public class AnyDetail {
     data structure (current) -> Student ID, Password, Name, Age, Intake, Assessment, Supervisor, Second Marker, RMCP Lecturer
     
     LecData.txt 
-    data structure (current) -> Lecturer Name, Lecturer ID, is ProjectManager, is Supervisor, is SecondMarker
+    data structure (current) -> Lecturer Name, Lecturer ID, is ProjectManager, is Supervisor, is SecondMarker, Password
     
     PresentationData.txt
     data structure (current) -> Student ID, Lecturer Name, Assessment, Presentation Date, Presentation Time, Request Status, Reject Reason
