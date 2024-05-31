@@ -20,11 +20,11 @@ import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 
 
-public class Admin_StudentManagement extends javax.swing.JPanel {
+public class Admin_StudentManagement3 extends javax.swing.JPanel {
     
     private Admin_MainFrame mainFrame;
 
-    public Admin_StudentManagement(Admin_MainFrame mainFrame) {
+    public Admin_StudentManagement3(Admin_MainFrame mainFrame) {
         this.mainFrame = mainFrame;
         initComponents();
         
@@ -115,30 +115,60 @@ public class Admin_StudentManagement extends javax.swing.JPanel {
         scroll.setCorner(JScrollPane.UPPER_RIGHT_CORNER, p);
         scroll.setBorder(new EmptyBorder(5, 10, 5, 10));
     }
-
+     
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jScrollPane1 = new javax.swing.JScrollPane();
+        StudentList = new javax.swing.JTable();
+        jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         StuID_txtfield = new javax.swing.JTextField();
         Search_btn = new javax.swing.JButton();
         Add_btn = new javax.swing.JButton();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        StudentList = new javax.swing.JTable();
 
-        setBackground(new java.awt.Color(255, 148, 148));
-        setPreferredSize(new java.awt.Dimension(909, 518));
+        setBackground(new java.awt.Color(255, 255, 255));
+        setLayout(new java.awt.BorderLayout());
 
-        jLabel1.setFont(new java.awt.Font("Segoe UI Black", 1, 14)); // NOI18N
+        StudentList.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "ID", "Name", "Age", "Intake", "Assessment", "Supervisor", "Sec Marker", "RMCP", "Action"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false, false, false, true
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        StudentList.setRowHeight(40);
+        jScrollPane1.setViewportView(StudentList);
+
+        add(jScrollPane1, java.awt.BorderLayout.CENTER);
+
+        jPanel2.setBackground(new java.awt.Color(255, 148, 148));
+
+        jLabel1.setFont(new java.awt.Font("Segoe UI Historic", 1, 14)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Student ID:");
 
+        StuID_txtfield.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                StuID_txtfieldActionPerformed(evt);
+            }
+        });
+
         Search_btn.setBackground(new java.awt.Color(252, 188, 188));
-        Search_btn.setFont(new java.awt.Font("Segoe UI Black", 1, 14)); // NOI18N
+        Search_btn.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         Search_btn.setForeground(new java.awt.Color(255, 255, 255));
         Search_btn.setText("Search");
-        Search_btn.setBorder(null);
+        Search_btn.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 148, 148), 4, true));
         Search_btn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 Search_btnActionPerformed(evt);
@@ -146,74 +176,49 @@ public class Admin_StudentManagement extends javax.swing.JPanel {
         });
 
         Add_btn.setBackground(new java.awt.Color(252, 188, 188));
-        Add_btn.setFont(new java.awt.Font("Segoe UI Black", 1, 14)); // NOI18N
+        Add_btn.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         Add_btn.setForeground(new java.awt.Color(255, 255, 255));
         Add_btn.setText("Add");
-        Add_btn.setBorder(null);
+        Add_btn.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 148, 148), 4, true));
         Add_btn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 Add_btnActionPerformed(evt);
             }
         });
 
-        StudentList.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null}
-            },
-            new String [] {
-                "ID", "Name", "Age", "Intake", "Assessment", "Supervisor", "Sec Marker", "RMCP", "Action"
-            }
-        ));
-        jScrollPane1.setViewportView(StudentList);
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(206, 206, 206)
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(212, 212, 212)
                 .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(StuID_txtfield, javax.swing.GroupLayout.PREFERRED_SIZE, 253, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(50, 50, 50)
-                .addComponent(Search_btn, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(26, 26, 26)
-                .addComponent(Add_btn, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(118, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1)
-                .addContainerGap())
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(17, 17, 17)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel1)
-                            .addComponent(StuID_txtfield, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 8, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(1, 1, 1)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(Search_btn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(Add_btn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(StuID_txtfield, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(24, 24, 24)
+                .addComponent(Search_btn, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addComponent(Add_btn, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(142, Short.MAX_VALUE))
         );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addContainerGap(43, Short.MAX_VALUE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(StuID_txtfield, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Search_btn, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Add_btn))
+                .addGap(38, 38, 38))
+        );
+
+        add(jPanel2, java.awt.BorderLayout.PAGE_START);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void Add_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Add_btnActionPerformed
-        Admin_AddStudent addStudentFrame = new Admin_AddStudent();
-        addStudentFrame.setVisible(true);
-        mainFrame.dispose();
-    }//GEN-LAST:event_Add_btnActionPerformed
+    private void StuID_txtfieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_StuID_txtfieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_StuID_txtfieldActionPerformed
 
     private void Search_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Search_btnActionPerformed
         String searchID = StuID_txtfield.getText(); // Get the student ID from the text field
@@ -235,6 +240,12 @@ public class Admin_StudentManagement extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_Search_btnActionPerformed
 
+    private void Add_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Add_btnActionPerformed
+        Admin_AddStudent addStudentFrame = new Admin_AddStudent();
+        addStudentFrame.setVisible(true);
+        mainFrame.dispose(); // Close the current frame
+    }//GEN-LAST:event_Add_btnActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Add_btn;
@@ -242,6 +253,7 @@ public class Admin_StudentManagement extends javax.swing.JPanel {
     private javax.swing.JTextField StuID_txtfield;
     private javax.swing.JTable StudentList;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
 }

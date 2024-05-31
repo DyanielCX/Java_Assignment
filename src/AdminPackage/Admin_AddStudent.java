@@ -90,7 +90,6 @@ public class Admin_AddStudent extends javax.swing.JFrame {
         jLabel5.setText("Student Intake");
 
         StudentName_textfield.setForeground(java.awt.Color.gray);
-        StudentName_textfield.setText("Please enter the student name");
         StudentName_textfield.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 StudentName_textfieldFocusGained(evt);
@@ -106,7 +105,6 @@ public class Admin_AddStudent extends javax.swing.JFrame {
         });
 
         StudentAge_textfield.setForeground(java.awt.Color.gray);
-        StudentAge_textfield.setText("Please enter the student age");
         StudentAge_textfield.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 StudentAge_textfieldFocusGained(evt);
@@ -273,39 +271,27 @@ public class Admin_AddStudent extends javax.swing.JFrame {
     }//GEN-LAST:event_AddBtnActionPerformed
 
     private void StudentName_textfieldFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_StudentName_textfieldFocusGained
-        if (StudentName_textfield.getText().equals("Please enter the student name")) {
-                StudentName_textfield.setText("");
-                StudentName_textfield.setForeground(Color.BLACK);
-            }
+
     }//GEN-LAST:event_StudentName_textfieldFocusGained
 
     private void StudentName_textfieldFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_StudentName_textfieldFocusLost
-        if (StudentName_textfield.getText().isEmpty()) {
-            StudentName_textfield.setForeground(Color.GRAY);
-            StudentName_textfield.setText("Please enter the student name");
-        }
+
     }//GEN-LAST:event_StudentName_textfieldFocusLost
 
     private void StudentName_textfieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_StudentName_textfieldActionPerformed
-        // TODO add your handling code here:
+        
     }//GEN-LAST:event_StudentName_textfieldActionPerformed
 
     private void StudentAge_textfieldFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_StudentAge_textfieldFocusGained
-        if (StudentAge_textfield.getText().equals("Please enter the student age")) {
-                StudentAge_textfield.setText("");
-                StudentAge_textfield.setForeground(Color.BLACK);
-            }
+
     }//GEN-LAST:event_StudentAge_textfieldFocusGained
 
     private void StudentAge_textfieldFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_StudentAge_textfieldFocusLost
-        if (StudentAge_textfield.getText().isEmpty()) {
-            StudentAge_textfield.setForeground(Color.GRAY);
-            StudentAge_textfield.setText("Please enter the student age");
-        }
+
     }//GEN-LAST:event_StudentAge_textfieldFocusLost
 
     private void StudentAge_textfieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_StudentAge_textfieldActionPerformed
-        // TODO add your handling code here:
+
     }//GEN-LAST:event_StudentAge_textfieldActionPerformed
 
     private void Back_lblMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Back_lblMouseClicked
@@ -375,13 +361,13 @@ public class Admin_AddStudent extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Admin_StudentManagement.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Admin_StudentManagement3.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Admin_StudentManagement.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Admin_StudentManagement3.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Admin_StudentManagement.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Admin_StudentManagement3.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Admin_StudentManagement.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Admin_StudentManagement3.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
         
