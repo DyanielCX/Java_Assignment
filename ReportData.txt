@@ -5,8 +5,8 @@ TP58548,CP1,Attempt,Half Graded, -, -,01-06-2024,https://lms2.apiit.edu.my/mod/a
 TP20821,CP1,Attempt,Not Graded, -, -,01-06-2024,https://lms2.apiit.edu.my/mod/assign/view.php?id=518473, -
 TP37444,CP1,No Attempt,Not Graded, -, -, -, -, -
 TP78453,CP1,Attempt,Not Graded, -, -,01-06-2024,https://lms2.apiit.edu.my/mod/assign/view.php?id=518473, -
-TP25775,CP1,No Attempt,Not Graded, -, -, -, -, -
-TP51777,CP1,No Attempt,Not Graded, -, -, -, -, -
+TP25775,CP1,Attempt,Graded, -, -,01-06-2024,https://lms2.apiit.edu.my/mod/assign/view.php?id=518473,Good Job!!
+TP51777,CP1,Attempt,Graded, -, -,01-06-2024,https://lms2.apiit.edu.my/mod/assign/view.php?id=518473,Good Job!!
 TP34841,CP1,No Attempt,Not Graded, -, -, -, -, -
 TP29541,Intern,No Attempt,Not Graded, -, -, -, -, -
 TP51570,Intern,No Attempt,Not Graded, -, -, -, -, -
