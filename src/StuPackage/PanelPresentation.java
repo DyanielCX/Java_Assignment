@@ -146,7 +146,7 @@ private String constructNewLine() {
     String timeValue = hourValue + ":" + String.format("%02d", minuteValue) + " " + meridiemValue;
 
     // Construct the new line
-    return username + "," + lecturerValue + "," + secondmakerValue + "," + assessmentValue + "," + formattedDate + "," + timeValue  + ", Pending, -" ;
+    return username + "," + lecturerValue + "," + assessmentValue + "," + formattedDate + "," + timeValue  + ", Pending, -," + secondmakerValue ;
 }
     private void setComponentsVisible(boolean visible) {
         Component[] components = {PreDate, Hour, Minute, Meridiem, modify, NewDate, NewTime, Modify_Panel};
