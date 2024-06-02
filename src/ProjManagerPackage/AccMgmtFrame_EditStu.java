@@ -216,22 +216,26 @@ public class AccMgmtFrame_EditStu extends javax.swing.JFrame {
     private void btbSubmitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btbSubmitActionPerformed
         
         try{
-        //Search the selected student location
-        int stuIndex = StuData_IO.checkStu(SelectedStuID);
-        
-        //Get all the edited input data
-        String editedName = TFStuName.getText();
-        String editedID = TFStuID.getText();
-        int editedAge = Integer.parseInt(TFStuAge.getText());
-        String editedIntake = (String) cboStuIntake.getSelectedItem();
-        
+            //Search the selected student location
+            int stuIndex = StuData_IO.checkStu(SelectedStuID);
 
-        //Update the edited student data into ArrayList
-        ProjManager.editStuAcc(stuIndex, editedName, editedID, editedAge, editedIntake);
-        
-        //Return back to the student list page
-        this.setVisible(false);
-        backMainFrame();
+            //Get all the edited input data
+            String editedName = TFStuName.getText();
+            String editedID = TFStuID.getText();
+            int editedAge = Integer.parseInt(TFStuAge.getText());
+            String editedIntake = (String) cboStuIntake.getSelectedItem();
+
+
+            //Update the edited student data into ArrayList
+            if (!editedIntake.equals(SelectedIntake)) {
+                ProjManager.editStuAcc_differentIntake(stuIndex, editedName, editedID, editedAge, editedIntake);
+            }else{
+                ProjManager.editStuAcc_sameIntake(stuIndex, editedName, editedID, editedAge, editedIntake);
+            }
+
+            //Return back to the student list page
+            this.setVisible(false);
+            backMainFrame();
         }
         catch(NumberFormatException numExc){
             JOptionPane.showMessageDialog(null,"You only can enter digit for age.","Invalid Age Input",JOptionPane.WARNING_MESSAGE);
@@ -249,7 +253,7 @@ public class AccMgmtFrame_EditStu extends javax.swing.JFrame {
         fr.setVisible(true);
 
         fr.DashboardPane.setBackground(new Color(122, 162, 227));
-        fr.AssignAdvisorsPane.setBackground(new Color(106, 212, 221));
+        fr.AccManagementPane.setBackground(new Color(106, 212, 221));
         fr.PanelTitle.setText("Account Management");
         
         fr.createStuAccMgmtPane(fr, SelectedIntake);

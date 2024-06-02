@@ -5,6 +5,7 @@ import ProjManagerPackage.AssignSupvElem.LectData_IO;
 import StuPackage.StuData_IO;
 import StuPackage.Student;
 import Lecturer_Package.Lecturer;
+import ProjManagerPackage.StuAssesElem.IntakeBasedMethod;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
@@ -86,7 +87,7 @@ public class ProjManager {
         }   
     }
     
-    public static void editStuAcc(int stuIndex, String editedName, String editedID, int editedAge, String editedIntake){
+    public static void editStuAcc_sameIntake(int stuIndex, String editedName, String editedID, int editedAge, String editedIntake){
         
         //Get all the selected student data
         String Name = editedName;
@@ -97,6 +98,24 @@ public class ProjManager {
         String Supervisor = StuData_IO.StuData.get(stuIndex).supervisor;
         String SecondMaker = StuData_IO.StuData.get(stuIndex).secondMarker;
         String RMCP_Lecture = StuData_IO.StuData.get(stuIndex).RMCP_lecture;
+        String Password = StuData_IO.StuData.get(stuIndex).password;
+
+        // Update the student data
+        Student editedStudent = new Student(Name, Age, stuID, Intake, Assessment, Supervisor, SecondMaker, RMCP_Lecture, Password);
+        StuData_IO.edit(stuIndex, editedStudent);
+    }
+    
+    public static void editStuAcc_differentIntake(int stuIndex, String editedName, String editedID, int editedAge, String editedIntake){
+        
+        //Get all the selected student data
+        String Name = editedName;
+        int Age = editedAge;
+        String stuID = editedID;
+        String Intake = editedIntake;
+        String Assessment = IntakeBasedMethod.getAssessment(editedIntake);
+        String Supervisor = "-";
+        String SecondMaker = "-";
+        String RMCP_Lecture = "-";
         String Password = StuData_IO.StuData.get(stuIndex).password;
 
         // Update the student data
