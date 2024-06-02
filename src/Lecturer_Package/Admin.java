@@ -155,7 +155,7 @@ public class Admin extends javax.swing.JFrame {
                     String lecturerName = parts[0];
                     String lecturerId = parts[1];
                     boolean isProjectManager = Boolean.parseBoolean(parts[2]);
-                    // Set isSupervisor and isSecondMarker to false
+                    
                     boolean isSupervisor = false;
                     boolean isSecondMarker = false;
                     String password = parts[5];
@@ -168,8 +168,56 @@ public class Admin extends javax.swing.JFrame {
         }
         return lecturers;
     }   
+public static void refreshStudentStatus(String studentID) {
+    try {
+  
+        List<String> lines = new ArrayList<>();
+        BufferedReader reader = new BufferedReader(new FileReader("PresentationData.txt"));
+        String line;
+        while ((line = reader.readLine()) != null) {
+            lines.add(line);
+        }
+        reader.close();
 
-public static void updateStatusInFile(int row, String newStatus, String reason) {
+    
+        for (int i = 0; i < lines.size(); i++) {
+            String[] parts = lines.get(i).split(",");
+            if (parts[0].trim().equals(studentID)) {
+                if (parts.length >= 10) { 
+                    String supervisorStatus = parts[8].trim();
+                    String secondMarkerStatus = parts[9].trim();
+                    String studentStatus;
+
+                    if (supervisorStatus.equalsIgnoreCase("Rejected") || secondMarkerStatus.equalsIgnoreCase("Rejected")) {
+                        studentStatus = "Rejected";
+                    } else if (supervisorStatus.equalsIgnoreCase("Accepted") && secondMarkerStatus.equalsIgnoreCase("Accepted")) {
+                        studentStatus = "Accepted";
+                    } else if (supervisorStatus.equalsIgnoreCase("Accepted") && secondMarkerStatus.equalsIgnoreCase("Pending")) {
+                        studentStatus = "Half Accepted";
+                    } else {
+                        studentStatus = "Pending";
+                    }
+
+                    parts[5] = studentStatus;
+                    lines.set(i, String.join(",", parts)); 
+                    break; 
+                }
+            }
+        }
+
+        // Write the updated lines back to the file
+        BufferedWriter writer = new BufferedWriter(new FileWriter("PresentationData.txt"));
+        for (String updatedLine : lines) {
+            writer.write(updatedLine);
+            writer.newLine();
+        }
+        writer.close();
+    } catch (IOException e) {
+        e.printStackTrace();
+        JOptionPane.showMessageDialog(null, "Error updating student status in file.", "Error", JOptionPane.ERROR_MESSAGE);
+    }
+}
+public static void updateStatusInFile(String studentID, String newStatus, String reason, String role) {
     try {
         // Read all lines from the file into a list
         List<String> lines = new ArrayList<>();
@@ -180,43 +228,62 @@ public static void updateStatusInFile(int row, String newStatus, String reason) 
         }
         reader.close();
 
-        // Update the status and reason in the corresponding line
-        if (row < lines.size()) {
-            String[] parts = lines.get(row).split(",");
-            if (parts.length >= 6) { // Ensure you have enough columns for status and reason
-                parts[5] = newStatus; // Update status column
-                if (newStatus.equals("Rejected")) {
-                    // If status is "Rejected", add the reason as a new column
-                    if (parts.length >= 7) {
-                        parts[6] = reason != null ? reason : "";
+       
+        boolean studentFound = false; // Flag to track if the student is found
+        for (int i = 0; i < lines.size(); i++) {
+            String[] parts = lines.get(i).split(",");
+            if (parts[0].trim().equals(studentID)) {
+                studentFound = true;
+                if (parts.length >= 10) { 
+                    if (role.equals("supervisor")) {
+                        parts[8] = newStatus; // Update Supervisor Status column
+                    } else if (role.equals("second_marker")) {
+                        parts[9] = newStatus; // Update Second Marker Status column
+                    }
+                    parts[6] = reason; // Set the reject reason
+
+                    // Determine student status based on supervisor and second marker statuses
+                    String supervisorStatus = parts[8].trim();
+                    String secondMarkerStatus = parts[9].trim();
+                    String studentStatus;
+
+                    if (supervisorStatus.equalsIgnoreCase("Rejected") || secondMarkerStatus.equalsIgnoreCase("Rejected")) {
+                        studentStatus = "Rejected";
+                    } else if (supervisorStatus.equalsIgnoreCase("Accepted") && secondMarkerStatus.equalsIgnoreCase("Accepted")) {
+                        studentStatus = "Accepted";
+                    } else if (supervisorStatus.equalsIgnoreCase("Accepted") && secondMarkerStatus.equalsIgnoreCase("Pending")) {
+                        studentStatus = "Half Accepted";
                     } else {
-                        String[] extendedParts = Arrays.copyOf(parts, 7);
-                        extendedParts[6] = reason != null ? reason : "";
-                        parts = extendedParts;
+                        studentStatus = "Pending";
                     }
-                } else {
-                    // If status is not "Rejected", remove the reason column
-                    if (parts.length >= 7) {
-                        parts = Arrays.copyOf(parts, 6); // Remove the reason column
-                    }
+
+                    parts[5] = studentStatus; 
+                    lines.set(i, String.join(",", parts)); 
+                    break; 
                 }
-                lines.set(row, String.join(",", parts)); // Join the parts back into a line
             }
         }
 
-        // Write the updated lines with explicit flush
+        // Write the updated lines back to the file
         BufferedWriter writer = new BufferedWriter(new FileWriter("PresentationData.txt"));
         for (String updatedLine : lines) {
             writer.write(updatedLine);
             writer.newLine();
         }
-        writer.flush(); 
         writer.close();
+           refreshStudentStatus(studentID);
+           
+        if (!studentFound) {
+            System.err.println("Student ID " + studentID + " not found in the file.");
+        } else {
+            System.out.println("Student ID " + studentID + " status updated successfully.");
+        }
     } catch (IOException e) {
         e.printStackTrace();
         JOptionPane.showMessageDialog(null, "Error updating status in file.", "Error", JOptionPane.ERROR_MESSAGE);
     }
 }
+
 public  void populateDashBoardTable(JTable AssignedStuTbl,String supervisor) {
      DefaultTableModel tableModel = (DefaultTableModel) AssignedStuTbl.getModel();
     tableModel.setRowCount(0); 
@@ -228,9 +295,9 @@ public  void populateDashBoardTable(JTable AssignedStuTbl,String supervisor) {
             String[] parts = line.split(",");
 
             
-           if (parts.length >= 7 && parts[1].trim().equalsIgnoreCase(supervisor)) {
+           if (parts.length >= 8 && parts[1].trim().equalsIgnoreCase(supervisor)) {
 
-    tableModel.addRow(new Object[]{parts[0], parts[1], parts[2], parts[3],parts[4],parts[5],parts[6]});
+    tableModel.addRow(new Object[]{parts[0], parts[1], parts[2], parts[3],parts[4],parts[5],parts[6],parts[7]});
 }
         }
     } catch (IOException e) {

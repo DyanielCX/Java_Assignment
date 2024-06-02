@@ -23,6 +23,10 @@ import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumnModel;
 import ProjManagerPackage.StuAssesElem.TableActionEvent_EditButton;
+import StuPackage.Student;
+import StuPackage.*;
+import java.io.BufferedWriter;
+import java.io.FileWriter;
 
 /**
  *
@@ -30,67 +34,100 @@ import ProjManagerPackage.StuAssesElem.TableActionEvent_EditButton;
  */
 public class presentationReq extends javax.swing.JPanel {
 private Lecture_mainframe lectmainframe;
+private List<Lecturer> lecturers;
+private List<Student> studentList;
     /**
      * Creates new form presentationReq
      */
     public presentationReq(Lecture_mainframe lectmainframe) {
         this.lectmainframe = lectmainframe;
         initComponents();
+        StuData_IO.readFrTxt();
+            studentList = StuData_IO.StuData;
+            if (studentList == null || studentList.isEmpty()) {
+                System.out.println("No student data found.");
+            } else {
+                System.out.println("Student data loaded successfully.");
+            }
         populatePresentationTable(presentationTable,Session.getUserID());
         
         
      
-        presentationTable.getColumnModel().getColumn(7).setCellRenderer(new TableActionCellRender_EditButton());
-        presentationTable.getColumnModel().getColumn(7).setCellEditor(new TableActionCellEditor_EditButton(event));
+        presentationTable.getColumnModel().getColumn(10).setCellRenderer(new TableActionCellRender_EditButton());
+        presentationTable.getColumnModel().getColumn(10).setCellEditor(new TableActionCellEditor_EditButton(event));
         
 
 
     }
     
- TableActionEvent_EditButton event = new TableActionEvent_EditButton() {
+private TableActionEvent_EditButton event = new TableActionEvent_EditButton() {
     @Override
     public void onEdit(int row) {
-        int selectedRow = presentationTable.convertRowIndexToModel(presentationTable.getSelectedRow());
+        int selectedRow = presentationTable.convertRowIndexToModel(row);
         if (selectedRow != -1) {
-            String currentStatus = (String) presentationTable.getValueAt(selectedRow, 5);
+            String userName = Session.getUserID(); // Get the logged-in user
+            String studentID = (String) presentationTable.getValueAt(selectedRow, 0); // Get the student ID
+            String role = null;
+            String currentStatus = null;
+            int statusColumnIndex = -1;
 
-            // If the current status is "Rejected"
-            if (currentStatus.equals("Rejected")) {
-                // Display an input dialog for the reason
-                String reason = JOptionPane.showInputDialog(presentationTable, "Enter the reason for rejection:");
-                if (reason != null && !reason.isEmpty()) {
-                    // Update the status and reason in the table
-                    presentationTable.setValueAt(currentStatus + ": " + reason, selectedRow, 5);
-                    presentationTable.setValueAt(reason, selectedRow, 6);
-
-                    // Update the status and reason in the file
-                    String[] parts = presentationTable.getValueAt(selectedRow, 5).toString().split(": ");
-                    String newStatus = parts[0];
-                    Admin.updateStatusInFile(selectedRow, newStatus, reason);
-                } else {
-                    // If the reason is empty or null, show a message
-                    JOptionPane.showMessageDialog(presentationTable, "Reason for rejection is required.");
+            // Determine the role and current status
+            for (Student student : studentList) {
+                if (student.getId().equals(studentID)) {
+                    if (student.getSupervisor().equals(userName)) {
+                        role = "supervisor";
+                        currentStatus = (String) presentationTable.getValueAt(selectedRow, 8); // Supervisor Status
+                        statusColumnIndex = 8;
+                    } else if (student.getSecondMarker().equals(userName)) {
+                        String supervisorStatus = (String) presentationTable.getValueAt(selectedRow, 8); // Supervisor Status
+                        if (!supervisorStatus.equalsIgnoreCase("Accepted")) {
+                            JOptionPane.showMessageDialog(presentationTable, "Supervisor must accept the presentation first.");
+                            return;
+                        }
+                        role = "second_marker";
+                        currentStatus = (String) presentationTable.getValueAt(selectedRow, 9); // Second Marker Status
+                        statusColumnIndex = 9;
+                    }
+                    break;
                 }
+            }
+
+            if (role == null) {
+                JOptionPane.showMessageDialog(presentationTable, "You are not authorized to edit this entry.");
+                return;
+            }
+
+            // Combo box for selecting the status
+            String[] options = {"Pending", "Accepted", "Rejected"};
+            JComboBox<String> statusComboBox = new JComboBox<>(options);
+            statusComboBox.setSelectedItem(currentStatus);
+
+            int option = JOptionPane.showOptionDialog(presentationTable, statusComboBox, "Select Status", JOptionPane.OK_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE, null, null, null);
+
+            if (option == JOptionPane.OK_OPTION) {
+                String newStatus = (String) statusComboBox.getSelectedItem();
+                String reason = "-";
+                if (newStatus.equalsIgnoreCase("Rejected")) {
+                    reason = JOptionPane.showInputDialog(presentationTable, "Enter reason for rejection:", "");
+                    if (reason == null || reason.trim().isEmpty()) {
+                        JOptionPane.showMessageDialog(presentationTable, "Reason for rejection is required.");
+                        return;
+                    }
+                }
+                presentationTable.setValueAt(newStatus.trim(), selectedRow, statusColumnIndex);
+                presentationTable.setValueAt(reason, selectedRow, 6); 
+                Admin.updateStatusInFile(studentID, newStatus.trim(), reason, role); 
+                populatePresentationTable(presentationTable, Session.getUserID()); 
+
             } else {
-                // If the status is not "Rejected", proceed with the regular status editing
-                String[] statusOptions = {"Pending", "Rejected", "Accepted"};
-                JComboBox<String> cbStatus = new JComboBox<>(statusOptions);
-                cbStatus.setSelectedItem(currentStatus);
-
-                int option = JOptionPane.showConfirmDialog(presentationTable, cbStatus, "Edit Status", JOptionPane.OK_CANCEL_OPTION);
-                if (option == JOptionPane.OK_OPTION) {
-                    String newStatus = (String) cbStatus.getSelectedItem();
-                    presentationTable.setValueAt(newStatus, selectedRow, 5);
-                    presentationTable.setValueAt("-", selectedRow, 6); // Set reason to "-"
-                    Admin.updateStatusInFile(selectedRow, newStatus, "-"); // Set reason to "-"
-                }
+                JOptionPane.showMessageDialog(presentationTable, "No status selected.");
             }
         } else {
             JOptionPane.showMessageDialog(presentationTable, "Please select a row to edit.");
         }
     }
 };
-        
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -109,13 +146,13 @@ private Lecture_mainframe lectmainframe;
 
         presentationTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null}
+                {null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "Student", "Lecturer", "Course", "Date", "Time", "Status", "Reason", "Action"
+                "Student", "Supervisor", "Course", "Date", "Time", "Student Status", "Reason", "Second marker", "Supervisor Status", "2nd marker Status", "Action"
             }
         ));
         presentationTable.setRowHeight(50);
@@ -134,25 +171,27 @@ private Lecture_mainframe lectmainframe;
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 412, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
-public void populatePresentationTable(JTable presentationTable,String supervisor) {
+public void populatePresentationTable(JTable presentationTable, String loggedInUser) {
     DefaultTableModel model = (DefaultTableModel) presentationTable.getModel();
 
-    model.setRowCount(0); 
     // Clear existing rows in the table model
     model.setRowCount(0);
 
-    // Read data from presentation_data.txt file
-   try (BufferedReader reader = new BufferedReader(new FileReader("PresentationData.txt"))) {
+    // Read data from PresentationData.txt file
+    try (BufferedReader reader = new BufferedReader(new FileReader("PresentationData.txt"))) {
         String line;
         while ((line = reader.readLine()) != null) {
-            
             String[] parts = line.split(",");
 
-            
-           if (parts.length >= 7 && parts[1].trim().equalsIgnoreCase(supervisor)) {
+            if (parts.length >= 10) {
+                boolean isSupervisor = parts[1].trim().equalsIgnoreCase(loggedInUser);
+                boolean isSecondMarker = parts[7].trim().equalsIgnoreCase(loggedInUser);
+                boolean supervisorAccepted = parts[8].trim().equalsIgnoreCase("Accepted");
 
-    model.addRow(new Object[]{parts[0], parts[1], parts[2], parts[3],parts[4],parts[5],parts[6]});
-}
+                if (isSupervisor || (isSecondMarker && supervisorAccepted)) {
+                    model.addRow(new Object[]{parts[0], parts[1], parts[2], parts[3], parts[4], parts[5], parts[6], parts[7], parts[8], parts[9]});
+                }
+            }
         }
     } catch (IOException e) {
         e.printStackTrace();

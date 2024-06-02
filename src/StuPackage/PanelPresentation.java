@@ -136,17 +136,18 @@ private String constructNewLine() {
     String assessmentValue = Assessment.getText().trim();
     String lecturerValue = Lecturer.getText().trim();
     String secondmakerValue = SecondMaker.getText().trim();
-
+    String supervisorStatus = "pending";
+    String secondmarkerStatus = "pending";
     // Get hour, minute, and meridiem values
     int hourValue = (int) Hour.getValue();
     int minuteValue = (int) Minute.getValue();
     String meridiemValue = (String) Meridiem.getSelectedItem();
-
+    
     // Concatenate hour, minute, and meridiem into one string
     String timeValue = hourValue + ":" + String.format("%02d", minuteValue) + " " + meridiemValue;
 
     // Construct the new line
-    return username + "," + lecturerValue + "," + assessmentValue + "," + formattedDate + "," + timeValue  + ", Pending, -," + secondmakerValue ;
+    return username + "," + lecturerValue + "," + assessmentValue + "," + formattedDate + "," + timeValue  + ", Pending, -," + secondmakerValue +","+ supervisorStatus + ","+ secondmarkerStatus;
 }
     private void setComponentsVisible(boolean visible) {
         Component[] components = {PreDate, Hour, Minute, Meridiem, modify, NewDate, NewTime, Modify_Panel};

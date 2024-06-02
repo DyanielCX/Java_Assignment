@@ -15,8 +15,7 @@ public class AnyDetail {
     data structure (current) -> Lecturer Name, Lecturer ID, is ProjectManager, is Supervisor, is SecondMarker, Password
     
     PresentationData.txt
-    data structure (current) -> Student ID, Lecturer Name, Assessment, Presentation Date, Presentation Time, Request Status, Reject Reason. Second Marker
-    
+    data structure (current) -> Student ID, Lecturer Name, Assessment, Presentation Date, Presentation Time,Student Staus, Reject Reason. Second Marker,Supervisor status, Second marker status
     ReportData.txt
     data structure (current) -> Student ID, Assesment, Submit Status, Grading Status, Submission Due Date, Submission Due Time, Submission Date, Submission Link, Submission Feedback
     
