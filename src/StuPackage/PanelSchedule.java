@@ -103,7 +103,7 @@ public class PanelSchedule extends javax.swing.JPanel {
         ConSche.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         ConSche.setForeground(new java.awt.Color(0, 0, 0));
         ConSche.setText("Consultation Scheduule");
-        jPanel2.add(ConSche, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 20, -1, -1));
+        jPanel2.add(ConSche, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 20, 690, -1));
 
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/time.png"))); // NOI18N
         jPanel2.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 90, -1, 30));
@@ -129,7 +129,7 @@ public class PanelSchedule extends javax.swing.JPanel {
         PreSche.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         PreSche.setForeground(new java.awt.Color(0, 0, 0));
         PreSche.setText("Presentation Schedule");
-        PresentationSchedule.add(PreSche, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 20, 170, 30));
+        PresentationSchedule.add(PreSche, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 20, 680, 30));
 
         jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/time.png"))); // NOI18N
         PresentationSchedule.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 100, -1, 30));
