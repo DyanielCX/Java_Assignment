@@ -97,7 +97,7 @@ public class PanelSchedule extends javax.swing.JPanel {
         ConDate.setText("Date");
         jPanel2.add(ConDate, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 50, -1, -1));
 
-        ConTime.setText("Current Assesment");
+        ConTime.setText("Time");
         jPanel2.add(ConTime, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 100, -1, -1));
 
         ConSche.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -123,7 +123,7 @@ public class PanelSchedule extends javax.swing.JPanel {
         PreDate.setText("Date");
         PresentationSchedule.add(PreDate, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 50, -1, -1));
 
-        PreTime.setText("Current Assesment");
+        PreTime.setText("Time");
         PresentationSchedule.add(PreTime, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 110, -1, -1));
 
         PreSche.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
