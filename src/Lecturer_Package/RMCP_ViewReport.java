@@ -63,7 +63,7 @@ public class RMCP_ViewReport extends javax.swing.JPanel {
             String submitStatus = (String) RMCP_Report_Table.getValueAt(row, 2);
 
             if (!submitStatus.equals("No Attempt") && !gradingStatus.equals("Not Graded")) {
-                JOptionPane.showMessageDialog(RMCP_ViewReport.this, "This report has not been attempted and not graded.", "Info", JOptionPane.INFORMATION_MESSAGE);
+                JOptionPane.showMessageDialog(RMCP_ViewReport.this, "No attempt made. Cannot grade.", "Info", JOptionPane.INFORMATION_MESSAGE);
             } else {
                 // Create and show the SecondMarker_GradingFrame
                 SecondMarker_GradingFrame gradingFrame = new SecondMarker_GradingFrame(lectmainframe, studentId);
@@ -141,6 +141,7 @@ public class RMCP_ViewReport extends javax.swing.JPanel {
         scroll.setCorner(JScrollPane.UPPER_RIGHT_CORNER, p);
         scroll.setBorder(new EmptyBorder(5, 10, 5, 10));
     }
+    
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -148,9 +149,14 @@ public class RMCP_ViewReport extends javax.swing.JPanel {
 
         jScrollPane1 = new javax.swing.JScrollPane();
         RMCP_Report_Table = new javax.swing.JTable();
+        Back_lbl = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(248, 246, 227));
-        setLayout(new javax.swing.BoxLayout(this, javax.swing.BoxLayout.LINE_AXIS));
+        setMaximumSize(new java.awt.Dimension(32767, 32767));
+        setMinimumSize(new java.awt.Dimension(909, 579));
+        setPreferredSize(new java.awt.Dimension(909, 579));
+        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         RMCP_Report_Table.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -174,12 +180,35 @@ public class RMCP_ViewReport extends javax.swing.JPanel {
         RMCP_Report_Table.setRowHeight(40);
         jScrollPane1.setViewportView(RMCP_Report_Table);
 
-        add(jScrollPane1);
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 60, 970, 520));
+
+        Back_lbl.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/Back.png"))); // NOI18N
+        Back_lbl.setText("Back");
+        Back_lbl.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        Back_lbl.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                Back_lblMouseClicked(evt);
+            }
+        });
+        add(Back_lbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, -1, -1));
+
+        jLabel1.setFont(new java.awt.Font("Century Gothic", 1, 24)); // NOI18N
+        jLabel1.setText("RMCP");
+        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 10, -1, 40));
     }// </editor-fold>//GEN-END:initComponents
 
+    private void Back_lblMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Back_lblMouseClicked
+        // TODO add your handling code here:
+        this.setVisible(false);
+        lectmainframe.changeTab(9);
+    }//GEN-LAST:event_Back_lblMouseClicked
+
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel Back_lbl;
     private javax.swing.JTable RMCP_Report_Table;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
 }

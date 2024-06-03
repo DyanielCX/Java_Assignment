@@ -16,8 +16,16 @@ public class Supervisor_GradingFrame extends javax.swing.JFrame {
     public Supervisor_GradingFrame(Lecture_mainframe lectmainframe, String studentId) {
         this.lectmainframe = lectmainframe;
         this.studentId = studentId;
-
         initComponents();
+        
+        StudentID_txt.setBackground(new Color(0, 0, 0, 0));
+        Name_txt.setBackground(new Color(0, 0, 0, 0));
+        Intake_txt.setBackground(new Color(0, 0, 0, 0));
+        Assessment_txt.setBackground(new Color(0, 0, 0, 0));
+        SubmissionLink_txt.setBackground(new Color(0, 0, 0, 0));
+        DueDate_txt.setBackground(new Color(0, 0, 0, 0));
+        SubmissionDate_txt.setBackground(new Color(0, 0, 0, 0));
+        
         loadStudentData();
     }
     
@@ -49,7 +57,11 @@ public class Supervisor_GradingFrame extends javax.swing.JFrame {
                     SubmissionLink_txt.setText(reportParts[7].trim());
                     DueDate_txt.setText(reportParts[4].trim());
                     SubmissionDate_txt.setText(reportParts[6].trim());
-                    Feedback_txt.setText(reportParts[8].trim());
+                     if (reportParts[8].trim().equals("-")) {
+                        Feedback_txt.setText("This field only available for supervisor.");
+                    } else {
+                        Feedback_txt.setText(reportParts[8].trim());
+                    }
                     break;
                 }
             }

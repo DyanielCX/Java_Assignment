@@ -18,6 +18,16 @@ public class SecondMarker_GradingFrame extends javax.swing.JFrame {
         this.studentId = studentId;
 
         initComponents();
+        
+        StudentID_txt.setBackground(new Color(0, 0, 0, 0));
+        Name_txt.setBackground(new Color(0, 0, 0, 0));
+        Intake_txt.setBackground(new Color(0, 0, 0, 0));
+        Assessment_txt.setBackground(new Color(0, 0, 0, 0));
+        SubmissionLink_txt.setBackground(new Color(0, 0, 0, 0));
+        DueDate_txt.setBackground(new Color(0, 0, 0, 0));
+        SubmissionDate_txt.setBackground(new Color(0, 0, 0, 0));
+
+        
         loadStudentData();
     }
     
@@ -318,7 +328,7 @@ public class SecondMarker_GradingFrame extends javax.swing.JFrame {
         
         fr.DashboardPane.setBackground(new Color(122, 162, 227));
         fr.ViewReportPane.setBackground(new Color(106, 212, 221));
-        fr.PanelTitle.setText("View Second Marker Report");
+        fr.PanelTitle.setText("View Report");
        }
     
     public static void main(String args[]) {

@@ -92,9 +92,13 @@ public class SecondMarker_ViewSupervisee extends javax.swing.JPanel {
 
         jScrollPane1 = new javax.swing.JScrollPane();
         SecondMarker_Supervisee_Table = new javax.swing.JTable();
+        Back_lbl = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(248, 246, 227));
-        setLayout(new javax.swing.BoxLayout(this, javax.swing.BoxLayout.LINE_AXIS));
+        setMinimumSize(new java.awt.Dimension(909, 579));
+        setPreferredSize(new java.awt.Dimension(909, 579));
+        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         SecondMarker_Supervisee_Table.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -107,15 +111,39 @@ public class SecondMarker_ViewSupervisee extends javax.swing.JPanel {
                 "Student ID", "Name", "Age", "Intake", "Assessment"
             }
         ));
+        SecondMarker_Supervisee_Table.setMinimumSize(new java.awt.Dimension(120, 160));
+        SecondMarker_Supervisee_Table.setPreferredSize(new java.awt.Dimension(600, 160));
         SecondMarker_Supervisee_Table.setRowHeight(40);
         jScrollPane1.setViewportView(SecondMarker_Supervisee_Table);
 
-        add(jScrollPane1);
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 58, 970, 520));
+
+        Back_lbl.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/Back.png"))); // NOI18N
+        Back_lbl.setText("Back");
+        Back_lbl.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        Back_lbl.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                Back_lblMouseClicked(evt);
+            }
+        });
+        add(Back_lbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, -1, -1));
+
+        jLabel1.setFont(new java.awt.Font("Century Gothic", 1, 24)); // NOI18N
+        jLabel1.setText("Second Marker");
+        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 10, -1, 40));
     }// </editor-fold>//GEN-END:initComponents
+
+    private void Back_lblMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Back_lblMouseClicked
+        // TODO add your handling code here:
+        this.setVisible(false);
+        lectmainframe.changeTab(1);
+    }//GEN-LAST:event_Back_lblMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel Back_lbl;
     private javax.swing.JTable SecondMarker_Supervisee_Table;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
 }
