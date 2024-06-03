@@ -61,7 +61,7 @@ public class Admin_StudentManagement extends javax.swing.JPanel {
             String RMCP_lecture = (String) StudentList.getValueAt(row, 7);
 
             // Create an instance of Admin_EditStudent and pass the student details
-            Admin_EditStudent editStudentFrame = new Admin_EditStudent(studentID, name, age, intake, assessment, supervisor, secondMarker, RMCP_lecture);
+            Admin_EditStudent editStudentFrame = new Admin_EditStudent(studentID, name, age, intake);
             editStudentFrame.setVisible(true);
             mainFrame.dispose(); // Close the current frame
         }  
@@ -182,7 +182,7 @@ public class Admin_StudentManagement extends javax.swing.JPanel {
                 .addComponent(Search_btn, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(26, 26, 26)
                 .addComponent(Add_btn, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(118, Short.MAX_VALUE))
+                .addContainerGap(122, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jScrollPane1)
@@ -197,7 +197,7 @@ public class Admin_StudentManagement extends javax.swing.JPanel {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel1)
                             .addComponent(StuID_txtfield, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 8, Short.MAX_VALUE))
+                        .addGap(0, 28, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(1, 1, 1)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)

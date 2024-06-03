@@ -1,8 +1,13 @@
 package StuPackage;
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+import javax.swing.JOptionPane;
 
 public class PanelDashboard extends javax.swing.JPanel {
     private String username; // Declare as an instance variable
@@ -13,6 +18,7 @@ public class PanelDashboard extends javax.swing.JPanel {
         this.username = username; // Assign the parameter value to the instance variable
         this.password = password; 
         
+        PwdPanel.setVisible(false);
         readStudentDetailsFromFile("StuData.txt");
     }
 
@@ -37,6 +43,57 @@ private void readStudentDetailsFromFile(String fileName) {
         System.err.println("Error reading the file: " + e.getMessage());
     }
 }
+    private boolean isPasswordCorrect(String username, String password) {
+        try (BufferedReader br = new BufferedReader(new FileReader("StuData.txt"))) {
+            String line;
+            while ((line = br.readLine()) != null) {
+                String[] parts = line.split(",");
+                if (parts[0].equals(username) && parts[1].equals(password)) {
+                    return true;
+                }
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+
+    private boolean updatePasswordInFile(String username, String newPassword) {
+        List<String> lines = new ArrayList<>();
+        boolean updated = false;
+
+       // Read the file and update the password for the matching username
+        try (BufferedReader br = new BufferedReader(new FileReader("StuData.txt"))) {
+            String line;
+            while ((line = br.readLine()) != null) {
+                String[] parts = line.split(",");
+                if (parts[0].equals(username)) {
+                    parts[1] = newPassword;
+                    line = String.join(",", parts);
+                    updated = true;
+                }
+                lines.add(line);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+            return false;
+        }
+
+        // If the username was found and updated, write the changes back to the file
+        if (updated) {
+            try (BufferedWriter bw = new BufferedWriter(new FileWriter("StuData.txt"))) {
+                for (String updatedLine : lines) {
+                    bw.write(updatedLine);
+                    bw.newLine();
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+                return false;
+            }
+        }
+
+    return updated;
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -48,6 +105,15 @@ private void readStudentDetailsFromFile(String fileName) {
 
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
+        PwdPanel = new javax.swing.JPanel();
+        jLabel3 = new javax.swing.JLabel();
+        OldPass = new javax.swing.JTextField();
+        NewPass = new javax.swing.JTextField();
+        NewPassCon = new javax.swing.JTextField();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        SaveBtn = new javax.swing.JButton();
         StuName = new javax.swing.JLabel();
         StuID = new javax.swing.JLabel();
         StuIntake = new javax.swing.JLabel();
@@ -57,6 +123,7 @@ private void readStudentDetailsFromFile(String fileName) {
         jPanel3 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
+        ChangePass = new javax.swing.JLabel();
         LecSupName = new javax.swing.JLabel();
         StuAssessment = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
@@ -71,6 +138,41 @@ private void readStudentDetailsFromFile(String fileName) {
         jPanel2.setBackground(new java.awt.Color(204, 204, 204));
         jPanel2.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        PwdPanel.setBackground(new java.awt.Color(204, 204, 204));
+        PwdPanel.setForeground(new java.awt.Color(255, 255, 255));
+        PwdPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel3.setBackground(new java.awt.Color(0, 0, 0));
+        jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel3.setText("Change Password");
+        PwdPanel.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 20, -1, -1));
+        PwdPanel.add(OldPass, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 100, 140, -1));
+        PwdPanel.add(NewPass, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 100, 160, -1));
+        PwdPanel.add(NewPassCon, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 140, 160, -1));
+
+        jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel4.setText("Confirm Password");
+        PwdPanel.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 140, -1, -1));
+
+        jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel5.setText("Old Password");
+        PwdPanel.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 100, -1, -1));
+
+        jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel6.setText("New Password");
+        PwdPanel.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 100, -1, -1));
+
+        SaveBtn.setText("Save");
+        SaveBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                SaveBtnActionPerformed(evt);
+            }
+        });
+        PwdPanel.add(SaveBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 190, -1, -1));
+
+        jPanel2.add(PwdPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 110, 650, 280));
 
         StuName.setBackground(new java.awt.Color(255, 255, 255));
         StuName.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
@@ -116,6 +218,14 @@ private void readStudentDetailsFromFile(String fileName) {
         jLabel2.setText("Academic Guidance Hub ");
         jPanel3.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 20, 390, 50));
 
+        ChangePass.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/setting.png"))); // NOI18N
+        ChangePass.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                ChangePassMouseClicked(evt);
+            }
+        });
+        jPanel3.add(ChangePass, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 30, -1, -1));
+
         jPanel2.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 650, 100));
 
         LecSupName.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -149,17 +259,75 @@ private void readStudentDetailsFromFile(String fileName) {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(662, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(286, 286, 286))
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void SaveBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SaveBtnActionPerformed
+         // Get the passwords
+        String oldPassword = OldPass.getText();
+        String newPassword = NewPass.getText();
+        String confirmPassword = NewPassCon.getText();
+
+       // Check if the new password is not empty
+        if (newPassword.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "New Password cannot be empty");
+            return;
+        }
+
+        // Check if the new password and confirm password are the same
+        if (!newPassword.equals(confirmPassword)) {
+            JOptionPane.showMessageDialog(this, "New Password and Confirm Password do not match");
+            return;
+        }
+
+        // Check if the new password is different from the old password
+        if (newPassword.equals(oldPassword)) {
+            JOptionPane.showMessageDialog(this, "New Password must be different from Old Password");
+            return;
+        }
+
+        // Check if the old password is correct
+        if (!isPasswordCorrect(username, oldPassword)) {
+            JOptionPane.showMessageDialog(this, "Old Password is incorrect");
+            return;
+        }
+
+        // Update the password in the file
+        if (updatePasswordInFile(username, newPassword)) {
+            JOptionPane.showMessageDialog(this, "Password change successful");
+            PwdPanel.setVisible(false);
+             // Clear all text fields after success
+            OldPass.setText("");
+            NewPass.setText("");
+            NewPassCon.setText("");
+        } else {
+            JOptionPane.showMessageDialog(this, "Password change failed");
+        }
+
+    }//GEN-LAST:event_SaveBtnActionPerformed
+
+    private void ChangePassMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ChangePassMouseClicked
+        PwdPanel.setVisible(!PwdPanel.isVisible());
+    }//GEN-LAST:event_ChangePassMouseClicked
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel ChangePass;
     private javax.swing.JLabel LecSupName;
+    private javax.swing.JTextField NewPass;
+    private javax.swing.JTextField NewPassCon;
+    private javax.swing.JTextField OldPass;
+    private javax.swing.JPanel PwdPanel;
+    private javax.swing.JButton SaveBtn;
     private javax.swing.JLabel StuAge;
     private javax.swing.JLabel StuAssessment;
     private javax.swing.JLabel StuID;
@@ -170,6 +338,10 @@ private void readStudentDetailsFromFile(String fileName) {
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;

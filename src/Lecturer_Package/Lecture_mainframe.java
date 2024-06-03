@@ -442,6 +442,18 @@ public class Lecture_mainframe extends javax.swing.JFrame {
         this.dispose(); // Close the current window
     }//GEN-LAST:event_lblLogoutMouseClicked
 
+    private void navReportStatusMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_navReportStatusMouseClicked
+        DashboardPane.setBackground(navDefaultColor);
+        ViewSuperviseesPane.setBackground(navDefaultColor);
+        ViewPresentationPane.setBackground(navDefaultColor);
+        ViewReportPane.setBackground(navDefaultColor);
+        ReportStatusPane.setBackground(navSelectedColor);
+
+        //Change to your tab name
+        PanelTitle.setText("Report Status");
+        //TabPanel.setSelectedIndex(4);
+    }//GEN-LAST:event_navReportStatusMouseClicked
+
     public static void changeTab(int TabIndex){
         TabPanel.setSelectedIndex(TabIndex);
     }
@@ -507,7 +519,7 @@ public class Lecture_mainframe extends javax.swing.JFrame {
     private javax.swing.JPanel CoverTabPane;
     public javax.swing.JPanel DashboardPane;
     public javax.swing.JLabel PanelTitle;
-    public javax.swing.JPanel ReportStatusPane;
+    private javax.swing.JPanel ReportStatusPane;
     public static javax.swing.JTabbedPane TabPanel;
     public javax.swing.JPanel ViewPresentationPane;
     public javax.swing.JPanel ViewReportPane;

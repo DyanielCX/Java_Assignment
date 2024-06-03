@@ -1,5 +1,9 @@
 package Lecturer_Package;
 
+import Java_Assignment.Session;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.List;
 import javax.swing.JOptionPane;
 
@@ -7,11 +11,12 @@ public class Lect_ViewSupervisee extends javax.swing.JPanel {
 
     private Lecture_mainframe lectmainframe;
     private List<Lecturer> lecturers;
+    private String UserName;
 
     // Constructor that takes a Lecture_mainframe parameter
     public Lect_ViewSupervisee(Lecture_mainframe mainFrame) {
-        lecturers = Admin.readLectData("LecData.txt");
         this.lectmainframe = lectmainframe;
+        this.UserName = Session.getUserID(); 
         initComponents();
     }
 
@@ -148,29 +153,59 @@ public class Lect_ViewSupervisee extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnViewSecondMarkerSuperviseeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnViewSecondMarkerSuperviseeMouseClicked
-//        if (lecturers != null && RoleChecker.isSupervisor("123456", lecturers)) {
-            lectmainframe.changeTab(2); 
-//        } else {
-//            JOptionPane.showMessageDialog(this, "Access denied.You are not assigned as a Second Marker for any intake.");
-//        }
+    if (hasAssignedStudents(UserName, "SecondMarker")) {
+                lectmainframe.changeTab(2);
+            } else {
+                JOptionPane.showMessageDialog(this, "No students assigned to you as Second Marker. Access denied.", "Access Denied", JOptionPane.WARNING_MESSAGE);
+            }
     }//GEN-LAST:event_btnViewSecondMarkerSuperviseeMouseClicked
 
     private void btnViewSupervisorSuperviseeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnViewSupervisorSuperviseeMouseClicked
-//        if (lecturers != null && RoleChecker.isSupervisor("123456", lecturers)) {
-            lectmainframe.changeTab(3); 
-//        } else {
-//            JOptionPane.showMessageDialog(this, "Access denied.You are not assigned as a Second Marker for any intake.");
-//        }
+    if (hasAssignedStudents(UserName, "Supervisor")) {
+              lectmainframe.changeTab(3);
+          } else {
+              JOptionPane.showMessageDialog(this, "No students assigned to you as Supervisor. Access denied.", "Access Denied", JOptionPane.WARNING_MESSAGE);
+          }
     }//GEN-LAST:event_btnViewSupervisorSuperviseeMouseClicked
 
     private void btnViewRMCPSuperviseeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnViewRMCPSuperviseeMouseClicked
-//        if (lecturers != null && RoleChecker.isSupervisor("123456", lecturers)) {
-            lectmainframe.changeTab(4); 
-//        } else {
-//            JOptionPane.showMessageDialog(this, "Access denied.You are not assigned as a RMCP for any intake.");
-//        }
+    if (hasAssignedStudents(UserName, "RMCP")) {
+                  lectmainframe.changeTab(4);
+              } else {
+                  JOptionPane.showMessageDialog(this, "No students assigned to you as RMCP. Access denied.", "Access Denied", JOptionPane.WARNING_MESSAGE);
+              }
     }//GEN-LAST:event_btnViewRMCPSuperviseeMouseClicked
 
+    private boolean hasAssignedStudents(String lecturerName, String role) {
+        int roleIndex;
+        switch (role) {
+            case "Supervisor":
+                roleIndex = 6;
+                break;
+            case "RMCP":
+                roleIndex = 8;
+                break;
+            case "SecondMarker":
+                roleIndex = 7;
+                break;
+            default:
+                return false;
+        }
+
+        try (BufferedReader reader = new BufferedReader(new FileReader("StuData.txt"))) {
+            String line;
+            while ((line = reader.readLine()) != null) {
+                String[] parts = line.split(",");
+                if (parts.length >= 9 && parts[roleIndex].trim().equalsIgnoreCase(lecturerName)) {
+                    return true;  // Found at least one student assigned to the lecturer in the specified role
+                }
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(this, "Error reading student data file.", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+        return false;  // No students assigned to the lecturer in the specified role
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel btnViewRMCPSupervisee;

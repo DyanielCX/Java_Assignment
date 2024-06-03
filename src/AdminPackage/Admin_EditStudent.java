@@ -1,5 +1,6 @@
 package AdminPackage;
 
+import ProjManagerPackage.ProjManager;
 import StuPackage.StuData_IO;
 import StuPackage.Student;
 import java.awt.Color;
@@ -7,107 +8,93 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import javax.swing.JOptionPane;
+import java.util.ArrayList;
+import ProjManagerPackage.StuAssesElem.IntakeBasedMethod;
 
 
 public class Admin_EditStudent extends javax.swing.JFrame {
 
-    private final String filePath = "StuData.txt";
+    private String selectedStuID;
+    private String selectedIntake;
 
-    public Admin_EditStudent(String studentID, String name, int age, String intake, String assessment, String supervisor, String secondMarker, String RMCP_lecture) {
+    public Admin_EditStudent(String selectedStuID, String name, int age, String selectedIntake) {
         initComponents();
         setVisible(true);
         StudentID_textfield.setBackground(new Color(0, 0, 0, 0));
         
-        StudentID_textfield.setText(studentID);
-        StudentName_textfield.setText(name);
-        StudentAge_textfield.setText(String.valueOf(age));
-        Intake_textfield.setText(intake);
-        Assessment_textfield.setText(assessment);
-        Supervisor_textfield.setText(supervisor);
-        SecondMarker_textfield.setText(secondMarker);
-        RMCP_textfield.setText(RMCP_lecture);
-    }
-
-     // Method to fill student details based on the provided student ID
-    private void fillStudentDetails(String studentID) {
-        // Path to the text file
-        String filePath = "StuData.txt";
-
-        try (BufferedReader br = new BufferedReader(new FileReader(filePath))) {
-            String line;
-            // Read each line in the file
-            while ((line = br.readLine()) != null) {
-                // Split the line by commas to get student details
-                String[] parts = line.split(",");
-                // Check if the first part (Student ID) matches the provided ID
-                if (parts[2].equals(studentID)) {
-                    // Fill the text fields with student details
-                    StudentName_textfield.setText(parts[0]); // Student name
-                    StudentAge_textfield.setText(parts[1]); // Student age
-                    Intake_textfield.setText(parts[3]); // Student intake
-                    Assessment_textfield.setText(parts[4]); // Student assessment
-                    Supervisor_textfield.setText(parts[5]); // Supervisor
-                    SecondMarker_textfield.setText(parts[6]); // Second Marker
-                    RMCP_textfield.setText(parts[7]); // RMCP Lecturer
-
-                    break; // Once found, exit the loop
-                }
+        // Set the options of current available intake
+        ArrayList<String> intakeArray = IntakeBasedMethod.getIntake();
+        String[] intakeList = intakeArray.toArray(new String[0]);
+        cboStuIntake.setModel(new javax.swing.DefaultComboBoxModel<>(intakeList));
+        
+        // Search the selected student data
+        for (Student student : StuData_IO.StuData) {
+            if (student.id.equals(selectedStuID)) {
+                StudentName_textfield.setText(student.name);
+                StudentID_textfield.setText(student.id);
+                StudentAge_textfield.setText(String.valueOf(student.age));
+                cboStuIntake.setSelectedItem(student.intake);
+                break;
             }
-        } catch (IOException e) {
-            e.printStackTrace();
         }
+        
+        this.selectedStuID = selectedStuID;
+        this.selectedIntake = selectedIntake;
+
+        // Add action listener to intake combo box
+        cboStuIntake.addActionListener(e -> intakeChanged());
     }
     
-    private void updateStudentDetails() {
-        // Check if any field is empty
-        if (StudentName_textfield.getText().isEmpty() || 
-            StudentAge_textfield.getText().isEmpty() ||
-            Intake_textfield.getText().isEmpty() ||
-            Assessment_textfield.getText().isEmpty() ||
-            Supervisor_textfield.getText().isEmpty() ||
-            SecondMarker_textfield.getText().isEmpty() ||
-            RMCP_textfield.getText().isEmpty() ) {
-
-            // Display an error message if any field is empty
-            JOptionPane.showMessageDialog(this, "All fields must be filled!", "Error", JOptionPane.ERROR_MESSAGE);
-            return; // Exit the method
-        }
-
-        String editedID = StudentID_textfield.getText(); // Get the ID from the text field
-        boolean updated = false;
-        for (int Index = 0; Index < StuData_IO.StuData.size(); Index++) {
-            if (StuData_IO.StuData.get(Index).id.equals(editedID)) {
-                // Get the edited details
-                String Name = StudentName_textfield.getText();
-                int Age = Integer.parseInt(StudentAge_textfield.getText());
-                String Intake = (String) Intake_textfield.getText();
-                String Assessment = (String) Assessment_textfield.getText();
-                String Supervisor = (String) Supervisor_textfield.getText();
-                String SecondMarker = (String) SecondMarker_textfield.getText();
-                String RMCP_Lecture = (String) RMCP_textfield.getText();
-                String Password = StuData_IO.StuData.get(Index).password; // Keep the old password
-
-                // Update the edited data into ArrayList
-                Student Edited_Student = new Student(Name, Age, editedID, Intake, Assessment, Supervisor, SecondMarker, RMCP_Lecture, Password);
-                StuData_IO.edit(Index, Edited_Student);
-
-                updated = true; // Set the flag to true to indicate successful update
-                break; // Exit the loop after editing
+    private void intakeChanged() {
+        String newIntake = (String) cboStuIntake.getSelectedItem();
+        if (!newIntake.equals(selectedIntake)) {
+            int response = JOptionPane.showConfirmDialog(this, 
+                    "Changing the intake will cause the supervisor, second marker, and RMCP lecturer to be reassigned. Do you want to proceed?",
+                    "Confirm Intake Change", JOptionPane.YES_NO_OPTION);
+            if (response == JOptionPane.YES_OPTION) {
+                // Set the supervisor, second marker, and RMCP lecturer to default values
+                selectedIntake = newIntake;
+            } else {
+                cboStuIntake.setSelectedItem(selectedIntake); // Revert to previous intake if No is selected
             }
-        }
-
-        // Check if the update was successful
-        if (updated) {
-            JOptionPane.showMessageDialog(this, "Student details updated successfully!", "Success", JOptionPane.INFORMATION_MESSAGE);
-            //Return back to the student list page
-            this.setVisible(false);
-            backMainFrame();
-        } else {
-            // If the student with the provided ID was not found
-            JOptionPane.showMessageDialog(this, "Student ID not found!", "Error", JOptionPane.ERROR_MESSAGE);
         }
     }
 
+    private void updateStudentDetails() {
+        try {
+            // Search the selected student location
+            int stuIndex = StuData_IO.checkStu(selectedStuID);
+
+            // Get all the edited input data
+            String editedName = StudentName_textfield.getText();
+            int editedAge = Integer.parseInt(StudentAge_textfield.getText());
+            String editedIntake = (String) cboStuIntake.getSelectedItem();
+            
+            String supervisor = "-";
+            String secondMarker = "-";
+            String RMCP_lecture = "-";
+            
+            // Update the student data in the ArrayList
+            Student updatedStudent = new Student(editedName, editedAge, selectedStuID, editedIntake, 
+                                                 StuData_IO.StuData.get(stuIndex).assessment, 
+                                                 supervisor, 
+                                                 secondMarker, 
+                                                 RMCP_lecture, 
+                                                 StuData_IO.StuData.get(stuIndex).password);
+            StuData_IO.edit(stuIndex, updatedStudent);
+
+            // Confirmation message
+            JOptionPane.showMessageDialog(this, "Student edited successfully!");
+            
+            // Return back to the student list page
+            this.setVisible(false);
+            backMainFrame();
+        } catch (NumberFormatException numExc) {
+            JOptionPane.showMessageDialog(null, "You can only enter digits for age.", "Invalid Age Input", JOptionPane.WARNING_MESSAGE);
+        } catch (IllegalArgumentException e) {
+            JOptionPane.showMessageDialog(null, e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }
 
 
     @SuppressWarnings("unchecked")
@@ -120,20 +107,12 @@ public class Admin_EditStudent extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
         StudentName_textfield = new javax.swing.JTextField();
         StudentAge_textfield = new javax.swing.JTextField();
         EditBtn = new javax.swing.JButton();
         jLabel10 = new javax.swing.JLabel();
         StudentID_textfield = new javax.swing.JTextField();
-        jLabel1 = new javax.swing.JLabel();
-        Intake_textfield = new javax.swing.JTextField();
-        Assessment_textfield = new javax.swing.JTextField();
-        SecondMarker_textfield = new javax.swing.JTextField();
-        Supervisor_textfield = new javax.swing.JTextField();
-        RMCP_textfield = new javax.swing.JTextField();
+        cboStuIntake = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -159,10 +138,10 @@ public class Admin_EditStudent extends javax.swing.JFrame {
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                 .addGap(14, 14, 14)
-                .addComponent(Back_lbl, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(169, 169, 169)
+                .addComponent(Back_lbl, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(164, 164, 164)
                 .addComponent(jLabel9)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(257, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -186,17 +165,10 @@ public class Admin_EditStudent extends javax.swing.JFrame {
         jLabel5.setFont(new java.awt.Font("Segoe UI Black", 1, 12)); // NOI18N
         jLabel5.setText("Intake");
 
-        jLabel6.setFont(new java.awt.Font("Segoe UI Black", 1, 12)); // NOI18N
-        jLabel6.setText("Assessment");
-
-        jLabel7.setFont(new java.awt.Font("Segoe UI Black", 1, 12)); // NOI18N
-        jLabel7.setText("Supervisor");
-
-        jLabel8.setFont(new java.awt.Font("Segoe UI Black", 1, 12)); // NOI18N
-        jLabel8.setText("Second Marker");
-
+        StudentName_textfield.setFont(new java.awt.Font("Trebuchet MS", 1, 12)); // NOI18N
         StudentName_textfield.setText("jTextField1");
 
+        StudentAge_textfield.setFont(new java.awt.Font("Trebuchet MS", 1, 12)); // NOI18N
         StudentAge_textfield.setText("jTextField2");
         StudentAge_textfield.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -219,21 +191,11 @@ public class Admin_EditStudent extends javax.swing.JFrame {
 
         StudentID_textfield.setEditable(false);
         StudentID_textfield.setBackground(new java.awt.Color(255, 255, 255));
+        StudentID_textfield.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
         StudentID_textfield.setBorder(null);
         StudentID_textfield.setDisabledTextColor(new java.awt.Color(242, 242, 242));
 
-        jLabel1.setFont(new java.awt.Font("Segoe UI Black", 1, 12)); // NOI18N
-        jLabel1.setText("RMCP Lecturer");
-
-        Intake_textfield.setText("jTextField1");
-
-        Assessment_textfield.setText("jTextField1");
-
-        SecondMarker_textfield.setText("jTextField1");
-
-        Supervisor_textfield.setText("jTextField1");
-
-        RMCP_textfield.setText("jTextField1");
+        cboStuIntake.setFont(new java.awt.Font("Trebuchet MS", 1, 12)); // NOI18N
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -241,85 +203,45 @@ public class Admin_EditStudent extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(100, 100, 100)
-                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel6)
-                            .addComponent(jLabel5))
-                        .addGap(27, 27, 27)))
+                .addGap(146, 146, 146)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel10))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(StudentID_textfield)
-                            .addComponent(StudentName_textfield, javax.swing.GroupLayout.DEFAULT_SIZE, 167, Short.MAX_VALUE))
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(StudentAge_textfield, javax.swing.GroupLayout.DEFAULT_SIZE, 135, Short.MAX_VALUE)
-                            .addComponent(Intake_textfield)
-                            .addComponent(Assessment_textfield))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 37, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel1)
-                            .addComponent(jLabel8)
-                            .addComponent(jLabel7))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(SecondMarker_textfield, javax.swing.GroupLayout.DEFAULT_SIZE, 135, Short.MAX_VALUE)
-                            .addComponent(Supervisor_textfield)
-                            .addComponent(RMCP_textfield))
-                        .addGap(18, 41, Short.MAX_VALUE))))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(256, 256, 256)
-                .addComponent(EditBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel3)
+                    .addComponent(jLabel10)
+                    .addComponent(jLabel5)
+                    .addComponent(jLabel4))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(EditBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(StudentID_textfield)
+                        .addComponent(StudentName_textfield, javax.swing.GroupLayout.DEFAULT_SIZE, 167, Short.MAX_VALUE)
+                        .addComponent(StudentAge_textfield)
+                        .addComponent(cboStuIntake, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(26, 26, 26)
+                .addGap(68, 68, 68)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel10)
-                    .addComponent(StudentID_textfield, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                    .addComponent(StudentID_textfield, javax.swing.GroupLayout.DEFAULT_SIZE, 23, Short.MAX_VALUE))
+                .addGap(15, 15, 15)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(StudentName_textfield, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 55, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(0, 50, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel5)
-                            .addComponent(jLabel8)
-                            .addComponent(Intake_textfield, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(SecondMarker_textfield, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(93, 93, 93))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel7)
-                            .addComponent(StudentAge_textfield, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel4)
-                            .addComponent(Supervisor_textfield, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel6)
-                            .addComponent(jLabel1)
-                            .addComponent(Assessment_textfield, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(RMCP_textfield, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(43, 43, 43)))
+                    .addComponent(StudentName_textfield, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel4)
+                    .addComponent(StudentAge_textfield, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(cboStuIntake, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(55, 55, 55)
                 .addComponent(EditBtn)
-                .addGap(38, 38, 38))
+                .addGap(61, 61, 61))
         );
 
         pack();
@@ -381,24 +303,16 @@ public class Admin_EditStudent extends javax.swing.JFrame {
             }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField Assessment_textfield;
     private javax.swing.JLabel Back_lbl;
     private javax.swing.JButton EditBtn;
-    private javax.swing.JTextField Intake_textfield;
-    private javax.swing.JTextField RMCP_textfield;
-    private javax.swing.JTextField SecondMarker_textfield;
     private javax.swing.JTextField StudentAge_textfield;
     private javax.swing.JTextField StudentID_textfield;
     private javax.swing.JTextField StudentName_textfield;
-    private javax.swing.JTextField Supervisor_textfield;
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JComboBox<String> cboStuIntake;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel3;
     // End of variables declaration//GEN-END:variables

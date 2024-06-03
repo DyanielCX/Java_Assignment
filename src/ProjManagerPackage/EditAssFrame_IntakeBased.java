@@ -171,7 +171,7 @@ public class EditAssFrame_IntakeBased extends javax.swing.JFrame {
         String selectedAssess = (String) cboAssesment.getSelectedItem();
         
         // Update the intake record data
-        ProjManager.editIntakeAssessment(Intake, selectedAssess);
+        ProjManager.editStuAssessment(Intake, selectedAssess);
         
         // Edit the all student's assessment under selected intake
         for (int count = 0; count < StuData_IO.StuData.size();count ++){

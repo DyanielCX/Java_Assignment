@@ -15,9 +15,18 @@ public class RMCP_GradingFrame extends javax.swing.JFrame {
     public RMCP_GradingFrame(Lecture_mainframe lectmainframe, String studentId) {
         this.lectmainframe = lectmainframe;
         this.studentId = studentId;
-
         initComponents();
+        
+        StudentID_txt.setBackground(new Color(0, 0, 0, 0));
+        Name_txt.setBackground(new Color(0, 0, 0, 0));
+        Intake_txt.setBackground(new Color(0, 0, 0, 0));
+        Assessment_txt.setBackground(new Color(0, 0, 0, 0));
+        SubmissionLink_txt.setBackground(new Color(0, 0, 0, 0));
+        DueDate_txt.setBackground(new Color(0, 0, 0, 0));
+        SubmissionDate_txt.setBackground(new Color(0, 0, 0, 0));
+        
         loadStudentData();
+        
     }
     
     private void loadStudentData() {
@@ -168,7 +177,7 @@ public class RMCP_GradingFrame extends javax.swing.JFrame {
         SubmissionLink_txt.setEditable(false);
         SubmissionLink_txt.setText("jTextField5");
         SubmissionLink_txt.setBorder(null);
-        jPanel2.add(SubmissionLink_txt, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 165, 240, -1));
+        jPanel2.add(SubmissionLink_txt, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 165, 260, -1));
 
         btnDone.setText("Done");
         btnDone.addActionListener(new java.awt.event.ActionListener() {
