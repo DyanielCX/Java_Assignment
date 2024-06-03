@@ -29,7 +29,6 @@ public class AccMgmtFrame_EditStu extends javax.swing.JFrame {
         for (int i = 0; i < StuData_IO.StuData.size(); i++) {
             if (StuData_IO.StuData.get(i).id.equals(selectedStuID)) {
                 TFStuName.setText(StuData_IO.StuData.get(i).name);
-                TFStuID.setText(StuData_IO.StuData.get(i).id);
                 TFStuAge.setText(String.valueOf(StuData_IO.StuData.get(i).age));
                 cboStuIntake.setSelectedItem(StuData_IO.StuData.get(i).intake);
                 break;
@@ -49,11 +48,9 @@ public class AccMgmtFrame_EditStu extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         lblStuName = new javax.swing.JLabel();
-        lblStuID = new javax.swing.JLabel();
         btbSubmit = new javax.swing.JButton();
         btbCancel = new javax.swing.JButton();
         TFStuName = new javax.swing.JTextField();
-        TFStuID = new javax.swing.JTextField();
         lblLectID1 = new javax.swing.JLabel();
         TFStuAge = new javax.swing.JTextField();
         lblStuAge = new javax.swing.JLabel();
@@ -70,10 +67,6 @@ public class AccMgmtFrame_EditStu extends javax.swing.JFrame {
         lblStuName.setFont(new java.awt.Font("Dubai Medium", 0, 20)); // NOI18N
         lblStuName.setForeground(new java.awt.Color(0, 0, 0));
         lblStuName.setText("Student Name:");
-
-        lblStuID.setFont(new java.awt.Font("Dubai Medium", 0, 20)); // NOI18N
-        lblStuID.setForeground(new java.awt.Color(0, 0, 0));
-        lblStuID.setText("Student ID:");
 
         btbSubmit.setBackground(new java.awt.Color(122, 162, 227));
         btbSubmit.setFont(new java.awt.Font("Dubai Medium", 1, 16)); // NOI18N
@@ -97,8 +90,6 @@ public class AccMgmtFrame_EditStu extends javax.swing.JFrame {
 
         TFStuName.setFont(new java.awt.Font("Dubai Medium", 0, 16)); // NOI18N
 
-        TFStuID.setFont(new java.awt.Font("Dubai Medium", 0, 16)); // NOI18N
-
         lblLectID1.setFont(new java.awt.Font("Dubai Medium", 0, 20)); // NOI18N
         lblLectID1.setForeground(new java.awt.Color(0, 0, 0));
         lblLectID1.setText("Age:");
@@ -116,45 +107,44 @@ public class AccMgmtFrame_EditStu extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(62, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btbSubmit, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(TFStuName, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addContainerGap(62, Short.MAX_VALUE)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(lblStuName)
-                            .addComponent(lblStuID)
-                            .addComponent(lblStuAge)
-                            .addComponent(lblLectID1))
-                        .addGap(17, 17, 17)))
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(63, 63, 63)
-                        .addComponent(btbCancel))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(17, 17, 17)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(TFStuAge)
-                            .addComponent(TFStuID, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(TFStuName, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(cboStuIntake, 0, 147, Short.MAX_VALUE))))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(btbSubmit, javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                            .addComponent(lblStuAge)
+                                            .addComponent(lblLectID1)
+                                            .addComponent(lblStuName))
+                                        .addGap(17, 17, 17)))
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addGap(63, 63, 63)
+                                        .addComponent(btbCancel))
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(cboStuIntake, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(TFStuAge, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGap(67, 67, 67))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(80, Short.MAX_VALUE)
+                .addContainerGap(95, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblStuName)
                     .addComponent(TFStuName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(26, 26, 26)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblStuID)
-                    .addComponent(TFStuID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(26, 26, 26)
+                .addGap(49, 49, 49)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblLectID1)
                     .addComponent(TFStuAge, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(26, 26, 26)
+                .addGap(49, 49, 49)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblStuAge)
                     .addComponent(cboStuIntake, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -180,7 +170,7 @@ public class AccMgmtFrame_EditStu extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(96, Short.MAX_VALUE)
+                .addContainerGap(107, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lblTitle1)
                     .addGroup(layout.createSequentialGroup()
@@ -221,16 +211,15 @@ public class AccMgmtFrame_EditStu extends javax.swing.JFrame {
 
             //Get all the edited input data
             String editedName = TFStuName.getText();
-            String editedID = TFStuID.getText();
             int editedAge = Integer.parseInt(TFStuAge.getText());
             String editedIntake = (String) cboStuIntake.getSelectedItem();
 
 
             //Update the edited student data into ArrayList
             if (!editedIntake.equals(SelectedIntake)) {
-                ProjManager.editStuAcc_differentIntake(stuIndex, editedName, editedID, editedAge, editedIntake);
+                ProjManager.editStuAcc_differentIntake(stuIndex, editedName, editedAge, editedIntake);
             }else{
-                ProjManager.editStuAcc_sameIntake(stuIndex, editedName, editedID, editedAge, editedIntake);
+                ProjManager.editStuAcc_sameIntake(stuIndex, editedName, editedAge, editedIntake);
             }
 
             //Return back to the student list page
@@ -299,7 +288,6 @@ public class AccMgmtFrame_EditStu extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField TFStuAge;
-    private javax.swing.JTextField TFStuID;
     private javax.swing.JTextField TFStuName;
     private javax.swing.JButton btbCancel;
     private javax.swing.JButton btbSubmit;
@@ -308,7 +296,6 @@ public class AccMgmtFrame_EditStu extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel lblLectID1;
     private javax.swing.JLabel lblStuAge;
-    private javax.swing.JLabel lblStuID;
     private javax.swing.JLabel lblStuName;
     private javax.swing.JLabel lblTitle1;
     private javax.swing.JLabel lblTitle2;
