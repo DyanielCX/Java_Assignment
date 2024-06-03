@@ -14,9 +14,14 @@ import java.util.Scanner;
 import javax.swing.JOptionPane;
 
 
-public class ProjManager {
+public class ProjManager extends Lecturer{
+
+    public ProjManager(String name, String lectid) {
+        super(name, lectid);
+    }
     
-    public static void editIntakeAssessment(String selectedIntake, String selectedAssess){
+    // Edit all student assessment who under selected assessment
+    public static void editStuAssessment(String selectedIntake, String selectedAssess){
         // Get selected intake position
         int intakeIndex = IntakeRecord.checkIntake(selectedIntake);
         
@@ -34,6 +39,7 @@ public class ProjManager {
         IntakeRecord.edit(intakeIndex, editedRecord);
     }
     
+    // Edit the selected student assessment
     public static void editStuAssessment(int stuIndex, String selectedAssess){
 
         /* Edit the StuData.txt file */
@@ -87,7 +93,8 @@ public class ProjManager {
         }   
     }
     
-    public static void editStuAcc_sameIntake(int stuIndex, String editedName, int editedAge, String editedIntake){
+    // Edit student account that no changing intake
+    public static void editStuAcc(int stuIndex, String editedName, int editedAge, String editedIntake){
         
         //Get all the selected student data
         String Name = editedName;
@@ -105,7 +112,8 @@ public class ProjManager {
         StuData_IO.edit(stuIndex, editedStudent);
     }
     
-    public static void editStuAcc_differentIntake(int stuIndex, String editedName, int editedAge, String editedIntake){
+    // Edit student account that changing intake
+    public static void editStuAcc(int stuIndex, String editedIntake, String editedName, int editedAge){
         
         //Get all the selected student data
         String Name = editedName;
