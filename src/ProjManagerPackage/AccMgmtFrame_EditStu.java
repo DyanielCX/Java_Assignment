@@ -218,10 +218,10 @@ public class AccMgmtFrame_EditStu extends javax.swing.JFrame {
             //Update the edited student data into ArrayList
             if (!editedIntake.equals(SelectedIntake)) {
                 // Intake has been changed condition
-                ProjManager.editStuAcc(stuIndex, editedIntake, editedName, editedAge);
+                ProjManager.editStuAcc(stuIndex, editedName, editedAge, editedIntake);
             }else{
                 // Intake not been changed condition
-                ProjManager.editStuAcc(stuIndex, editedName, editedAge, editedIntake);
+                ProjManager.editStuAcc(stuIndex, editedName, editedAge);
             }
 
             //Return back to the student list page

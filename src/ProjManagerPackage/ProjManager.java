@@ -94,13 +94,13 @@ public class ProjManager extends Lecturer{
     }
     
     // Edit student account that no changing intake
-    public static void editStuAcc(int stuIndex, String editedName, int editedAge, String editedIntake){
+    public static void editStuAcc(int stuIndex, String editedName, int editedAge){
         
         //Get all the selected student data
         String Name = editedName;
         int Age = editedAge;
         String stuID = StuData_IO.StuData.get(stuIndex).id;
-        String Intake = editedIntake;
+        String Intake = StuData_IO.StuData.get(stuIndex).intake;
         String Assessment = StuData_IO.StuData.get(stuIndex).assessment;
         String Supervisor = StuData_IO.StuData.get(stuIndex).supervisor;
         String SecondMaker = StuData_IO.StuData.get(stuIndex).secondMarker;
@@ -113,7 +113,7 @@ public class ProjManager extends Lecturer{
     }
     
     // Edit student account that changing intake
-    public static void editStuAcc(int stuIndex, String editedIntake, String editedName, int editedAge){
+    public static void editStuAcc(int stuIndex, String editedName, int editedAge, String editedIntake){
         
         //Get all the selected student data
         String Name = editedName;
