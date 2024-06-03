@@ -14,7 +14,6 @@ Walden,APU1013,false,false,true,walden123
 Valeria,APU1014,false,true,true,valeria123
 Fawnia,APU1015,false,true,true,fawnia123
 Ado,APU1016,false,true,false,ado123
-Shannah,APU1016,false,false,false,shannah123
 Jack,APU1017,false,false,false,jack123
 Carena,APU1018,false,false,false,carena123
 Waverly,APU1019,false,false,false,waverly123

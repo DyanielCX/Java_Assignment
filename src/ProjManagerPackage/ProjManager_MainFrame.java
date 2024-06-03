@@ -379,7 +379,9 @@ public class ProjManager_MainFrame extends javax.swing.JFrame {
         ReportStatusPane.setBackground(navDefaultColor);
         
         PanelTitle.setText("Dashboard");
-        changedTab(0);
+        createDashboardPane(this);
+        int tabIndex = TabPanel.getTabCount()-1;
+        changedTab(tabIndex);
     }//GEN-LAST:event_navDashboardMouseClicked
 
     private void navStuAssessmentMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_navStuAssessmentMouseClicked
@@ -446,6 +448,12 @@ public class ProjManager_MainFrame extends javax.swing.JFrame {
         TabPanel.setSelectedIndex(TabIndex);
     }
     
+    
+    //Create new temperory panel tab - Dashboard
+    public static void createDashboardPane(ProjManager_MainFrame mainFrame){
+        Dashboard lastTab = new Dashboard(mainFrame);
+        TabPanel.addTab("Refresh_Dashboard", lastTab);
+    }
     
     //Create new temperory panel tab - AssignAdvsTab_IntakeList
     public static void createIntakeListPane(ProjManager_MainFrame mainFrame){
