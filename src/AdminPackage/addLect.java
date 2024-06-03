@@ -124,7 +124,7 @@ public class addLect extends javax.swing.JFrame {
             }
         });
 
-        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assignment_ood/images/logo.jpg"))); // NOI18N
+        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/Logo(White).png"))); // NOI18N
         jLabel5.setText("jLabel5");
 
         backBtn.setText("Back");
@@ -252,8 +252,21 @@ public class addLect extends javax.swing.JFrame {
       
     // Save lecturer details to a text file
 
-    Admin.saveLecturersToFile(lecturerName, lecturerId, isProjectManager,isSecondMarker, isSupervisor,password);
-     Admin.loadLecturersFromFile(lecturerTable);
+    // Check if any of the required fields are empty
+    if (lecturerName.isEmpty() || lecturerId.isEmpty() || password.isEmpty()) {
+        // Show error message if any of the fields are empty
+        JOptionPane.showMessageDialog(this, "Please fill in all required fields.", "Error", JOptionPane.ERROR_MESSAGE);
+        return;
+    }
+     if (Admin.lecturerExists(lecturerId)) {
+        JOptionPane.showMessageDialog(this, "Lecturer with ID " + lecturerId + " already exists.", "Error", JOptionPane.ERROR_MESSAGE);
+        return;
+    }
+      // Save lecturer details to a text file
+    Admin.saveLecturersToFile(lecturerName, lecturerId, isProjectManager, isSecondMarker, isSupervisor, password);
+    
+    // Load lecturers from file to refresh the table
+    Admin.loadLecturersFromFile(lecturerTable);
 
     JOptionPane.showMessageDialog(this, "Lecturer details submitted successfully.");
 }
@@ -293,11 +306,12 @@ private void saveLecturerToFile(String lecturerName, String lecturerId, boolean 
         }
 
         // Delete the selected lecturer from the text file
-        Admin.deleteLecturerFromFile(lecturerName, lecturerId, isProjectManager,isProjectManager,isSecondMarker,password);
+        
 
         // Remove the selected row from the table
         DefaultTableModel model = (DefaultTableModel) lecturerTable.getModel();
         model.removeRow(selectedRow);
+        Admin.deleteLecturerFromFile(lecturerName,lecturerId,isProjectManager,isProjectManager,isSecondMarker,password);
     } else {
         JOptionPane.showMessageDialog(this, "Please select a lecturer to delete.");
     }

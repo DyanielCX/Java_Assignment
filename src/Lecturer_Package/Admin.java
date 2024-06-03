@@ -85,7 +85,20 @@ public class Admin extends javax.swing.JFrame {
         e.printStackTrace(); 
     }
     }  
-    
+    public static boolean lecturerExists(String lecturerId) {
+    try (BufferedReader reader = new BufferedReader(new FileReader("LecData.txt"))) {
+        String line;
+        while ((line = reader.readLine()) != null) {
+            String[] parts = line.split(",");
+            if (parts.length >= 2 && parts[1].equals(lecturerId)) {
+                return true; // Lecturer with the same ID already exists
+            }
+        }
+    } catch (IOException e) {
+        e.printStackTrace(); // Handle or log the exception as needed
+    }
+    return false; // Lecturer with the given ID does not exist
+}
    public static void deleteLecturerFromFile(String lecturerName, String lecturerId, boolean isProjectManager,boolean isSupervisor,boolean isSecondMarker,String password) {
     // Read all lines from the file into a list
     java.util.List<String> lines = new java.util.ArrayList<>();
@@ -93,8 +106,8 @@ public class Admin extends javax.swing.JFrame {
         String line;
         while ((line = reader.readLine()) != null) {
             String[] parts = line.split(",");
-            if (parts.length == 5) {
-                if (!lecturerName.equals(parts[0]) || !lecturerId.equals(parts[1]) || isProjectManager != Boolean.parseBoolean(parts[2])|| isSupervisor != Boolean.parseBoolean(parts[3])|| isSecondMarker != Boolean.parseBoolean(parts[4]) || !password.equals(parts[5])) {
+            if (parts.length == 6) {
+                if (!lecturerId.equals(parts[1])) {
                     lines.add(line);
                 }
             }
