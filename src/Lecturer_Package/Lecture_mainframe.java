@@ -125,7 +125,6 @@ public class Lecture_mainframe extends javax.swing.JFrame {
         ViewReportPane = new javax.swing.JPanel();
         navViewReport = new javax.swing.JLabel();
         ReportStatusPane = new javax.swing.JPanel();
-        navReportStatus = new javax.swing.JLabel();
         topNavBar = new javax.swing.JPanel();
         PanelTitle = new javax.swing.JLabel();
         AccName = new javax.swing.JLabel();
@@ -192,17 +191,17 @@ public class Lecture_mainframe extends javax.swing.JFrame {
         ViewSuperviseesPane.setLayout(ViewSuperviseesPaneLayout);
         ViewSuperviseesPaneLayout.setHorizontalGroup(
             ViewSuperviseesPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ViewSuperviseesPaneLayout.createSequentialGroup()
-                .addGap(23, 23, 23)
+            .addGroup(ViewSuperviseesPaneLayout.createSequentialGroup()
+                .addContainerGap()
                 .addComponent(navViewSupervisees)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         ViewSuperviseesPaneLayout.setVerticalGroup(
             ViewSuperviseesPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(ViewSuperviseesPaneLayout.createSequentialGroup()
-                .addGap(23, 23, 23)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ViewSuperviseesPaneLayout.createSequentialGroup()
+                .addGap(37, 37, 37)
                 .addComponent(navViewSupervisees, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(20, 20, 20))
+                .addContainerGap())
         );
 
         ViewPresentationPane.setBackground(new java.awt.Color(122, 162, 227));
@@ -225,16 +224,16 @@ public class Lecture_mainframe extends javax.swing.JFrame {
         ViewPresentationPaneLayout.setHorizontalGroup(
             ViewPresentationPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(ViewPresentationPaneLayout.createSequentialGroup()
-                .addGap(22, 22, 22)
+                .addContainerGap()
                 .addComponent(navViewPresentation, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+                .addGap(22, 22, 22))
         );
         ViewPresentationPaneLayout.setVerticalGroup(
             ViewPresentationPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(ViewPresentationPaneLayout.createSequentialGroup()
-                .addGap(23, 23, 23)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ViewPresentationPaneLayout.createSequentialGroup()
+                .addGap(37, 37, 37)
                 .addComponent(navViewPresentation, javax.swing.GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE)
-                .addGap(20, 20, 20))
+                .addContainerGap())
         );
 
         ViewReportPane.setBackground(new java.awt.Color(122, 162, 227));
@@ -257,48 +256,26 @@ public class Lecture_mainframe extends javax.swing.JFrame {
         ViewReportPaneLayout.setHorizontalGroup(
             ViewReportPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(ViewReportPaneLayout.createSequentialGroup()
-                .addGap(25, 25, 25)
-                .addComponent(navViewReport)
+                .addContainerGap()
+                .addComponent(navViewReport, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         ViewReportPaneLayout.setVerticalGroup(
             ViewReportPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(ViewReportPaneLayout.createSequentialGroup()
-                .addGap(23, 23, 23)
-                .addComponent(navViewReport, javax.swing.GroupLayout.DEFAULT_SIZE, 62, Short.MAX_VALUE)
-                .addGap(20, 20, 20))
+            .addComponent(navViewReport, javax.swing.GroupLayout.DEFAULT_SIZE, 76, Short.MAX_VALUE)
         );
 
         ReportStatusPane.setBackground(new java.awt.Color(122, 162, 227));
-
-        navReportStatus.setBackground(new java.awt.Color(122, 162, 227));
-        navReportStatus.setFont(new java.awt.Font("Dubai Medium", 0, 20)); // NOI18N
-        navReportStatus.setForeground(new java.awt.Color(255, 255, 255));
-        navReportStatus.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        navReportStatus.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/ProjMngReport.png"))); // NOI18N
-        navReportStatus.setText("Report Status");
-        navReportStatus.setIconTextGap(15);
-        navReportStatus.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                navReportStatusMouseClicked(evt);
-            }
-        });
 
         javax.swing.GroupLayout ReportStatusPaneLayout = new javax.swing.GroupLayout(ReportStatusPane);
         ReportStatusPane.setLayout(ReportStatusPaneLayout);
         ReportStatusPaneLayout.setHorizontalGroup(
             ReportStatusPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(ReportStatusPaneLayout.createSequentialGroup()
-                .addGap(22, 22, 22)
-                .addComponent(navReportStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 232, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGap(0, 0, Short.MAX_VALUE)
         );
         ReportStatusPaneLayout.setVerticalGroup(
             ReportStatusPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(ReportStatusPaneLayout.createSequentialGroup()
-                .addGap(23, 23, 23)
-                .addComponent(navReportStatus, javax.swing.GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE)
-                .addGap(20, 20, 20))
+            .addGap(0, 93, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout sideNavBarLayout = new javax.swing.GroupLayout(sideNavBar);
@@ -454,18 +431,6 @@ public class Lecture_mainframe extends javax.swing.JFrame {
         PanelTitle.setText("View Report");
         TabPanel.setSelectedIndex(9);
     }//GEN-LAST:event_navViewReportMouseClicked
-
-    private void navReportStatusMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_navReportStatusMouseClicked
-        DashboardPane.setBackground(navDefaultColor);
-        ViewSuperviseesPane.setBackground(navDefaultColor);
-        ViewPresentationPane.setBackground(navDefaultColor);
-        ViewReportPane.setBackground(navDefaultColor);
-        ReportStatusPane.setBackground(navSelectedColor);
-        
-        //Change to your tab name
-        PanelTitle.setText("Report Status");
-        //TabPanel.setSelectedIndex(4);
-    }//GEN-LAST:event_navReportStatusMouseClicked
     
     /* Logout Button */
     private void lblLogoutMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblLogoutMouseClicked
@@ -550,7 +515,6 @@ public class Lecture_mainframe extends javax.swing.JFrame {
     private javax.swing.JLabel imgLogo;
     private javax.swing.JLabel lblLogout;
     private javax.swing.JLabel navDashboard;
-    private javax.swing.JLabel navReportStatus;
     private javax.swing.JLabel navViewPresentation;
     private javax.swing.JLabel navViewReport;
     private javax.swing.JLabel navViewSupervisees;
