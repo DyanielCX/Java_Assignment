@@ -87,12 +87,12 @@ public class ProjManager {
         }   
     }
     
-    public static void editStuAcc_sameIntake(int stuIndex, String editedName, String editedID, int editedAge, String editedIntake){
+    public static void editStuAcc_sameIntake(int stuIndex, String editedName, int editedAge, String editedIntake){
         
         //Get all the selected student data
         String Name = editedName;
         int Age = editedAge;
-        String stuID = editedID;
+        String stuID = StuData_IO.StuData.get(stuIndex).id;
         String Intake = editedIntake;
         String Assessment = StuData_IO.StuData.get(stuIndex).assessment;
         String Supervisor = StuData_IO.StuData.get(stuIndex).supervisor;
@@ -105,12 +105,12 @@ public class ProjManager {
         StuData_IO.edit(stuIndex, editedStudent);
     }
     
-    public static void editStuAcc_differentIntake(int stuIndex, String editedName, String editedID, int editedAge, String editedIntake){
+    public static void editStuAcc_differentIntake(int stuIndex, String editedName, int editedAge, String editedIntake){
         
         //Get all the selected student data
         String Name = editedName;
         int Age = editedAge;
-        String stuID = editedID;
+        String stuID = StuData_IO.StuData.get(stuIndex).id;
         String Intake = editedIntake;
         String Assessment = IntakeBasedMethod.getAssessment(editedIntake);
         String Supervisor = "-";
