@@ -22,8 +22,11 @@ import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumnModel;
 import Lecturer_Package.presentationReq;
+import ProjManagerPackage.AccMgmtElem.TableHeader_AccTbl;
 import ProjManagerPackage.StuAssesElem.TableActionEvent_EditButton;
+import java.awt.Component;
 import javax.swing.JTable;
+import javax.swing.table.DefaultTableCellRenderer;
 /**
  *
  * @author User
@@ -37,7 +40,15 @@ private Lecture_mainframe lectmainframe;
          this.lectmainframe = lectmainframe;
         initComponents();
         populateConsultationTable(ConsultTbl,Session.getUserID());
-            
+            ConsultTbl.getTableHeader().setReorderingAllowed(false);
+        ConsultTbl.getTableHeader().setResizingAllowed(false);
+        ConsultTbl.getTableHeader().setDefaultRenderer(new DefaultTableCellRenderer(){
+            @Override
+            public Component getTableCellRendererComponent(JTable table, Object o, boolean isSelected, boolean hasFocus, int row, int column) {
+                TableHeader_AccTbl header = new TableHeader_AccTbl(o + "");
+                return header;
+            }
+        });
            ConsultTbl.getColumnModel().getColumn(6).setCellRenderer(new TableActionCellRender_EditButton());
         ConsultTbl.getColumnModel().getColumn(6).setCellEditor(new TableActionCellEditor_EditButton(event));
     }
@@ -54,6 +65,9 @@ private Lecture_mainframe lectmainframe;
 
         jScrollPane1 = new javax.swing.JScrollPane();
         ConsultTbl = new javax.swing.JTable();
+        jPanel1 = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        Back_lbl = new javax.swing.JLabel();
 
         ConsultTbl.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -69,17 +83,64 @@ private Lecture_mainframe lectmainframe;
         ConsultTbl.setRowHeight(50);
         jScrollPane1.setViewportView(ConsultTbl);
 
+        jPanel1.setBackground(new java.awt.Color(255, 255, 153));
+
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel1.setText("Consultation");
+
+        Back_lbl.setForeground(new java.awt.Color(0, 0, 0));
+        Back_lbl.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/Back.png"))); // NOI18N
+        Back_lbl.setText("Back");
+        Back_lbl.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        Back_lbl.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                Back_lblMouseClicked(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(60, 60, 60)
+                .addComponent(Back_lbl)
+                .addGap(263, 263, 263)
+                .addComponent(jLabel1)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(34, 34, 34)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(Back_lbl))
+                .addContainerGap(45, Short.MAX_VALUE))
+        );
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 564, Short.MAX_VALUE)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 906, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 323, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 513, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    private void Back_lblMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Back_lblMouseClicked
+        // TODO add your handling code here:
+        this.setVisible(false);
+        lectmainframe.changeTab(5);
+    }//GEN-LAST:event_Back_lblMouseClicked
  TableActionEvent_EditButton event = new TableActionEvent_EditButton() {
     @Override
     public void onEdit(int row) {
@@ -137,7 +198,10 @@ private Lecture_mainframe lectmainframe;
 }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel Back_lbl;
     private javax.swing.JTable ConsultTbl;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
 }

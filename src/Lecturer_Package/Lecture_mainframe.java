@@ -519,7 +519,7 @@ public class Lecture_mainframe extends javax.swing.JFrame {
     private javax.swing.JPanel CoverTabPane;
     public javax.swing.JPanel DashboardPane;
     public javax.swing.JLabel PanelTitle;
-    private javax.swing.JPanel ReportStatusPane;
+    public javax.swing.JPanel ReportStatusPane;
     public static javax.swing.JTabbedPane TabPanel;
     public javax.swing.JPanel ViewPresentationPane;
     public javax.swing.JPanel ViewReportPane;
