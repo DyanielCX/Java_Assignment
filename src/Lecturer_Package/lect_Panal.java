@@ -125,41 +125,14 @@ public class lect_Panal extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jScrollPane1 = new javax.swing.JScrollPane();
-        lecturePanal = new javax.swing.JTable();
-        jLabel1 = new javax.swing.JLabel();
         btbNewLect = new javax.swing.JPanel();
         lblNewLect = new javax.swing.JLabel();
+        jPanel1 = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        lecturePanal = new javax.swing.JTable();
 
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        lecturePanal.setFont(new java.awt.Font("Dubai Medium", 0, 20)); // NOI18N
-        lecturePanal.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-
-            },
-            new String [] {
-                "Name", "ID", "project Manager", "password", "Supervisseess", "Action"
-            }
-        ) {
-            boolean[] canEdit = new boolean [] {
-                false, false, false, true, false, true
-            };
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
-        lecturePanal.setMinimumSize(new java.awt.Dimension(60, 90));
-        lecturePanal.setPreferredSize(new java.awt.Dimension(1000, 5000));
-        lecturePanal.setRowHeight(50);
-        jScrollPane1.setViewportView(lecturePanal);
-
-        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 50, 760, 420));
-
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabel1.setText("Lecturers");
-        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, -1, -1));
 
         btbNewLect.setBackground(new java.awt.Color(255, 255, 255));
         btbNewLect.setForeground(new java.awt.Color(255, 255, 255));
@@ -192,6 +165,55 @@ public class lect_Panal extends javax.swing.JPanel {
         );
 
         add(btbNewLect, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 10, 150, 30));
+
+        jPanel1.setBackground(new java.awt.Color(255, 102, 102));
+
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel1.setText("Lecturers");
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(374, 374, 374)
+                .addComponent(jLabel1)
+                .addContainerGap(508, Short.MAX_VALUE))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel1)
+                .addContainerGap(19, Short.MAX_VALUE))
+        );
+
+        add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 960, 50));
+
+        lecturePanal.setFont(new java.awt.Font("Dubai Medium", 0, 20)); // NOI18N
+        lecturePanal.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Name", "ID", "project Manager", "password", "Supervisseess", "Action"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, true, false, true
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        lecturePanal.setMinimumSize(new java.awt.Dimension(60, 90));
+        lecturePanal.setPreferredSize(new java.awt.Dimension(1000, 5000));
+        lecturePanal.setRowHeight(50);
+        jScrollPane1.setViewportView(lecturePanal);
+
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 50, 950, 500));
     }// </editor-fold>//GEN-END:initComponents
 
     private void btbNewLectMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btbNewLectMouseClicked
@@ -201,7 +223,7 @@ public class lect_Panal extends javax.swing.JPanel {
         mainframe.dispose();
     }//GEN-LAST:event_btbNewLectMouseClicked
 
- public void fixTable (JScrollPane scroll){
+   public void fixTable (JScrollPane scroll){
         scroll.getViewport().setBackground(Color.WHITE);
         
         JScrollBar verticalScrollBar = scroll.getVerticalScrollBar();
@@ -221,6 +243,7 @@ public class lect_Panal extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel btbNewLect;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblNewLect;
     private javax.swing.JTable lecturePanal;

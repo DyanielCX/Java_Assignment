@@ -301,16 +301,16 @@ public  void populateDashBoardTable(JTable AssignedStuTbl,String supervisor) {
      DefaultTableModel tableModel = (DefaultTableModel) AssignedStuTbl.getModel();
     tableModel.setRowCount(0); 
 
-    try (BufferedReader reader = new BufferedReader(new FileReader("PresentationData.txt"))) {
+    try (BufferedReader reader = new BufferedReader(new FileReader("StuData.txt"))) {
         String line;
         while ((line = reader.readLine()) != null) {
             
             String[] parts = line.split(",");
 
             
-           if (parts.length >= 8 && parts[1].trim().equalsIgnoreCase(supervisor)) {
+           if (parts.length >= 9 && parts[6].trim().equalsIgnoreCase(supervisor)) {
 
-    tableModel.addRow(new Object[]{parts[0], parts[1], parts[2], parts[3],parts[4],parts[5],parts[6],parts[7]});
+    tableModel.addRow(new Object[]{parts[0], parts[2],parts[4],parts[5],parts[6],parts[7],parts[8]});
 }
         }
     } catch (IOException e) {
