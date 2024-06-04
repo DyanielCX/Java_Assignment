@@ -137,6 +137,7 @@ private TableActionEvent_EditButton event = new TableActionEvent_EditButton() {
             JOptionPane.showMessageDialog(presentationTable, "Please select a row to edit.");
         }
     }
+    
 };
 
     /**

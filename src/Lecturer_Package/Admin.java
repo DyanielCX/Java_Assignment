@@ -362,8 +362,8 @@ public static List<Lecturer> readLectData(String filename) {
                     String password = parts[5];
                     String lectid = parts[1];
                     boolean isProjectManager = Boolean.parseBoolean(parts[2]);
-                    boolean isSecondMarker = Boolean.parseBoolean(parts[3]);
-                    boolean isSupervisor = Boolean.parseBoolean(parts[4]);
+                    boolean isSecondMarker = Boolean.parseBoolean(parts[4]);
+                    boolean isSupervisor = Boolean.parseBoolean(parts[3]);
                     lecturers.add(new Lecturer(name, lectid, isProjectManager, isSecondMarker, isSupervisor,password));
                 }
             }
