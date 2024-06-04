@@ -161,7 +161,7 @@ public class Dashboard extends javax.swing.JPanel {
         });
         boxRptStatus.add(btbSeeMore, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 10, 70, 30));
 
-        StuRptStatusTable.setFont(new java.awt.Font("Dubai Medium", 0, 17)); // NOI18N
+        StuRptStatusTable.setFont(new java.awt.Font("Dubai Medium", 0, 14)); // NOI18N
         StuRptStatusTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 

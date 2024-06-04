@@ -20,9 +20,12 @@ import Lecturer_Package.presentationReq;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Scanner;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollBar;
@@ -57,7 +60,7 @@ private Lecture_mainframe lectmainframe;
          admin.populateDashBoardTable(AssignedStuTbl,Session.getUserID());
           int numberOfSupervisees = AssignedStuTbl.getRowCount();
          assigned_Supervisees.setText(String.valueOf(numberOfSupervisees));
-          updatePresentationDateLabel(AssignedStuTbl);
+          updatePresentationDateLabel("PresentationData.txt");
           
             fixTable(jScrollPane1);
         
@@ -85,31 +88,44 @@ private Lecture_mainframe lectmainframe;
          
     }
 
-   private void updatePresentationDateLabel(JTable AssignedStuTbl) {
-    SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
-    Date currentDate = new Date();
+ private void updatePresentationDateLabel(String filePath) {
+  SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
+  Date currentDate = new Date();
 
-    String closestDate = null;
-    long minDifference = Long.MAX_VALUE;
+  String closestDate = null;
+  long minDifference = Long.MAX_VALUE;
 
-    for (int row = 0; row < AssignedStuTbl.getRowCount(); row++) {
-        try {
-            Date date = dateFormat.parse((String) AssignedStuTbl.getValueAt(row, 3));
-            long difference = Math.abs(date.getTime() - currentDate.getTime());
-            if (difference < minDifference) {
-                minDifference = difference;
-                closestDate = dateFormat.format(date);
-            }
-        } catch (ParseException e) {
-            e.printStackTrace();
+  try (Scanner scanner = new Scanner(new File(filePath))) {
+    while (scanner.hasNextLine()) {
+      String line = scanner.nextLine();
+      String[] data = line.split(","); // Split the line based on commas (",")
+
+      try {
+        // Assuming presentation date is at index 3 based on your data structure
+        Date date = dateFormat.parse(data[3]);
+        long difference = Math.abs(date.getTime() - currentDate.getTime());
+        if (difference < minDifference) {
+          minDifference = difference;
+          closestDate = data[3]; // Store the actual date string
         }
+      } catch (ParseException e) {
+        // Handle parsing exceptions for invalid dates in the file
+        System.err.println("Error parsing date in PresentationData.txt: " + line);
+      } catch (IndexOutOfBoundsException e) {
+        // Handle cases where data doesn't have expected number of elements
+        System.err.println("Invalid data format in PresentationData.txt: " + line);
+      }
     }
+  } catch (FileNotFoundException e) {
+    // Handle file not found exception
+    System.err.println("PresentationData.txt file not found!");
+  }
 
-    if (closestDate != null) {
-        presentationDate.setText(closestDate);
-    } else {
-        presentationDate.setText("No upcoming presentations");
-    }
+  if (closestDate != null) {
+    presentationDate.setText(closestDate);
+  } else {
+    presentationDate.setText("No upcoming presentations found in file.");
+  }
 }
      
       public  void fixTable (JScrollPane scroll){
@@ -170,7 +186,7 @@ private Lecture_mainframe lectmainframe;
 
             },
             new String [] {
-                "Student", "Lecturer", "Course", "Date", "Time", "Status", "Reason"
+                "Student Number", "Student Name", "Intake", "Course", "Supervisor", "Second Marker", "RMCP"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -185,7 +201,7 @@ private Lecture_mainframe lectmainframe;
         AssignedStuTbl.setRowHeight(40);
         jScrollPane1.setViewportView(AssignedStuTbl);
 
-        boxRptStatus.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 40, 840, 300));
+        boxRptStatus.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 40, 850, 300));
 
         TabTitle.setFont(new java.awt.Font("Dubai Medium", 0, 23)); // NOI18N
         TabTitle.setForeground(new java.awt.Color(0, 0, 0));
@@ -194,7 +210,7 @@ private Lecture_mainframe lectmainframe;
 
         lectName.setFont(new java.awt.Font("Dubai Medium", 1, 23)); // NOI18N
         lectName.setText("jLabel1");
-        boxRptStatus.add(lectName, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 10, -1, -1));
+        boxRptStatus.add(lectName, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 10, 80, 40));
 
         jPanel1.add(boxRptStatus, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 170, 880, 350));
 
