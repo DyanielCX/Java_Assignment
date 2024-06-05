@@ -59,8 +59,8 @@ public class lect_Panal extends javax.swing.JPanel {
                 return header;
             }
         });
-          lecturePanal.getColumnModel().getColumn(5).setCellRenderer(new TableActionCellRender_EditButton());
-        lecturePanal.getColumnModel().getColumn(5).setCellEditor(new TableActionCellEditor_EditButton(event));
+          lecturePanal.getColumnModel().getColumn(4).setCellRenderer(new TableActionCellRender_EditButton());
+        lecturePanal.getColumnModel().getColumn(4).setCellEditor(new TableActionCellEditor_EditButton(event));
     }
     
     TableActionEvent_EditButton event = new TableActionEvent_EditButton() {
@@ -197,11 +197,11 @@ public class lect_Panal extends javax.swing.JPanel {
 
             },
             new String [] {
-                "Name", "ID", "project Manager", "password", "Supervisseess", "Action"
+                "Name", "ID", "project Manager", "password", "Action"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, true, false, true
+                false, false, false, true, true
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {

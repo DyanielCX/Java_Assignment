@@ -23,3 +23,4 @@ Rhett,APU1022,true,false,false,rhett123
 Yoko,APU1023,true,false,false,yoko123
 Patty,APU1024,true,false,false,patty123
 Shahab,APU1025,true,false,false,shahab123
+shao,APU1069,false,false,false,shao123
