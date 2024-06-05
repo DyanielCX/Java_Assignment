@@ -156,7 +156,7 @@ private List<Lecturer> lecturers;
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnViewPresent3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnViewPresent3MouseClicked
-     if (lecturers != null && RoleChecker.isSupervisor(Session.getUserID(), lecturers)) {
+     if (lecturers != null && RoleChecker.isSupervisor(Session.getUserID(), lecturers)|| RoleChecker.isSecondMarker(Session.getUserID(), lecturers)) {
             lectmainframe.changeTab(6); 
         } else {
             JOptionPane.showMessageDialog(this, "Access denied. Only supervisors can view the presentation table.");

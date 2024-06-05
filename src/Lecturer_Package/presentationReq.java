@@ -86,15 +86,15 @@ private TableActionEvent_EditButton event = new TableActionEvent_EditButton() {
             for (Student student : studentList) {
                 if (student.getId().equals(studentID)) {
                     if (student.getSupervisor().equals(userName)) {
+                        String secondMarkerStatus = (String) presentationTable.getValueAt(selectedRow, 9); // Second Marker Status
+                        if (!secondMarkerStatus.equalsIgnoreCase("Accepted")) {
+                            JOptionPane.showMessageDialog(presentationTable, "Second marker must accept the presentation first.");
+                            return;
+                        }
                         role = "supervisor";
                         currentStatus = (String) presentationTable.getValueAt(selectedRow, 8); // Supervisor Status
                         statusColumnIndex = 8;
                     } else if (student.getSecondMarker().equals(userName)) {
-                        String supervisorStatus = (String) presentationTable.getValueAt(selectedRow, 8); // Supervisor Status
-                        if (!supervisorStatus.equalsIgnoreCase("Accepted")) {
-                            JOptionPane.showMessageDialog(presentationTable, "Supervisor must accept the presentation first.");
-                            return;
-                        }
                         role = "second_marker";
                         currentStatus = (String) presentationTable.getValueAt(selectedRow, 9); // Second Marker Status
                         statusColumnIndex = 9;
@@ -137,7 +137,6 @@ private TableActionEvent_EditButton event = new TableActionEvent_EditButton() {
             JOptionPane.showMessageDialog(presentationTable, "Please select a row to edit.");
         }
     }
-    
 };
 
     /**
@@ -258,9 +257,10 @@ public void populatePresentationTable(JTable presentationTable, String loggedInU
             if (parts.length >= 10) {
                 boolean isSupervisor = parts[1].trim().equalsIgnoreCase(loggedInUser);
                 boolean isSecondMarker = parts[7].trim().equalsIgnoreCase(loggedInUser);
-                boolean supervisorAccepted = parts[8].trim().equalsIgnoreCase("Accepted");
+               boolean secondMarkerAccepted = parts[9].trim().equalsIgnoreCase("Accepted");
 
-                if (isSupervisor || (isSecondMarker && supervisorAccepted)) {
+                // Supervisor can only see the data if the second marker status is "Accepted"
+                if ((isSupervisor && secondMarkerAccepted) || isSecondMarker) {
                     model.addRow(new Object[]{parts[0], parts[1], parts[2], parts[3], parts[4], parts[5], parts[6], parts[7], parts[8], parts[9]});
                 }
             }

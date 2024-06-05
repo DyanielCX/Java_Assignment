@@ -193,30 +193,30 @@ public static void refreshStudentStatus(String studentID) {
         reader.close();
 
     
-        for (int i = 0; i < lines.size(); i++) {
-            String[] parts = lines.get(i).split(",");
-            if (parts[0].trim().equals(studentID)) {
-                if (parts.length >= 10) { 
-                    String supervisorStatus = parts[8].trim();
-                    String secondMarkerStatus = parts[9].trim();
-                    String studentStatus;
+      for (int i = 0; i < lines.size(); i++) {
+    String[] parts = lines.get(i).split(",");
+    if (parts[0].trim().equals(studentID)) {
+        if (parts.length >= 10) {
+            String supervisorStatus = parts[8].trim();
+            String secondMarkerStatus = parts[9].trim();
+            String studentStatus;
 
-                    if (supervisorStatus.equalsIgnoreCase("Rejected") || secondMarkerStatus.equalsIgnoreCase("Rejected")) {
-                        studentStatus = "Rejected";
-                    } else if (supervisorStatus.equalsIgnoreCase("Accepted") && secondMarkerStatus.equalsIgnoreCase("Accepted")) {
-                        studentStatus = "Accepted";
-                    } else if (supervisorStatus.equalsIgnoreCase("Accepted") && secondMarkerStatus.equalsIgnoreCase("Pending")) {
-                        studentStatus = "Half Accepted";
-                    } else {
-                        studentStatus = "Pending";
-                    }
-
-                    parts[5] = studentStatus;
-                    lines.set(i, String.join(",", parts)); 
-                    break; 
-                }
+            if (supervisorStatus.equalsIgnoreCase("Rejected") || secondMarkerStatus.equalsIgnoreCase("Rejected")) {
+                studentStatus = "Rejected";
+            } else if (secondMarkerStatus.equalsIgnoreCase("Accepted") && supervisorStatus.equalsIgnoreCase("Accepted")) {
+                studentStatus = "Accepted";
+            } else if (secondMarkerStatus.equalsIgnoreCase("Accepted") && supervisorStatus.equalsIgnoreCase("pending")) {
+                studentStatus = "Half Accepted";
+            } else {
+                studentStatus = "Pending";
             }
+
+            parts[5] = studentStatus;
+            lines.set(i, String.join(",", parts));
+            break;
         }
+    }
+}
 
         // Write the updated lines back to the file
         BufferedWriter writer = new BufferedWriter(new FileWriter("PresentationData.txt"));
