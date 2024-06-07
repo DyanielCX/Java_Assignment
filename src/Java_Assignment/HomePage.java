@@ -4,6 +4,10 @@
  */
 package Java_Assignment;
 
+import AdminPackage.IntakeRecord;
+import ProjManagerPackage.AssignSupvElem.LectData_IO;
+import StuPackage.StuData_IO;
+
 /**
  *
  * @author minya
@@ -146,6 +150,10 @@ public class HomePage extends javax.swing.JFrame {
         LoginPage login = new LoginPage();
         login.setVisible(true); // Show the new window
         this.dispose();
+        
+        IntakeRecord.readFrTxt();
+        StuData_IO.readFrTxt();
+        LectData_IO.readFrTxt();
     }//GEN-LAST:event_LoginButtonActionPerformed
 
     /**
